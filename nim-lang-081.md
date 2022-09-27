@@ -1,6 +1,6 @@
 # 🧸nim-lang-081.osdn.jp 跡地
 [![💔 - NEVER AGAIN](https://img.shields.io/badge/💔-NEVER_AGAIN-2ea44f)](https://www.nullarbor.co.jp/blog/2021/03/23/1434/)
-[![🍑 - Poisoned peach](https://img.shields.io/badge/🍑-Poisoned_peach-2ea44f)](https://)
+[![🍑 - Poisoned peach](https://img.shields.io/badge/🍑-Poisoned_peach-2ea44f)](https://chisou-media.jp/posts/7929)
 [![🕳️ - GAME OVER](https://img.shields.io/badge/🕳️-GAME_OVER-2ea44f)](https://)
 
 ## お知らせ

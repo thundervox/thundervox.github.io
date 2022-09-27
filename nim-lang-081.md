@@ -1,4 +1,5 @@
 # 🧸nim-lang-081.osdn.jp 跡地
+[![💔 - NEVER AGAIN](https://img.shields.io/badge/💔-NEVER_AGAIN-2ea44f)](https://www.nullarbor.co.jp/blog/2021/03/23/1434/)
 ## お知らせ
 ご存知の通り、もう Nim に関する翻訳活動は辞めたので、 nim-lang-081 (OSDN) にアクセスしないでください。
 

@@ -34,5 +34,6 @@
  * [結局、利用されて消耗するだけ…「愛がない人」を見抜く方法 ［ひかりの恋愛コラム］ All About](https://allabout.co.jp/gm/gc/484024/)
  * [友達に利用されているかどうかを知る方法: 13 ステップ (画像あり) - wikiHow](https://www.wikihow.jp/%E5%8F%8B%E9%81%94%E3%81%AB%E5%88%A9%E7%94%A8%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B%E3%82%92%E7%9F%A5%E3%82%8B?amp=1)
  * [弱っているときに追い打ちをかけてくる人は独自の正義感でやってる話 - 迷ったときの生き方辞典](https://happy-pokonyan.com/additional/)
+ * [あなたは大丈夫？　知っておきたい暴言を吐く人の心理 - とらばーゆ](https://toranet.jp/contents/career_skill/communication/21476/)
 
 皆様の今後の活躍を楽しみにしております。

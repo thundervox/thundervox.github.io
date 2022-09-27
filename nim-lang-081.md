@@ -36,5 +36,8 @@
  * [弱っているときに追い打ちをかけてくる人は独自の正義感でやってる話 - 迷ったときの生き方辞典](https://happy-pokonyan.com/additional/)
  * [あなたは大丈夫？　知っておきたい暴言を吐く人の心理 - とらばーゆ](https://toranet.jp/contents/career_skill/communication/21476/)
  * [抑えられない怒りや衝動に苦しむ方へ ―セルフケアの方法と、相談機関 - スワローポケット](https://swallowpocket.net/242/)
+ * [■人の弱さが許せない - 【脱・いい人BLOG】at WILLでいこう](https://ameblo.jp/cocoro-master/entry-11460012817.html)
+ * [人間の弱さを憐れむ - 愛する人に愛される方法](https://loved.jp/17/1.html)
+ * [「弱さ」について～どうしたら自分の弱さを受け入れ、許すことができますか？～ - 心理カウンセラー根本裕幸](https://nemotohiroyuki.jp/everyday-psychology/37561)
 
 皆様の今後の活躍を楽しみにしております。

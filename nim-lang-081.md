@@ -43,5 +43,7 @@
  * [去ってしまった人は「役割を終えた人」である。 - 人生の気づき.com](https://jinseinokiduki.com/goen_yakume/)
  * [なぜ人が離れていくのか？その理由と嫌われたときの対処法 (北原孝彦) - YouTube](https://youtube.com/watch?v=wu4ay6Hn8sg)
  * [「職場の人間関係」に苦しみ続けた私に効果があった24の方法](https://life-and-mind.com/office-relationship-791)
+ * [【法話】悪口は自分を傷つける - 劣等感が悪口を生む - 総持寺　西山浄土宗　梶取本山](https://soujiji-kandori.com/148/)
+ * [【ぬいぐるみ療法とは？～うつ病に効果あり - 成年者向けコラム - 障害者ドットコム](https://shohgaisha.com/column/grown_up_detail?id=659)
 
 皆様の今後の活躍を楽しみにしております。

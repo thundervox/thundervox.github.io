@@ -39,5 +39,9 @@
  * [■人の弱さが許せない - 【脱・いい人BLOG】at WILLでいこう](https://ameblo.jp/cocoro-master/entry-11460012817.html)
  * [人間の弱さを憐れむ - 愛する人に愛される方法](https://loved.jp/17/1.html)
  * [「弱さ」について～どうしたら自分の弱さを受け入れ、許すことができますか？～ - 心理カウンセラー根本裕幸](https://nemotohiroyuki.jp/everyday-psychology/37561)
+ * [自分から去っていく人のスピリチュアルな意味は？縁がない人は離れていく、追わない - 能・狂言を観に行こう！](https://noh-kyogen.jp/hito-hanareteiku-4186)
+ * [去ってしまった人は「役割を終えた人」である。 - 人生の気づき.com](https://jinseinokiduki.com/goen_yakume/)
+ * [なぜ人が離れていくのか？その理由と嫌われたときの対処法 (北原孝彦) - YouTube](https://youtube.com/watch?v=wu4ay6Hn8sg)
+ * [「職場の人間関係」に苦しみ続けた私に効果があった24の方法](https://life-and-mind.com/office-relationship-791)
 
 皆様の今後の活躍を楽しみにしております。

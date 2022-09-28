@@ -1,31 +1,31 @@
-# 2022�N2��14�� - �ϐ��̉���Ɋւ�����p
-(���̋L���� Solar eClipse X �Ō��J���Ă����L���̍Č��J�E���M�C���łł�)
+# 2022年2月14日 - 変数の解説に関する引用
+(この記事は Solar eClipse X で公開していた記事の再公開・加筆修正版です)
 
-���w�Ҍ����̉���Ƃ��Ĕ[���������Ȃ��̂Ŋe�����n�̐�����������p���Ă݂܂��B
+初学者向けの解説として納得がいかないので各所理系の説明書から引用してみます。
 
-�\�� (�������M�\��)
+予定 (順次加筆予定)
 
  * BASIC-256
  * BlitzBASIC
  * ELENA
  * Dartmouth BASIC
  * nuBASIC
- * �ȂǁB
+ * など。
 
 ## FORTRAN
-�t�����̎戵������ (IBM704 �p) �͂���悤�ł��B����ł����璲�ׂĂ݂܂��B
+黎明期の取扱説明書 (IBM704 用) はあるようです。入手できたら調べてみます。
 
 URL: https://www.ibm.com/ibm/history/ibm100/us/en/icons/fortran/breakthroughs/
 
 ## Dartmouth BASIC (1964)
-[�_�[�g�}�X BASIC](https://www.dartmouth.edu/basicfifty/basic.html)�̏��Ő������ɂ����āA�ϐ��́A
+[ダートマス BASIC](https://www.dartmouth.edu/basicfifty/basic.html)の初版説明書において、変数は、
 
 ```
-LET �ϐ� = ����
+LET 変数 = 数式
 ```
-�̐�����������܂���B����Ȃ킯�ŁA���Ȃ��Ƃ� 1964 �N�̎��_�ł́A�ϐ����n�R�ɗႦ��悤�Ȏ����͊m�F�ł��܂��� (TrueBASIC �͏���)�B
+の説明しかありません。そんなわけで、少なくとも 1964 年の時点では、変数をハコに例えるような事実は確認できません (TrueBASIC は除く)。
 
-�܂��A�C�R�[���𓙍��Ɗ�ȂɌ��߂���ُ�ȏ��w�҂����Ȃ������悤�ł� (�M�҂̓v���O���~���O���n�߂Ă��̂����A����Ȑl�ɏo��������Ƃ�����܂���B����Ȃ��Ƃ������o�����̂�15���I���琶���Ă�����ق��ِ��E�l�ł��傤���H)�B
+また、イコールを等号と頑なに決めつける異常な初学者もいなかったようです (筆者はプログラミングを始めてこのかた、そんな人に出会ったことがありません。そんなことを言い出したのは15世紀から生きている怪異か異世界人でしょうか？)。
 
 ## nuBASIC 1.48
 URL: https://github.com/eantcal/nubasic
@@ -33,15 +33,15 @@ URL: https://github.com/eantcal/nubasic
 ```
 A variable is a storage location paired with an associated symbolic name called identifier.
 Variables allow you to store and change information.
-NUBASIC USER'S GUIDE p.33 �����p (GFDL 1.3)
+NUBASIC USER'S GUIDE p.33 より引用 (GFDL 1.3)
 ```
 
-### �e��
-�ϐ��͎��ʎq�ƌĂ΂��V���{�����Ɋ֘A�t����ꂽ�L���̈��g�ݍ��킹���k�\�������l���̂ł���B�ϐ��̓��[�U�ɂ����̋L�^�ƕύX���ł���B
+### 粗訳
+変数は識別子と呼ばれるシンボル名に関連付けられた記憶領域を組み合わせた〔構成される〕ものである。変数はユーザによる情報の記録と変更ができる。
 
 
-## �Q�l����
+## 参考文献
 
- * [�܂����Ƃ��b�ŏ��Ղ��Ă��? - K.Maebashi's �͂Ăȃu���O](https://kmaebashi.hatenablog.com/entry/20160717/)
- * [�ϐ��𔠂ł͂Ȃ��tⳂŐ������Ă݂��i���w�Ҍ����j - Qiita](https://qiita.com/yuma-ito-bd/items/c118c637962d34ec51af)
+ * [まだたとえ話で消耗してるの? - K.Maebashi's はてなブログ](https://kmaebashi.hatenablog.com/entry/20160717/)
+ * [変数を箱ではなく付箋で説明してみた（初学者向け） - Qiita](https://qiita.com/yuma-ito-bd/items/c118c637962d34ec51af)
 

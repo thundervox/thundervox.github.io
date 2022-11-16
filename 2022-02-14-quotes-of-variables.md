@@ -126,6 +126,13 @@ We may store, change, and retrieve values from this location as our program runs
 
 それだけです。
 
+## もっと簡単な方法はあります？
+
+アクションゲームやシューティングなどパターンを見極めてよく考えたり試行錯誤しければ攻略できないものもお勧めかと思います。
+
+この手のものが苦手な人は、思い込みや決めつけで同じ事を繰り返してしまいドツボにハマハマスイカヘッドするんで。味わってよく噛むことはどの分野でもだいたい同じなんですよね。
+
+
 ## 参考文献
 
  * [まだたとえ話で消耗してるの? - K.Maebashi's はてなブログ](https://kmaebashi.hatenablog.com/entry/20160717/)

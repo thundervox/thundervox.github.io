@@ -1,2 +1,2 @@
-# thunderxov.github.io
+# thundervox.github.io
 Blog for experimental purpose.

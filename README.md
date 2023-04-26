@@ -1,2 +1,2 @@
-# pancakevirus.github.io
+# thunderxov.github.io
 Blog for experimental purpose.

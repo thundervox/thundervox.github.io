@@ -5,13 +5,22 @@
 
 予定 (順次加筆予定)
 
- * RCBasic
- * BASIC-256
  * BlitzBASIC
- * Dartmouth BASIC
- * ELENA
- * nuBASIC
  * など。
+
+## ELENA
+
+URL: https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#variables
+
+```
+A variable is a named place in the program memory (for example in the function stack) which contains a value.
+```
+ELENA Programming Manual - Variables より引用 (MIT ライセンス)
+
+### 粗訳 (Textra)
+```
+変数はプログラムのメモリ (例えば関数のスタック) において値のある場所に名前を付けたものです。
+```
 
 ## FORTRAN
 黎明期の取扱説明書 (IBM704 用) はあるようです。入手できたら調べてみます。
@@ -43,7 +52,6 @@ NUBASIC USER'S GUIDE p.33 より引用 (GFDL 1.3)
 変数は識別子と呼ばれるシンボル名に関連付けられた記憶領域を組み合わせた〔構成される〕ものである。
 変数はユーザによる情報の記録と変更ができる。
 ```
-
 
 ## RCBasic
 URL: [https://www.rcbasic.com/](https://www.rcbasic.com/)

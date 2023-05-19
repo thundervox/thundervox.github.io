@@ -48,6 +48,8 @@ Rust, CPython, Zig などがありますし、探せばラッパーや拡張機�
 
  * [情が深い人ほど「こいつはダメ」と思ったら一切の猶予も与えず見限ることを知ってほしい。](https://kogusoku.com/archives/25776)
 
+ * [全てが「当たり前」じゃないと思った方が、人生は豊かに好転して行く-Rashikune -*らしくね♪](https://danshari33.blogspot.com/2021/06/atarimae.html)
+
  * https://note.com/sakurai7715/n/nedc80415d746
 
 ## ぼやき

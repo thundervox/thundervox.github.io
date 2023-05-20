@@ -5,10 +5,11 @@ Blog for experimental purpose.
 
 # TODO
  - OSDN の退会準備
- - ELENA , Gravity 言語関連の邦訳サイト公開
+ - ELENA, Gravity 言語関連の邦訳サイト公開
+ - 過去の翻訳物の再公開 (081ディレクトリ)
  - Ring 関連のサイト移行
  - 活動内容の棚卸し
 
 # Related projects
- - [Caramel Bento](https://github.com/thundervox/bento) - 日本語ワープロ専用機復刻プロジェクト(招待制、非公開)
+ - [Caramel Bento](https://github.com/thundervox/bento) - 日本語モバイルワープロ専用機復刻プロジェクト(招待制、現在非公開)
  - 

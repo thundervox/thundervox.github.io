@@ -8,3 +8,6 @@ Blog for experimental purpose.
  - ELENA , Gravity 言語関連の邦訳サイト公開
  - Ring 関連のサイト移行
  - 活動内容の棚卸し
+
+# Related projects
+ - Caramel Bento

@@ -10,4 +10,5 @@ Blog for experimental purpose.
  - 活動内容の棚卸し
 
 # Related projects
- - Caramel Bento
+ - [Caramel Bento](https://github.com/thundervox/bento) - 日本語ワープロ専用機復刻プロジェクト(招待制、非公開)
+ - 

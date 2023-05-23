@@ -2,6 +2,7 @@
 
 TBA or discontinued...
 
+ * awesome-basic
  * b4x
  * bcxbasiccoders
  * blitz3d
@@ -16,6 +17,7 @@ TBA or discontinued...
  * dialect
  * endbasic
  * gambas
+ * gnbasic
  * gotbasic
  * hbasic
  * hi65
@@ -30,7 +32,9 @@ TBA or discontinued...
  * qb64
  * pc-basic
  * rcbasic
+ * retrobasic
  * sdlbasic
+ * tmbasic
  * wonkey
  * yabasic
 

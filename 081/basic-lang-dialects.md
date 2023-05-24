@@ -2,6 +2,8 @@
 
 TBA or discontinued...
 
+旧サイト(OSDN, 移行後に廃止予定): http://rcbasic-081.osdn.jp/
+
  * awesome-basic
  * b4x
  * bcxbasiccoders

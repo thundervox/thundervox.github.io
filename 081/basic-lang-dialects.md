@@ -22,6 +22,7 @@ TBA or discontinued...
  * hbasic
  * hi65
  * lowresnx
+ * mmbasic
  * monkey
  * monkey2
  * my_basic
@@ -34,12 +35,18 @@ TBA or discontinued...
  * rcbasic
  * retrobasic
  * sdlbasic
+ * tibbo-basic
  * tmbasic
  * wonkey
+ * wxbasic
+ * x11basic
+ * xblite
  * yabasic
 
 ## 用途別
 選択肢の多さは有利に働くとは限らない(器用貧乏、決断疲れ)ので独断や偏見に基づいたある程度の分類は必要かと。
+
+### 1964 - 1970
 
 ### 1980s retro
 
@@ -50,5 +57,8 @@ TBA or discontinued...
 ### 2010s
 
 ### 2020s
+
+### 2030s
+
 
 ---

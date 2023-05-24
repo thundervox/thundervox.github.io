@@ -21,7 +21,7 @@ TBA or discontinued...
  * gotbasic
  * hbasic
  * hi65
- * lowresnx
+ * [LowRes NX](./lowresnx/)
  * mmbasic
  * monkey
  * monkey2

@@ -9,7 +9,7 @@ TBA
  * [isVowel/ja-jp](manual.html) [<sup>編集</sup>](https://github.com/thundervox/thundervox.github.io/edit/main/081/lowresnx/manual.html)
  * [Logovista-MTPE/ja-jp](manual_lvmt.html) <sup>検証用</sup>
  * readme.txt
- * [License(Original)](License.txt)
- * License_ja-jp.txt
+ * [License(Original)](license.txt)
+ * license_ja-jp.txt
 
 ---

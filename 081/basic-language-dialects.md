@@ -23,7 +23,7 @@ TBA or discontinued...
  * gotbasic
  * hbasic
  * hi65
- * [LowRes NX](./lowresnx/)
+ * [LowRes NX](./lowresnx/) <sup>1980s, 8-bit PC flavored, Fantasy Console</sup>
  * mmbasic
  * monkey
  * monkey2

@@ -1,0 +1,58 @@
+LowRes NX 日本語訳マニュアルの公開 (関連キーワード: BASIC, PICO-8, MSX, PC-6601, PC-8801, C64, ファミリーベーシック, レトロゲーム、ピクセルアート、チップチューン)
+
+== LowRes NX について
+
+[https://lowresnx.inutilis.com LowRes NX] は [https://twitter.com/timo_inutilis Timo Kross] 氏による BASIC が使えるファンタジーコンソール (ファンタジーコンピュータ) です
+
+BASIC インタプリタを搭載しており、当時のプログラミングスタイルでゲームが開発できます。かつて BASIC をお使いでしたマイコン少年 (当時) のかたで今でも飢えているかただけでなく、昭和レトロに興味のあるかたにもお勧めだと思います。
+
+マルチプラットフォームであり、デスクトップ (Windows, MacOS, Linux) だけでなくモバイル (iPhone, iPad) や
+
+Raspberry Pi, GameShell, RetroArch でもゲーム開発ができます (いつでもどこでも戦場でも!?)。加えて、作ったゲームはウェブブラウザ (WebAssembly) でも動作します。
+
+プログラミングが苦手なかたでも、[https://lowresnx.inutilis.com/topic.php?id=1444 ピクセルアート]や[https://lowresnx.inutilis.com/topic.php?id=131 チップチューン]制作ツールとしても使えます (ジェネラティブアートやメガデモにも使えます)。当然、このツールはブラウザでも動作します。
+
+なにができるかについてユーザさんが投稿したプログラムを動かしてみるのが一番だと思います。
+
+関連:
+
+ * 取扱説明書と関連記事: https://lowresnx.inutilis.com/help.php
+
+ * ユーザ投稿プログラム: https://lowresnx.inutilis.com/programs.php
+
+ * 公式フォーラム: https://lowresnx.inutilis.com/forum.php
+
+== おススメのゲームやプログラム
+
+あくまで訳者が選んだものであるため、ご自身で色々と試されることをお勧めします。
+
+ * Trapped! (by Jeanmilost) : https://lowresnx.inutilis.com/topic.php?id=2126
+
+ * IT (by Ericisonit) : https://lowresnx.inutilis.com/topic.php?id=2290
+
+ * Radar Rat Race (by BGelais) : https://lowresnx.inutilis.com/topic.php?id=2399
+
+ * BANDITS (by BGelais) : https://lowresnx.inutilis.com/topic.php?id=1935
+
+ * Zomber NX (by TrashCan Games) : https://lowresnx.inutilis.com/topic.php?id=2371
+
+(訳注: [https://lowresnx.inutilis.com/topic.php?id=589 Gut Runner] については不快な表現がありますので、人前や御食事前後に遊ぶのは控えたほうがいいでしょう。いいですか、警告しましたからね。)
+
+== 日本語ドキュメントについて
+
+isVowel による仮訳です。仕上げたばかりですので誤訳は多数あると思います。
+
+ライセンスは LowRes NX に従います。
+
+ * URL: https://rcbasic-081.osdn.jp/lowresnx/manual.html
+
+ * Git リポジトリ : https://osdn.net/projects/rcbasic-081/scm/git/lowresnx/
+
+ * サポートフォーラム : https://osdn.net/projects/rcbasic-081/forums/39377/
+
+== 補足
+
+RCBasic (だけでは維持困難のため) 以外にも BASIC 関連の翻訳資料を公開しています。
+
+本来の活動とは逸脱しますがご了承ください。
+

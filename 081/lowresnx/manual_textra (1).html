@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>LowRes NXマニュアル</title>
+<style>
+body {
+	font-family: sans-serif;
+}
+td, th {
+    padding-right: 1em;
+    vertical-align: top;
+}
+th {
+    text-align: left;
+}
+a {
+    text-decoration: none;
+    color: #055;
+}
+ul {
+    padding-left: 25px;
+}
+li {
+    margin-bottom: 0.5em;
+}
+h1 {
+	border-top: 6px solid black;
+	padding-top: 6px;
+	text-transform: uppercase;
+	clear: both;
+}
+h2 {
+	border-top: 2px solid black;
+	padding: 4px 0;
+	clear: both;
+}
+p + h1, ul + h1, pre + h1, table + h1, div + h1 {
+	margin-top: 3em;
+}
+p + h2, ul + h2, pre + h2, table + h2, div + h2 {
+	margin-top: 2em;
+}
+p + h3, ul + h3, pre + h3, table + h3, div + h3 {
+	margin-top: 1.5em;
+}
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 640px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.info-mobile, .info-desktop {
+	padding-left: 38px;
+	margin: 1em 0;
+	min-height: 30px;
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+.info-mobile {
+	background-image: url(manual-images/icon_mobile.png);
+	background-image: -webkit-image-set(url(manual-images/icon_mobile.png) 1x, url(manual-images/icon_mobile@2x.png) 2x);
+}
+.info-desktop {
+	background-image: url(manual-images/icon_desktop.png);
+	background-image: -webkit-image-set(url(manual-images/icon_desktop.png) 1x, url(manual-images/icon_desktop@2x.png) 2x);
+}
+.illustration {
+	float: right;
+}
+.illustration-nofloat {
+	display: block;
+	float: none;
+}
+@media (max-width: 480px) {
+	.illustration, .illustration-nofloat {
+		display: block;
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+@media (max-width: 400px) {
+	.bigtable td {
+		font-size: 0.7em;
+	}
+    .container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+.nobr {
+	white-space: nowrap;
+	hyphens: none;
+}
+.example {
+	background-color: #eee;
+	padding: 4px 0px 4px 4px;
+}
+@media (max-width: 320px) {
+	.example {
+		font-size: 0.9em;
+	}
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1 id="Introduction">はじめに</h1>
+          <img class="illustration" src="manual-images/illustration_hello.png" srcset="manual-images/illustration_hello.png 1x, manual-images/illustration_hello@2x.png 2x"/>
+        <h3 id="Program-retro-games-in-BASIC">BASICでレトロゲームをプログラムする</h3>
+
+<p>仮想ゲーム機で自分のレトロゲームを作る。クラシックなBASIC言語でプログラムし、付属のツールを使用して、スプライト、タイルマップ、サウンド、および音楽を作成する。初心者であれば、簡単なテキストゲームの作成方法や、タイルマップ上で最初のスプライトを表示する方法をすぐに理解できる。経験豊富なプログラマであれば、レトロなハードウェアトリックの可能性を完全に発見できる!</p>
+
+<h3 id="Virtual-Game-Console">仮想ゲームコンソール</h3>
+
+<p>LowRes NXを、スライド可能なタッチスクリーンの下にd-pad、2つのアクションボタン、小さなゴム製キーボードを備えたハンドヘルドゲーム機と想像してほしい。LowRes NXは、実際の8ビットおよび16ビットシステムにヒントを得て、グラフィックス、サウンド、およびI/O用のチップをシミュレートし、これらは実際には古典的なハードウェアのように機能する。ハードウェアスプライトとハードウェア視差スクロールをサポートしており、垂直ブランクとラスター割り込みを提供して本物のレトロ効果を生み出すこともできる。</p>
+
+<h3 id="Old-School-Programming">オールドスクール・プログラミング</h3>
+
+<p>LowRes NXのプログラム言語は、第2世代の構造化されたBASICをベースにしている。すべての古典的なコマンドを提供するが、行番号の代わりにラベル、ループ、サブプログラムを使用する。グラフィックスとサウンドは追加のコマンドでサポートされており、PEEKとPOKEを使用して仮想ハードウェアに直接アクセスすることもできる。プログラムの流れを完全に制御することができ、実装すべき標準的な更新機能はない。</p>
+
+<h3 id="Creative-Tools">クリエイティブ・ツール</h3>
+
+<p>LowRes NXには、必要なすべてのツールが含まれている。スプライト、タイル、フォント、マップを編集するためのGfx Designerと、音楽や音響効果のためのSound Composerである。これらはすべて通常のBASICプログラムである。これらを変更して改善したり、独自のカスタムエディタを作成することもできる。</p>
+
+<h3 id="Share-and-Play">共有と再生</h3>
+
+<p>ゲームを他のユーザーに直接送信したり、Webサイトを介して共有したりすることができる。すべてのプログラムはオープンソースであるため、ゲームをプレイしたり、ゲームから学んだり、ゲームを編集したりすることができる。あなたは芸術だけを作るのが好きですか、それとも音楽を作るのが好きですか?作成したものをアセットとして共有し、他のプログラマがプロジェクトで使用できるようにする。</p>
+          <img class="illustration-nofloat" src="manual-images/illustration_open.png" srcset="manual-images/illustration_open.png 1x, manual-images/illustration_open@2x.png 2x"/>
+        <h2 id="Specifications">仕様</h2>
+
+<ul>
+<li>カートリッジROM:gfx、音楽、任意のバイナリデータ用に32 KB</li>
+<li>コード:BASIC、最大16384トークン</li>
+<li>画面:160×128ピクセル、60 Hz</li>
+<li>背景:2つのレイヤ、タイルベース、スクロール可能</li>
+<li>スプライト:64、最大32×32ピクセル</li>
+<li>色:それぞれ4色の8つの動的6ビットパレット</li>
+<li>サウンド:4つの声、ソー/トリ/パルス/ノイズ、パルス幅、ボリューム、ADSR、LFO</li>
+<li>入力:d-padと2つのボタン+一時停止を備えた2つのゲームコントローラ</li>
+<li>オプション入力:キーボードおよびタッチスクリーン/マウス</li>
+</ul>
+
+
+<h1 id="Contents">内容</h1>
+
+<ul>
+	<li>
+          <a href="#Getting-Started">入門</a>
+        </li>
+	<li>
+          <a href="#Editing">編集</a>
+        </li>
+	<li>
+          <a href="#Gfx-Designer">Gfxデザイナー</a>
+        </li>
+	<li>
+          <a href="#Sound-Composer">サウンドコンポーザ</a>
+        </li>
+	<li>
+          <a href="#Language-Basics">言語の基本</a>
+        </li>
+	<li>
+          <a href="#Program-Flow-Control">プログラムフロー制御</a>
+        </li>
+	<li>
+          <a href="#Text">テキスト</a>
+        </li>
+	<li>
+          <a href="#User-Input">ユーザ入力</a>
+        </li>
+	<li>
+          <a href="#Graphics">グラフィックス</a>
+        </li>
+	<li>
+          <a href="#Sound">サウンド</a>
+        </li>
+	<li>
+          <a href="#Data">データ</a>
+        </li>
+	<li>
+          <a href="#Memory-Access">メモリアクセス</a>
+        </li>
+	<li>
+          <a href="#Files">ファイル</a>
+        </li>
+	<li>
+          <a href="#Math-Functions">数学関数</a>
+        </li>
+	<li>
+          <a href="#String-Functions">文字列関数</a>
+        </li>
+	<li>
+          <a href="#System">システム</a>
+        </li>
+	<li>
+          <a href="#Advanced-Topics">高度なトピック</a>
+        </li>
+</ul>
+
+
+<h1 id="Getting-Started">入門</h1>
+          <img class="illustration" src="manual-images/illustration_playing.png" srcset="manual-images/illustration_playing.png 1x, manual-images/illustration_playing@2x.png 2x"/>
+        <p>LowRes NXがどのように見えるかを見るために、含まれているいくつかのプログラムを試してみてください。アクションゲームを見る<i>LowResギャラクシー2</i>テキストアドベンチャー<i>LowResアドベンチャー</i>およびデモ<i>スター・スクローラー</i></p>
+
+<div class="info-mobile">「マイプログラム」画面で、プログラムを選択してソースコードエディタを開き、「再生」ボタンをタップして実行する。</div>
+
+<div class="info-desktop">「programs」というフォルダに例がある。LowRes NXアプリケーションを開き、任意の.nxファイルをそのウィンドウにドラッグ&amp;ドロップする。また、LowRes NXを.nxファイルのデフォルトアプリケーションとして選択することもできるため、プログラムをダブルクリックするだけで起動できる。</div>
+
+<p>十分にプレイしたら、最初の独自のプログラムを作成できる。</p>
+
+<div class="info-mobile">「マイプログラム」画面で、「+」ボタンをタップして新しいプログラムを作成し、それを選択してソースコードエディタを開く。</div>
+
+<div class="info-desktop">任意のテキストエディタを使用して、新しいファイルを作成します。Windowsでは、テキストエディタがMac/Linuxの行端をサポートしていることを確認してください。サポートしていない場合、すべてが1行に表示される可能性があります。</div>
+
+<p>次の行を入力します。</p>
+
+<pre class="example">PRINT&quot;WELCOME!&quot;PRINT&quot;WHAT IS YOUR NAME?&quot;INPUT&quot;>&quot;;N$PRINT&quot;HELLO&quot;;N$;&quot;!&quot;</pre>
+
+<div class="info-desktop">プログラムファイルを有効な名前と拡張子「.nx」で保存します。</div>
+
+<p>次に、プログラムを実行します。これは、キーボードを使用した簡単な例です。ゲームパッドで何かを試してみましょう。別の新しいプログラムを作成し、次のように入力します。</p>
+
+<pre class="example">ゲームパッド1 X=76 Y=60 DO IF UP(0)THEN Y=Y-1 IF DOWN(0)THEN Y=Y+1 IF LEFT(0)THEN X=X-1 IF RIGHT(0)THEN X=X+1 SPRITE 0,X,Y,225 WAIT VBL LOOP</pre>
+
+<p>このプログラムを実行すると、画面に「A」が表示され、ゲームパッドを使用して移動できる。</p>
+
+<div class="info-mobile">プログラムが実行されている状態で、右上のメニューボタンをタップし、「プログラムアイコンのキャプチャ」を選択します。プログラムを終了し、「マイプログラム」画面に戻ります。そこでは、新しい画像とともにプログラムが表示されます。アイコンを長タップし、「名前の変更.」を選択して、より良い名前を付けます。</div>
+
+
+<h1 id="Editing">編集</h1>
+
+<h2 id="Programs-And-Data">プログラムとデータ</h2>
+          <img class="illustration" src="manual-images/illustration_disk.png" srcset="manual-images/illustration_disk.png 1x, manual-images/illustration_disk@2x.png 2x"/>
+        <p>プログラムファイルには、すべてのデータを含む完全なゲームまたはアプリケーションが含まれており、単純なテキストとして保存されている。最初の部分はBASICソースコードである。詳細については、プログラミングの章を参照のこと。</p>
+
+<p>2番目の部分はカートリッジROMエントリである。これらは最大16個の番号付きデータブロックであり、グラフィック、レベルマップ、音楽など、あらゆる種類のデータを含むことができる。プログラムが実行されているとき、そのすべてのROMエントリはメモリの最初の32 KBでアクセス可能である。</p>
+
+<p>ツールを使用すると、ROMエントリを簡単に作成および編集できる。ツールは通常のNXプログラムであるが、特にデータを編集するために作成されている。ツールは、任意のNXファイルに「仮想ディスク」としてアクセスし、そのROMエントリをファイルのように使用できる。</p>
+
+<p>ツールの使用方法には、次の2つがある。</p>
+
+<ul>
+<li>他のNXプログラムと同様に、ツールを直接開くことができる。ツールのフォルダにある「Disk.nx」ファイルを使用して、データのロードと保存を行う。</li>
+<li>編集したいプログラムを開き、メニューからツールを選択することで、ツールは現在のプログラムのデータに直接アクセスすることができる。</li>
+</ul>
+
+<p>やってみましょう。(「はじめに」の章から)動く「A」でプログラムを開き、[ツール]メニューから[Gfxデザイナー]を選択する。</p>
+
+<div class="info-mobile">プログラムを開き、[ツール]ボタンをタップして、ツールを選択します。</div>
+
+<div class="info-desktop">プログラムを実行し、Escキーを押して開発メニューに入る。次に、編集(ED)ボタンを押してツールを選択する。デフォルトでは、ツールメニューは空であるため、プログラム「Gfx Designer」と「Sound Designer」をウィンドウにドラッグ&amp;ドロップする。</div>
+
+<p>何かを文字#1として描画し(#0は空のままにする)、「ファイル」をタップしてファイル2(「主な文字」)として保存する。次にソースコードエディタに戻ると、プログラムの下にいくつかの16進データが表示される。これがあなたのイメージです!それを見るためには、行を変更します。</p>
+<pre class="example">SPRITE 0、X、Y、225(スプライト0、X、Y</pre>
+
+<p>～</p>
+
+<pre class="example">SPRITE 0、X、Y、1</pre>
+
+<p>プログラムを実行します。そこにある!</p>
+
+<div class="info-desktop">LowRes NXアプリケーションでCtrl+Rキーを押して、現在のプログラムを再ロードして実行する。開発者メニューの「実行」ボタンでも同じことができる。</div>
+
+<p>ツールは自動的に保存されないため、ツールを終了する前に保存することを忘れないようにしてください。</p>
+
+
+<h2 id="Standard-ROM-Entries">標準ROMエントリ</h2>
+
+<p>簡単に開始するには、次の表のROMエントリ番号を使用する必要がある。それらのデータは自動的に使用できるように準備されている。</p>
+<table>
+<tr><td>#0</td><td>デフォルトフォントの場合は空のままにする</td></tr>
+<tr><td>#1</td><td>カラーパレット</td></tr>
+<tr><td>#2</td><td>文字(スプライト、タイル)</td></tr>
+<tr><td>#3</td><td>背景(タイルマップ)</td></tr>
+<tr><td>#15</td><td>音と音楽</td></tr>
+</table>
+
+<p>カートリッジROMエントリ0がプログラムで使用されていない場合、コンパイラはデフォルトフォントの文字データを追加する。これは192～255の文字を占有し、プログラムの起動時に自動的にビデオRAMにコピーされる。デフォルトフォントを使用する場合は、ROMエントリ0を未使用のままにしておく必要がある。</p>
+
+
+<h1 id="Gfx-Designer">Gfxデザイナー</h1>
+          <img class="illustration" src="manual-images/illustration_painting.png"  srcset="manual-images/illustration_painting.png 1x, manual-images/illustration_painting@2x.png 2x"/>
+        <p>Gfxデザイナーを使用して、文字(スプライト、タイル、フォント)、デザイン背景(タイルマップ、画面レイアウト)を描画し、カラーパレットを編集する。</p>
+
+<p>右下には、プログラムのさまざまなセクション(文字エディタ、パレットエディタ、背景エディタ)に対応する3つのタブがある。LowRes NXをパソコンで実行するときは、1、2、3のキーを使って切り替えることができる。</p>
+
+<p>Gfx Designerは、起動時にメインパレット(ファイル1)、文字(ファイル2)、および背景(ファイル3)をロードするが、自動的には保存されないことに注意する。</p>
+
+
+<h2 id="GD-Character-Editor">文字エディタ</h2>
+
+<p>下部では、256文字が4ページに分割されているのがわかる。ここでは、現在の文字を選択して編集することができる。デフォルトのフォントを使用する場合は、最後のページを空にしておく。また、背景をきれいにするために、文字#0を空にする必要がある。</p>
+<p>左上の四角形は、選択した色を使用して現在の文字を描画するためのものである。</p>
+
+<table>
+<tr><td>ファイル</td><td>文字ファイルメニューに移動します。</td></tr>
+<tr><td>モフ</td><td>現在の文字のピクセルを移動する。</td></tr>
+<tr><td>16*16</td><td>16×16ピクセルの編集画面に移動する。</td></tr>
+<tr><td>フリップ</td><td>現在の文字を水平または垂直に反転する。</td></tr>
+<tr><td>スピン</td><td>現在の文字を回転させる。</td></tr>
+<tr><td>CLR法</td><td>選択した色で現在の文字をクリアする。</td></tr>
+<tr><td>カット</td><td>現在の文字をコピーしてクリアする。</td></tr>
+<tr><td>COP値</td><td>現在の文字をコピーする。</td></tr>
+<tr><td>パス</td><td>コピーした文字を貼り付ける。</td></tr>
+<tr><td>SEL[選択]</td><td>選択範囲のサイズを変更する。</td></tr>
+</table>
+
+<p>選択範囲のサイズは、この画面上のすべての編集ツールと、バックグラウンドエディタでの描画に影響する。</p>
+
+
+<h2 id="GD-Palette-Editor">パレットエディタ</h2>
+
+<p>下部は、キャラクタエディタと同じである。</p>
+<p>左側のボックスで、現在のカラーパレットを選択します。</p>
+<p>右側では、RGBスライダを使用して現在のパレットの各色を編集できます。最初の色は通常透明で使用されませんが、画面の背景の色として使用されるパレット0の最初の色は例外です。</p>
+
+<table>
+<tr><td>ファイル</td><td>パレットファイルメニューに移動します。</td></tr>
+</table>
+
+
+<h2 id="GD-Background-Editor">背景エディタ</h2>
+          <img class="illustration" src="manual-images/illustration_building.png" srcset="manual-images/illustration_building.png 1x, manual-images/illustration_building@2x.png 2x"/>
+        <p>ここでは、他の画面で現在選択されている文字とカラーパレットを使用して、背景を描画する。</p>
+
+<table>
+<tr><td>ファイル</td><td>バックグラウンドファイルメニューに移動します。</td></tr>
+<tr><td>パン</td><td>表示されているマップ領域をドラッグします。</td></tr>
+<tr><td>描画</td><td>現在のモードで描画する。</td></tr>
+<tr><td>消去</td><td>属性を含むセルを消去する。</td></tr>
+<tr><td>フリップ</td><td>X/Y反転属性を切り替えます。</td></tr>
+<tr><td>PRI(プライマリ</td><td>優先順位属性を切り替えます。</td></tr>
+</table>
+
+<p>コンピュータ上でLowRes NXを実行しているときは、矢印キーまたはWASDキーを使用してマップをスクロールすることができる。Z、X、C、V、Bキーでツールを選択する。</p>
+
+<p>描画ツールにはさまざまなモードがある。ボタンがすでに選択されている場合は、もう一度タップすることで、モードを変更できる。</p>
+
+<table>
+<tr><td>描画</td><td>単一のセルを編集する。</td></tr>
+<tr><td>フィル</td><td>ドラッグして領域を編集する。</td></tr>
+<tr><td>文字</td><td>選択した反転属性と優先度属性を使用して、選択した文字とカラーパレットで描画する。</td></tr>
+<tr><td>パレット</td><td>カラーパレットのみを変更する。</td></tr>
+<tr><td>優先度</td><td>優先度のみを変更します。優先度1のセルは緑で表示され、その他はすべて赤で表示されます。</td></tr>
+<tr><td>スタンプ</td><td>ドラッグして領域を選択し、それを使用して描画する(コピー&amp;ペースト)。</td></tr>
+</table>
+
+
+<h2 id="GD-File-Menu">[ファイル]メニュー</h2>
+
+<p>ここから、文字、カラーパレット、背景を別々にロードして保存する。すべてを一度に保存するオプションはない。</p>
+
+<p>リストには、現在の仮想ディスクの16個のファイルすべて、つまり、編集中のプログラムのROMエントリが表示される。1つを選択し、[ロード]または[保存]をタップする。</p>
+
+<h3 id="GD-File-Characters">文字</h3>
+<table>
+<tr><td>新規</td><td>すべての文字をクリアする。</td></tr>
+<tr><td>フォン</td><td>標準フォントを現在のページにコピーする。</td></tr>
+<tr><td>PAGの</td><td>選択したファイルから現在のページに1ページのみをロードする。たとえば、別のファイルからフォントを含めると便利である。</td></tr>
+</table>
+
+<h3 id="GD-File-Palettes">パレット</h3>
+<table>
+<tr><td>新規</td><td>デフォルトの色にリセットする。</td></tr>
+</table>
+
+<h3 id="GD-File-Backgrounds">背景</h3>
+<table>
+<tr><td>新規</td><td>背景全体をクリアする(サイズは維持する)。</td></tr>
+<tr><td>サイズ</td><td>サイズメニューに移動します。ここでは、背景の幅と高さ(セル単位)、およびセルサイズ(8×8または16×16ピクセル)を選択できます。</td></tr>
+</table>
+
+
+<h1 id="Sound-Composer">サウンドコンポーザ</h1>
+          <img class="illustration" src="manual-images/illustration_music.png" srcset="manual-images/illustration_music.png 1x, manual-images/illustration_music@2x.png 2x"/>
+        <p>サウンドコンポーザは、サウンドプリセット、シーケンス(「トラック」)、および完全な曲を作成する役割を果たす。</p>
+<p>起動時にメインのサウンドデータ(ファイル15)をロードするが、自動的には保存されないことに注意すること。サウンドファイルには、すべてのサウンドと音楽のデータが含まれている。</p>
+
+
+<h2 id="SC-Structure">構造</h2>
+
+<h3 id="SC-Sounds">16サウンド</h3>
+
+<p>サウンドは、使用可能なすべてのサウンドパラメータ(波形、エンベロープ、LFOなど)を備えたプリセットであり、プログラム内のPLAYコマンドで直接使用したり、トラック/ソングの楽器として使用したりすることができる。</p>
+
+<h3 id="SC-Tracks">64トラック</h3>
+
+<p>トラックは、1つの声に対して32のステップのシーケンスであり、各ステップは音符を演奏したり、音を修正したりすることができる。TRACKコマンドを使用して、複雑な音響効果や短いメロディー(例えば、「レベルアップ」)をプログラムで使用することができる。トラックは、曲を作成するためにも使用される。</p>
+
+<h3 id="SC-Patterns">64パターン</h3>
+
+<p>パターンは音楽のブロックであり、4つの声のそれぞれでどのトラックを再生すべきかを定義する。パターンは、次の場合を除いて、1つずつ再生される。次のパターンが空の場合、曲は停止される。現在のパターンが終了し、「ループ終了」フラグがある場合、プレーヤーは「ループ開始」フラグを使用して前のパターンにジャンプバックする。パターンが終了し、「停止」フラグがある場合、プレーヤーは停止する。<br/>ゲーム用の音楽を作成したい場合で、追加の音響効果を使用する予定がある場合は、少なくとも1つの声を空にしておく必要がある。</p>
+
+<h3 id="SC-Songs">歌</h3>
+
+<p>64のパターンは、1つの長い曲やいくつかの短い曲に使用できる。「ループ」と「ストップ」のフラグを使用することで、曲を分けることができる。1つの特定の曲を再生するには、最初のパターンから始めるだけである。プログラム内の曲を再生するには、MUSICコマンドを使用する。</p>
+
+
+<h2 id="SC-Editors">エディタ</h2>
+
+<p>サウンドコンポーザの右上隅には、パターンエディタ、トラックエディタ、サウンドエディタの3つのタブがある。これは「トラッカー」スタイルのプログラムで、タイムラインが左から右ではなく上から下に移動することを意味する。したがって、トラック内のステップは行とも呼ばれる。0から15の範囲のほとんどの値は、16進数形式(0-F)で表示される。</p>
+<p>LowRes NXをコンピュータ上で実行する場合、いくつかのキーボードサポートがある。矢印キーでカーソルを移動し、キー行で2オクターブの音楽キーボードをシミュレートして音符を入力する。リターンキーで音符の停止を入力し、バックスペースで現在の音符を削除し、スペースで演奏(パターン/トラック)と停止を切り替える。</p>
+
+<h3 id="SC-The-Pattern-Editor">パターンエディタ</h3>
+
+<p>ここでは、パターンを選択し、すべての音声に対してそのトラックを選択し、選択した各トラックの音符を直接編集することができる。また、現在のパターンの「ループ」と「ストップ」フラグのトグルボタンもある。トラックのない音声に音符を設定すると、自動的にフリートラックが選択される。トラック内の音符を停止/解除したい場合は、音楽キーボードの星の記号を使用する。</p>
+
+<h3 id="SC-The-Track-Editor">トラックエディタ</h3>
+
+<p>ここでは、追加のパラメータを使用して、1つのトラックを選択して編集することができる。</p>
+<table>
+<tr><td>Sキー</td><td>サウンド</td></tr>
+<tr><td>Vキー</td><td>ボリューム</td></tr>
+<tr><td>Cキー</td><td>[サウンド]コマンド</td></tr>
+<tr><td>Pキー</td><td>パラメータ</td></tr>
+</table>
+
+
+<h3 id="SC-The-Sound-Editor">サウンドエディタ</h3>
+
+<p>ここでサウンドを定義してテストします。現在選択されているサウンドは、他のエディタで新しいノートに使用されます。</p>
+
+
+<h2 id="SC-Sound-Commands">サウンドコマンド</h2>
+
+<p>これらのコマンドを使用すると、再生中にパラメータを動的に変更できます。これらのコマンドは、トラックエディタで使用します。</p>
+
+<table>
+<tr><th>Cキー</th><th>Pキー</th><th>目的</th></tr>
+<tr><td>0</td><td>0</td><td>コマンドなし</td></tr>
+<tr><td>0</td><td>x個</td><td>ミックス(1=左、2=右、3=中央/両方)</td></tr>
+<tr><td>1個</td><td>x個</td><td>攻撃時間</td></tr>
+<tr><td>2個</td><td>x個</td><td>減衰時間</td></tr>
+<tr><td>3個</td><td>x個</td><td>サステインレベル</td></tr>
+<tr><td>4個</td><td>x個</td><td>リリース時間</td></tr>
+<tr><td>5個</td><td>x個</td><td>LFOレート</td></tr>
+<tr><td>6個</td><td>x個</td><td>LFO周波数量</td></tr>
+<tr><td>7個</td><td>x個</td><td>LFOボリューム量</td></tr>
+<tr><td>8個</td><td>x個</td><td>LFOパルス幅量</td></tr>
+<tr><td>9個</td><td>x個</td><td>パルス幅</td></tr>
+<tr><td>Dキー</td><td>x個</td><td>低速(Eと同じだが+16)</td></tr>
+<tr><td>Eキー</td><td>x個</td><td>速度(1行あたりのティック数、デフォルトは8)</td></tr>
+<tr><td>Fキー</td><td>0</td><td>ブレークトラック/パターン</td></tr>
+<tr><td>Fキー</td><td>1個</td><td>カットノート/ボリューム0</td></tr>
+</table>
+
+
+<h1 id="Language-Basics">言語の基本</h1>
+
+<p>LowRes NXのプログラミング言語は、第2世代の構造化されたBASIC(1985スタイル)をベースにしている。</p>
+
+<p>このマニュアルは、プログラミングの経験がある人のための参考資料となることを意図している。プログラミングに不慣れな場合は<a href="https://lowresnx.inutilis.com/help.php" target="_blank">LowRes NXのウェブサイト</a>詳細については、このマニュアルを参照してください。</p>
+
+<h2 id="Types-and-Variables">型と変数</h2>
+
+<p>使用可能な値の型は、文字列と数値(浮動小数点)である。</p>
+
+<p>変数名には、文字(A-Z)、数字(0-9)、およびアンダースコア(_)を含めることができるが、数字で始めることはできない。予約されたキーワード(コマンド、関数)は、変数名として使用することはできないが、変数名の一部とすることはできる。章にリストがある<a href="#Reserved-Keywords">「予約済みキーワード」</a></p>
+
+<p>有効な変数名の例:</p>
+
+<pre class="example">X A1 LONG_VARIABLE_NAME PRINTER(ロングバリアブルネームプリンタ)</pre>
+
+<p>無効な変数名の例:</p>
+
+<pre class="example">2B印刷</pre>
+
+<p>文字列変数名は、次のように$記号で終わる。</p>
+
+<pre class="example">A$NAME$</pre>
+
+<p>変数は明示的に宣言されていないが、変数から読み取る前に値で初期化する必要がある。値は、等号記号を使用して変数に割り当てられる。</p>
+
+<pre class="example">名前$=&quot;LOWRES NX&quot;LIVES=3</pre>
+
+<p>数値には、16進数と2進数の表記を使用できる。</p>
+
+<pre class="example">$FF02%11001011</pre>
+
+<h2 id="Arrays">アレイ</h2>
+
+<h3 id="_DIM" name="DIM">DIM[寸法記入]</h3>
+
+<pre>DIM[GLOBAL]var-list</pre>
+
+<p>各次元のインデックスが最も高い配列を定義する。</p>
+
+<pre class="example">DIM A(100)DIM MAP(31,23,1)、NAMES$(9)、SCORES(9)</pre>
+
+<p>配列から要素にアクセスし、インデックスは0から開始する。</p>
+
+<pre class="example">DIM SCORES(9)SCORES(0)=100 SCORES(9)=5 PRINT SCORES(0)、SCORES(9)</pre>
+
+<p>配列のすべての要素は、ゼロ(0)または空の文字列(&quot;&quot;)を使用して自動的に初期化される。</p>
+
+<p>オプションのGLOBALキーワードを使用すると、すべてのサブプログラムから配列にアクセスできる。</p>
+
+
+<h3 id="_UBOUND" name="UBOUND">=UBOUND</h3>
+<pre>UBOUND(var[,dimension])</pre>
+
+<p>配列の次元の上限(最高のインデックス)を返す。<em>バール</em></p>
+
+<p>その<em>次元</em>パラメータは、配列が多次元の場合に使用されるオプションの数値であり、配列の次元を指定する。デフォルト値は1である。</p>
+
+<pre class="example">I=0からUBOUND(SCORES)までのDIM SCORES(9)PRINT SCORES(I)NEXT I</pre>
+
+
+<h2 id="Labels">ラベル</h2>
+
+<p>ラベルはプログラム内の位置をマークし、GOTOなどのコマンドに使用される。ラベルは、変数と同じ規則を使用する名前と、それに続くコロンで構成される。</p>
+
+<pre class="example">TESTLABEL:</pre>
+
+<h2 id="Operators">演算子</h2>
+
+<h3 id="Operators-Ari">算術</h3>
+
+<table>
+<tr><th>記号</th> <th>例</th> <th>目的</th></tr>
+<tr><td>-</td> <td>
+          <code>-Bキー</code>
+        </td> <td>否定</td></tr>
+<tr><td>^</td> <td>
+          <code>X^3個</code>
+        </td> <td>指数関数</td></tr>
+<tr><td>*</td> <td>
+          <code>2*Y型</code>
+        </td> <td>乗算</td></tr>
+<tr><td>/</td> <td>
+          <code>X/2回</code>
+        </td> <td>分割</td></tr>
+<tr><td>\</td> <td>
+          <code>X\2個</code>
+        </td> <td>整数除算</td></tr>
+<tr><td>+</td> <td>
+          <code>C+2キー</code>
+        </td> <td>加算</td></tr>
+<tr><td>-</td> <td>
+          <code>100-Dの</code>
+        </td> <td>減算</td></tr>
+<tr><td>MOD[モデル</td> <td>
+          <code>Xモード2</code>
+        </td> <td>モジュロ</td></tr>
+</table>
+
+<p>演算は数学的な順序で実行され、例えば、乗算と除算は加算と減算の前に実行される。</p>
+
+<pre class="example">PRINT 10+2*5-8/4+5^2</pre>
+
+<p>次のように、括弧を使用して順序を明示的に指定できる。</p>
+
+<pre class="example">PRINT(3+4)*5とする。</pre>
+
+<h3 id="Operators-Rel">リレーショナル</h3>
+
+<table>
+<tr><th>記号</th> <th>例</th> <th>目的</th></tr>
+<tr><td>=</td> <td>
+          <code>A=10</code>
+        </td> <td>等しい</td></tr>
+<tr><td>&lt;></td> <td>
+          <code>A&lt;>100</code>
+        </td> <td>等しくない</td></tr>
+<tr><td>></td> <td>
+          <code>B>Cの場合</code>
+        </td> <td>より大きい</td></tr>
+<tr><td>&lt;</td> <td>
+          <code>5&lt;Xの場合</code>
+        </td> <td>未満</td></tr>
+<tr><td>>=</td> <td>
+          <code>X>=20</code>
+        </td> <td>以上</td></tr>
+<tr><td>&lt;=</td> <td>
+          <code>X&lt;=30</code>
+        </td> <td>以下</td></tr>
+</table>
+
+<p>関係演算子式は、値true(-1)またはfalse(0)を返す。</p>
+
+<h3 id="Operators-Log">論理/ビット単位</h3>
+
+<table>
+<tr><th>記号</th> <th>例</th> <th>目的</th></tr>
+<tr><td>しない</td> <td>
+          <code>NOT(X=15)<br/>0ではない</code>
+        </td> <td>「しない」</td></tr>
+<tr><td>および</td> <td>
+          <code>A=1およびB=12<br/>170および15</code>
+        </td> <td>「および」</td></tr>
+<tr><td>または</td> <td>
+          <code>X=10またはY=0<br/>128または2</code>
+        </td> <td>「または」</td></tr>
+<tr><td>排他的論理和</td> <td>
+          <code>A XOR B</code>
+        </td> <td>「排他的論理和」</td></tr>
+</table>
+
+<h3 id="Operators-How">演算子の使用方法</h3>
+
+<p>すべての演算子は、数値に対して使用できます。関係演算子と加算演算子は、文字列に対しても使用できます。</p>
+
+<pre class="example">SUM=1+3 IF SUM&lt;5 THEN PRINT &quot;LESS THAN 5&quot; NAME$=&quot;LOWRES NX&quot; GREET$=&quot;HELLO &quot;+NAME$+&quot;!&quot; IF NAME$>&quot;LOWRES&quot;THEN PRINT GREET$IF SUM=4 AND NAME$&lt;>&quot;&quot;THEN PRINT&quot;OK&quot;</pre>
+
+
+<h1 id="Program-Flow-Control">プログラムフロー制御</h1>
+
+<h2 id="Basics">基本</h2>
+
+<h3 id="_REM" name="REM">レム</h3>
+<pre>REM所見の所見</pre>
+
+<p>プログラムにコメントを入れることができる。REM行は実行されない。単語REMの代わりにアポストロフィ(&#39;)を使用できる。</p>
+
+<pre class="example">REM TIMO KLOSS PRINT&quot;HELLO&quot;&#39;SHOW MORE TEXT.PRINT&quot;BYE&quot;によって書かれたテストプログラムREMである。</pre>
+
+
+<h3 id="_IF-THEN-ELSE" name="IF,THEN,ELSE">もし…であれば…でなければ</h3>
+<pre>IF expr THENコマンド[ELSEコマンド]</pre>
+
+<p>指定された式が真か偽かをチェックします。真の場合はTHENの後のコマンドが実行され、そうでない場合はELSEの後のコマンドが実行されます。ELSE部分はオプションです。</p>
+
+<pre class="example">INPUT&quot;NUMBER A:&quot;;A INPUT&quot;NUMBER B:&quot;;B PRINT&quot;SAME?&quot;;IF A=B THEN PRINT&quot;YES&quot;ELSE PRINT&quot;NO&quot;IF A&lt;B THEN PRINT &quot;A LESS THAN B&quot; IF A>B THEN PRINT&quot;A GREATER THAN B&quot;</pre>
+
+<p>複数のコマンドを実行したい場合(または長い行を避けたい場合)は、ブロックバージョンのIFコマンドを使用でき、行END IFで閉じる必要がある。</p>
+
+<pre>IF式THENコマンド[ELSE IF式THEN]コマンド[ELSE]コマンドEND IF</pre>
+
+<p>ブロックは、次の例のようにネストできる。</p>
+
+<pre class="example">PRINT&quot;NUMBER OF PLAYERS&quot;INPUT&quot;1-4:&quot;;N IF N&lt;1 OR N>4 THEN PRINT&quot;WRONG INPUT&quot;PRINT&quot;RESTART!&quot;ELSE IF N=1 THEN PRINT&quot;SINGLE-PLAYER&quot;ELSE PRINT&quot;MULTI-PLAYER&quot;IF N=4 THEN PRINT&quot;MAXIMUM&quot;END IF END IF</pre>
+
+
+<h3 id="_GOTO" name="GOTO">GOTO[ゴ</h3>
+
+<pre>GOTOラベル</pre>
+
+<p>指定されたラベルにジャンプし、そこでプログラムの実行を継続する。</p>
+
+<pre class="example">PRINT「START」GOTO GAMELEVEL GAMEOVER:PRINT「GAMEOVER」END GAMELEVEL:PRINT「PLAYING」GOTO GAMEOVER</pre>
+
+
+<h3 id="_GOSUB" name="GOSUB">GOSUBの</h3>
+
+<pre>GOSUBラベル</pre>
+
+<p>現在のプログラム位置をスタックに追加し、指定されたラベルにジャンプする。ラベルの後のプログラムはサブルーチンと呼ばれ、RETURNを使用して終了する必要がある。</p>
+
+<pre class="example">I=1から5 GOSUB SHOWNUMBER NEXT I END SHOWNUMBER:PRINT「NUMBER」、I RETURN</pre>
+
+<p>注:サブルーチンは、主に歴史的な理由で存在する。より強力で安全なサブプログラムを選択する必要がある。</p>
+
+
+<h3 id="_RETURN" name="RETURN">戻る</h3>
+
+<pre>戻る</pre>
+
+<p>GOSUBの最後の呼び出しの位置にジャンプして戻り、スタックから削除する。</p>
+
+<pre>RETURNラベル</pre>
+
+<p>GOTOと同様に動作するが、スタック全体をクリアする。他の場所でプログラムを継続したい場合は、これを使用してサブルーチンを終了する。</p>
+
+<pre class="example">I=1から5 GOSUB SHOWNUMBER NEXT I END SHOWNUMBER:I=4の場合、GAMEOVER PRINT「NUMBER」を返す。I GAMEOVER:PRINT「GAMEOVER」を返す。</pre>
+
+
+<h3 id="_END" name="END">終了</h3>
+
+<pre>終了</pre>
+
+<p>プログラムを任意の位置から停止します。また、プログラムは、コードの最後の行の後に自動的に停止します。</p>
+
+<pre class="example">印刷「これは起こる」終了印刷「これは起こらない」</pre>
+
+
+<h3 id="_WAIT-VBL" name="WAIT VBL,WAIT,VBL">VBLを待つ</h3>
+
+<pre>VBLを待つ</pre>
+
+<p>次のフレームを待つ。これ(またはWAIT n)は、メインゲームループのように、アニメーションを実行したり入力を処理したりするすべてのループの最後のコマンドである必要がある。</p>
+
+<pre class="example">DO PAL RND(3)TEXT RND(19)、RND(15)、&quot;*&quot;WAIT VBL LOOP</pre>
+
+
+<h3 id="_WAIT" name="WAIT">待って</h3>
+
+<pre>待ちn</pre>
+
+<p>待機<em>n個</em>フレーム(n/60秒)。ここで<em>n個</em>は1である。割り込みから実行されるサブプログラム(ON VBL/RASTER、MUSIC)は、この期間中は通常通り動作し続ける。</p>
+<p>WAIT 1はWAIT VBLと同じであるが、なぜWAIT VBLがあるのか?見た目が涼しくてオタクっぽいから!簡単なガイドライン:スムーズなアニメーションと入力処理のためにはループでWAIT VBLを使用し、実際にしばらく待ちたい場合はWAIT nを使用する。</p>
+
+<pre class="example">プリント「INUTILIS」プリントプレゼント…「WAIT 60プリント」待機プログラム!</pre>
+
+
+<h2 id="Loops">ループ</h2>
+
+<h3 id="_FOR-NEXT" name="FOR,TO,STEP,NEXT">次のために</h3>
+<pre>FOR var=a TO b[STEP s]コマンドNEXT var</pre>
+
+<p>一連のコマンドをループ内で指定された回数実行する。FORコマンドは変数を使用する<em>バール</em>値から始めて、カウンタとして<em>a</em>NEXTまでのすべてのコマンドが実行され、次にカウンタが増加する<em>s</em>(STEPが省略されている場合は1)。カウンタが次の値よりも大きくなっているかどうかを確認するためのチェックが実行される。<em>b</em>そうでない場合は、プロセスが繰り返され、それより大きい場合は、プログラムはNEXTの後の行に継続する。</p>
+
+<pre class="example">FOR I=1 TO 8 PRINT I NEXT I</pre>
+
+<pre class="example">Iの場合=2から16ステップ2印刷I次I</pre>
+
+<p>STEPの場合<em>s</em>が負の場合、カウンタが値より小さくなるまでループが実行される<em>b</em></p>
+
+<pre class="example">FOR I=8 TO 1 STEP-1 PRINT I NEXT I</pre>
+
+<p>ループは他のループの内部に配置することができる。</p>
+
+<pre class="example">FOR P=0から3 PAL P FOR N=1から4 PRINT N NEXT N NEXT P</pre>
+
+
+<h3 id="_DO-LOOP" name="DO,LOOP">ド…ループ</h3>
+<pre>DOコマンドLOOP</pre>
+
+<p>コマンドを無限ループで実行する。GOTOまたはEXITを使用して終了することができる。</p>
+
+<pre class="example">DO PAL RND(3)PRINT「FOREVER」ループ</pre>
+
+
+<h3 id="_REPEAT-UNTIL" name="REPEAT,UNTIL">まで繰り返す</h3>
+<pre>REPEATコマンドUNTIL式</pre>
+
+<p>指定された式が真になるまで、ループ内のコマンドを実行する。ループは少なくとも1回実行される。</p>
+
+<pre class="example">A=0になるまでA=RND(9)PRINT Aを繰り返す</pre>
+
+
+<h3 id="_WHILE-WEND" name="WHILE,WEND">その間に</h3>
+<pre>WHILE式コマンドWEND</pre>
+
+<p>指定された式が真である限り、コマンドをループで実行する。</p>
+
+<pre class="example">A=4 WHILE A&lt;10 PRINT A A=A+1 WEND</pre>
+
+
+<h3 id="_EXIT" name="EXIT">終了</h3>
+<pre>終了</pre>
+
+<p>FOR.NEXT、REPEAT.UNTIL、WHILE.WEND、またはDO.LOOPコマンドで作成されたループから直ちに終了する。</p>
+
+<pre class="example">DO INPUT&quot;ENTER E TO EXIT:&quot;;A$IF A$=&quot;E&quot;THEN EXIT PRINT&quot;GOING ON.&quot;LOOP PRINT&quot;END&quot;</pre>
+
+
+<h2 id="Subprograms">サブプログラム</h2>
+
+<h3 id="_SUB" name="SUB,END SUB,END">SUB.END SUB</h3>
+<pre>SUB name[(parameter-list)]コマンドEND SUB</pre>
+
+<p>指定された名前でサブプログラムを定義します。オプションのパラメータ・リストには、単純変数と配列変数(後に空のカッコのペア)の2種類のエントリを含めることができます。エントリはカンマで区切られます。デフォルトでは、サブプログラム内のすべての変数はローカルです。</p>
+
+<p>注:サブプログラムからジャンプするためにGOTOやGOSUBを使用しないでください!</p>
+
+
+<h3 id="_CALL" name="CALL">コール</h3>
+<pre>CALL名[(引数-リスト)]</pre>
+
+<p>指定された名前でサブプログラムを実行し、終了後に現在の位置に戻る。引数リストは、SUB定義のパラメータと一致する必要がある。単純変数、単一の配列要素、および配列全体(後に空の括弧のペアが続く)は、サブプログラムへの参照によって渡される。その他の式は、値によって渡される。</p>
+
+<pre class="example">CALL GREET(&quot;LOWRES NX&quot;,3)CALL GREET(&quot;YOU&quot;,1)CALL BYE SUB BYE PAL 1 PRINT&quot;BYE&quot;END SUB SUB GREET(N$,A)FOR I=1 TO A PAL RND(3)PRINT&quot;HELLO&quot;,N$NEXT I END SUB</pre>
+
+
+<h3 id="_EXIT-SUB" name="EXIT SUB,EXIT,SUB">EXIT SUB</h3>
+<pre>EXIT SUB</pre>
+
+<p>END SUBに到達する前にサブプログラムを終了する。</p>
+
+
+<h3 id="_GLOBAL" name="GLOBAL">グローバル</h3>
+<pre>GLOBAL変数リスト</pre>
+
+<p>メイン・プログラムの変数をすべてのサブプログラムで使用できるようにする。リストには単純な変数のみを含めることができる。配列の場合は、DIM GLOBALを使用する必要がある。このコマンドは、サブプログラム内では使用できない。</p>
+
+<pre class="example">グローバルスコア、TRIES TRIES=3 CALL WIN(10)CALL WIN(20)SUB WIN(N)SCORE=SCORE+N PRINT「SCORE:」、SCORE、「TRIES:」、TRIES END SUB</pre>
+
+
+<h1 id="Text">テキスト</h1>
+
+<h3 id="_PRINT" name="PRINT">印刷</h3>
+
+<pre>PRINT式-リスト</pre>
+
+<p>現在のウィンドウにテキストを出力します。式には、コンマまたはセミコロンで区切られた文字列または数値を使用できます。コンマは出力をスペースで区切り、セミコロンはスペースなしで出力します。カーソルを出力の最後に保持するには、コンマまたはセミコロンでリストを終了します。そうでない場合は、新しい行が開始されます。</p>
+
+<pre class="example">PRINT&quot;HELLO WORLD&quot;PRINT 42 PRINT 1+3 PRINT&quot;SCORE:&quot;,100 PRINT&quot;ONE&quot;;PRINT&quot;LINE&quot;</pre>
+
+
+<h3 id="_INPUT" name="INPUT">入力</h3>
+
+<pre>INPUT[&quot;prompt&quot;;]var</pre>
+
+<p>ユーザがキーボードでテキストまたは数字を入力し、それを変数に格納できるようにする<em>バール</em>オプションで、前にプロンプトテキストを表示することができる(変数にはできない)。</p>
+<p>INPUTは自動的にキーボードを有効にする。</p>
+
+<pre class="example">INPUT&quot;NAME:&quot;;N$INPUT&quot;AGE:&quot;;AGE PRINT&quot;HELLO&quot;;N$;&quot;!&quot;PRINT&quot;SOON YOU ARE&quot;;AGE+1</pre>
+
+
+<h3 id="_LOCATE" name="LOCATE">検索</h3>
+
+<pre>LOCATE cx,cy(cx、cyの</pre>
+
+<p>テキストカーソルを列に移動する<em>cx</em>および行<em>シー</em>現在のウィンドウに相対して。</p>
+
+<pre class="example">ロケート2、4プリント「ハロー」</pre>
+
+
+<h3 id="_CURSOR.X-CURSOR.Y" name="CURSOR.X,CURSOR.Y">=CURSOR.X/Y</h3>
+<pre>カーソル.Xカーソル.Y</pre>
+
+<p>現在のウィンドウを基準としたテキストカーソルの現在の列(X)または行(Y)を返す。</p>
+
+
+<h3 id="_WINDOW" name="WINDOW">ウィンドウ</h3>
+
+<pre>ウィンドウcx、cy、w、h、b</pre>
+
+<p>テキスト出力ウィンドウをセル位置に設定する<em>cx、cy</em>サイズを<em>wの</em>列および<em>h</em>行。テキストは背景に書き込まれる<em>b</em>(0または1)。</p>
+
+<pre class="example">WINDOW 6,4,8,4,0 PRINT「小さなウィンドウに長いテキスト」</pre>
+
+
+<h3 id="_CLW" name="CLW">CLW法</h3>
+
+<pre>CLW法</pre>
+
+<p>スペースを含むウィンドウをクリアし、テキストカーソルの位置をリセットする。</p>
+
+<pre class="example">プリント「ハロー」CLWプリント「バイ」</pre>
+
+
+<h1 id="User-Input">ユーザ入力</h1>
+
+<h2 id="Gamepads">ゲームパッド</h2>
+
+<h3 id="_GAMEPAD" name="GAMEPAD">ゲームパッド</h3>
+    
+<pre>ゲームパッドn</pre>
+
+<p>次のゲームパッドを有効にする<em>n個</em>(1人または2人の)プレーヤー。ゲームパッドが有効になると、プログラムはタッチスクリーン/マウス入力に変更できなくなる。</p>
+
+
+<h3 id="_UP-DOWN-LEFT-RIGHT" name="=UP,DOWN,LEFT,RIGHT">=上/下/左/右</h3>
+
+<pre>上(p)下(p)左(p)右(p)</pre>
+
+<p>指定された方向がプレーヤーの方向パッドで現在押されている場合にtrueを返す。<em>p</em>(0/1)。</p>
+
+<pre>上タップ(p)下タップ(p)左タップ(p)右タップ(p)</pre>
+
+<p>オプションのTAPキーワードを使用すると、この関数は、ボタンが押された最初のフレームに対してのみtrueを返す。</p>
+
+<pre class="example">ゲームパッド1 DO IF UP(0)THEN PRINT&quot;UP&quot;IF DOWN(0)THEN PRINT&quot;DOWN&quot;IF LEFT TAP(0)THEN PRINT&quot;TAP&lt;&quot; IF RIGHT TAP(0) THEN PRINT &quot;TAP >&quot;WAIT VBLループ</pre>
+
+
+<h3 id="_BUTTON" name="BUTTON,TAP">=ボタン</h3>
+
+<pre>BUTTON(p[,n])</pre>
+
+<p>ボタンA(<em>n個</em>=0)またはB(<em>n個</em>=1)現在プレーヤーによって押されている<em>p</em>(0/1)。パラメータ<em>n個</em>を省略すると、両方のボタン(AとB)がチェックされる。</p>
+
+<pre>ボタンタップ(p[,n])</pre>
+
+<p>オプションのTAPキーワードを使用すると、この関数は、ボタンが押された最初のフレームに対してのみtrueを返す。</p>
+
+<pre class="example">GAMEPAD 1 DO IFボタン(0,0)THEN PRINT「A」IF BUTTON TAP(0,1)THEN PRINT「TAP B」WAIT VBLループ</pre>
+
+
+<h3 id="_PAUSE-ON-OFF" name="PAUSE ON,PAUSE OFF,PAUSE,ON,OFF">一時停止のオン/オフ</h3>
+
+<pre>PAUSE ON PAUSE OFF</pre>
+
+<p>自動一時停止処理を有効または無効にします。デフォルトでは有効になっているため、一時停止ボタンを押すと、プログラムが停止し、ボタンを再度押すまで画面に「一時停止」と表示されます。</p>
+
+
+<h3 id="_PAUSE" name="PAUSE">一時停止</h3>
+
+<pre>一時停止</pre>
+
+<p>自動一時停止処理が無効になっている場合でも、プログラムを一時停止し、デフォルトの「一時停止」画面を表示する。</p>
+
+
+<h3 id="_=PAUSE" name="PAUSE">=PAUSE</h3>
+
+<pre>一時停止</pre>
+
+<p>一時停止ボタンが押された場合はtrueを返し、それ以外の場合はfalseを返す。この関数を呼び出した後、その値はクリアされるので、各ボタンタップを1回だけ返す。この関数では、自動一時停止処理を無効にする必要がある。</p>
+
+<pre class="example">ゲームパッド1 PAUSE OFF DO IF PAUSE THEN PRINT「PAUSE PRESSED」WAIT VBLループ</pre>
+
+
+<h2 id="Touchscreen-Mouse">タッチスクリーン/マウス</h2>
+
+<p>タッチスクリーンサポートは、コンピュータのマウスでもうまく機能すると思われる場合にのみ使用してください。独自のゲームボタンを作成したい場合は、キーボードや本物のゲームパッドをサポートしていないため、コンピュータ上でゲームをプレイできない可能性があることに注意してください。常に標準のゲームパッド機能を使用することを考慮してください。</p>
+
+
+<h3 id="_TOUCHSCREEN" name="TOUCHSCREEN">タッチスクリーン</h3>
+
+<pre>タッチスクリーン</pre>
+
+<p>タッチスクリーン/マウスのサポートを有効にする。一度有効になると、プログラムはゲームパッド入力に変更できなくなる。</p>
+
+
+<h3 id="_TOUCH.X-TOUCH.Y" name="TOUCH.X,TOUCH.Y">=TOUCH.X/Y</h3>
+<pre>タッチXタッチY</pre>
+
+<p>ユーザが画面に触れたとき、または最後に触れたときの現在のXまたはYピクセル位置を返す。</p>
+
+
+<h3 id="_TOUCH" name="TOUCH">=タッチ</h3>
+
+<pre>タッチ</pre>
+
+<p>画面が現在タッチされている場合はtrueを返す。</p>
+
+<pre class="example">タッチスクリーンDO IF TOUCH THEN PRINT TOUCH.X,TOUCH.Y WAIT VBLループ</pre>
+
+
+<h3 id="_TAP" name="TAP">=TAP(タップ)</h3>
+
+<pre>カッ</pre>
+
+<p>画面が現在タッチされており、最後のフレームにタッチされていない場合は、trueを返す。</p>
+
+<pre class="example">タッチスクリーンDO IF TAP THEN PRINT TOUCH.X,TOUCH.Y WAIT VBL LOOP</pre>
+
+
+<h2 id="Keyboard">キーボード</h2>
+
+<h3 id="_KEYBOARD-ON-OFF-OPTIONAL" name="KEYBOARD ON,KEYBOARD OFF,KEYBOARD OPTIONAL,KEYBOARD,ON,OFF,OPTIONAL">キーボードのオン/オフ/オプション</h3>
+
+<pre>キーボードオンキーボードオフ</pre>
+
+<p>キーボードを有効または無効にします。キーボードが有効になっている間は、ゲームパッドは機能しません。</p>
+
+<pre>キーボード(オプション)</pre>
+
+<p>キーボードを有効にするが、タッチスクリーンデバイスにオンスクリーンキーボードを表示しない。このモードを使用するプログラムは、ゲームパッドまたはタッチコントロールで完全に使用可能であり、キーボードは代替入力にのみ使用する必要がある。</p>
+
+
+<h3 id="_INKEY$" name="INKEY$">=INKEY$</h3>
+
+<pre>INKEY$</pre>
+
+<p>最後に押されたキーを文字列として返します。キーが押されなかった場合は、空の文字列(&quot;&quot;)を返します。この関数を呼び出した後、値はクリアされるので、押された各キーを1回だけ返します。この関数では、キーボードを有効にする必要がある。</p>
+
+<pre class="example">キーボードオンDO I$=INKEY$IF I$&lt;>&quot;&quot;THEN PRINT I$WAIT VBL LOOP</pre>
+
+
+<h1 id="Graphics">グラフィックス</h1>
+
+<p>LowRes NXのすべてのグラフィックは文字に基づいている。文字は8×8ピクセルの画像で、3色と透明である。8つのプログラム可能なカラーパレットのいずれかで表示される。</p>
+
+<p>プログラムの開始時に、ROMエントリ2からのすべての文字がビデオRAMにコピーされ、すぐに使用できるようになる。</p>
+
+<p>ディスプレイは、背面から前面までの3つの層で構成されている。</p>
+<ul>
+<li>背景1(BG 1)</li>
+<li>背景0(BG 0)</li>
+<li>スプライト</li>
+</ul>
+
+<p>各スプライトセルと背景セルには、「優先度」と呼ばれる属性がある。これを設定すると、セルまたはスプライトはより高い表示レイヤーに表示される。実際には、後ろから前へ6つのレイヤーがある。</p>
+<ul>
+<li>背景1(BG 1)-prio 0</li>
+<li>背景0(BG 0)-プリオ0</li>
+<li>スプライト-プリオ0</li>
+<li>背景1(BG 1)-prio 1</li>
+<li>背景0(BG 0)-プリオ1</li>
+<li>スプライト-プリオ1</li>
+</ul>
+
+
+<h2 id="Sprites">スプライト</h2>
+
+<p>スプライトは独立したオブジェクトであり、画面上で自由に移動できる。8×8ピクセル(1文字)のサイズ、または複数の文字をグループ化して32×32ピクセルまでのサイズを持つことができる。各スプライトには、標準の文字属性(カラーパレット、フリップX/Y、優先度)とそのサイズがある。</p>
+
+
+<h3 id="_SPRITE" name="SPRITE,PAL,FLIP,PRIO">スプライト</h3>
+
+<pre>SPRITE n、[x]、[y]、[c]</pre>
+
+<p>位置を設定する<em>(x、y)</em>および文字<em>(c)項</em>スプライトの<em>n個</em>(0-63)。すべてのパラメータを省略して、現在の設定を維持することができる。</p>
+
+<pre>SPRITE n[PAL pal][FLIP fx,fy].[PRIO pri][SIZE s]</pre>
+
+<p>スプライトの1つまたは複数の属性を設定する<em>n個</em>(0-63):</p>
+
+<table>
+<tr><td>パル</td> <td>パレット番号(0-7)</td></tr>
+<tr><td>為替</td> <td>水平に反転(0/1)</td></tr>
+<tr><td>年度</td> <td>垂直方向に反転(0/1)</td></tr>
+<tr><td>プライマリ</td> <td>優先順位(0/1)</td></tr>
+<tr><td>s</td> <td>サイズ(0-3):<br/>0:1文字(8x8 px)<br/>1:2x2文字(16x16 px)<br/>2:3x3文字(24x24 px)<br/>3:4x4文字(32x32 px)</td></tr>
+</table>
+
+<pre class="example">SPRITE 0,32,64,193 SPRITE 1,64,64,193 SPRITE 1 PAL 1 SIZE 3 for X=64 to 128 SPRITE 1,X,,IF X=96 THEN SPRITE 1 FLIP 1,0 WAIT VBL NEXT X</pre>
+
+
+<h3 id="_SPRITE.A" name="SPRITE.A">スプライトA</h3>
+
+<pre>SPRITE.A n、a</pre>
+
+<p>スプライトのすべての属性を設定する<em>n個</em>(0-63)を単一の8ビット値として指定する。<a href="#Sprite-Registers">「スプライトレジスタ」</a>に登録してある。</p>
+
+<p>注:これらの値は、次の属性構文で設定する方が簡単である。<a href="#_SPRITE">スプライト</a>コマンド。</p>
+
+
+<h3 id="_SPRITE-OFF" name="SPRITE OFF,SPRITE,OFF">スプライトオフ</h3>
+
+<pre>SPRITE OFF[n]SPRITE OFF aからb</pre>
+
+<p>1つ以上のスプライトを非表示にする。すべてのパラメータを省略すると、すべてのスプライト(0-63)が非表示になる。1つのパラメータを使用すると、指定されたスプライトのみが非表示になる。最後のオプションは、次の範囲のスプライトを非表示にすることである。<em>a</em>～<em>b</em></p>
+
+
+<h3 id="_=SPRITE.X-Y" name="SPRITE.X,SPRITE.Y">=SPRITE.X/Y</h3>
+
+<pre>SPRITE.X(n)SPRITE.Y(n)</pre>
+
+<p>スプライトの位置を返す<em>n個</em></p>
+
+
+<h3 id="_=SPRITE.C" name="SPRITE.C">=SPRITE.C(スプライトC)</h3>
+
+<pre>SPRITE.C(n)(スプライトC(n)</pre>
+
+<p>スプライトの文字を返す<em>n個</em></p>
+
+
+<h3 id="_=SPRITE.A" name="SPRITE.A">=SPRITE.A(スプライトA)</h3>
+
+<pre>SPRITE.A(n)(スプライトA(n)</pre>
+
+<p>スプライトの属性を返す<em>n個</em>8ビット値として。<a href="#Sprite-Registers">「スプライトレジスタ」</a>に登録してある。</p>
+
+
+<h3 id="_=SPRITE-HIT" name="SPRITE HIT,SPRITE,HIT">=SPRITE HIT(スプライトヒット)</h3>
+
+<pre>SPRITE HIT(n[,a[TO b]])</pre>
+
+<p>スプライトの場合にtrueを返す<em>n個</em>別のスプライトと衝突する(ピクセルがオーバーラップすることを意味する)。これ以上パラメータが指定されない場合、他のすべての可視スプライトをチェックする。<em>a</em>パラメータが追加された場合、そのスプライトのみをチェックする<em>a</em>すべてのパラメータが指定された場合、numberからのすべてのスプライトでチェックする。<em>a</em>番号へ<em>b</em></p>
+
+<pre class="example">SPRITE 0,32,64,225 SPRITE 1,96,68,226 FOR X=32 TO 128 SPRITE 0,X,,IF SPRITE HIT(0,1)THEN SPRITE 0 PAL 1 ELSE SPRITE 0 PAL 0 END IF WAIT VBL NEXT X</pre>
+
+
+<h3 id="_=HIT" name="HIT">=ヒット</h3>
+
+<pre>ヒット</pre>
+
+<p>SPRITE HITの最後の呼び出しのスプライトと衝突したスプライトの数を返す。</p>
+
+
+<h2 id="Backgrounds">背景</h2>
+
+<p>背景は、32x32文字セルのマップであり、テキストおよびタイルベースのマップまたは画像に使用される。各セルには、どの文字が含まれているかという情報と、追加の属性(カラーパレット、フリップX/Y、優先順位)がある。</p>
+
+<p>文字のサイズは8×8ピクセルであるため、結果として得られる背景のサイズは256×256ピクセルであり、これは実際の画面(160×128)よりも大きい。背景のスクロールオフセットを変更することにより、表示領域を移動することができる。</p>
+
+<p>可視領域が背景の境界から外側に移動すると、表示はエッジを囲む。これを使用して、無限のスクロールを実現できる。</p>
+
+<p>16×16ピクセルのセル用のモードがある。アクティブにすると、各セルに2×2の文字が表示され、大きなスプライトのようになる。また、このモードでは、背景のサイズが512×512ピクセルに増加する。これを有効にするには、CELL SIZEコマンドを使用する。</p>
+
+<p>背景にアクセスするほとんどのコマンドや関数では、セル座標を背景サイズ(32×32)の外にすることができる。それらはエッジの周りにラップされるので、例えば、位置34、-2に描かれた文字は、実際には位置2,30に現れる。</p>
+
+
+<h3 id="_CLS" name="CLS">CLS</h3>
+    
+<pre>CLS</pre>
+
+<p>文字0の両方の背景をクリアし、現在のウィンドウをデフォルトのウィンドウにリセットする。</p>
+
+<pre>CLS b</pre>
+
+<p>背景をクリアする<em>b</em>文字0。</p>
+
+
+<h3 id="_PAL" name="PAL">パル</h3>
+
+<pre>PALのp</pre>
+
+<p>セルおよびテキストコマンドのパレット番号(0-7)属性を設定する。</p>
+
+<pre class="example">PRINT「HELLO」PAL 1 PRINT「LOWRES NX!」</pre>
+
+
+<h3 id="_FLIP" name="FLIP">フリップ</h3>
+
+<pre>フリップfx、fy</pre>
+
+<p>水平(の値(0または1)を設定します。<em>為替</em>)および垂直(<em>年度</em>)セルおよびテキストコマンドの属性を反転する。</p>
+
+<pre class="example">プリント「LOWRES NX」FLIP 0,1プリント「LOWRES NX」FLIP 1,0プリント「XN SERWOL」</pre>
+
+
+<h3 id="_PRIO" name="PRIO">プリオ</h3>
+
+<pre>PRIO p</pre>
+
+<p>セルおよびテキストコマンドの優先順位(0または1)属性を設定する。</p>
+
+
+<h3 id="_ATTR" name="ATTR">属性</h3>
+
+<pre>属性a</pre>
+
+<p>セルおよびテキスト・コマンドのすべての属性を、単一の8ビット値として設定します。<a href="#BG-Data">「BGデータ」</a>に登録してある。</p>
+
+<p>注:コマンドを使用する方が簡単である<a href="#_PAL">パル</a><a href="#_FLIP">フリップ</a>および<a href="#_PRIO">プリオ</a></p>
+
+
+<h3 id="_BG" name="BG">BG群</h3>
+
+<pre>BG n</pre>
+
+<p>セルおよびテキストコマンドの現在の背景(0または1)を設定します。</p>
+
+
+<h3 id="_CELL" name="CELL">セル</h3>
+
+<pre>セルcx、cy、c</pre>
+
+<p>セルを位置に設定する<em>cx、cy</em>現在の背景から文字へ<em>c</em>現在の属性を使用して。</p>
+
+<pre class="example">PAL 2セル1,1,225セル2,1,226 PAL 1セル3,1,227</pre>
+
+
+<h3 id="_CELL.C" name="CELL.C">=CELL.Cとする。</h3>
+
+<pre>CELL.C(cx、cy)</pre>
+
+<p>位置にあるセルの文字を返す<em>cx、cy</em>現在の背景の。</p>
+
+
+<h3 id="_CELL.A" name="CELL.A">=CELL.A(セルA)</h3>
+
+<pre>CELL.A(cx、cy)</pre>
+
+<p>位置にあるセルの属性を返す<em>cx、cy</em>現在の背景を8ビット値で表したもの。<a href="#BG-Data">「BGデータ」</a>に登録してある。</p>
+
+
+<h3 id="_BG-FILL" name="BG FILL,BG,FILL,TO,CHAR">BG FILL[BGフィル]</h3>
+
+<pre>BG FILL cx1,cy1 TO cx2,cy2 CHAR c</pre>
+
+<p>領域内のすべてのセルを設定する<em>cx1、cy1</em>～<em>cx2、cy2</em>現在の背景から文字へ<em>c</em>現在の属性を使用して。</p>
+
+<pre class="example">PAL 2 BG FILL 2,2 TO 17,13 CHAR 225 PAL 1 BG FILL 10,8 TO 17,13 CHAR 226</pre>
+
+
+<h3 id="_TINT" name="TINT,PAL,FLIP,PRIO">色</h3>
+
+<pre>TINT cx,cy[PAL pal].[FLIP fx,fy][PRIO pri]</pre>
+
+<p>位置にあるセルのパレットやその他の属性を変更する<em>cx、cy</em>現在の背景の。セルの文字と省略された属性は変更されない。</p>
+
+<pre class="example">BG FILL 2,2 TO 17,13 CHAR 225 TINT 10,8 PAL 1 FLIP 0,1</pre>
+
+
+<h3 id="_BG-TINT" name="BG TINT,BG,TINT,TO,PAL,FLIP,PRIO">BGティント</h3>
+
+<pre>BG TINT cx1,cy1 TO cx2,cy2.[PAL pal][FLIP fx,fy][PRIO pri]</pre>
+
+<p>領域内のすべてのセルのパレットやその他の属性を<em>cx1、cy1</em>～<em>cx2、cy2</em>現在の背景の。セルの文字と省略された属性は変更されない。</p>
+
+<pre class="example">BG FILL 2,2から17,13 CHAR 225 BG TINT 10,8から15,11 PAL 1</pre>
+
+
+<h3 id="_BG-SOURCE" name="BG SOURCE,BG,SOURCE">BGソース</h3>
+
+<pre>BG SOURCE a[,w,h]</pre>
+
+<p>BG COPYコマンドの現在のソースを設定する。2次元マップはメモリアドレスから始まる<em>a</em>の幅は<em>wの</em>および高さ<em>h</em>細胞。</p>
+
+<p>サイズパラメータがない場合、Gfx Designerのバックグラウンドデータフォーマットが想定される。幅はアドレスから読み取られる。<em>a</em>+2、からの高さ<em>a</em>+3で、実際のマップデータは<em>a</em>+4。</p>
+
+<p>デフォルトでは、ROMエントリ3がソースとして使用される。</p>
+
+<pre class="example">「ROMエントリ4 BGソースROM(4)からのマップの使用」作業RAM BGソース$A000,32,32からのマップの使用</pre>
+
+
+<h3 id="_BG-COPY" name="BG COPY,BG,COPY">BG COPY[BGコピー]</h3>
+
+<pre>BG cx1、cy1、w、hをcx2、cy2にコピー</pre>
+
+<p>現在のソースの2次元部分を現在の背景にコピーする。</p>
+
+<pre class="example">GFXデザイナーBG COPY 0,0,20,16から0,0への&#39;SHOW SCREEN</pre>
+
+
+<h3 id="_BG-SCROLL" name="BG SCROLL,BG,SCROLL,STEP">BGスクロール</h3>
+
+<pre>BG SCROLL cx1,cy1からcx2,cy2 STEP dx,dy</pre>
+
+<p>領域内のすべてのセルの内容を<em>cx1、cy1</em>～<em>cx2、cy2</em>水平に<em>dx</em>および垂直方向<em>ディー</em>細胞。</p>
+
+<pre class="example">DO BG SCROLL 0,0から19,15ステップ-1,0セル18、RND(15)、193+RND(62)WAIT 5ループ</pre>
+
+
+<h3 id="_MCELL.C-MCELL.A" name="MCELL.C,MCELL.A,MCELL">=MCELL.C/A</h3>
+
+<pre>MCELL.C(cx、cy)</pre>
+<pre>MCELL.A(cx、cy)</pre>
+
+<p>CELL.C関数およびCELL.A関数と同様に機能するが、現在の背景ではなくソースマップ(BG SOURCE)からセルを取得する。座標がマップ境界の外にある場合、関数は-1を返す。</p>
+
+
+<h3 id="_MCELL" name="MCELL">MCELL[マルチセル]</h3>
+
+<pre>MCELL cx、cy、c</pre>
+
+<p>CELLコマンドと同様に機能するが、現在の背景の代わりにソースマップ(BG SOURCE)にセルを設定する。ソースはワーキングRAMにある必要があり、そうでない場合は「Illegal Memory Access」エラーが発生する。</p>
+
+
+<h3 id="_TEXT" name="TEXT">テキスト</h3>
+
+<pre>テキストcx、cy、s$</pre>
+
+<p>文字列を出力する<em>s$(ドル)</em>セル位置の現在の背景に<em>cx、cy</em>現在の属性を使用して。</p>
+
+<pre class="example">PAL 3 TEXT 15,15、「HELLO」</pre>
+
+
+<h3 id="_NUMBER" name="NUMBER">数</h3>
+
+<pre>数cx、cy、n、d</pre>
+
+<p>数値を出力する<em>n個</em>セル位置の現在の背景に<em>cx、cy</em>現在の属性を使用して。数値は常に表示されるようにフォーマットされている<em>d</em>digits。このコマンドは、数値を文字列に変換する必要がないため、数値を表示するためにTEXTよりも好まれる。</p>
+
+<pre class="example">番号15,0,321,5</pre>
+
+
+<h3 id="_FONT" name="FONT">フォント</h3>
+    
+<pre>フォントc</pre>
+
+<p>テキスト出力に使用される現在の文字範囲を設定する。<em>c</em>は、フォントの開始文字(スペース)である。</p>
+
+<p>デフォルト値は192で、標準フォント(使用可能な場合)をポイントする。</p>
+
+
+<h3 id="_SCROLL" name="SCROLL">スクロール</h3>
+
+<pre>スクロールb、x、y</pre>
+
+<p>背景のスクロールオフセットを設定する<em>b</em>(0/1)からピクセル座標へ<em>x,y(x,y)</em></p>
+
+<pre class="example">テキスト0,7、I=0から256までの「スクロール背景」スクロール0、I、0待機VBL NEXT I</pre>
+
+
+<h3 id="_SCROLL.X-SCROLL.Y" name="SCROLL.X,SCROLL.Y">=SCROLL.X/Y</h3>
+
+<pre>スクロールX(b)スクロールY(b)</pre>
+
+<p>背景のスクロールオフセットを返す<em>b</em></p>
+
+
+<h2 id="Display-Settings">表示設定</h2>
+
+<h3 id="_SPRITE-VIEW" name="SPRITE VIEW ON,SPRITE VIEW OFF,SPRITE,VIEW,ON,OFF,SPRITE VIEW">SPRITE VIEW ON/OFF(スプライトビューのオン/オフ)</h3>
+
+<pre>スプライトビューオン</pre>
+<pre>スプライトビューオフ</pre>
+
+<p>スプライトの設定を変更せずに、スプライトレイヤ全体を表示または非表示にする。</p>
+
+
+<h3 id="_BG-VIEW" name="BG VIEW ON,BG VIEW OFF,BG,VIEW,ON,OFF,BG VIEW">BG VIEWのオン/オフ</h3>
+
+<pre>n上のBGビュー</pre>
+<pre>BG VIEW OFF n(BGビューオフn)</pre>
+
+<p>背景を表示または非表示にする<em>n個</em>(0または1)。</p>
+
+
+<h3 id="_CELL-SIZE" name="CELL SIZE,CELL,SIZE">セルサイズ</h3>
+
+<pre>セルサイズb、s</pre>
+
+<p>背景のセルサイズを設定する<em>b</em>(0または1)、ここで<em>s</em>次のいずれかになります。</p>
+
+<table>
+<tr><td>0</td> <td>1文字(8×8ピクセル)</td></tr>
+<tr><td>1個</td> <td>2×2文字(16×16ピクセル)</td></tr>
+</table>
+
+
+<h3 id="_PALETTE" name="PALETTE">パレット</h3>
+
+<pre>パレットn、[c0]、[c1]、[c2]、[c3]</pre>
+
+<p>パレットの4色すべてを設定する<em>n個</em>(0-7)。色0はパレット0にのみ使用され、画面の背景の色として表示される。現在の設定を維持するために、色パラメータを省略することができる。有効な色値は0-63であり、次のように計算できる。</p>
+<pre>値=赤*16+緑*4+青</pre>
+<p>RED、GREEN、およびBLUEは0から3の値である。</p>
+
+<p>デフォルトでは、すべてのパレットはROMエントリ1から読み取られる。</p>
+
+<pre class="example">PRINT「COLORS!」WAIT 30 PALETTE 0,48,63,63,0 WAIT 30 PALETTE 0,3,,,WAIT 30 PALETTE 0,12,,,8</pre>
+
+
+<h3 id="_=COLOR" name="COLOR">=COLOR[色設定]</h3>
+
+<pre>色(p,n)</pre>
+
+<p>色の値を返す<em>n個</em>(0-3)パレットから<em>p</em>(0-7)。RED、GREEN、およびBLUEの値は、次のように取得できる。</p>
+<pre>赤=INT(値/16)緑=INT(値/4)MOD 4青=VALUE MOD 4</pre>
+
+
+<h3 id="_ON-RASTER-CALL" name="ON RASTER CALL,ON RASTER,RASTER CALL,ON,RASTER,CALL,ON RASTER OFF,RASTER OFF,OFF">ON RASTER CALL/OFF(ラスター呼び出し時/オフ時)</h3>
+
+<pre>ON RASTER CALL名</pre>
+
+<p>描画される前にすべての画面行に対して実行されるサブプログラムを設定する。通常は、カラーパレットを変更したり、スクロールオフセットを変更してグラフィカルな効果を得るために使用される。ラスタサブプログラムは短くする必要がある(<a href="#CPU-Cycles">「CPUサイクル」</a>)。</p>
+
+<pre>オンラスターオフ</pre>
+
+<p>現在のサブプログラムを削除する。</p>
+
+<pre class="example">ON RASTER CALL RAINBOW PRINT&quot;RAINBOW WRITER&quot;INPUT A$SUB RAINBOW PALETTE 0,(RASTER+TIMER)MOD 64,,,END SUB</pre>
+
+
+<h3 id="_=RASTER" name="RASTER">=ラスター</h3>
+
+<pre>ラスター</pre>
+
+<p>現在の画面行(y位置)を返します。これは、ラスターサブプログラムで使用します。</p>
+
+
+<h3 id="_ON-VBL-CALL" name="ON VBL CALL,ON VBL,VBL CALL,ON,VBL,CALL,ON VBL OFF,VBL OFF,OFF">VBLコールのオン/オフ</h3>
+
+<pre>ON VBL CALL名</pre>
+
+<p>各フレームで実行されるサブプログラムを設定する。メインプログラムがWAITまたはINPUTでブロックされた場合でも、アニメーションやサウンドを更新するために使用できる。VBLサブプログラムはあまり長くすべきではない(<a href="#CPU-Cycles">「CPUサイクル」</a>)。</p>
+
+<pre>オンVBL OFF</pre>
+
+<p>現在のサブプログラムを削除する。</p>
+
+<pre class="example">オンVBLコールブリンクプリント「BLINK WRITER」入力A$SUB BLINK PALETTE 0、タイマーMOD 64、、、エンドサブ</pre>
+
+
+<h3 id="_=TIMER" name="TIMER">=タイマー</h3>
+
+<pre>タイマー</pre>
+
+<p>LowRes NXが開始されてから表示されたフレーム数を返します。この値は、5184000に達したとき(約24時間)に0に戻る。</p>
+
+
+<h1 id="Sound">サウンド</h1>
+
+<p>LowRes NXには4つの独立したサウンドジェネレーター(ボイス)があり、それぞれがのこぎり歯、三角形、パルス、ノイズの波形を再生でき、周波数、音量、パルス幅を設定できる。追加のエンベロープジェネレーターとボイスごとのLFOにより、複雑なサウンドと楽器が可能になる。</p>
+<p>ツールを使用できる<a href="#Sound-Composer">「サウンド・コンポーザ」</a>(または互換性のあるプログラム)を使用して、音楽、トラック、およびサウンドプリセットを作成する。</p>
+
+
+<h3 id="_MUSIC" name="MUSIC">音楽</h3>
+
+<pre>音楽[p]</pre>
+
+<p>パターンで曲の再生を開始する<em>p</em>パラメータ<em>p</em>が省略された場合、パターン0から開始する。</p>
+
+
+<h3 id="_TRACK" name="TRACK">トラック</h3>
+
+<pre>トラックn、v</pre>
+
+<p>トラックを再生<em>n個</em>ワンス・オン・ヴォイス<em>v</em>各音声は独立してトラックを再生できるので、音楽再生中でも音響効果に使用できる。</p>
+
+
+<h3 id="_PLAY" name="PLAY">再生</h3>
+
+<pre>PLAY v,p[,len][SOUND s]</pre>
+
+<p>音声で音を再生する<em>v</em>(0～3)。<em>p</em>はピッチ:</p>
+<table class="bigtable">
+    <tr><th>注記</th><th colspan="8">ピッチ(オクターブが異なる)</th></tr>
+    <tr><th>Cキー</th><td>1個</td><td>13個</td><td>25個</td><td>37個</td><td>49個</td><td>61人</td><td>73人</td><td>85個</td></tr>
+    <tr><th>C#</th><td>2個</td><td>14個</td><td>26個</td><td>38個</td><td>50人</td><td>62個</td><td>74人</td><td>86個</td></tr>
+    <tr><th>Dキー</th><td>3個</td><td>15個</td><td>27個</td><td>39個</td><td>51人</td><td>63人</td><td>75人</td><td>87個</td></tr>
+    <tr><th>D#</th><td>4個</td><td>16個</td><td>28個</td><td>40個</td><td>52人</td><td>64個</td><td>76人</td><td>88人</td></tr>
+    <tr><th>Eキー</th><td>5個</td><td>17個</td><td>29個</td><td>41人</td><td>53個</td><td>65人</td><td>77人</td><td>89人</td></tr>
+    <tr><th>Fキー</th><td>6個</td><td>18個</td><td>30人</td><td>42人</td><td>54個</td><td>66個</td><td>78個</td><td>90人</td></tr>
+    <tr><th>F#</th><td>7個</td><td>19個</td><td>31個</td><td>43人</td><td>55個</td><td>67個</td><td>79個</td><td>91個</td></tr>
+    <tr><th>Gキー</th><td>8個</td><td>20個</td><td>32個</td><td>44個</td><td>56個</td><td>68個</td><td>80個</td><td>92個</td></tr>
+    <tr><th>G#</th><td>9個</td><td>21人</td><td>33個</td><td>45個</td><td>57個</td><td>69個</td><td>81人</td><td>93人</td></tr>
+    <tr><th>Aキー</th><td>10個</td><td>22個</td><td>34個</td><td>46個</td><td>58個</td><td>70個</td><td>82人</td><td>94個</td></tr>
+    <tr><th>A#</th><td>11個</td><td>23人</td><td>35個</td><td>47人</td><td>59個</td><td>71人</td><td>83名</td><td>95個</td></tr>
+    <tr><th>Bさん</th><td>12個</td><td>24個</td><td>36個</td><td>48個</td><td>60個</td><td>72人</td><td>84個</td><td>96個</td></tr>
+</table>
+
+<p>オプションのパラメータ<em>長さ</em>は1/60秒単位の長さで、最大値は255である。0は、音が自動的に止まらないことを意味する。パラメータを省略した場合、音声の現在の値が保持される。</p>
+
+<p>デフォルトでは、音声の現在のサウンド設定が使用される。サウンド番号を使用するには、SOUNDパラメータを追加する<em>s</em>Sound Composerツールから。</p>
+
+<pre class="example">再生0,49,20待機30再生0,53,20待機30再生0,56,40待機60</pre>
+
+
+<h3 id="_STOP" name="STOP">停止</h3>
+
+<pre>停止[v]</pre>
+
+<p>現在のサウンドと音声のトラックを停止する<em>v</em>パラメータを省略すると、すべての音声、トラック、および音楽が停止される。音声のエンベロープにリリースタイムがある場合、サウンドはすぐには停止せず、フェードアウトする。</p>
+
+
+<h3 id="_VOLUME" name="VOLUME">ボリューム</h3>
+
+<pre>VOLUME v、[vol]、[mix]</pre>
+
+<p>音声の音量を設定する<em>n個</em>(0-3)から<em>ボリューム</em>(0-15)およびその出力<em>混合</em>(0-3):</p>
+
+<table>
+<tr><td>0</td><td>ミュート</td></tr>
+<tr><td>1個</td><td>左</td></tr>
+<tr><td>2個</td><td>右</td></tr>
+<tr><td>3個</td><td>左右(中央)</td></tr>
+</table>
+
+<p>すべてのパラメータを省略して、現在の設定を維持することができる。</p>
+
+
+<h3 id="_SOUND" name="SOUND">サウンド</h3>
+
+<pre>SOUND v、[w]、[pw]、[len]</pre>
+
+<p>音声の基本的なサウンドパラメータを設定する<em>v</em>(0～3)。</p>
+<p><em>wの</em>は波形である。</p>
+
+<table>
+<tr><td>0</td><td>のこぎり歯</td></tr>
+<tr><td>1個</td><td>三角形</td></tr>
+<tr><td>2個</td><td>パルス</td></tr>
+<tr><td>3個</td><td>ノイズ</td></tr>
+</table>
+
+<p><em>パスワード</em>はパルス幅(0～15)であり、値が8の場合は方形波になる。このパラメータはパルス波形にのみ影響する。</p>
+<p><em>長さ</em>は1/60秒単位の音の長さで、最大値は255である。0は音が自動的に止まらないことを意味する。このコマンドを使用して長さを設定する場合、PLAYの長さパラメータは省略できる。</p>
+<p>すべてのパラメータを省略して、現在の設定を維持することができる。</p>
+
+
+<h3 id="_ENVELOPE" name="ENVELOPE">エンベロープ</h3>
+
+<pre>エンベロープv、[a]、[d]、[s]、[r]</pre>
+
+<p>音声のボリュームエンベロープジェネレータを設定する<em>v</em>(0～3)。</p>
+<p><em>a</em>は攻撃時間<em>d</em>は減衰時間<em>r</em>はリリース時間である。すべての時間は非線形であり、0(2 ms)から15(12 s)の範囲である。</p>
+<p><em>s</em>サステインレベル(0-15)であり、減衰時間の後、サウンドがリリースされる前のボリュームである。</p>
+<p>すべてのパラメータを省略して、現在の設定を維持することができる。</p>
+
+<pre class="example">封筒0,1,6,8,8再生0,49,20待機30再生0,53,20待機30再生0,56,40待機120</pre>
+
+
+<h3 id="_LFO" name="LFO">LFO法</h3>
+
+<pre>LFO v,[r],[fr],[vol],[pw]</pre>
+
+<p>音声のLFO(低周波発振器)を設定する<em>v</em>(0～3)。</p>
+<p><em>r</em>はLFOレートであり、0(0.12 Hz)から15(18 Hz)までの範囲が非線形である。</p>
+<p>他のパラメータは、さまざまなサウンドパラメータに対するエフェクトの量を設定する。<em>fr(frは</em>周波数/ピッチ<em>ボリューム</em>ボリュームおよび<em>パスワード</em>パルス幅。これらの値の範囲は0～15である。</p>
+<p>すべてのパラメータを省略して、現在の設定を維持することができる。</p>
+
+<pre class="example">LFO 0,12,4,0,0 PLAY 0,49,20 WAIT 30 PLAY 0,53,20 WAIT 30 PLAY 0,56,40 WAIT 120</pre>
+
+
+<h3 id="_LFO-WAVE" name="LFO WAVE,LFO,WAVE">LFO波</h3>
+
+<pre>LFO WAVE v,[w],[i],[e],[t]</pre>
+
+<p>音声のLFO波のオプションを設定します<em>v</em>(0-3)。すべてのパラメータを省略して、現在の設定を維持することができる。</p>
+
+<table>
+<tr><td>wの</td> <td>波(0-3):<br/>0:三角形<br/>1:のこぎり歯<br/>2:正方形<br/>3:ランダム</td></tr>
+<tr><td>i型</td> <td>反転(0/1)</td></tr>
+<tr><td>e</td> <td>envモード有効(0/1)</td></tr>
+<tr><td>t</td> <td>トリガー有効(0/1)</td></tr>
+</table>
+
+<p>デフォルトでは、LFOはその出力を通常のサウンドパラメータに追加する。invertが有効になっている場合は、減算する。envモードを有効にすることで、LFOは1サイクル後に停止するため、追加のエンベロープジェネレータとして使用できる。トリガーが有効になっている場合、LFOは再生されたサウンドごとに再起動する。そうでない場合は、継続的に実行される。トリガーはenvモードで暗黙的に有効になる。</p>
+
+
+<h3 id="_SOUND-SOURCE" name="SOUND SOURCE,SOUND,SOURCE">音源</h3>
+
+<pre>音源a</pre>
+
+<p>PLAY、MUSIC、TRACKコマンドの現在のデータソースをメモリアドレスに設定する<em>a</em>これは、これらのコマンドへの次の呼び出しにのみ影響し、すでに開始された再生は独自のデータソースを保持する。データは、サウンドコンポーザツールの形式であると仮定される。</p>
+
+<p>デフォルトでは、ROMエントリ15がソースとして使用される。</p>
+
+
+<h3 id="_=MUSIC" name="MUSIC">=音楽</h3>
+
+<pre>音楽(n)</pre>
+
+<p>音楽の再生状況を返します。指定<em>n個</em>取得したい情報:</p>
+
+<table>
+<tr><td>0</td><td>現在のパターン</td></tr>
+<tr><td>1個</td><td>現在の行</td></tr>
+<tr><td>2個</td><td>現在のティック</td></tr>
+<tr><td>3個</td><td>現在の速度(0=停止)</td></tr>
+</table>
+
+
+<h1 id="Data">データ</h1>
+
+<h3 id="_DATA" name="DATA">データ</h3>
+
+<pre>DATA定数リスト</pre>
+
+<p>READコマンドによってアクセスされる、コンマで区切られた数値および文字列定数(値であるが、変数または式ではない)を格納する。DATAコマンドは実行されず、プログラム内の任意の場所に配置できる。</p>
+<p>READコマンドは、プログラムの先頭から末尾までの順序でDATAにアクセスする。すべてのDATAコマンドのすべての定数は、項目の1つの連続したリストとして読み取られる。</p>
+
+
+<h3 id="_READ" name="READ">読み取り</h3>
+
+<pre>READ変数リスト</pre>
+
+<p>DATAコマンドから値を読み取り、次のコンマで区切られた変数に割り当てる。<em>変数リスト</em>プログラムには、現在のデータ値への内部ポインタがある。各値が読み取られると、ポインタは次のデータ値に移動する。</p>
+
+<pre class="example">I=0から3 READ TYPE$、POWER PRINT TYPE$;&quot;:&quot;、POWER NEXT I DATA「LASER」、10、「BLASTER」、15 DATA「PLASMA」、20、「FUSION」、30</pre>
+
+
+<h3 id="_RESTORE" name="RESTORE">リストア</h3>
+
+<pre>RESTORE[ラベル]</pre>
+
+<p>内部読み取りポインタを別の位置に変更する。これにより、データを再読み取りしたり、特定のデータを選択したりすることができる。ラベルパラメータを省略した場合、READはプログラムの先頭から再開する。それ以外の場合、ポインタはジャンプラベルに設定される。</p>
+
+<pre class="example">RESTORE SHIELD FOR I=0 TO 1 READ TYPE$,POWER PRINT TYPE$;&quot;:&quot;,POWER NEXT I DATA&quot;LASER&quot;,10,&quot;BLASTER&quot;,15 SHIELD:DATA&quot;SIMPLE&quot;,30,&quot;ADVANCED&quot;,60</pre>
+
+
+<h1 id="Memory-Access">メモリアクセス</h1>
+
+<p>LowRes NXは、グラフィックス、サウンド、入出力用のチップ、カートリッジROM、ワーキングRAM、パーシステントRAMをシミュレートする。すべては、64 KBのメモリマップでアクセスできる。これについては、の章で説明する。<a href="#Hardware-Reference">「ハードウェアリファレンス」</a></p>
+
+
+<h3 id="_=PEEK" name="PEEK">=PEEK(ピーク)</h3>
+
+<pre>PEEK(a)について</pre>
+
+<p>メモリアドレスのバイト値(0-255)を返す。<em>a</em></p>
+
+<pre class="example">タッチスクリーンプリント「タッチ!」DO IF PEEK($FF75)および%10 THEN PRINT PEEK($FF72)、PEEK($FF73)END IF WAIT VBL LOOP</pre>
+
+<h3 id="_POKE" name="POKE">ポキ</h3>
+
+<pre>POKE a、v</pre>
+
+<p>アドレスにメモリを設定する<em>a</em>評価する<em>v</em><em>v</em>は0から255までの数値式であり、この範囲外の数値式は8ビットに切り捨てられる。</p>
+
+<pre class="example">POKE$9000,232 POKE$9002,233</pre>
+
+
+<h3 id="_=PEEKW" name="PEEKW">=PEEKW</h3>
+
+<pre>PEEKW(a)</pre>
+
+<p>メモリアドレスの2バイト値(-32768から32767)を返す。<em>a</em></p>
+
+
+<h3 id="_POKEW" name="POKEW">POKEW</h3>
+
+<pre>POKEW a、v</pre>
+
+<p>メモリアドレスに2バイトの値を書き込む<em>a</em><em>v</em>は、-32768～32767の数値式である。この範囲外の数値式は16ビットに切り捨てられる。</p>
+
+
+<h3 id="_=PEEKL" name="PEEKL">=PEEKL</h3>
+
+<pre>PEEKL(a)</pre>
+
+<p>メモリアドレスの4バイト値(-2147483648から2147483647)を返す。<em>a</em></p>
+
+
+<h3 id="_POKEL" name="POKEL">POKEL</h3>
+
+<pre>POKEL a、v</pre>
+
+<p>メモリアドレスに4バイトの値を書き込む<em>a</em><em>v</em>は、-2147483648～2147483647の数値式である。この範囲外の数値式は32ビットに切り捨てられる。</p>
+
+<pre class="example">&#39;使用例永続的なRAM HI=PEEKL($E000)PRINT&quot;HIGHSCORE:&quot;PRINT HI INPUT&quot;SCORE:&quot;;SC IF SC>HI THEN POKEL$E000、SC PRINT&quot;RESTART!&quot;</pre>
+
+
+<h3 id="_COPY" name="COPY">コピー</h3>
+
+<pre>a、nをdにコピー</pre>
+
+<p>コピー<em>n個</em>メモリアドレスから始まるバイト<em>a</em>対処する<em>d</em>ソース領域と宛先領域が重複する場合がある。</p>
+
+<pre class="example">「COPY CHARACTERS FROM ROM」エントリ4をビデオRAM COPY ROM(4)に、サイズ(4)を$8000に</pre>
+
+
+<h3 id="_FILL" name="FILL">フィル</h3>
+
+<pre>FILL a,n[,v]</pre>
+
+<p>セット<em>n個</em>メモリアドレスから始まるバイト<em>a</em>評価する<em>v</em>パラメータが省略された場合は0。</p>
+
+
+<h3 id="_ROL" name="ROL">ロール</h3>
+
+<pre>ROL a、n</pre>
+
+<p>アドレスでバイトを取得する<em>a</em>ビットを左に回転させる。<em>n個</em>場所。</p>
+
+
+<h3 id="_ROR" name="ROR">エラー</h3>
+
+<pre>ROR a、n</pre>
+
+<p>アドレスでバイトを取得する<em>a</em>ビットを右に回転させ<em>n個</em>場所。</p>
+
+
+<h3 id="_=ROM" name="ROM">=ROM</h3>
+
+<pre>ROM(n)</pre>
+
+<p>ROMエントリのメモリアドレスを返す。<em>n個</em></p>
+
+
+<h3 id="_=SIZE" name="SIZE">=サイズ</h3>
+
+<pre>サイズ(n)</pre>
+
+<p>ROMエントリのバイト数を返す。<em>n個</em></p>
+
+
+<h1 id="Files">ファイル</h1>
+
+<p>ファイルコマンドを使用して、最大16個のファイルを含む仮想ディスクにデータを保存することができる。そのフォーマットは、プログラムファイルのROMエントリ部分と同じである。これにより、任意のNXプログラムを仮想ディスクとして直接使用して、データを編集することができる。</p>
+
+<p>仮想ディスクは、画像やマップのエディタ、音楽プログラムなどの開発ツールにのみ使用することを目的としている。ゲームでは、代わりに永続メモリを使用する必要がある。標準的なLowRes NXコンソールにディスクドライブがないと想像してほしい。</p>
+
+
+<h3 id="_LOAD" name="LOAD">ロード</h3>
+
+<pre>負荷f、a[、n[、o]]</pre>
+
+<p>ファイル番号をロードする<em>f値</em>現在の仮想ディスクからアドレスから始まるメモリへ<em>a</em></p>
+
+<p>オプションで、パラメータ<em>n個</em>は、ロードされるべき最大バイト数に使用できる。0は制限なしを意味する。オプションのパラメータを使用して<em>o</em>ファイル内のオフセットを設定することができる。</p>
+
+<p>LOADはツールのみに使用されることを意図している。ゲームデータにはROMエントリを、ゲーム状態には永続メモリを使用する。</p>
+
+
+<h3 id="_SAVE" name="SAVE">保存</h3>
+
+<pre>保存f、c$、a、n</pre>
+
+<p>保存<em>n個</em>メモリアドレスから始まるバイト<em>a</em>現在の仮想ディスクにファイル番号として<em>f値</em>(0-15)コメント付き<em>c$</em>(最大31文字)。</p>
+
+<p>このファイルが以前にロードされたことがある場合は、元のコメントを保持するか、保存する前にユーザーが編集できるようにすることを検討する。ファイルが新しい場合は、コメントには少なくとも「CHARACTERS」や「MUSIC」などのデータのタイプを含める必要がある。</p>
+
+<p>SAVEは、ツールにのみ使用することを目的としている。永続メモリを使用してゲーム状態を保存する。</p>
+
+
+<h3 id="_FILES" name="FILES">ファイル</h3>
+
+<pre>ファイル</pre>
+
+<p>FILE$で使用する現在のファイルディレクトリをロードする。</p>
+
+
+<h3 id="_FILE" name="FILE$">=ファイル$</h3>
+
+<pre>ファイル$(f)</pre>
+
+<p>ファイル番号のコメント文字列を返す<em>f値</em>ファイルディレクトリにアクセスしてその内容を更新する前にFILESを呼び出すか、LOADまたはSAVEの後に直接FILE$を使用する。</p>
+
+<pre class="example">Iのファイル=0から15 PRINT I、FILE$(I)NEXT I</pre>
+
+
+<h3 id="_=FSIZE" name="FSIZE">=FSIZE</h3>
+
+<pre>FSIZE(n)は</pre>
+
+<p>ファイル番号のバイト数を返す。<em>n個</em>ファイルディレクトリにアクセスしてその内容を更新する前にFILESを呼び出すか、LOADまたはSAVEの後に直接FSIZEを使用する。</p>
+
+
+<h1 id="Math-Functions">数学関数</h1>
+
+<h2 id="Trigonometric">三角関数</h2>
+
+<h3 id="_PI" name="PI">=PI</h3>
+
+<pre>PI法</pre>
+
+<p>PIは円の円周と直径の比である:3.1415926535.</p>
+
+
+<h3 id="_SIN" name="SIN">=SIN(シン)</h3>
+
+<pre>SIN(x)は</pre>
+
+<p>の正弦<em>x個</em>ここで<em>x個</em>はラジアンである。</p>
+
+
+<h3 id="_COS" name="COS">=COS(コス)</h3>
+
+<pre>COS(x)は</pre>
+
+<p>のコサイン<em>x個</em>ここで<em>x個</em>はラジアンである。</p>
+
+
+<h3 id="_TAN" name="TAN">=TAN(タン)</h3>
+
+<pre>TAN(x)は</pre>
+
+<p>の接線<em>x個</em>ここで<em>x個</em>はラジアンである。</p>
+
+
+<h3 id="_ASIN" name="ASIN">=ASIN</h3>
+
+<pre>ASIN(x)は</pre>
+
+<p>の逆正弦<em>x個</em>ここで<em>x個</em>は-1から+1の範囲内である必要がある。関数の範囲は<span class="nobr">-(PI/2)</span>&lt;=ASIN(x)&lt;=(PI/2)。</p>
+
+
+<h3 id="_ACOS" name="ACOS">=ACOS</h3>
+
+<pre>ACOS(x)の</pre>
+
+<p>のアークコサイン<em>x個</em>ここで<em>x個</em>-1から+1の範囲である必要がある。関数の範囲は0&lt;=ACOS(x)&lt;=PI。</p>
+
+
+<h3 id="_ATAN" name="ATAN">=ATAN(エータン)</h3>
+
+<pre>ATAN(x)の</pre>
+
+<p>のアークタンジェント<em>x個</em>ラジアン、つまり接線が次の角度である<em>x個</em>関数の範囲は<span class="nobr">-(PI/2)</span>&lt;=ATAN(x)&lt;=(PI/2)。</p>
+
+
+<h3 id="_HSIN" name="HSIN">=HSIN</h3>
+
+<pre>HSIN(x)の</pre>
+
+<p>の双曲線正弦<em>x個</em></p>
+
+
+<h3 id="_HCOS" name="HCOS">=HCOS</h3>
+
+<pre>HCOS(x)</pre>
+
+<p>双曲線余弦<em>x個</em></p>
+
+
+<h3 id="_HTAN" name="HTAN">=HTAN</h3>
+
+<pre>HTAN(x)は</pre>
+
+<p>双曲線正接<em>x個</em></p>
+
+
+<h2 id="Standard-Math">標準数学</h2>
+
+<h3 id="_ABS" name="ABS">=ABS</h3>
+
+<pre>ABS(x)</pre>
+
+<p>の絶対値<em>x個</em></p>
+
+
+<h3 id="_SGN" name="SGN">=SGN</h3>
+
+<pre>SGN(x)の</pre>
+
+<p>の符号<em>x個</em>:-1 if<em>x個</em>&lt;0、0 if<em>x個</em>=0および+1 if<em>x個</em>>0。</p>
+
+
+<h3 id="_INT" name="INT">=INT(整数)</h3>
+
+<pre>INT(x)は</pre>
+
+<p>より大きくない最大の整数<em>x個</em>例えば、INT(1.3)=1およびINT(-1.3)=-2。</p>
+
+
+<h3 id="_EXP" name="EXP">=EXP</h3>
+
+<pre>EXP(x)は</pre>
+
+<p>指数関数<em>x個</em>、すなわち、自然対数の底(e=271828.)をべき乗した値<em>x個</em></p>
+
+
+<h3 id="_LOG" name="LOG">=ログ</h3>
+
+<pre>ログ(x)</pre>
+
+<p>の自然対数<em>x個</em>;<em>x個</em>は0より大きい必要がある。</p>
+
+
+<h3 id="_SQR" name="SQR">=SQR(正数)</h3>
+
+<pre>SQR(x)は</pre>
+
+<p>の非負の平方根<em>x個</em>;<em>x個</em>は負でない必要がある。</p>
+
+
+<h2 id="Random-Sequences">ランダムシーケンス</h2>
+
+<h3 id="_RND" name="RND">=RND(リアルタイム)</h3>
+
+<pre>RND(リアルタイム)</pre>
+
+<p>0&lt;=RND&lt;1の範囲で一様に分布する乱数列の次の数。</p>
+
+<pre>RND(n)</pre>
+
+<p>2番目の構文は、0から<em>n個</em>包括的。</p>
+
+
+<h3 id="_RANDOMIZE" name="RANDOMIZE,TIMER">ランダム化</h3>
+<pre>RANDOMIZE x(ランダム化)</pre>
+
+<p>乱数のシードを<em>x個</em>これは整数値である必要がある。デフォルトでは、プログラムはシード0から開始するので、乱数のシーケンスは常に同じである。</p>
+
+<pre>ランダム化タイマー</pre>
+
+<p>プログラムを実行するたびに異なる乱数が必要な場合は、この行を最初に挿入する必要がある。</p>
+
+<pre class="example">Iのためのランダム化タイマー=1から16 PRINT RND(1000)NEXT I</pre>
+
+
+<h2 id="Manipulating-Numbers">数値の操作</h2>
+
+<h3 id="_MIN" name="MIN">=最小</h3>
+
+<pre>最小(x,y)</pre>
+
+<p>MIN関数は、2つの式の最小値を返す。</p>
+
+
+<h3 id="_MAX" name="MAX">=最大</h3>
+
+<pre>MAX(x,y)</pre>
+
+<p>MAX関数は、2つの式の最大値を返す。</p>
+
+
+<h3 id="_SWAP" name="SWAP">スワップ</h3>
+
+<pre>SWAP var1、var2</pre>
+
+<p>同じ型の任意の2つの変数間でデータをスワップする。</p>
+
+<pre class="example">A=10 B=40 SWAP A,B PRINT A PRINT B</pre>
+
+
+<h3 id="_INC" name="INC">インク</h3>
+
+<pre>INC変数</pre>
+
+<p>変数の値を1つ増加させる。INC AはA=A+1と同じことをするが、CPUサイクルのコストは低くなる。</p>
+
+
+<h3 id="_DEC" name="DEC">DEC社</h3>
+
+<pre>DEC変数</pre>
+
+<p>変数の値を1つ減少させる。DEC AはA=A-1と同じことをするが、CPUサイクルのコストは低い。</p>
+
+<p></p>
+
+
+<h3 id="_ADD" name="ADD">追加</h3>
+
+<pre>ADD変数、x</pre>
+
+<p>値を加算する<em>x個</em>ここで<em>x個</em>正か負か。ADD A,XはA=A+Xと同じことをするが、CPUサイクルのコストは低くなる。</p>
+
+<pre>var、x、baseをtopに追加</pre>
+
+<p>ADDの2番目の構文は、カウンタを繰り返すのに役立つ。</p>
+
+<pre class="example">A=0 DO ADD A,2,0 TO 10 PRINT A LOOP</pre>
+
+<p>以下と同じである。</p>
+
+<pre class="example">A=0 DO A=A+2 IF A>10 THEN A=0 IF A&lt;0 THEN A=10 PRINT A LOOP</pre>
+
+<p>しかし、ここでもADDコマンドの方がCPUサイクルのコストが低い。</p>
+
+
+<h1 id="String-Functions">文字列関数</h1>
+
+<h3 id="_LEFT$" name="LEFT$">=左$=</h3>
+
+<pre>LEFT$(s$,n)</pre>
+
+<p>最初の文字列を含む新しい文字列を返す<em>n個</em>文字<em>s$(ドル)</em></p>
+
+<pre class="example">PRINT LEFT$(&quot;LOWRES NX&quot;,3)</pre>
+
+<pre>LEFT$(s$,n)=a$</pre>
+
+<p>変数の最初の文字を上書きする<em>s$(ドル)</em>最初の<em>n個</em>文字<em>a$</em></p>
+
+<pre class="example">A$=&quot;FOORES NX&quot;LEFT$(A$,3)=&quot;LOWER&quot;PRINT A$</pre>
+
+
+<h3 id="_RIGHT$" name="RIGHT$">=RIGHT$=</h3>
+
+<pre>RIGHT$(s$,n)</pre>
+
+<p>最後の文字列を含む新しい文字列を返す<em>n個</em>文字<em>s$(ドル)</em></p>
+
+<pre>RIGHT$(s$,n)=a$</pre>
+
+<p>変数内の最後の文字を上書きする<em>s$(ドル)</em>最後の<em>n個</em>文字<em>a$</em></p>
+
+
+<h3 id="_MID$" name="MID$">=MID$=</h3>
+
+<pre>MID$(s$,p,n)</pre>
+
+<p>新しい文字列を返す。<em>n個</em>文字<em>s$(ドル)</em>文字から開始<em>p</em>最初の文字の位置は1である。</p>
+
+<pre class="example">PRINT MID$(&quot;LOWRES NX&quot;,4,3)</pre>
+
+<pre>MID$(s$,p,n)=a$</pre>
+
+<p>変数内の指定されたテキスト範囲を上書きする<em>s$(ドル)</em>最初の<em>n個</em>文字<em>a$</em></p>
+
+<pre class="example">A$=「LOWFOO NX」MID$(A$,4,3)=「RESTAURANT」PRINT A$</pre>
+
+
+<h3 id="_INSTR" name="INSTR">=INSTR</h3>
+
+<pre>INSTR(d$,s$[,p])</pre>
+
+<p>最初の出現を検索する<em>s$(ドル)</em>内部<em>d$(ドル)</em>開始位置を返す。見つからない場合、この関数は0を返す。通常、この関数は文字列の先頭から検索を開始する。オプションで、次の位置から検索を開始することもできる。<em>p</em></p>
+
+<pre class="example">PRINT INSTR(&quot;LOWRES NX&quot;,&quot;RES&quot;)</pre>
+
+
+<h3 id="_CHR$" name="CHR$">=CHR$</h3>
+
+<pre>CHR$(n)</pre>
+
+<p>ASCIIコードを含む1文字を含む文字列を返す<em>n個</em></p>
+
+<pre class="example">FOR I=32 TO 90 PRINT CHR$(I)NEXT I</pre>
+
+
+<h3 id="_ASC" name="ASC">=ASC</h3>
+
+<pre>ASC(a$)</pre>
+
+<p>の最初の文字のASCIIコードを提供する。<em>a$</em></p>
+
+<pre class="example">PRINT ASC(&quot;L&quot;)</pre>
+
+
+<h3 id="_LEN" name="LEN">=LEN[長さ]</h3>
+
+<pre>LEN(a$)</pre>
+
+<p>内の文字数を返す<em>a$</em></p>
+
+
+<h3 id="_VAL" name="VAL">=VAL(値)</h3>
+
+<pre>VAL(a$)</pre>
+
+<p>記述された数値を変換する<em>a$</em>数値に変換します。</p>
+
+
+<h3 id="_STR$" name="STR$">=STR$</h3>
+
+<pre>STR$(n)の場合</pre>
+
+<p>数値を変換する<em>n個</em>文字列に変換する。</p>
+
+
+<h3 id="_BIN$" name="BIN$">=BIN$</h3>
+
+<pre>BIN$(n[,len])</pre>
+
+<p>数値を変換する<em>n個</em>少なくとも1つのバイナリ文字列に<em>長さ</em>数字。</p>
+
+
+<h3 id="_HEX$" name="HEX$">=HEX$</h3>
+
+<pre>HEX$(n[,len])</pre>
+
+<p>数値を変換する<em>n個</em>16進数文字列に変換し、少なくとも<em>長さ</em>数字。</p>
+
+
+<h1 id="System">システム</h1>
+
+<p>システムコマンドは、仮想コンソールとLowRes NXアプリケーション間のリンクである。</p>
+
+
+<h3 id="_TRACE" name="TRACE">トレース</h3>
+
+<pre>TRACE式-リスト</pre>
+
+<p>デバッグ・ウィンドウにテキストを出力します。式には、カンマで区切られた文字列または数値を使用できます。デバッグ・モードが有効でない場合、このコマンドは無視されます。</p>
+
+<pre class="example">&#39;デバッグモードで実行A=13 B$=&quot;GO&quot;TRACE&quot;TEST&quot;,A,B$</pre>
+
+
+<h3 id="_SYSTEM" name="SYSTEM">システム</h3>
+
+<pre>システムn、v</pre>
+
+<p>システムステータスを設定する<em>n個</em>評価する<em>v</em>現在、次の1つのステータスのみが使用可能である。</p>
+
+<table>
+<tr>
+<td>0</td>
+<td>省エネルギーモード:<br/>有効化<em>v</em>0とは異なる。このモードでは、ユーザ入力がないときは常に、画面は非常に低いレートで更新される。仮想CPUには影響せず、コードは依然としてフルスピードで実行される。</td>
+</tr>
+</table>
+
+
+<h1 id="Advanced-Topics">高度なトピック</h1>
+
+<h2 id="CPU-Cycles">CPUサイクル</h2>
+
+<p>LowRes NXでは、CPUサイクルのシミュレーションが簡略化されており、フレームごとのサイクル数には一定の制限がある。これにより、すべてのデバイスで同じプログラム実行速度が保証されるため、デバイス上でプログラムを最適化してスムーズに実行すれば、他のすべてのデバイスでも同じように実行される。</p>
+
+<p>コマンド、関数または演算子の各実行、および変数または定数へのアクセスは、1サイクルとカウントされる。一部の操作には追加コストがかかる。</p>
+<ul>
+<li>文字列の作成と修正は、1文字あたり1サイクルとカウントされる。</li>
+<li>配列の初期化は、要素ごとに1サイクルとカウントされる。</li>
+<li>メモリ領域の修正は、1バイトあたり1サイクルとカウントされる(POKEのような1バイトの修正ではない)。</li>
+<li>BG領域の修正とテキスト出力は、セルごとに2サイクルとカウントされる(CELLのような単一セルの修正ではない)。</li>
+</ul>
+
+<table>
+<tr><td>フレームあたりの総サイクル数</td><td>17556</td></tr>
+<tr><td>VBL割り込みごとのサイクル</td><td>1140</td></tr>
+<tr><td>ラスター割り込みごとのサイクル</td><td>51人</td></tr>
+</table>
+
+<p>メインプログラムは任意の数のサイクルを使用することができるが、WAIT VBLまたはWAITコマンドの前に制限に達した場合、実行は次のフレームに継続される。割り込みが制限を超えると、画面に黒いスキャンラインが表示される。</p>
+
+
+<h2 id="Hardware-Reference">ハードウェアリファレンス</h2>
+
+<h3 id="Memory-Map">メモリマップ</h3>
+
+<pre>$0000-カートリッジROM(32 KB)$8000-文字データ(4 KB)$9000-BG0データ(2 KB)$9800-BG1データ(2 KB)$A000-ワーキングRAM(16 KB)$E000-パーシステントRAM(4 KB)$FE00-スプライトレジスタ(256 B)$FF00-カラーレジスタ(32 B)$FF20-ビデオレジスタ$FF40-オーディオレジスタ$FF70-I/Oレジスタ</pre>
+
+<h3 id="Character-Data">文字データ</h3>
+
+<p>文字は、8×8ピクセルの画像で、1ピクセルあたり2ビットであり、結果として16バイトのサイズになる。ビデオRAMには、256文字分のスペースがある。</p>
+
+<p>文字の最初の8バイトには、すべてのピクセルの下位ビットが含まれ、その後に、すべてのピクセルの上位ビットを含むさらに8バイトが続く。</p>
+
+<h3 id="BG-Data">BGデータ</h3>
+
+<p>背景は、32×32文字のセルのマップである。各セルは2バイトを占める。</p>
+<pre>-文字番号-属性:ビット目的0-2パレット番号3反転X 4反転Y 5優先度6-7未使用</pre>
+
+<h3 id="Persistent-RAM">永続的なRAM</h3>
+
+<p>ゲームカートリッジ上のバッテリバッファ付きRAMと考えてください。ゲームの位置やハイスコアテーブルなどのデータに使用します。永続的RAMの内容は、プログラムを終了すると自動的に保存され、プログラムを実行するとロードされます。各プログラムは、永続的RAMを個別に保存します。</p>
+
+<h3 id="Sprite-Registers">スプライトレジスタ</h3>
+
+<p>64個のスプライトが利用可能であり、それぞれが4バイトを占有する。</p>
+<pre>-X位置-Y位置-文字番号-属性:ビット目的0-2パレット番号3反転X 4反転Y 5優先度6-7サイズ:0:1文字(8×8 px)1:2×2文字(16×16 px)2:3×3文字(24×24 px)3:4×4文字(32×32 px)</pre>
+<p>注:XおよびYスプライト位置レジスタのオフセットは32であるため、負の値を使用せずに画面の左上の境界から移動することができる。BASICコマンドを使用すると、このオフセットは便宜的に削除される。</p>
+
+<h3 id="Color-Registers">カラーレジスタ</h3>
+
+<p>4色ごとに8つのパレットがある。1色は1バイトである。</p>
+<pre>ビットコンポーネント0-1青2-3緑4-5赤</pre>
+
+<h3 id="Video-Registers">ビデオレジスタ</h3>
+
+<pre>$FF20-属性:ビット目的0スプライト有効1 BG0有効2 BG1有効3 BG0セルサイズ、4 BG1セルサイズ:0:1文字(8×8 px)(BG 256×256 px)1:2×2文字(16×16 px)(BG 512×512 px)$FF21-BG0スクロールオフセットX$FF22-BG0スクロールオフセットY$FF23-BG1スクロールオフセットX$FF24-BG1スクロールオフセットY$FF25-スクロールオフセットビッグセルサイズのみに使用されるMSB(最上位ビット):ビット目的0 BG0 X+256 1 BG0 Y+256 2 BG1 X+256 3 BG1 Y+256$FF26-ラスタライン</pre>
+
+<h3 id="Audio-Registers">オーディオレジスタ</h3>
+
+<p>4つの音声用のレジスタがある。</p>
+<pre>$FF40-音声0$FF4C-音声1$FF58-音声2$FF64-音声3</pre>
+
+<p>各音声は12バイトを占有する。</p>
+<pre>-周波数低バイト-周波数高バイト-ステータス:ビット目的0-3ボリューム4ミックスから左5ミックスから右6 Init 7ゲート-ピークメーター(読み取り専用)-属性:ビット目的0-3パルス幅4-5波:0:のこぎり波1:三角形2:パルス3:ノイズ6タイムアウト有効-長さ(タイムアウト)-エンベロープバイト1:ビット目的0-3攻撃4-7減衰-エンベロープバイト2:ビット目的0-3サステイン4-7リリース-LFO属性:ビット目的0-1波:0:三角形1:のこぎり波2:四角形3:ランダム2インバート3 Envモード有効4トリガー有効-LFO設定バイト1:ビット目的0-3 LFOレート4-7周波数量-LFO設定バイト2:ビット目的0-3ボリューム量4-7パルス幅量-予約済み</pre>
+<p>注:周波数は16ビット値である:f=hertz*16</p>
+
+
+<h3 id="I-O-Registers">I/Oレジスタ</h3>
+
+<pre>$FF70-ゲームパッド0ステータス$FF71-ゲームパッド1ステータスゲームパッドステータス:ビット目的0上1下2左3右4ボタンA 5ボタンB$FF72-最後のタッチX位置$FF73-最後のタッチY位置$FF74-最後に押したキー(ASCIIコード)$FF75-ステータス:ビット目的0一時停止ボタン1タッチ$FF76-属性:ビット目的0-1ゲームパッド有効:0:オフ1:1プレイヤー2:2プレイヤー2キーボード有効3タッチスクリーン有効</pre>
+
+
+<h2 id="Sound-Data-Format">サウンドデータフォーマット</h2>
+
+<p>これは、PLAY、MUSIC、およびTRACKコマンドで使用されるフォーマットである。このデータでMUSICまたはTRACKコマンドが使用されていない場合は、サウンドプリセットのみを保存することが有効である。使用可能なトラックがある場合は、すべてのパターンを保存する必要がある。最後に使用されたトラックの後の空のトラックは保存する必要はない。</p> 
+
+<pre>Offset-Content 0-16サウンドプリセット128-64パターン384-64トラック</pre>
+
+<p>各サウンドプリセットは8バイトを占有し、1つの音声のオーディオレジスタのフォーマットに一致するが、最初の4バイトはない。</p>
+
+<p>各パターンは4バイトを占有する。</p>
+<pre>-Voice 0:Bit Purpose 0-6 Track index(64=音声未使用)7 Flag loop start-Voice 1:Bit Purpose 0-6 Track index(64=音声未使用)7 Flag loop end-Voice 2:Bit Purpose 0-6 Track index(64=音声未使用)7 Flag song stop-Voice 3:Bit Purpose 0-6 Track index(64=音声未使用)</pre>
+
+<p>各トラックは96バイトを占有し、32個のエントリで構成され、各エントリは3バイトである。</p>
+<pre>-ノートピッチ(0=空)-データ(ノートが0の場合は無視される):ビット目的0-3ボリューム4-7サウンドコントロール:ビット目的0-3パラメータ4-7コマンド</pre>
+
+
+<h2 id="Obsolete-Syntaxes" name="SPRITE.A,ATTR,DISPLAY,LFO.A">廃止された構文</h2>
+
+<p>これらのコマンド、関数、および構文は今後使用すべきではなく、将来のバージョンで削除される可能性がある。</p>
+
+<pre>SPRITE.A n、(pal、fx、fy、pri、s)</pre>
+
+<p>使用<a href="#_SPRITE">スプライト</a>(新しい構文)または<a href="#_SPRITE.A">スプライトA</a>(単一値のみ)。</p>
+
+<pre>ATTR(pal,fx,fy,pri,s)[,m]</pre>
+<pre>属性a、m</pre>
+
+<p>使用<a href="#_PAL">パル</a><a href="#_FLIP">フリップ</a><a href="#_PRIO">プリオ</a>または<a href="#_ATTR">属性</a>(単一値のみ)を代わりに使用する。<a href="#_TINT">色</a>および<a href="#_BG-TINT">BGティント</a>属性マスクを置換する。</p>
+
+<pre>DISPLAY(s、b0、b1、c0、c1)</pre>
+<pre>ディスプレイa</pre>
+
+<p>使用<a href="#_BG-VIEW">BG VIEWのオン/オフ</a><a href="#_SPRITE-VIEW">SPRITE VIEW ON/OFF(スプライトビューのオン/オフ)</a>および<a href="#_CELL-SIZE">セルサイズ</a>に登録してある。</p>
+
+<pre>表示</pre>
+
+<p>使用<a href="#_=PEEK">PEEK($FF20)</a>に登録してある。</p>
+
+<pre>LFO.A v、(w、r、e、t)</pre>
+
+<p>使用<a href="#_LFO-WAVE">LFO波</a>に登録してある。</p>
+
+
+<h2 id="Reserved-Keywords">予約済みキーワード</h2>
+
+<p>以下は、LowRes NX BASICで使用されている予約語のリストである。これらの単語を変数名として使用すると、構文エラーが発生する。</p>
+
+<p>アスタリスクでマークされたキーワードは、まだ機能していないが、将来のバージョン用に予約されている。</p>
+
+<p>ABS、ACOS、ADD、AND、ANIM*、ASC、ASIN、ATAN、ATTR、BG、BIN$、BUTTON、CALL、CELL、CELL.A、CELL.C、CHAR、CHR$、CLOSE*、CLS、CLW、COLOR、COPY、COS、DATA、DEC、DECLARE*、DEF*、DIM、DISPLAY、DO、DOWN、ELSE、END、ENVELOPE、EXIT、EXP、FILE$、FILES、FILL、FLASH*、DIM、FN*、FONT、FOR、FSIZE、FUNCTION*、GAMEPAD、GLOBAL、GOSUB、GOTO、HCOS、HEX$、HIT、HSIN、HTAN、IF、INC、INKEY$、INPUT、INSTR、INT、KEYBOARD、LBOUND*、LEFT$、LEFT、LEN、LET、LFO、LFO、A、LOAD、LOCATE、LOG、LOOP、MAX、MCELL、MCELL.A、MCELL.C、MID$、MIN、MOD、MUSIC、NEXT、NOT、NUMBER、OFF、ON、OPEN*、OPTIONAL、OR、OUTPUT*、PAL、PALETTE、PAUSE、PEEK、PEEKL、PEEKW、PI、PLAY、POKE、POKEL、POKEW、PRINT、OUTPUT*、PAL、PALETTE、PAUSE、REM、REPEAT、RESTORE、RETURN、RIGHT$、RIGHT、RND、ROL、ROM、ROR、SAVE、SCROLL、SCROLL.X、SCROLL.Y、SQN、STATIC*、STEP、STOP、STR$、SUB、SWAP、SYSTEM、TAN、TAP、TEMPO*、TEXT、THEN、TIMER、TINT、TO、TOUCH、TOUCH.X、TOUCH.Y、TOUCHSCREEN、TRACE、TRACK、UBOUND、UNTIL、UP、VAL、VBL、VIEW、VOICE*、VOLUME、WAIT、WAVE、WEND、WHILE、WINDOW、WRITE*、XOR</p>
+
+</div>
+</body>
+</html>

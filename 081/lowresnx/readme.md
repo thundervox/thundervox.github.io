@@ -3,7 +3,7 @@
 
 公式サイト: [LowRes NX](https://lowresnx.inutilis.com/)
 
-TBA
+翻訳状況: 該当版数への保守対応終了
 
 ## 取扱説明書 (/docs)
  * [isVowel/ja-jp](manual.html) [<sup>編集</sup>](https://github.com/thundervox/thundervox.github.io/edit/main/081/lowresnx/manual.html)
@@ -15,3 +15,5 @@ TBA
  * license_ja-jp.txt
 
 ---
+[戻る](../basic-language-dialects.html)
+

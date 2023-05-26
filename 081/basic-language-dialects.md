@@ -6,6 +6,7 @@ TBA or discontinued...
 
  * awesome-basic
  * b4x
+ * bacon
  * basic256
  * [BCX Translator](https://github.com/thundervox/thundervox.github.io/tree/main/081/bcxbasiccoders/) <sup>1990s, General Purpose, Inlined C/C++ code, C transpiler</sup>
  * blitz3d

@@ -35,15 +35,15 @@ TBA or discontinued...
  * q7basic
  * qb64
  * pc-basic
- * rcbasic
+ * [RCBASIC](https://github.com/thundervox/thundervox.github.io/tree/main/081/rcbasic)<sup>2010s, Game Development</sup>
  * retrobasic
- * sdlbasic
+ * [sdBasic](https://github.com/thundervox/thundervox.github.io/tree/main/081/sdlbasic)<sup>2000s, Game Development</sup>
  * tibbo-basic
  * tmbasic
  * wonkey
  * wxbasic
  * x11basic
  * xblite
- * [Yabasic](https://github.com/thundervox/thundervox.github.io/edit/main/081/yabasic)<sup>1990s, General Purpose</sup>
+ * [Yabasic](https://github.com/thundervox/thundervox.github.io/tree/main/081/yabasic)<sup>1990s, General Purpose</sup>
 
 ---

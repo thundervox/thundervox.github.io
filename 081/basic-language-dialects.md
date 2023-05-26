@@ -31,6 +31,7 @@ TBA or discontinued...
  * monkey2
  * my_basic
  * nubasic
+ * owbasic
  * pcbasic
  * purebasic
  * purebasic-a-beginners-guide
@@ -38,7 +39,7 @@ TBA or discontinued...
  * qb64
  * pcbasic
  * [RCBASIC](https://github.com/thundervox/thundervox.github.io/tree/main/081/rcbasic) <sup>2010s, Game Development</sup>
- * retrobasic
+ * retrobasic<sup></sup>
  * scriptbasic
  * [sdBasic](https://github.com/thundervox/thundervox.github.io/tree/main/081/sdlbasic) <sup>2000s, Game Development</sup>
  * tibbo-basic

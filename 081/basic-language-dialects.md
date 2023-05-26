@@ -24,6 +24,7 @@ TBA or discontinued...
  * hbasic
  * hi65
  * [LowRes NX](./lowresnx/) <sup>1980s, 8-bit PC flavored, Fantasy Console</sup>
+ * mediabasic
  * mmbasic
  * monkey
  * monkey2
@@ -43,24 +44,6 @@ TBA or discontinued...
  * wxbasic
  * x11basic
  * xblite
- * yabasic
-
-## 用途別
-選択肢の多さは有利に働くとは限らない(器用貧乏、決断疲れ)ので独断や偏見に基づいたある程度の分類は必要かと。
-
-### 1964 - 1970
-
-### 1980s retro
-
-### 1990s
-
-### 2000s
-
-### 2010s
-
-### 2020s
-
-### 2030s
-
+ * [Yabasic](https://github.com/thundervox/thundervox.github.io/edit/main/081/yabasic)<sup>1990s, General Purpose</sup>
 
 ---

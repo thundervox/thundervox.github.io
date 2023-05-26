@@ -14,3 +14,6 @@ BSDライセンス？
 Sourceforge から Github やら allbasic に行ったりしたようですが、現在のリポジトリは Gitlab にあります。
 
  * [ScriptBASIC](https://gitlab.com/scriptbasic)
+
+## 関連
+* ScriptBasic講座<sup>([リンク切れ](http://ume-labo.com/scriptbasic/) ,[インターネットアーカイブ]())</sup>

@@ -303,7 +303,16 @@
       
       <p><span class="application">yabasic</span>は、従来の基本インタプリタである。次のような典型的な基本構文のほとんどを理解する。<code class="function">移動</code><code class="function">ゴソブ</code>、行番号<code class="function">読み取り</code><code class="function">データ</code>または末尾に「」が付いた文字列変数<code class="literal">$</code>しかしその一方で<span class="application">yabasic</span>は、サブルーチンやライブラリなどのより高度なプログラミング構成体を実装している(ただし<span class="emphasis"><em>しない</em></span>オブジェクト)。<span class="application">yabasic</span>UnixとWindowsではほとんど同じように動作する。</p>
       <p><span class="application">yabasic</span>は、結果を迅速かつ容易に提供することに重点を置いている。したがって、グラフィックウィンドウを開いたり、グラフィックを印刷したり、コンソール画面を制御したり、キーボードやマウスの情報を取得したりするための簡単なコマンドが提供されている。次の例では、ウィンドウを開き、円を描いてグラフィックを印刷する。</p>
-      <pre class="programlisting">開いたウィンドウ100,100開いたプリンタ円50,50,40テキスト10,50、「Press any key to get a printout」クリアスクリーン入力$プリンタを閉じるウィンドウを閉じる</pre>
+	    <pre class="programlisting">
+open window 100,100
+open printer
+circle 50,50,40
+text 10,50,"Press any key to get a printout"
+clear screen
+inkey$
+close printer
+close window
+</pre>
       <p>この例では、他の多くのプログラミング言語よりも行数が少ない。しかし、最終的には<span class="application">yabasic</span>C++やJavaのようなより高度で現代的なプログラミング言語には欠けている。しかし、それに関する限り、より迅速かつ容易に結果が得られる傾向がある。</p>
     </div>
   </div>
@@ -401,9 +410,15 @@
 
     <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="idp9"></a>デフォルトの設定</h2></div></div></div>
       
-      <p>いくつかのオプションを設定したい場合<span class="emphasis"><em>一度だけ</em></span>、それらをX-Windowsリソースファイルに入れることができる。これは通常、ファイルである<code class="filename">Xresources(英語)</code>または、ホームディレクトリ内のいくつか(タイプ<strong class="userinput"><code>マンX</code></strong>詳細については)。</p>
+      <p>いくつかのオプションを設定したい場合<span class="emphasis"><em>一度だけ</em></span>、それらをX-Windowsリソースファイルに入れることができる。これは通常、ファイルである<code class="filename">Xresources
+	      </code>または、ホームディレクトリ内のいくつか(タイプ<strong class="userinput"><code>man X</code></strong>詳細については)。</p>
       <p>ここにサンプルセクションがあり、このファイル内に表示される場合がある。</p>
-      <pre class="programlisting">yabasic*前景:ブルーyabasic*背景:ゴールドyabasic*ジオメトリ:+10+10 yabasic*フォント:9×15</pre>
+      <pre class="programlisting">
+yabasic*foreground: blue
+yabasic*background: gold
+yabasic*geometry: +10+10
+yabasic*font: 9x15
+      </pre>
       <p>これにより、グラフィックウィンドウの前景色が<span class="emphasis"><em>青色</em></span>および背景色を<span class="emphasis"><em>金</em></span>ウィンドウは次の位置に表示される。<span class="emphasis"><em>1010</em></span>テキストフォントは<span class="emphasis"><em>9x15インチ</em></span></p>
     </div>
   </div>

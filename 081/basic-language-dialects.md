@@ -42,7 +42,7 @@ TBA or discontinued...
  * [RCBASIC](https://github.com/thundervox/thundervox.github.io/tree/main/081/rcbasic) <sup>2010s, Game Development</sup>
  * retrobasic<sup></sup>
  * scriptbasic
- * [sdBasic](https://github.com/thundervox/thundervox.github.io/tree/main/081/sdlbasic) <sup>2000s, Game Development</sup>
+ * [sdlBasic](https://github.com/thundervox/thundervox.github.io/tree/main/081/sdlbasic) <sup>2000s, Game Development</sup>
  * tibbo-basic
  * tmbasic
  * wonkey
@@ -54,5 +54,6 @@ TBA or discontinued...
 
 # 関連サイト(フォーラムなど)
  * [AllBASIC](https://allbasic.info/forum/index.php)
+ * [Retrogamecoding and Basicprogramming Forum](https://retrogamecoding.org/board/index.php)
 
 ---

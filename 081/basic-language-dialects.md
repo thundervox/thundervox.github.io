@@ -6,7 +6,7 @@ TBA or discontinued...
 
  * awesome-basic
  * b4x
- * bcxbasiccoders
+ * [BCX Translator](https://github.com/thundervox/thundervox.github.io/tree/main/081/bcxbasiccoders/) <sup>1990s, General Purpose, Inlined C/C++ code, C transpiler</sup>
  * blitz3d
  * blitzplus
  * blitzmax
@@ -35,9 +35,9 @@ TBA or discontinued...
  * q7basic
  * qb64
  * pc-basic
- * [RCBASIC](https://github.com/thundervox/thundervox.github.io/tree/main/081/rcbasic)<sup>2010s, Game Development</sup>
+ * [RCBASIC](https://github.com/thundervox/thundervox.github.io/tree/main/081/rcbasic) <sup>2010s, Game Development</sup>
  * retrobasic
- * [sdBasic](https://github.com/thundervox/thundervox.github.io/tree/main/081/sdlbasic)<sup>2000s, Game Development</sup>
+ * [sdBasic](https://github.com/thundervox/thundervox.github.io/tree/main/081/sdlbasic) <sup>2000s, Game Development</sup>
  * tibbo-basic
  * tmbasic
  * wonkey

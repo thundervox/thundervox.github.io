@@ -3,3 +3,71 @@
 
 # **Table of Contents**
 
+- 1\. Introduction
+  - About this document
+  - About yabasic
+- 2\. The yabasic-program under Windows
+  - Starting yabasic
+  - Options
+  - The context Menu
+- 3\. The yabasic-program under Unix
+  - Starting yabasic
+  - Options
+  - Setting defaults
+- 4\. Command line options of yabasic
+- 5\. All commands and functions of yabasic listed by topic
+  - Numbers with base 2 or 16
+  - Number processing and conversion
+  - Conditions and control structures
+  - Data keeping and processing
+  - String processing
+  - File operations and printing
+  - Subroutines
+  - Libraries
+  - Invoking other program from within yabasic
+  - Adding new code to a running program
+  - Commands and functions related with time
+  - Other commands
+  - Graphics and printing
+  - The foreign function interface
+
+- 6\. Some features and general concepts of yabasic
+  - Logical shortcuts
+  - Conditions and expressions
+  - Comparing strings or numbers
+  - References on arrays
+  - Specifying Filenames under Windows
+  - Escape-sequences
+  - Subroutines: Collecting your code for reuse in one program
+  - Libraries: Collecting your code for reuse in many programs
+  - Adding code to a running program
+  - Creating a standalone program from your yabasic-program
+  - Interaction with functions from a non-yabasic library or dll
+- 7\. All commands and functions of yabasic grouped alphabetically
+  - A
+  - B
+  - C
+  - D
+  - E
+  - F
+  - G
+  - H
+  - I
+  - L
+  - M
+  - N
+  - O
+  - P
+  - R
+  - S
+  - T
+  - U
+  - V
+  - W
+  - X
+  - Symbols and Special characters
+- 8\. A few example programs
+  - A very simple program
+  - Graphics with bitmaps
+  - A menu to choose from
+- 9\. The Copyright of yabasic

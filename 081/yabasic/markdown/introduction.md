@@ -1,7 +1,7 @@
 # Chapter 1. Introduction
 
-* About this document
-* About yabasic
+* [About this document](#about-this-document)
+* [About yabasic](#about-yabasic)
 
 ## About this document
 
@@ -15,7 +15,7 @@ Although basic has its reputation as a language for beginning programmers, this 
 
 ## About yabasic
 
-yabasic is a traditional basic interpreter. It understands most of the typical basic-constructs, like goto, gosub, line numbers, read, data or string-variables with a trailing '$'. But on the other hand, yabasic implements some more advanced programming-constructs like subroutines or libraries (but not objects). yabasic works much the same under Unix and Windows.
+yabasic is a traditional basic interpreter. It understands most of the typical basic-constructs, like ```goto```, ```gosub```, line numbers, ```read```, ```data``` or string-variables with a trailing ```'$'```. But on the other hand, yabasic implements some more advanced programming-constructs like subroutines or libraries (but *not* objects). yabasic works much the same under Unix and Windows.
 
 yabasic puts emphasis on giving results quickly and easily; therefore simple commands are provided to open a graphic window, print the graphics or control the console screen and get keyboard or mouse information. The example below opens a window, draws a circle and prints the graphic:
 

@@ -14,7 +14,7 @@ Once, yabasic has been set up correctly, there are three ways to start it:
 
 ### Note
 
-This is *not* the preferred way of starting yabasic ! Simply because the program, that you have typed, *can not be saved* and will be lost inevitably ! There is no such thing as a ```save```-command and therefore no way to conserve the program, that you have typed. This mode is only intended for quick hacks, and short programs.
+This is *not* the preferred way of starting yabasic! Simply because the program, that you have typed, *can not be saved* and will be lost inevitably! There is no such thing as a ```save```-command and therefore no way to conserve the program, that you have typed. This mode is only intended for quick hacks, and short programs.
 
 ## Options
 

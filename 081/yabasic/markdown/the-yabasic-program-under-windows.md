@@ -8,13 +8,13 @@
 
 Once, yabasic has been set up correctly, there are three ways to start it:
 
-1. *Right click on your desktop:* The desktop menu appears with a submenu named new. From this submenu choose yabasic. This will create a new icon on your desktop. If you right click on this icon, its [context menu](#the-context-menu) will appear; choose Execute to execute the program.
-2. As a variant of the way described above, you may simply create a file with the ending .yab (e.g. with your favorite editor). Everything else then works as described above.
-3. From the start-menu: Choose yabasic from your start-menu. A console-window will open and you will be asked to type in your program. Once you are finished, you need to type return twice, and yabasic will parse and execute your program.
+1. *Right click on your desktop:* The desktop menu appears with a submenu named *new*. From this submenu choose yabasic. This will create a new icon on your desktop. If you right click on this icon, its [context menu](#the-context-menu) will appear; choose Execute to execute the program.
+2. As a variant of the way described above, you may simply create a file with the ending *```.yab```* (e.g. with your favorite editor). Everything else then works as described above.
+3. *From the start-menu:* Choose yabasic from your start-menu. A console-window will open and you will be asked to type in your program. Once you are finished, you need to type ```return``` twice, and yabasic will parse and execute your program.
 
 ### Note
 
-This is not the preferred way of starting yabasic ! Simply because the program, that you have typed, can not be saved and will be lost inevitably ! There is no such thing as a save-command and therefore no way to conserve the program, that you have typed. This mode is only intended for quick hacks, and short programs.
+This is *not* the preferred way of starting yabasic ! Simply because the program, that you have typed, *can not be saved* and will be lost inevitably ! There is no such thing as a ```save```-command and therefore no way to conserve the program, that you have typed. This mode is only intended for quick hacks, and short programs.
 
 ## Options
 

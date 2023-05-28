@@ -3,17 +3,17 @@
 
 # **Table of Contents**
 
-- 1\. [Introduction](introduction.html)
+- [1\. Introduction](introduction.html)
   - [About this document](introduction.html#about-this-document)
   - [About yabasic](introduction.html#about-yabasic)
-- 2\. [The yabasic-program under Windows](the-yabasic-program-under-windows.html)
+- [2\. The yabasic-program under Windows](the-yabasic-program-under-windows.html)
   - [Starting yabasic](the-yabasic-program-under-windows.html#starting-yabasic)
   - [Options](the-yabasic-program-under-windows.html#options)
   - [The context Menu](the-yabasic-program-under-windows.html#the-context-menu)
-- 3\. The yabasic-program under Unix
-  - Starting yabasic
-  - Options
-  - Setting defaults
+- [3\. The yabasic-program under Unix](the-yabasic-program-under-unix.html)
+  - [Starting yabasic](the-yabasic-program-under-unix.html#starting-yabasic)
+  - [Options](the-yabasic-program-under-unix.html#options)
+  - [Setting defaults](the-yabasic-program-under-unix.html#setting-defaults)
 - 4\. Command line options of yabasic
 - 5\. All commands and functions of yabasic listed by topic
   - Numbers with base 2 or 16

@@ -3,13 +3,13 @@
 
 # **Table of Contents**
 
-- 1\. Introduction
-  - About this document
-  - About yabasic
-- 2\. The yabasic-program under Windows
-  - Starting yabasic
-  - Options
-  - The context Menu
+- 1\. [Introduction](introduction.html)
+  - [About this document](introduction.html#about-this-document)
+  - [About yabasic](introduction.html#about-yabasic)
+- 2\. [The yabasic-program under Windows](the-yabasic-program-under-windows.html)
+  - [Starting yabasic](the-yabasic-program-under-windows.html#starting-yabasic)
+  - [Options](the-yabasic-program-under-windows.html#options)
+  - [The context Menu](the-yabasic-program-under-windows.html#the-context-menu)
 - 3\. The yabasic-program under Unix
   - Starting yabasic
   - Options

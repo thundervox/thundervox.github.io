@@ -14,7 +14,7 @@ If your system administrator (vulgo *root*) has installed yabasic correctly, the
 
 ### Note
 
-This is not the preferred way of starting yabasic! Simply because the program, that you have typed, can not be saved and will be lost inevitably! There is no such thing as a save-command and therefore no way to conserve the program, that you have typed. This mode is only intended for quick hacks, and short programs, i.e. for using yabasic as some sort of fancy desktop calculator.
+This is *not* the preferred way of starting yabasic! Simply because the program, that you have typed, can not be saved and will be lost inevitably! There is no such thing as a ```save```-command and therefore no way to conserve the program, that you have typed. This mode is only intended for quick hacks, and short programs, i.e. for using yabasic as some sort of fancy desktop calculator.
 
 ## Options
 

@@ -14,13 +14,13 @@ Prints the version of yabasic.
 
 ```--infolevel``` *INFOLEVEL*
 
-Change the infolevel of yabasic, where INFOLEVEL can be one of debug, note, warning, error, fatal and bison (the default is warning). This option changes the amount of debugging-information yabasic produces. However, normally only the author of yabasic (me !) would want to change this.
+Change the infolevel of yabasic, where INFOLEVEL can be one of debug, note, warning, error, fatal and bison (the default is warning). This option changes the amount of debugging-information yabasic produces. However, normally only the author of yabasic (me!) would want to change this.
 
 ```--execute``` *A-PROGRAM-AS-A-SINGLE-STRING*
 
 With this option you may specify some yabasic-code to be executed right away. This is useful for very short programs, which you do not want to save to a file. If this option is given, yabasic will not read any code from a file. E.g.
 
-```bash
+```
 yabasic -e 'for a=1 to 10:print a*a:next a'
 ```
 

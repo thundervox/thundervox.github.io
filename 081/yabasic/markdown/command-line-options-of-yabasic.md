@@ -8,7 +8,7 @@ All the options below may be abbreviated (and one hyphen may be dropped), as lon
 
 Prints a short help message, which itself describes two further help-options.
 
-```----version```
+```--version```
 
 Prints the version of yabasic.
 

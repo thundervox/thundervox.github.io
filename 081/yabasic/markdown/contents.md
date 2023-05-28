@@ -14,7 +14,7 @@
   - [Starting yabasic](the-yabasic-program-under-unix.html#starting-yabasic)
   - [Options](the-yabasic-program-under-unix.html#options)
   - [Setting defaults](the-yabasic-program-under-unix.html#setting-defaults)
-- 4\. Command line options of yabasic
+- [4\. Command line options of yabasic](command-line-options-of-yabasic.html)
 - 5\. All commands and functions of yabasic listed by topic
   - Numbers with base 2 or 16
   - Number processing and conversion

@@ -1,0 +1,131 @@
+=== 変数
+
+変数はプログラムのメモリ (例えば関数のスタック) において値のある場所に名前を付けたものです。もっとも簡単な事例はオブジェクトや null ポインタ ('''nil''' 値) の参照です。変数名には、任意の UTF-8 シンボル (特殊記号、空白を除く。先頭文字は数字にはできない) を含めることができ、大文字と小文字が区別されます。予約済みキーワードはありません。重複する名前を持つ変数 (同一スコープ内で宣言されたもの) は許可されません。
+
+{{{ code ruby
+
+public program()
+
+{
+
+    var myFirstVariable := "Hello";
+
+    var Δ := 1;
+
+}
+
+}}}
+
+新しい変数を宣言するには先頭に '''var''' ''属性''を、そして代入演算子の後に束縛値を記述します (''注意: ELENA 言語において代入演算子と等価演算子は異なります'')。式の結果を値にすることも可能です。
+
+宣言と代入は個別に記述できます。
+
+{{{ code ruby
+
+public program()
+
+{
+
+    var myFirstVariable;         // 新しい変数 myFirstVariable の宣言
+
+    myFirstVariable := "Hello";  // 値の代入
+
+    var Δ := 1;                  // 同じステートメント内での宣言と代入
+
+    Δ := Δ + 1;
+
+}
+
+}}}
+
+代入せずに変数を宣言した場合、その値は '''nil''' になります。
+
+ELENA 言語において変数の型はオプションです。 特に明確な型の指定がなければ変数の型はありません (厳密にはスーパークラスである '''system'Object''' が型となります)。つまり、型の検査は行わないため、どのような値でも代入できます。
+
+{{{ code ruby
+
+    var v := "Hello";
+
+    
+
+    v := 3;
+
+}}}
+
+実際のところ変数の型について配慮を要する場面は多々あります。さて、強い型付けの変数を作成しましょう。そのためには変数名の前に必要とする型 (クラス名かエイリアス) を記述します。
+
+{{{ code ruby
+
+    var string v := "Hello";
+
+}}}
+
+こちらの '''string''' は '''system'String''' クラスのエイリアスです。
+
+このような型名の指定がある場合において '''var''' ''属性''は省略可能であるためコードを簡潔に記述できます。
+
+{{{ code ruby
+
+    string v := "Hello";
+
+}}}
+
+変数の型は変数で利用できる値に制限を与えます。静的型付け言語との最大の違いは'''実行時'''に型の検査することです (ただし、変換元と変換先の変数が互いに強い型付けならばコンパイラは該当する変換ルーチンがないことを警告します)。そのため、以下のコードはコンパイルできますがランタイムエラーになります。
+
+{{{ code ruby
+
+public program()
+
+{
+
+    var o := 2;
+
+    string v := o;
+
+}
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+system'IntNumber : Method typecast:#cast[1] not found
+
+Call stack:
+
+sandbox'program.function:#invoke:sandbox.l(4)
+
+system'$private'entry.function:#invoke:app.l(5)
+
+system'$private'entrySymbol#sym:app.l(13)
+
+}}}
+
+正しい変換メソッドが宣言された場合に値の変換は成功します。
+
+{{{ code ruby
+
+var o := 2;
+
+real r := o;
+
+}}}
+
+この場合において '''system'!IntNumber''' クラスは '''system'!RealNumber''' 型への変換をサポートしています。
+
+イニシャライザ (初期化子) として '''auto''' 属性を使うと変数の型を自動推論します。
+
+{{{ code ruby
+
+auto r := 1.2;
+
+}}}
+
+変数の型は、代入値である数値リテラル ('''1.2''') により '''system'!RealNumber''' (あるいは '''real''') が定義されます。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-May-02 rev. 225)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

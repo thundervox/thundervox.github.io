@@ -1,0 +1,363 @@
+== メソッドと関数
+
+代表的なクラスは基本的な演算体系を大幅に拡張します。これらの機能は適切なクラスまたはその拡張のいずれかで宣言されます。便宜上、関数も使用できます。
+
+=== ビットマスク演算
+
+|| '''メソッド'''          || '''概要'''                         ||
+
+|| allMask(mask)   || マスクビットがすべて設定されていれば true を返します。 ||
+
+|| anyMask(mask) || マスクビットのいずれかが設定されていれば true を返す。 ||
+
+このコードの用例では、
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    console
+
+        .printLine("8.anyMask(15)=", 8.anyMask(15))
+
+        .printLine("8l.allMask(15)=", 8l.allMask(15))
+
+}
+
+}}}
+
+以下の実行結果となります。
+
+{{{ code ruby
+
+8.anyMask(15)=true
+
+8l.allMask(15)=false
+
+}}}
+
+=== 符号演算
+
+|| '''メソッド''' || '''概要'''                                    ||
+
+|| Absolute    || 絶対値を返します ||
+
+|| Inverted     || 符号反転値を返します  ||
+
+|| Negative    || 負数値を返します ||
+
+これらのプロパティを使うことで、負数、正数、または符号反転値を返すことができます。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    int r := -123;
+
+    
+
+    console
+
+        .printLine(r,".Inverted = ", r.Inverted)
+
+        .printLine(r,".Negative = ", r.Negative)
+
+        .printLine(r,".Absolute = ", r.Absolute)
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+-123.Inverted = 122
+
+-123.Negative = 123
+
+-123.Absolute = 123
+
+}}}
+
+数値が正数、負数、ゼロ、奇数などであるかどうかをチェックする必要がある場合、以下の拡張メソッドが便利です。
+
+|| '''メソッド''' || '''概要'''                                    ||
+
+|| isOdd()	|| 奇数ならば true を、そうでなければ false を返します。 |||| isEven()	|| 偶数ならば true を、そうでなければ false を返します。 ||
+
+|| isZero()	|| ゼロならば true を、そうでなければ false を返します。 ||
+
+|| isPositive()	|| 正数ならば true を、そうでなければ false を返します。 ||
+
+|| isNegative()	|| 負数ならば true を、そうでなければ false を返します。 ||
+
+|| isNonnegative()	|| 負数以外 ( >= 0) ならば true を、そうでなければ false を返します。 ||
+
+使用方法は非常に簡単です。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    int n := 2;
+
+    
+
+    console
+
+        .printLine(n," is odd : ", n.isOdd())
+
+        .printLine(n," is even : ", n.isEven())
+
+        .printLine(n," is zero : ", n.isZero())
+
+        .printLine(n," is positive : ", n.isPositive())
+
+        .printLine(n," is negative : ", n.isNegative())
+
+}
+
+}}}
+
+実行結果は以下のとおりです。
+
+{{{ code ruby
+
+2 is odd : false
+
+2 is even : true
+
+2 is zero : false
+
+2 is positive : true
+
+2 is negative : false
+
+}}}
+
+=== 整数のモジュロ除算と実除算
+
+|| '''メソッド'''    || '''関数'''                 || '''概要''' ||
+
+|| mod(operand)	     || modulo(loperand,roperand) || 整数の剰余 ||
+
+|| realDiv(operand) || - || 浮動小数点による除算     ||
+
+ELENA 言語におけるモジュロ演算は拡張メソッドである '''mod''' による実装となります。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    console.printLine("5 % 2 = ", 5.mod(2))
+
+}
+
+}}}
+
+実行結果は以下のとおりです。
+
+{{{ code ruby
+
+5 % 2 = 1
+
+}}}
+
+メソッドの代わりに、 '''extensions'math''' モジュールで宣言された適切な関数を使用できます。
+
+{{{ code ruby
+
+import extensions;
+
+import extensions'math;
+
+public program()
+
+{
+
+    console.printLine("5 % 2 = ", modulo(5, 2))
+
+}
+
+}}}
+
+両辺ともに整数ならば、その結果において端数は必ず整数になります。正確な結果が必要ならば、'''realDiv''' 拡張を使用できます。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    console.printLine("5 / 2 = ", 5.realDiv(2))
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+5 / 2 = 2.5
+
+}}}
+
+=== 浮動小数点数演算
+
+|| '''メソッド'''    || '''関数'''                 || '''概要''' ||
+
+|| Rounded || ||  切り上げた数値を返します。 ||
+
+|| !RoundedInt || || 切り上げた整数を返します。 ||
+
+|| Integer || || 端数部を切り捨てます。 ||
+
+|| !IntegerInt || || 端数部を切り捨てた整数を返します。 ||
+
+|| frac() || frac(operand) || 端数部のみを切り捨てます。 ||
+
+|| ceil() || ceil(operand) ||  オペランドよりも大きいか等しい最小整数を返します。 ||
+
+|| floor() || floor(operand) || オペランドよりも小さいか等しい最大整数を返します。 ||
+
+|| truncate(precision) || truncate(operand,precision) || 指定精度で整数を切り上げます。 ||
+
+|| Reciprocal || || オペランドを 1 で除算した数値を返します。 ||
+
+拡張メソッド ('''system'math''' で宣言) または関数 ('''extensions'math''' で宣言) のいずれかを使用できます。
+
+{{{ code  ruby
+
+import extensions;
+
+import system'math;
+
+import extensions'math;
+
+public program()
+
+{
+
+    console
+
+        .printLine("foor(5.6)=", floor(5.6r))
+
+        .printLine("ceil(5.6)=", 5.6r.ceil())
+
+}
+
+}}}
+
+前述のコードの実行結果は以下のとおりです。
+
+{{{ code  ruby
+
+foor(5.6)=5.0
+
+ceil(5.6)=6.0
+
+}}}
+
+=== 数学関数
+
+|| '''メソッド''' || '''関数''' ||
+
+|| power(operand)	|| power(loperand,roperand) ||
+
+|| sqr()	|| sqr(operand) ||
+
+|| sqrt()	|| sqrt(operand) ||
+
+|| exp()	|| exp(operand) ||
+
+|| ln()	|| ln(operand) ||
+
+|| sin()	|| sin(operand) ||
+
+|| cos()	|| cos(operand) ||
+
+|| tan()	|| tan(operand) ||
+
+|| arctan()	|| arctan(operand) ||
+
+|| arcsin()	|| arcsin(operand) ||
+
+|| arccos()	|| arccos(operand) ||
+
+|| log2()	|| log2(operand) ||
+
+|| log10()	|| log10(operand) ||
+
+同様に、拡張メソッドと関数の両方を使用できます。
+
+{{{ code ruby
+
+import extensions;
+
+import system'math;
+
+import extensions'math;
+
+Pi = RealNumber.Pi;
+
+public program()
+
+{
+
+    console
+
+        .printLine("sin(π/3) = ",(Pi / 3).sin())
+
+        .printLine("cos(π/3) = ",cos(Pi / 3))
+
+        .printLine("tan(π/3) = ",tan(Pi / 3))
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+sin(π/3) = 0.8660254037844
+
+cos(π/3) = 0.5
+
+tan(π/3) = 1.732050807569
+
+}}}
+
+=== ラジアンと度の単位変換
+
+|| '''メソッド''' || '''概要'''                         ||
+
+|| Radian        || ラジアンへ変換  ||
+
+|| Degree        || 度へ変換   ||
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

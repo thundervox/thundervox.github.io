@@ -1,0 +1,17 @@
+== インストール方法
+
+ELENA 言語の最新版は [https://github.com/ELENA-LANG/elena-lang/releases GitHub] または [https://sourceforge.net/projects/elenalang/files/ Sourceforge] にあります。 
+
+ELENA 言語のインストールするための一番簡単な方法はセットアッププログラムを使うことです。また、 zip 形式のファイルも配布されています。 zip 形式のファイルからインストールするには、すべてのファイルを希望するディレクトリへ展開します。システム環境変数へ BIN フォルダのパスを追加します  (例えば <app root>\bin)。 ELENA 言語の動作には Visual C++ 2019 再頒布可能パッケージが必要です。
+
+プログラムやライブラリを開いたり、コンパイルやデバッグをするには ELENA GUI 統合開発環境 (<app root>\bin\elena-ide.exe) または ELENA コマンドラインコンパイラ (<app root>\bin\elena-cli.exe) を使います。
+
+ELENA 統合開発環境では '''File->Open->Open Project''' オプションを選択後に必要とするプロジェクトファイル (*.prj) を開きます。その後、 '''Project->Compile''' オプションを選択するとプロジェクトのコンパイル、 '''Debug->Step Over''' または '''Debug->Step Into''' でデバッグ、あるいは '''Debug->Run''' でプログラムを実行します。
+
+[https://github.com/ELENA-LANG/tutorials こちら]に完成版のソースコードが付属したチュートリアルを掲載してあります。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-May-01 rev. 220)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

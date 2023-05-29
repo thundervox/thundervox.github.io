@@ -1,6 +1,6 @@
 # yabasic 2.90.x
 
-TBA
+公式サイト: https://2484.de/yabasic/
 
 翻訳状況: 未完成 (TBA)
 

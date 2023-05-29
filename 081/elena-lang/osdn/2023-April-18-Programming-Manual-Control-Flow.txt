@@ -1,0 +1,777 @@
+== 制御フロー
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+ELENA supports rich set of control flow constructs : branching, looping, exception handling. They are implemented as code-templates and can be easily extended. Branching and looping statements are controlled by boolean expressions. Though branching operator can deal with non-boolean result as well. Exceptions are used to gracefully deal with critical errors. Exceptions can contain a stack trace to identify the error source.
+
+ELENAは、分岐、ループ、例外処理など、豊富な制御フロー構成要素をサポートしています。これらはコードテンプレートとして実装されており、簡単に拡張できます。分岐およびループ文はブール式によって制御されます。ただし、分岐演算子は非ブール結果も処理できます。例外は、重大なエラーを適切に処理するために使用されます。例外には、エラーソースを識別するためのスタックトレースを含めることができます。
+
+=== ブール型
+
+A '''!BoolValue''' (alias '''bool''') is a boolean type that has one of two possible values : '''true''' and '''false'''. It is a typical result of comparison operations. A boolean value is required by control flow statements (though non-boolean result can be used as well, providing a conversion operation exists). It supports typical comparison and logical operations:
+
+'''!BoolValue''' (エイリアス '''bool''')は、 '''true''' と '''false''' の2つの可能な値のいずれかを持つブール型です。これは、比較操作の典型的な結果です。制御フロー文ではブール値が必要です (ただし、変換操作が存在する場合は、ブール以外の結果も使用できます)。これは、典型的な比較および論理操作をサポートします:
+
+{{{ code ruby
+
+console
+
+    .printLine("true==false : ",true == false)
+
+    .printLine("true!=false : ",true != false)
+
+    .printLine("true and false : ",true && false)
+
+    .printLine("true or false : ",true || false)
+
+    .printLine("true xor false : ",true ^^ false);
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+true==false : false
+
+true!=false : true
+
+true and false : false
+
+true or false : true
+
+true xor false : true
+
+}}}
+
+A boolean inversion is implemented via '''Inverted''' property:
+
+ブール反転は '''Inverted''' プロパティとして実装されています。
+
+{{{ code ruby
+
+console.printLine("not ",true,"=",true.Inverted)
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+not true=false
+
+}}}
+
+A boolean value can be used directly for branching operation. The message '''if''' with two functions without arguments can be send to it. '''true''' value will execute the first function, '''false''' - the second one.
+
+ブール値は、分岐動作のために直接使用することができる。引数なしの2つの関数を有するメッセージ '''if''' をそれに送信することができ、 '''true''' 値ならば第一関数を、 '''false''' 値ならば第二関数を実行する。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    var n := 2;
+
+    
+
+    (n == 2).if({ console.printLine("true!") },{ console.printLine("false!") });
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+true!
+
+}}}
+
+'''iif''' message is supported as well: true value will return the first argument, false - the second one
+
+'''iif''' メッセージもサポートしています、 true 値ならば第一引数を、 false ならば第ニ引数を返します。
+
+{{{ code ruby
+
+var n := 2;
+
+console.printLine((n != 2).iif("true", "false") )
+
+}}}
+
+実行結果は以下のとおりです。
+
+{{{ code ruby
+
+false
+
+}}}
+
+=== 分岐演算子
+
+ELENA supports built-in branching operator '''?'''. It requires that an loperand is a boolean value. True-part argument follows the operator immediately. Optional false-part is introduced with colon:
+
+ELENAは、組み込み分岐演算子 '''?''' をサポートしています。左オペランドがブール値である必要があります。 true 節の引数は演算子の直後に続きます。オプションの false 節はコロンとともに導入されます。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    var n := 2;
+
+    
+
+    (n == 2) ? { console.printLine("n==2") };
+
+    (n == 3) ? { console.printLine("n==3") } : { console.printLine("n!=3") }
+
+}
+
+}}}
+
+以下の実行結果が表示されます。
+
+{{{ code ruby
+
+n==2
+
+n!=3
+
+}}}
+
+If right operands are not functions the operator returns true-part if the loperand is true and false-part otherwise
+
+右オペランドが関数でない場合、演算子は左オペランドが ture の場合は true 節を返し、そうでない場合は false 節を返します。
+
+{{{ code ruby
+
+var n := 2;
+
+console.printLine(n == 2 ? "n==2" : "n!=2");
+
+}}}
+
+実行結果は同じです。
+
+{{{ code ruby
+
+n==2
+
+}}}
+
+=== 分岐ステートメント
+
+ELENA does not reserve keywords for the control statements. But there are set of code templates that help make the code more readable. This list can be extended by programmers themselves.
+
+ELENA は、制御ステートメントのための予約済みキーワードはありません。しかし、コードをより読みやすくするのに役立つコードテンプレートのセットがある。このリストは、プログラマ側によって拡張することができる。
+
+Let's start with '''if-else''', known for many.
+
+まずは、多くの人に知られている '''if-else''' から始めましょう。
+
+{{{ code ruby
+
+var n := 2;
+
+if (n == 2)
+
+{
+
+    console.printLine("n==2")
+
+}
+
+else
+
+{
+
+    console.printLine("n!=2")
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+n==2
+
+}}}
+
+if we need only true-part, we can skip the else block.
+
+true 節のみを必要とする場合、elseブロックをスキップすることができる。
+
+{{{ code ruby
+
+if (n == 2)
+
+{
+
+    console.printLine("n==2")
+
+}
+
+}}}
+
+Alternatively only else part can be written:
+
+あるいは、 else 節のみを書くことができる。
+
+{{{ code ruby
+
+ifnot (n == 2)
+
+{
+
+    console.printLine("n!=2")
+
+}
+
+}}}
+
+If the code brackets contains only single statement we can write the statement directly - if it is the last block:
+
+コードのブラケットに含まれるステートメントが1つだけの場合は、ステートメントを直接書くことができます。最後のブロックの場合は次のようになります。
+
+{{{ code ruby
+
+if(n == 2)
+
+   console.printLine("n==2");
+
+}}}
+
+=== ループステートメント
+
+ELENA provides several type of loop constructs : for, while, until, do-until, do-while.
+
+ELENAには for, while, until, do-until, do-while といったいくつかのタイプのループ構造が用意されています。
+
+'''FOR''' loops is used to execute the loop body for the specified iteration. It consists of initialization, condition and iteration expressions separated by commas and the main loop body:
+
+'''FOR''' ループは、指定された反復のループ本体を実行するために使用されます。これは、カンマで区切られた初期化式、条件式および反復式と、メインループ本体で構成されます。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    for (var i := 0, i < 5, i += 1)
+
+    {
+
+        console.printLine(i)
+
+    }
+
+}
+
+}}}
+
+The first expression declares and initializes the loop variable, the second one is checked if the variable is inside the iteration range and the third one is increased the loop variable after the main loop body is executed.
+
+第1の式は、ループ変数を宣言して初期化し、第2の式は、変数が反復範囲内にあるかどうかチェックされ、第3の式は、主ループ本体が実行された後にループ変数を増加させる。
+
+実行結果は、
+
+{{{ code ruby
+
+0
+
+1
+
+2
+
+3
+
+4
+
+}}}
+
+Similar if the loop body contains only single statement we can omit the brackets:
+
+同様に、ループ本体が単一のステートメントしか含まない場合、括弧を省略することができる。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    for (var i := 0, i < 5, i += 1)
+
+        console.printLine(i)
+
+}
+
+}}}
+
+If we need to execute an iteration step before the condition check we can skip the last expression. In this case the first expression will both initialize and iterate the loop variable on every step. The condition (second expression) will work similar, the loop continues until a false value is encountered. As a result the iteration step is guarantee to be executed at least once.
+
+条件チェックの前に反復ステップを実行する必要がある場合は、最後の式をスキップできます。この場合、最初の式は、すべてのステップでループ変数を初期化および反復します。条件 (2番目の式) も同様に機能し、ループは false 値が検出されるまで継続します。その結果、反復ステップは少なくとも1回実行されることが保証されます。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    var sum := 0;
+
+    for(var line := console.readLine(), line != emptyString)
+
+    {
+
+        sum += line.toInt()
+
+    };
+
+    
+
+    console.printLine("The sum is ", sum)
+
+}
+
+}}}
+
+In this example we read numbers from the console until an empty line is encountered, and print the sum. A method '''readLine''' reads the next line of characters from the console. '''emptyString''' is an empty string literal constant. An extension method '''toInt''' converts a string to an integer.
+
+この例では、空の行が検出されるまでコンソールから数値を読み取り、合計を出力します。メソッド '''readLine''' は、次の行の文字をコンソールから読み取ります。 '''emptyString''' は空の文字列リテラル定数です。拡張メソッド '''toInt''' は文字列を整数に変換します。
+
+実行結果は以下のとおりです。
+
+{{{ code ruby
+
+1
+
+3
+
+5
+
+The sum is 9
+
+}}}
+
+'''WHILE''' is a classical loop construct, it executes the code while the condition is true. Let's write the enumeration loop. '''Enumerators''' are special objects which enumerates collections, returning their members one after another. We will enumerate a string:
+
+'''WHILE''' は古典的なループ構成体であり、条件が真である間にコードを実行する。列挙ループを作成しよう。 '''Enumerators''' はコレクションを列挙し、そのメンバーを次々に返す特別なオブジェクトである。文字列を列挙する。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    auto s := "♥♦♣♠";
+
+    auto e := s.enumerator();
+
+    while (e.next()) {
+
+        console.printLine(e.get())
+
+    }
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+♥
+
+♦
+
+♣
+
+♠
+
+}}}
+
+The opposite construct is '''UNTIL'''. It repeats the code until the condition is true. Let's repeat the code while the number is not zero:
+
+反対の構造は '''UNTIL''' である。条件が true になるまでコードを繰り返す。数値が 0 でない間にコードを繰り返す。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    var n := 23;
+
+    until(n == 0)
+
+    {
+
+       console.printLine(n);
+
+     
+
+       n /= 3
+
+    }
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+23
+
+7
+
+2
+
+}}}
+
+It is clear that both loop constructs are interchangeable. The choice can depend on rather semantic meanings : to underscore one condition over another one.
+
+どちらのループ構成も交換可能であることは明らかです。どちらを選択するかは、どちらかというと意味論的な意味に依存します。つまり、ある条件を別の条件よりも強調することです。
+
+If we need to execute the loop at least once whatever condition is, we have to use '''DO-WHILE''' or '''DO-UNTIL'''. Let's calculate the factorial of 5:
+
+条件にかかわらず、少なくとも1回はループを実行する必要がある場合は、 '''DO-WHILE''' または '''DO-UNTIL''' を使用する必要があります。さて、 5 の階乗を計算してみましょう。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    int counter := 5;
+
+    int factorial := 1;
+
+    do {
+
+        factorial *= counter;
+
+        counter -= 1
+
+    }
+
+    while(counter > 0);
+
+    
+
+    console.printLine(factorial)
+
+}
+
+}}}
+
+''Note that we have to put colon after '''while''' token''
+
+'' '''while'''トークンの後にコロンを付ける必要があることに注意してください。''
+
+実行結果は以下のとおりです。
+
+{{{ code ruby
+
+    120
+
+}}}
+
+=== 例外処理
+
+Exception handling is designed to deal with unexpected situations during the program executing. For dynamic language the typical unexpected situation is sending a message to the object which does not handle it (no appropriate method is declared). In this case '''!MethodNotFound''' exception is raised. Another notable examples are : dividing by zero, nil reference and out of memory exceptions. The language provides several code templates to deal with such situations.
+
+例外処理は、プログラム実行中の予期しない状況に対処するように設計されています。動的言語の場合、典型的な予期しない状況は、メッセージを処理しない(適切なメソッドが宣言されていない)オブジェクトにメッセージを送信することです。この場合、'''!MethodNotFound'''例外が発生します。もう1つの注目すべき例は、ゼロ除算、nil参照、メモリ不足例外です。言語は、このような状況に対処するためのいくつかのコードテンプレートを提供します。
+
+Typical exception in ELENA inherits '''system'Exception''' base class. A method named '''raise()''' is declared and used to raise an exception in the code. There are several exceptions in '''system''' library : !OutOfRangeException, !InvalidArgumentException, !InvalidOperationException, !MethodNotFoundException, !NotSupportedException, !AbortException, !CriticalException and so on. A typical exception contains the error message and a call stack referring to the moment when the exception was created.
+
+ELENAの典型的な例外処理は、'''system'Exception'''のベースクラスを継承します。'''raise()'''という名前のメソッドが宣言され、コード内で例外を発生させるために使用されます。 !OutOfRangeException, !InvalidArgumentException, !InvalidOperationException, !MethodNotFoundException, !NotSupportedException, !AbortException, !CriticalException など '''system'''ライブラリにはいくつかの例外があります。典型的な例外には、エラー・メッセージと、例外が作成された時点を参照する呼び出しスタックが含まれる。
+
+Raising an exception in ELENA is straightforward.
+
+ELENAにおいて例外を発生させることは簡単である。
+
+{{{ code ruby
+
+divide(l,r)
+
+{
+
+    if(r == 0)
+
+    {
+
+        InvalidArgumentException.raise()
+
+    }
+
+    else
+
+    {
+
+        ^ l / r
+
+    }
+
+}
+
+}}}
+
+To handle it we have to write '''TRY-CATCH''' or '''TRY-FINALLY''' constructs.
+
+これを処理するには、 '''TRY-CATCH''' または '''TRY-FINALLY''' の構文を作成する必要があります。
+
+{{{ code ruby
+
+public program()
+
+{
+
+    console.print("Enter the first number:");
+
+    var l := console.readLine().toInt();
+
+    
+
+    console.print("Enter the second number:");
+
+    var r := console.readLine().toInt();
+
+    try
+
+    {
+
+        console.printLine("The result is ", divide(l,r))
+
+    }
+
+    catch(InvalidArgumentException e)
+
+    {
+
+        console.printLine("The second argument cannot be a zero")
+
+    };
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+Enter the first number:2
+
+Enter the second number:0
+
+The second argument cannot be a zero
+
+}}}
+
+An anonymous function declared after '''catch''' token is invoked if the raised exception matches the function argument list. If we want to handle any standard exception we can use a base exception class:
+
+'''catch'''トークンの後に宣言された匿名関数は、発生した例外が関数の引数リストと一致した場合に呼び出される。標準例外を処理したい場合は、基本例外クラスを使用することができる。
+
+{{{ code ruby
+
+    catch(Exception e)
+
+    {
+
+        console.printLine("An operation error")
+
+    };
+
+}}}
+
+Several exception handlers can be declared inside the nested class:
+
+いくつかの例外ハンドラを、ネスト化されたクラス内で宣言することができる。
+
+{{{ code ruby
+
+catch::
+
+{
+
+    function(InvalidArgumentException e)
+
+    {
+
+       console.printLine("The second argument cannot be a zero")
+
+    }
+
+    
+
+    function(Exception e)
+
+    {
+
+        console.printLine("An operation error")
+
+    }
+
+}
+
+}}}
+
+In our case both handlers are matched to !InvalidArgumentException exception (because !InvalidArgumentException is a child of Exception) but the proper exception handler will be raised because it is described early.
+
+この例では、(!InvalidArgumentException が Exception の子であるため)両方のハンドラが !InvalidArgumentException 例外に一致しますが、適切な例外ハンドラが発生します。これは、先に記述されているためです。
+
+If we need to execute the code whenever an exception is raised or the code works correctly we have to use '''TRY-FINALLY-CATCH''' construct. The typical use-case is a resource freeing.
+
+例外が発生したときにコードを実行する必要がある場合、またはコードが正しく動作する場合は、'''TRY-FINALLY-CATCH'''コンストラクトを使用する必要があります。典型的なユースケースは、リソースの解放です。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    console.printLine("Try");
+
+    try
+
+    {
+
+        var o := new Object();
+
+        o.fail();
+
+    }
+
+    finally
+
+    {
+
+        console.printLine("Finally");
+
+    }
+
+    catch(Exception e)
+
+    {
+
+        console.printLine("Error!");
+
+    }
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+Try
+
+Finally
+
+Error!
+
+}}}
+
+If the second line is commented out the output will be:
+
+2行目がコメントアウトされている場合、出力は次のようになります。
+
+{{{ code ruby
+
+Try
+
+Finally
+
+}}}
+
+If we want to execute the code after the operation whenever an exception is raised, we can skip catch part:
+
+例外が発生したときに操作の後にコードを実行したい場合は、 catch 部分をスキップできます。
+
+{{{ code ruby
+
+    console.printLine("Try");
+
+    try
+
+    {
+
+        var o := new Object();
+
+        o.fail();
+
+    }
+
+    finally
+
+    {
+
+        console.printLine("Finally");
+
+    }
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+Try
+
+Finally
+
+system'Object : Method fail[0] not found
+
+Call stack:
+
+system'Exception#class.new[1]:exceptions.l(96)
+
+system'MethodNotFoundException#class.new[1]:exceptions.l(1)
+
+system'MethodNotFoundException#class.new[2]:exceptions.l(190)
+
+mytest'program.#invoke[0]:test.l(14)
+
+mytest'program.#invoke[0]:test.l(9)
+
+system'$private'entry.#invoke[0]:win32_app.l(37)
+
+system'#startUp:win32_app.l(55)
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

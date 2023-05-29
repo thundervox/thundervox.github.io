@@ -11,6 +11,6 @@
  * [Invoking other program from within yabasic]()<sup>**?**</sup>
  * [Adding new code to a running program]()<sup>**?**</sup>
  * [Commands and functions related with time]()<sup>**?**</sup>
- * [Other commands]()<sup>**?**</sup>
+ * [Other commands](other-commands.html)
  * [Graphics and printing](graphics-and-printing.html)
  * [The foreign function interface](the-foreign-function-interface.html)

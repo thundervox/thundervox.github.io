@@ -36,4 +36,4 @@ notepad will be invoked, allowing you to edit your program.
 
 **View docu**
 
-This will present the embedded documentation of your program. Embedded documentation is created with the special comment [doc]()<sup>**?**</sup>.
+This will present the embedded documentation of your program. Embedded documentation is created with the special comment [```doc```]()<sup>**?**</sup>.

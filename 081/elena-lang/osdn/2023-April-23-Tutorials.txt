@@ -1,0 +1,36 @@
+= ELENA チュートリアル便覧
+
+著: Aleksey Rakov (アレクセイ・ラコフ)
+
+訳: いゑにゃん (with [https://mt-auto-minhon-mlt.ucri.jgn-x.jp TexTra])
+
+|| チュートリアル || 概要 || 難易度 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/blob/master/DuckTyping/README.md DuckTyping] || ELENA でのダックタイピング || 初級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/blob/master/VariadicArgument/README.md VariadicArgument] || Using variadic functions / methods in ELENA || 初級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/blob/master/jsontodto/readme.md JsonToDTO] || DTO と JSON 文字列の相互変換 || 初級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/tree/master/UserDefinedLiteral UserDefinedLiteral] || ユーザ定義リテラル定数の宣言 || 初級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/tree/master/ModuleInitializer ModuleInitializer] || モジュール初期化コードの宣言 || 初級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/tree/master/FibonacciEnumerator FibonacciEnumerator] || Using yieldable method to generate infinite iteratation || 初級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/tree/master/MessageLiteral MessageLiteral] || メッセージリテラルの用法 || 初級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/tree/master/ExpressionTree1 ExpressionTree1] || Building code at run-time in ELENA, Part 1 || 上級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/tree/master/ExpressionTree2 ExpressionTree2] || Building code at run-time in ELENA, Part 2 || 上級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/tree/master/ParsingExpression1 ParsingExpression1] || Using ELENA Script Engine to parse an arithmetic expression, Part 1 || 上級 ||
+
+|| [https://github.com/ELENA-LANG/tutorials/tree/master/ParsingExpression2 ParsingExpression2] || Using ELENA Script Engine to parse an arithmetic expression, Part 2 || 上級 ||
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/Tutorials Tutorials (2020-July-22 rev. 12)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

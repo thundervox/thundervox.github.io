@@ -1,0 +1,41 @@
+==== 数値の自動変換
+
+数値は暗黙的に相互変換できます。整数から long  型の整数または浮動小数点数に代入できますが、その逆は必ずしも可能であるとは限りません。
+
+{{{ code ruby
+
+    long l := 123l;
+
+    real r := 123.0r;
+
+    
+
+    int n1 := l; // 動作
+
+    int n2 := r; // 失敗
+
+}}}
+
+unsigned, short または byte 型の整数は相互変換可能ですが、場合により情報が欠落します。
+
+{{{ code ruby
+
+    uint x := 0FFFFFFFEH;
+
+    int  n := 300;
+
+    
+
+    short s := n; // 動作
+
+    byte  b := n; // 動作しますが、値は 44 になります
+
+    int  sn := x; // 動作しますが、値は -2 になります
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

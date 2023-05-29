@@ -1,0 +1,64 @@
+==== 文字列リテラル
+
+文字列リテラルはダブルクォートで囲みます。
+
+{{{ code ruby
+
+string stringConstant := "Привет Мир"; // UTF-8 エンコードの定数
+
+wide wideConstant   := "你好世界"w;     // UTF-16 エンコードの定数
+
+}}}
+
+文字列内にダブルクォートが存在するときはダブルクォートを二連にします。
+
+{{{ code ruby
+
+console.printLine("The string can contain a symbol """);
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+The string can contain a symbol "
+
+}}}
+
+複数行に渡る文字列もサポートしています。
+
+{{{ code ruby
+
+console.printLine("This is a string with
+
+two lines");
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+This is a string with
+
+two lines
+
+}}}
+
+中身のない文字列リテラル、または '''emptyString''' 定数を使うと空文字列になります。
+
+{{{ code ruby
+
+console.printLine("");
+
+console.printLine(emptyString);
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

@@ -1,0 +1,83 @@
+=== プログラムの構造
+
+最も単純な (最小構成の) ELENA プロジェクトは、プロジェクトのルートフォルダにあるソースファイルで構成されます。
+
+''備考:ソースファイルは UTF8 でエンコードされています。プロジェクトファイルは '''configuration''' ルートノードを持つ XML ドキュメントです。現在の実装では、 xml の名前空間属性はプロジェクトファイルに含まれていません。''
+
+例えば以下のプロジェクトでは、
+
+{{{ code xml
+
+<configuration>
+
+    <project>
+
+        <template>console</template>
+
+        <namespace>example1</namespace>
+
+        <executable>example1.exe</executable>
+
+    </project>
+
+    <files>
+
+        <module>
+
+            <include>myprogram.l</include>
+
+        </module>
+
+    </files>
+
+</configuration>
+
+}}}
+
+''example1.nl'' モジュールを生成します。
+
+通常、プロジェクトのコンパイルではモジュールファイル単体 ('''*.nl''') が生成されます。ただし、複数から成るライブラリの出力を指定することもできます。
+
+{{{ code xml
+
+<configuration>
+
+    <project>
+
+        <template>console</template>
+
+        <namespace>myproject</namespace>
+
+        <executable>example1.exe</executable>
+
+    </project>
+
+    <files>
+
+        <module>
+
+            <include>myprogram.l</include>
+
+        </module>
+
+        <module name="subproject">
+
+            <include>subproject\file2.l</include>
+
+        </module>
+
+    </files>
+
+</configuration>
+
+}}}
+
+この場合、 myproject.nl と myproject.subproject.nl をライブラリとして生成します。
+
+プロジェクトファイルには、プロジェクト設定、ソースファイル、フォワードなどが含まれています。プロジェクトはプロジェクトのテンプレートをもとに作成されている (based on) 場合があります。この場合、オーバーロードされたものを除くすべての親設定を継承します。テンプレートは別のテンプレートをもとに作成されている場合があります。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

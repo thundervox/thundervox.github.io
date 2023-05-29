@@ -1,0 +1,133 @@
+=== 基本操作と関数
+
+文字列同士の比較をするには、
+
+{{{ code ruby
+
+console.printLine("""string1"" < ""string2""=", "string1" < "string2");
+
+console.printLine("""string1"" > ""string2""=", "string1" > "string2");
+
+console.printLine("""string1"" == ""string2""=", "string1" == "string2");
+
+}}}
+
+実行結果は以下のとおりです。
+
+{{{ code ruby
+
+"string1" < "string1"=true
+
+"string1" > "string1"=false
+
+"string1" == "string1"=false
+
+}}}
+
+複数の文字列、または文字列と文字は連結できます。その処理結果は必ず新規文字列になります。
+
+{{{ code ruby
+
+import extensions;
+
+    
+
+public program()
+
+{
+
+    console.print("Hello" + " " + " World " + $10);
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+Hello  World
+
+}}}
+
+指定の文字列へ部分文字列を挿入、または指定の文字列から部分文字列を削除できます。
+
+{{{ code ruby
+
+    console.printLine("Hillo World".delete(1,1).insert(1, "e"));
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+Hello World
+
+}}}
+
+第一オペランドは指定文字列内の位置です (''注意点として部分文字列は複数要素文字へ挿入してしまうと文字列が破壊される恐れがあります'')。第二オペランドは '''delete''' の対象となる部分文字列と '''insert''' の対象となる部分文字列の長さです。
+
+指定文字列にある部分文字列の位置を検索できます。
+
+{{{ code ruby
+
+console.printLine("Hello World".indexOf(0, " "));
+
+console.printLine("Hello World".indexOf(0, "!"));
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+5
+
+-1
+
+}}}
+
+第一オペランドは開始インデックスであり、第二オペランドは検索対象となる部分文字列です。
+
+このメソッドは第二引数と最初に一致したインデックス、または -1 を返します。
+
+指定文字列から部分文字列を返せます。
+
+{{{ code ruby
+
+console.printLine("Hello World".Substring(6,5));
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+World
+
+}}}
+
+上述の用例と同じく第一インデックスは部分文字列のインデックスであり、第二インデックスは部分文字列の長さです。
+
+これらの処理が対象文字列のインデックス範囲外となる場合は例外が発生します。
+
+以下の拡張メソッドで文字列のパディングとトリミングが行えます。
+
+|| '''拡張メソッド''' || '''概要''' ||
+
+|| trimLeft() || 指定された文字と一致するものを先頭部分から一括削除します。 ||
+
+|| trimRight() || 指定された文字と一致するものを末尾部分から一括削除します。 ||
+
+|| trim() || 指定された文字と一致するものを両端部分から一括削除します。 ||
+
+|| padLeft() || 現在文字列の先頭に対して指定された長さの文字でパディングしたものを新規文字列として返します。 ||
+
+|| padRight() || 現在文字列の末尾に対して指定された長さの文字でパディングしたものを新規文字列として返します。 ||
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

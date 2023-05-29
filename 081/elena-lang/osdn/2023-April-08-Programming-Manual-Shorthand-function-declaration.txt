@@ -1,0 +1,25 @@
+==== 略式関数宣言
+
+関数本体は、中括弧内に記述されます。関数に戻り演算子のみが含まれる場合は、本体を簡略化できます。
+
+{{{ code pascal
+
+F(x,y)
+
+   = x + y;
+
+}}}
+
+無名関数を宣言するには '''=>''' 演算子を使います。
+
+{{{ code pascal
+
+    var f := (x,y => x * y);
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

@@ -1,0 +1,115 @@
+==== 文字列の変換
+
+すべての ELENA クラスはオブジェクトの文字列表記を返す '''toPrintable()''' メソッドをサポートします。デフォルトではクラス名を返します。
+
+{{{ code ruby
+
+import extensions;
+
+    
+
+public program()
+
+{
+
+    console.printLine(console.toPrintable());
+
+}
+
+}}}
+
+実行結果はクラス名となります (''接頭辞 $private はプライベートクラスであることを意味します'')。
+
+{{{ code ruby
+
+'$private'Console
+
+}}}
+
+このメソッドは基本型をオーバーライドすることで、そのテキスト値を返します。
+
+{{{ code ruby
+
+import extensions;
+
+    
+
+public program()
+
+{
+
+    console.printLine(12.toPrintable());
+
+    console.printLine(23.4r.toPrintable());
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+12
+
+23.4
+
+}}}
+
+あるいは '''toString()''' 拡張も使えます。
+
+{{{ code ruby
+
+console.printLine(12.toString());
+
+console.printLine(23.4r.toString());
+
+}}}
+
+同様に、文字列は基本型への変換をサポートします。
+
+{{{ code ruby
+
+int n := "12".toInt();
+
+real r := "23.4".toReal();
+
+}}}
+
+'''toInt()''' と '''toChar()''' 拡張を使うことで、直接的に文字と整数の相互変換ができます。
+
+{{{ code ruby
+
+import extensions;
+
+    
+
+public program()
+
+{
+
+    auto ch := $78;
+
+    int code := ch.toInt();
+
+        
+
+    console.printLine("code of ", ch, " is ", code);
+
+}
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+code of N is 78
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

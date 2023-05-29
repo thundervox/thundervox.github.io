@@ -1,0 +1,10 @@
+== CPU の対応状況
+
+現在のところ、 '''x86''', '''x86-64''', '''AArch64''' および '''PPC64le''' に対応しています。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

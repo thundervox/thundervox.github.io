@@ -1,0 +1,37 @@
+==== クロージャー
+
+関数スコープの外部で宣言された変数は、関数スコープ内で参照できます。また、適切なボックス化が自動的に行われます。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    var n := 3;
+
+    
+
+    var f := (x => n + x );
+
+    console.printLine(f(1))
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+4
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

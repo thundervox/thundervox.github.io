@@ -1,0 +1,39 @@
+== プラットフォームの対応状況
+
+|| CPU     || OS              ||
+
+|| x86     || Windows / Linux ||
+
+|| x86-64  || Windows / Linux ||
+
+|| AArch64 || Linux           ||
+
+|| PPC64le || Linux           ||
+
+以下のプロジェクトターゲットをサポートしています。
+
+|| ターゲットプラットフォーム || 概要      ||
+
+|| lib                   || ライブラリ ||
+
+|| lib_64                || 64 bit ライブラリ ||
+
+|| console　　　　　　　　　 || Win32 / Linux i386 CUI (コンソールユーザインターフェース) スタンドアロン STA ||
+
+|| console_64 || Win64 CUI (コンソールユーザインターフェース) スタンドアロン STA ||
+
+|| gui || Win32 GUI (グラフィカルユーザインターフェース) スタンドアロン STA ||
+
+|| vm_console || Win32 / Linux i386 CUI (コンソールユーザインターフェース) 仮想マシンクライアント STA ||
+
+|| vm_console_64 || Win64 CUI (コンソールユーザインターフェース) 仮想マシンクライアント STA ||
+
+|| mta_console || Win32 CUI (コンソールユーザインターフェース) スタンドアロン MTA ||
+
+'''STA はシングルスレッドアプリケーションを、 MTA はマルチスレッドアプリケーションのことを指します。'''
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

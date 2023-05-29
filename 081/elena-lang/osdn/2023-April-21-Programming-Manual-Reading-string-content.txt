@@ -1,0 +1,190 @@
+==== 文字列の読み取り
+
+文字列から文字を取り出したい場合、配列演算子で文字列にインデックスを指定します。先頭要素のインデックスは 0 です。
+
+指定された文字列から先頭文字、二文字目、末尾文字を表示してみましょう。前述のとおりプレーンな英語のテキストでは、非常に簡単に行えます。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    auto s := "Hello"; 
+
+    console.printLine(s[0]); // 先頭要素の表示
+
+    console.printLine(s[1]); // 第二要素の表示
+
+    console.printLine(s[s.Length - 1]); // 末尾要素の表示
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+H
+
+e
+
+o
+
+}}}
+
+ロシア語を使おうとすると、
+
+{{{ code ruby
+
+auto s := "Привет";    
+
+console.printLine(s[0]); // 先頭要素の表示
+
+console.printLine(s[1]); // 第二要素の表示
+
+console.printLine(s[s.Length - 1]); // 末尾要素の表示
+
+}}}
+
+このようなエラーが第二要素で発生します。
+
+{{{ code ruby
+
+П
+
+An index is out of range
+
+Call stack:
+
+system'Exception#class.new[1]:exceptions.l(96)
+
+system'OutOfRangeException#class.new[1]:exceptions.l(126)
+
+system'OutOfRangeException#class.new[0]:exceptions.l(126)
+
+system'String.at[1]:memory.l(1356)
+
+mytest'program.#invoke[0]:test.l(8)
+
+system'$private'entry.#invoke[0]:win32_app.l(37)
+
+system'#startUp:win32_app.l(55)
+
+}}}
+
+エラーの原因は？　UTF-8 においてロシア語の文字は 2 バイト (String 型の二要素から成る配列) でエンコードされるためです。つまり、二文字目は二番目の位置ではなく、三番目から読み取る必要があります。
+
+現時点では、 UTF-16 を使うことで問題を解決できます。こうすることで、シンボルごとに配列の単体要素だけでエンコードされるようになります。
+
+{{{ code ruby
+
+auto s := "Привет"w;    
+
+    
+
+console.printLine(s[0]); // 先頭要素の表示
+
+console.printLine(s[1]); // 第二要素の表示
+
+console.printLine(s[s.Length - 1]); // 末尾要素の表示
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+П
+
+р
+
+т
+
+}}}
+
+ただし、中国語では正常に動作しません。
+
+ニ文字を正しく読み取るには、文字に対して '''Length''' (文字列の場合) または '''!WideLength''' (ワイド文字列の場合) プロパティを使います。
+
+{{{ code ruby
+
+auto s1 := "Привет";    
+
+auto s2 := "你好世界"w;    
+
+    
+
+console.printLine(s1[s1[0].Length]);     // UTF-8 文字列の第二要素を表示
+
+console.printLine(s2[s2[0].WideLength]); // UTF-16 文字列第二要素を表示
+
+}}}
+
+列挙子 (Enumerator) を使うと処理内容を簡略化できます。
+
+{{{ code ruby
+
+auto s := "Привет";    
+
+auto it := s.enumerator();   // 文字列の列挙子を作成
+
+it.next();                   // 先頭要素へ移動
+
+console.printLine(it.get()); // 現在要素を表示
+
+it.next();                   // 第二要素へ移動
+
+console.printLine(it.get()); // 現在要素を表示
+
+}}}
+
+実行結果は以下のとおりです。
+
+{{{ code ruby
+
+П
+
+р
+
+}}}
+
+末尾文字を読み取るには一文字ずつ末尾まで移動します。そうしなくても、 '''system'routines''' モジュールに宣言されている拡張メソッド '''!LastMember''' が使えます。
+
+{{{ code ruby
+
+import extensions;
+
+import system'routines;
+
+ 
+
+public program()
+
+{
+
+    auto s1 := "Привет";
+
+    console.printLine(s1.LastMember);
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+т
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

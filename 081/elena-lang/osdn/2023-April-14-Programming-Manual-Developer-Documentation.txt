@@ -1,0 +1,89 @@
+== 開発者向け資料
+
+=== コードの実行時動的生成
+
+==== 評価テープ
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+In general we could generate a code in run-time either by just-in-time compilation into some temporal binaries or interpreting.
+
+一般に、実行時にコードを生成するには実行時 (Just-In-Time) にコンパイルして一時作業用のバイナリを生成するか、インタープリタを使用します。
+
+Instead tree-like data structures can be used to build our code as an expression tree.
+
+代わりに、ツリー風のデータ構造を使用して、式のツリーとしてコードを構築することができる。
+
+The created expression tree should be somehow executed. Here again we could use an reflection or run-time compilation. Alternatively the expression tree can be turned into an evaluation tape containing an array of functions.
+
+作成した式のツリーは、何らかの方法で実行する必要がある。ここでも、リフレクションまたは実行時コンパイルを使用することができる。あるいは、式のツリーを関数の配列を含む評価テープに変換することもできる。
+
+The logic of an evaluation tape is quite simple. It executes every tape function with a reference to the process stack as a variadic argument. The result of the function is put into the stack. If the function has fixed arguments they are removed from the stack. The process stops when the last function is executed and the object at the stack top is returned as a process result. The current tape element index is placed into the stack as well, so it is possible to implement branching and looping.
+
+評価テープのロジックは非常に単純である。評価テープは、可変引数としてプロセスのスタックを参照して、すべてのテープ関数を実行します。関数の結果はスタックに入れられる関数が固定引数を有する場合、それらはスタックから除去される。最後の関数が実行され、スタックのトップにあるオブジェクトが処理結果として返されると、処理は停止する。現在のテープに関する要素のインデックスもスタックに配置されるので、分岐およびループをじっそうすることが可能である。
+
+Let's execute the following code:
+
+では、以下のコード を実行してみるとしよう。
+
+{{{ code ruby
+
+console.writeLine("Hello")
+
+}}}
+
+Which can be declared as a following tree:
+
+これは、以下のツリーとして宣言することができる。
+
+{{{ code ruby
+
+new system'dynamic'expressions'MessageCallExpression ( 
+
+   new system'dynamic'expressions'SymbolExpression ( 
+
+      "console"
+
+   ), 
+
+   "writeLine",
+
+   new system'dynamic'expressions'ConstantExpression ( 
+
+     "Hello"
+
+   ) 
+
+)
+
+}}}
+
+The tree can be turned into the following evaluation tape:
+
+ツリーは以下の評価テープへ変換可能である。
+
+{{{ code ruby
+
+new FunctionTape (
+
+   new ConstantFunction("Hello"),
+
+   new ConstantFunction(console),
+
+   new MessageFunction("writeLine[2]"),
+
+   new ReleaseFunction()
+
+)
+
+}}}
+
+After the execution the first two functions the process stack contains : { console, "Hello" }. The next function will send a message "writeLine![2]" to the element at the stack top - console. After the operation two elements will be removed from the process stack and the message result will be placed back: { console }. The last function will remove a top element from the stack.
+
+最初の2つの関数の実行後、プロセススタックは以下を含む。{ console, "Hello" } 次の関数は、スタックトップコンソールにおける要素にメッセージ "writeLine![2]" の送信動作後、2つの要素がプロセススタックから除去され、メッセージ結果が戻される:{ console } 最後の関数は、スタックからトップ要素を除去する。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

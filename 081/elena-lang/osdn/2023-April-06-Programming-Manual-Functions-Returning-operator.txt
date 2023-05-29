@@ -1,0 +1,12 @@
+=== 返値演算子 (Returning operator)
+
+!^ 演算子はコードフローを終了し、指定された式を返します。演算子はスコープ内の最後の演算子である必要があります。
+
+通常、関数 (とクラスメソッド) は値を返します。値が指定されていない場合は、組み込み変数 '''self''' (参照先はメソッドのオーナー側にあるインスタンス) が返されます。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

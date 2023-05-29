@@ -1,0 +1,56 @@
+==== ビット演算子
+
+ビット単位演算子は整数値のみサポートしています。
+
+|| 式         || 名称                      ||
+
+|| x && y     || ビット単位 '''and''' 演算子     ||
+
+|| x ｜｜ y   || ビット単位 '''or''' 演算子      ||
+
+|| x !^!^ y     || ビット単位 '''xor''' 演算子     ||
+
+|| x $shl y   || ビット単位 '''左シフト''' 演算子 ||
+
+|| x $shr y   || ビット単位 '''右シフト''' 演算子 ||
+
+なお、別の整数型も使用できますが最も大きいオペランドの型がその結果になります。
+
+{{{ code ruby
+
+console
+
+   .writeLine(4 && 2)
+
+   .writeLine(3 || 10000000000l)
+
+   .writeLine(5 ^^ 3)
+
+   .writeLine(5 $shl 2)
+
+   .writeLine(5 $shr 1);
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+0
+
+10000000003
+
+6
+
+20
+
+2
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

@@ -1,0 +1,142 @@
+== シンボル
+
+シンボルは、コードをより読みやすくするために使用できる名前付きの式です。典型的なシンボルは定数の宣言です。ただし、それ以上のことができます。シンボルは、グローバルなシングルトンのインスタンスを宣言するために使用されます。モジュールの初期化コードは、それらを介して実装されます。プライベート、またはパブリックにすることができます。
+
+=== 値と定数
+
+典型的なシンボルの使用事例は、コードの内部以降でも再利用できる値です。
+
+{{{ code ruby
+
+import extensions;
+
+import extensions'math;
+
+real PiOver2 = RealNumber.Pi / 2;
+
+public program()
+
+{
+
+    console.printLine("sin(",PiOver2,")=", sin(PiOver2))
+
+}
+
+}}}
+
+ここでは、プライベートな強い型付けのシンボル !PiOver2 を宣言します。型は省略可能です。この場合、弱い型付けの値になります。実行結果は以下のとおりです。
+
+{{{ code ruby
+
+sin(1.570796326795)=1.0
+
+}}}
+
+シンボルをパブリックする (モジュールの外側からアクセス可能にする) 場合は、型と名前の先頭に '''public''' 属性を記述してください。
+
+シンボルの値がコンパイル時に計算可能であれば場、定数のシンボルを宣言できます。
+
+{{{ code ruby
+
+import extensions;
+
+import extensions'math;
+
+public const int N = 3;
+
+public program()
+
+{
+
+    for (int i := 0, i < N, i += 1)
+
+    {
+
+        console.printLine(i,"^2=", sqr(i))
+
+    }
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+0^2=0
+
+1^2=1
+
+2^2=4
+
+}}}
+
+=== Static シンボル
+
+通常のシンボルは、使用されるたびに評価されます。 Static (静的) シンボルは、最初の呼び出し (いわゆる遅延読み込み) によって一度だけ初期化される特例です。その値は次の呼び出しごとに再利用されます。シングルトンを実装するのが好ましい方法です (ステートレスでない場合)。
+
+{{{ code ruby
+
+import extensions;
+
+import extensions'math;
+
+static inputedNumber = console.print("Enter the number:").readLine().toInt();
+
+public program()
+
+{
+
+    console.printLine(inputedNumber,"^3 = ", power(inputedNumber, 3))
+
+}
+
+}}}
+
+この用例では、シンボルは一度だけ評価されまふ。入力された値は保持されるため、数値は一度だけ入力してください。
+
+{{{ code ruby
+
+Enter the number:4
+
+4^3 = 64
+
+}}}
+
+=== Preloaded シンボル
+
+Preloaded (先読み) シンボルは、名前空間のメンバがプログラムで使用されている場合に、プログラムの起動時に自動的に評価される特別なシンボルです。そのため、モジュールの初期化に使用できます。
+
+{{{ code ruby
+
+import extensions;
+
+preloaded onModuleUse = console.printLine("Starting");
+
+public program()
+
+{
+
+    console.printLine("Hello World")
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+Starting
+
+Hello World
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

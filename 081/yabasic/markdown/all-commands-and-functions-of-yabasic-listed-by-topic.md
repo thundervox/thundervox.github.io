@@ -12,5 +12,5 @@
  * [Adding new code to a running program]()<sup>**?**</sup>
  * [Commands and functions related with time]()<sup>**?**</sup>
  * [Other commands]()<sup>**?**</sup>
- * [Graphics and printing]()<sup>**?**</sup>
+ * [Graphics and printing](graphics and-printing.html)
  * [The foreign function interface](the-foreign-function-interface.html)

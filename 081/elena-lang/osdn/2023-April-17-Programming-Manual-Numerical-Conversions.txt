@@ -1,0 +1,85 @@
+==== 数値の変換処理
+
+数値は、暗黙的または明示的な変換のいずれかを使用して変換できます。暗黙的な変換は自動的に行われますが、情報の一部が失われる可能性があります。明示的な変換では、値がオーバーフローするかどうかをチェックし、例外を生成します。
+
+推奨される方法は、 '''extensions''' モジュールで宣言された変換拡張メソッドを使用することです。
+
+|| '''メソッド名''' || '''概要'''                           ||
+
+|| toByte()         || 対象から system'!ByteNumber 型へ変換  ||
+
+|| toShort()        || 対象から system'!ShortNumber 型へ変換 ||
+
+|| toInt()          || 対象から system'!IntNumber 型へ変換   ||
+
+|| toUInt()         || 対象から system'UIntNumber 型へ変換  ||
+
+|| toLong()         || 対象から system'!LongNumber 型へ変換  ||
+
+|| toReal()         || 対象から system'!RealNumber 型へ変換  ||
+
+次にいくつかの用例を示します。
+
+{{{ code ruby
+
+import extensions;
+
+public program()
+
+{
+
+    int n := 3;
+
+    
+
+    byte  b := n.toByte();
+
+    short s := n.toShort();
+
+    long  l := n.toLong();
+
+    real  r := n.toReal();  
+
+}
+
+}}}
+
+変換によってオーバーフローが発生した場合は、例外が生成されます。
+
+{{{ code ruby
+
+int n := 300;
+
+byte  b := n.toByte();
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+An index is out of range
+
+Call stack:
+
+system'Exception#class.new[1]:exceptions.l(96)
+
+system'OutOfRangeException#class.new[1]:exceptions.l(126)
+
+system'OutOfRangeException#class.new[0]:exceptions.l(126)
+
+extensions'convertorOp.auto#toByte[1]:convertors.l(383)
+
+mytest'program.#invoke[0]:test.l(16)
+
+system'$private'entry.#invoke[0]:win32_app.l(37)
+
+system'#startUp:win32_app.l(55)
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

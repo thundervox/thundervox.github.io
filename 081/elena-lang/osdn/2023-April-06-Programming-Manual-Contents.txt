@@ -1,0 +1,196 @@
+= ELENA プログラミングマニュアル (仮訳)
+
+著: Aleksey Rakov (アレクセイ・ラコフ)
+
+訳: いゑにゃん (with [https://mt-auto-minhon-mlt.ucri.jgn-x.jp TexTra])
+
+作業状況: 処理式変換作業優先(!GitHub → OSDN Wiki) → TexTra による機械翻訳完了(一部対訳、人力翻訳あり) → イマココ: 訳抜けの確認 (必要がなければここで作業終了) → ポストエディットと無間改訳地獄変 → markdown 形式へ書き戻し → sphinx, mkdocs 版作成 → rcbasic-081.osdn.jp へ一般公開
+
+== 目次
+
+翻訳・調整作業は後日の予定 (訳語の選び方に不満あり)
+
+ * [2023-April-07-Programming-Manual-Overview+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 概要 (Overview)]
+
+ * [2023-April-07-Programming-Manual-Language-Environment+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 言語の動作環境 (Language Environment)]
+
+ * [2023-April-07-Programming-Manual-Supported-CPUs+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 CPU の対応状況 (Supported CPUs)]
+
+ * [2023-April-07-Programming-Manual-Supported-platforms+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 プラットフォームの対応状況 (Supported platforms)]
+
+ * [2023-April-07-Programming-Manual-Installing%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 インストール方法 (Installing)]
+
+ * [2023-April-14-Programming-Manual-Language-Elements+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 言語の構成要素 (Language Elements)]
+
+   * [2023-April-14-Programming-Manual-Program-Structure+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 プログラムの構造 (Program Structure)]
+
+   * [2023-April-14-Programming-Manual-Entry-point+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 エントリーポイント (Entry point)]
+
+   * [2023-April-16-Programming-Manual-Program-Variables+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 変数 (Variables)]
+
+   * [2023-April-14-Programming-Manual-Numbers+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 数値 (Numbers)]
+
+     * [2023-April-06-Programming-Manual-Numbers-Integer-Types%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 整数型 (Integer Type)]
+
+     * [2023-April-14-Programming-Manual-Floating-point-types+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 浮動小数点型 (Floating-point types)]
+
+     * [2023-April-14-Programming-Manual-Numeric-literals+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 数値リテラル (Numeric literals)]
+
+     * [2023-April-14-Programming-Manual-Numeric-conversions+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 数値の自動変換 (Numeric Conversions)]
+
+   * [2023-April-16-Programming-Manual-Mathematical-Operations-and-Functions+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 算術処理と関数 (Mathematical Operations and Functions)]
+
+     * [2023-April-16-Programming-Manual-Arithmetic-Operators+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 算術演算子 (Arithmetic Operators)]
+
+     * [2023-April-16-Programming-Manual-Bitwise-Operators+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 ビット演算子 (Bitwise Operators)]
+
+     * [2023-April-17-Programming-Manual-Assignment-Operators+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 代入演算子 (Assignment Operators)]
+
+     * [2023-April-17-Programming-Manual-Program-Numeric-Comparisons+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 数値の比較 (Numeric Comparisons)]
+
+     * [2023-April-17-Programming-Manual-Operator-Precedence+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 演算子の優先順位 (Operator Precedence)]
+
+     * [2023-April-17-Programming-Manual-Numerical-Conversions+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 数値の変換処理 (Numerical Conversions)]
+
+     * [2023-April-17-Programming-Manual-Methods-and-functions%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 メソッドと関数 (Methods and functions)]
+
+   * [2023-April-16-Programming-Manual-Program-Strings%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 文字列 (Strings)]
+
+     * [2023-April-16-Programming-Manual-Characters%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 文字 (Characters)]
+
+     * [2023-April-21-Programming-Manual-String-literals+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 文字列リテラル (String literals)]
+
+     * [2023-April-21-Programming-Manual-Reading-string-content%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 文字列の読み取り (Reading string content)]
+
+     * [2023-April-21-Programming-Manual-Basic-operations-and-functions+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 基本操作と関数 (Basic operations and functions)]
+
+     * [2023-April-21-Programming-Manual-Conversion-to-and-from-strings+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 文字列の変換 (Conversion to and from strings)]
+
+   * [2023-April-21-Programming-Manual-Functions+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 関数 (Functions)]
+
+     * [2023-April-06-Programming-Manual-Functions-Returning-operator+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 返値演算子 (Returning operator)]
+
+      * [2023-April-08-Programming-Manual-Shorthand-function-declaration+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 略式関数宣言 (Shorthand function declaration)]
+
+     * [2023-April-16-Programming-Manual-Program-Closures+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 クロージャー (Closures)]
+
+     * [2023-April-17-Programming-Manual-Program-Strong-typed-arguments+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 強い型付けによる引数 (Strong-typed arguments)]
+
+   * [2023-April-18-Programming-Manual-First-class-messages+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h2-.E3.83.95.E3.82.A1.E3.83.BC.E3.82.B9.E3.83.88.E3.82.AF.E3.83.A9.E3.82.B9.E3.83.A1.E3.83.83.E3.82.BB.E3.83.BC.E3.82.B8 ファーストクラスメッセージ (First class messages)]
+
+     * [2023-April-18-Programming-Manual-First-class-messages+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E3.83.A1.E3.83.83.E3.82.BB.E3.83.BC.E3.82.B8 メッセージ (Messages)]
+
+     * [2023-April-18-Programming-Manual-First-class-messages+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E6.8B.A1.E5.BC.B5.E3.83.A1.E3.83.83.E3.82.BB.E3.83.BC.E3.82.B8 拡張メッセージ (Extension Messages)]
+
+     * [2023-April-18-Programming-Manual-First-class-messages+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E3.83.A1.E3.83.83.E3.82.BB.E3.83.BC.E3.82.B8.E5.90.8D メッセージ名 (Message Names)]
+
+   * [2023-April-18-Programming-Manual-Control-Flow%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h2-.E5.88.B6.E5.BE.A1.E3.83.95.E3.83.AD.E3.83.BC 制御フロー (Control Flow)]
+
+     * [2023-April-18-Programming-Manual-Control-Flow%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E3.83.96.E3.83.BC.E3.83.AB.E5.9E.8B ブール型 (Boolean type)]
+
+     * [2023-April-18-Programming-Manual-Control-Flow%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E5.88.86.E5.B2.90.E6.BC.94.E7.AE.97.E5.AD.90 分岐演算子 (Branching operator)]
+
+     * [2023-April-18-Programming-Manual-Control-Flow%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E5.88.86.E5.B2.90.E3.82.B9.E3.83.86.E3.83.BC.E3.83.88.E3.83.A1.E3.83.B3.E3.83.88 分岐ステートメント (Branching statements)]
+
+     * [2023-April-18-Programming-Manual-Control-Flow%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E3.83.AB.E3.83.BC.E3.83.97.E3.82.B9.E3.83.86.E3.83.BC.E3.83.88.E3.83.A1.E3.83.B3.E3.83.88 ループステートメント (Looping statements)]
+
+     * [2023-April-18-Programming-Manual-Control-Flow%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E4.BE.8B.E5.A4.96.E5.87.A6.E7.90.86 例外処理 (Exception handling)]
+
+   * [2023-April-18-Programming-Manual-Symbols+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h2-.E3.82.B7.E3.83.B3.E3.83.9C.E3.83.AB シンボル (Symbols)]
+
+     * [2023-April-18-Programming-Manual-Symbols+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E5.80.A4.E3.81.A8.E5.AE.9A.E6.95.B0 値と定数 (Values / Constants)]
+
+     * [2023-April-18-Programming-Manual-Symbols+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-Static.20.E3.82.B7.E3.83.B3.E3.83.9C.E3.83.AB Static シンボル (Static symbols)]
+
+     * [2023-April-18-Programming-Manual-Symbols+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-Preloaded.20.E3.82.B7.E3.83.B3.E3.83.9C.E3.83.AB Preloaded シンボル (Preloaded symbols)]
+
+   * [2023-April-24-Programming-Manual-Types%20%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 型 (Types)]
+
+     * [2023-April-24-Programming-Primitive-types+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 基本型 (Primitive types)]
+
+     * [2023-April-24-Programming-Manual-Classes+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 クラス (Classes)]
+
+     * [2023-April-24-Programming-Manual-Abstract-classes+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 抽象クラス (Abstract classes)]
+
+     * [2023-April-24-Programming-Manual-Interfaces+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 インターフェース (Interfaces)]
+
+     * [2023-April-24-Programming-Manual-Singletons+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 シングルトン (Singletons)]
+
+     * [2023-April-24-Programming-Manual-Structs+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 構造体 (Structs)]
+
+     * [2023-April-24-Programming-Manual-Types-Strings+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 文字列 (Strings)]
+
+     * [2023-April-24-Programming-Manual-Extensions+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 拡張 (Extensions)]
+
+     * [2023-April-24-Programming-Sealed-Closed-Classes+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 Sealed / Closed クラス (Sealed / Closed Classes)]
+
+   * [2023-April-26-Programming-Fields+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 フィールド (Fields)]
+
+     * [2023-April-26-Programming-Class-Fields+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 クラスフィールド (Class Fields)]
+
+     * [2023-April-26-Programming-Field-Initializer+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 フィールドの初期化 (Field Initializer)]
+
+     * [2023-April-26-Programming-Readonly-fields+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 読み取り専用フィールド (Readonly fields)]
+
+     * [2023-April-26-Programming-Static-fields+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 静的フィールド (Static fields)]
+
+     * [2023-April-26-Programming-Class-Constants+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 クラス定数 (Class Constants)]
+
+     * [2023-April-26-Programming-Primitive-fields+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 基本フィールド (Primitive fields)]
+
+     * [2023-April-26-Programming-Fixed-size-array-field+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 固定長配列フィールド (Fixed size array field)]
+
+     * [2023-April-26-Programming-Dynamic-size-array-field+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 可変長配列フィールド (Dynamic size array field)]
+
+   * [2023-April-26-Programming-Constructors+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 コンストラクタ (Constructors)]
+
+     * [2023-April-26-Programming-Default-constructor+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 デフォルトコンストラクタ (Default constructor)]
+
+     * [2023-April-26-Programming-Named-constructors+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 名前付きコンストラクタ (Named constructors)]
+
+     * [2023-April-26-Programming-Conversion-constructors+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 変換コンストラクタ (Conversion constructors)]
+
+     * [2023-April-26-Programming-Multi-constructors+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 多重コンストラクタ (Multi-constructors)]
+
+     * [2023-April-26-Programming-Typecasting-constructors+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 型キャストコンストラクタ (Typecasting constructors)]
+
+   * [2023-April-26-Programming-Methods+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 メソッド (Methods)]
+
+     * [2023-April-26-Programming-Method-Visibility+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 メソッドの可視範囲 (Method Visibility)]
+
+     * [2023-April-26-Programming-Built-in-method-variables+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 組み込みメソッド変数 (Built-in method variables)]
+
+     * [2023-April-26-Programming-Method-modifiers+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 メソッドの修飾子 (Method modifiers)]
+
+     * [2023-April-26-Programming-Multi-methods+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 多重メソッド (Multi-methods)]
+
+     * [2023-April-26-Programming-Variadic-methods+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 可変長引数メソッド (Variadic methods)]
+
+     * [2023-April-26-Programming-Ref-Arguments+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 Ref 引数 (Ref Arguments)]
+
+     * [2023-April-26-Programming-Re-sending-methods+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 再送信メソッド (Re-sending methods)]
+
+     * [2023-April-26-Programming-Dispatch-methods+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 メソッドのディスパッチ (Dispatch methods)]
+
+     * [2023-April-26-Programming-Custom-dispatcher+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 カスタムディスパッチャー (Custom dispatcher)]
+
+     * [2023-April-26-Programming-Generic-methods+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 ジェネリックメソッド (Generic methods)]
+
+   * [2023-April-26-Programming-Properties+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 プロパティ (Properties)]
+
+   * [2023-April-14-Programming-Manual-Nested-classes+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 入れ子構造のクラス (Nested classes)]
+
+ * [2023-April-14-Programming-Manual-Developer-Documentation+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 開発者向け資料 (Developer Documentation)]
+
+   * [2023-April-14-Programming-Manual-Developer-Documentation+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h3-.E3.82.B3.E3.83.BC.E3.83.89.E3.81.AE.E5.AE.9F.E8.A1.8C.E6.99.82.E5.8B.95.E7.9A.84.E7.94.9F.E6.88.90 コードの実行時動的生成 (Producing a code in run-time)]
+
+     * [2023-April-14-Programming-Manual-Developer-Documentation+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29#h4-.E8.A9.95.E4.BE.A1.E3.83.86.E3.83.BC.E3.83.97 評価テープ (Evaluation tape)]
+
+  * [2023-April-14-Programming-Manual-ELENA-Byte-Codes+%28%E6%97%A5%E6%9C%AC%E8%AA%9E%29 ELENA バイトコード (ELENA Byte Codes)]
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

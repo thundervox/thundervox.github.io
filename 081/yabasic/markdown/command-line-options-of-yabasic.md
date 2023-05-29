@@ -18,7 +18,7 @@ Change the infolevel of yabasic, where *INFOLEVEL* can be one of ```debug```, ``
 
 **\--execute** *A-PROGRAM-AS-A-SINGLE-STRING*
 
-With this option you may specify some yabasic-code to be executed right away. This is useful for very short programs, which you do not want to save to a file. If this option is given, yabasic will not read any code from a file. E.g.
+With this option you may specify some yabasic-code to be executed *right away*. This is useful for very short programs, which you do not want to save to a file. If this option is given, yabasic will not read any code from a file. E.g.
 
 ```
 yabasic -e 'for a=1 to 10:print a*a:next a'
@@ -28,7 +28,7 @@ prints the square numbers from 1 to 10.
 
 **\--bind** *NAME-OF-STANDALONE-PROGRAM*
 
-Create a standalone program (whose name is specified by *NAME-OF-STANDALONE-PROGRAM*) from the yabasic-program, that is specified on the command line. See the section about [creating a standalone-program]()<sup>**?**</sup> for details.
+Create a standalone program (whose name is specified by *NAME-OF-STANDALONE-PROGRAM*) from the yabasic-program, that is specified on the command line. See the section about [creating a *standalone*-program]()<sup>**?**</sup> for details.
 
 **\--geometry** +*X-POSITION*+*Y-POSITION*
 

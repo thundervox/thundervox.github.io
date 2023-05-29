@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+   <title>プログラミング言語 ELENA (日本語非公式サイト) </title>
+   <meta name="author" content="Aleksey Rakov / isVowel">
+   <meta property="og:title" content=" Eプログラミング言語 ELENA "/>
+   <meta property="og:image" content="/header_70.png"/>
+   <meta name="description" content="ELENA (エレナ) は遅延バインディングに対応した汎用プログラミング言語です。">
+   <meta name="keywords" content="ELENA (エレナ) は遅延バインディングに対応した汎用プログラミング言語です。関数型プログラミングとオブジェクト指向プログラミングの機能を兼ね備えたマルチパラダイム言語です。  ELENA についてもっと知りたいなら、こちらをどうぞ。">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+   <link href="bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="app.css" />
+   <link rel="stylesheet" href="fonts.css" />
+   <link rel="stylesheet" href="github.css" /> 
+   <link rel="icon" type="image/png" href="/logo.png"/>
+</header>     
+<body>
+   <div class="container py-3 py-lg-0">
+     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="main-menu">
+       <a class="navbar-brand" href="/" id="logo">
+         <img src="logo.png" />
+       </a>
+       <button class="navbar-toggler ml-auto hidden-sm-up float-xs-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav mr-auto">
+           <li class="nav-item  flex-md-fill text-md-center">
+             <a class="nav-link" href="api/index.html">標準ライブラリ</a>
+           </li>
+           <li class="nav-item flex-md-fill text-md-center">
+             <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang/wiki">Wiki</a>
+           </li>
+           <li class="nav-item  flex-md-fill text-md-center">
+             <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang/discussions/">ディスカッション</a>
+           </li>
+           <li class="nav-item  flex-md-fill text-md-center">
+             <a class="nav-link" href="https://twitter.com/elena_language">Twitter</a>
+           </li>
+           <li class="nav-item  flex-md-fill text-md-center">
+             <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang/wiki/Tutorials">チュートリアル</a>
+           </li>
+           <li class="nav-item  flex-md-fill text-md-center">
+             <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang">ソースコード</a>
+           </li>
+           <li class="nav-item  flex-md-fill text-md-center">
+             <a class="nav-link" href="http://rosettacode.org/wiki/Category:Elena">Rosetta code</a>
+           </li>
+           <li class="nav-item donate flex-md-fill text-md-center">
+             <a class="btn btn-success" href="https://paypal.me/elenaprolang">寄付する</a>
+           </li>
+         </ul>
+       </div>
+     </nav>
+   </div>
+
+
+<div class="container">
+  <div class="jumbotron" style="text-align: center;" id="main-jumbo">
+    <div class="container page-heading">
+      <h1 class="display-5 main-heading">
+        <ruby>ELENA<rt>プログラミング言語</rt></ruby>
+      </h1>
+</br/>
+      <div class="row">
+        <div class="col-lg-3 col-md-1 col-sm-1"></div>
+        <div class="col-lg-3 col-md-5 col-sm-5">
+          <a class="btn btn-success btn-lg btn-block" href="https://github.com/ELENA-LANG/elena-lang/releases/tag/v5.0.23" role="button">v5.0 のダウンロード</a>
+        </br/>
+
+        </div>
+        <div class="col-lg-3 col-md-5 col-sm-5 docs">
+          <a class="btn btn-primary btn-lg btn-block" href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual" role="button">ドキュメンテーション</a>
+        </br/>
+        </div>
+        <div class="col-3 col-md-1 col-sm-1"></div>
+      </div>
+      <div clsss="row">
+        <a class="github-button" href="https://github.com/ELENA-LANG/elena-lang" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ELENA-LANG/elena-lang on GitHub">お気に入りへ登録</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container pt-sm-2">
+  <div class="row">
+    <div class="col-lg-4 col-md-3 language-features "><hr/></div>
+    <div class="col-lg-4 col-md-6 language-features section-heading">
+      <h2 class="lead secondary-heading">
+        ELENA とは
+      </h2>
+    </div>
+    <div class="col-lg-4 col-md-3 language-features"><hr/></div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="col-lg-4 col-md-6 feature">
+      <h3>関数型言語</h3>
+      <p>
+        ELENA は<a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#functions">第一級関数</a>と
+        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#first-class-messages">第一級メッセージ</a>が使えます。
+      </p>
+    </div>
+    <div class="col-lg-4 col-md-6 feature">
+      <h3>オブジェクト指向言語</h3>
+      <p>
+        ELENA はオブジェクト指向の豊富な機能が使えます: <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#abstract-classes">抽象クラス</a>、
+        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#interfaces">インターフェース</a>、
+        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#singletons">シングルトン</a>、
+        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#class-constants">クラス定数</a>、
+        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#named-constructors">名前付きコンストラクタ</a>、
+        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#variadic-methods ">可変長引数メソッド / コンストラクタ</a>、
+        および<a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#extensions">クラス拡張</a>。
+        高度な機能も使えます: メソッドの
+        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#re-sending-methods">再送信</a>
+        と<a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#dispatch-methods">ディスパッチ</a>。 
+      </p>
+    </div>
+    <div class="col-lg-4 col-md-6 feature">
+      <h3>動的言語</h3>
+      <p>
+        動的言語の機能も使えます: 
+        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#multi-constructors">多重コンストラクタ</a>
+        / <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#multi-methods">多重メソッド</a>、および
+        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#generic-methods">ジェネリックメソッド</a>。
+        ミックスイン、動的レコードなどを実装するために        <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#custom-dispatcher">カスタムメッセージディスパッチャー</a>が用意されています。
+      </p>
+    </div>
+    <div class="col-lg-4 col-md-6 feature">
+      <h3>インタプリタ</h3>
+      <p>
+        実行時のコンパイル処理なしで <a href="https://github.com/ELENA-LANG/tutorials/blob/master/ExpressionTree1/README.md">
+        実行中にコードをビルドできます</a>。
+      </p>
+    </div>
+    <div class="col-lg-4 col-md-6 feature">
+      <h3>カスタマイズ性</h3>
+      <p>
+         <a href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual#evaluation-tape">
+        自作のスクリプト文法を定義してランタイムで実行</a>できます。
+      </p>
+    </div>
+    <div class="col-lg-4 col-md-6 feature">
+      <h3>フリー</h3>
+      <p>
+        ELENA の使用許諾条件は <a href="https://github.com/ELENA-LANG/elena-lang/blob/master/LICENSE">MIT ライセンス</a>です。どなたさまでも自由に使えます。<a href="https://github.com/ELENA-LANG/elena-lang">ソースコード</a>は GitHub で一般公開しています。
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+  <br />
+
+<div class="container-fluid alt-color packages">
+    <br><br>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-3 ecosystem"><hr></div>
+        <div class="col-lg-4 col-md-6 ecosystem section-heading">
+          <h2 class="lead secondary-heading">
+            概要
+          </h2>
+        </div>
+        <div class="col-lg-4 col-md-3 ecosystem"><hr></div>
+      </div>
+
+      <br>
+      <p>
+         ELENA は遅延バインディングに対応した汎用プログラミング言語です。関数型プログラミングとオブジェクト指向プログラミングの機能を兼ね備えたマルチパラダイム言語です。強い型付けと弱い型付け、ランタイム変換、プリミティブ型のボクシングとアンボクシング、外部ライブラリの直接使用ができます。メッセージディスパッチを扱うために豊富なツールセットが用意されています : 多重メソッド、メッセージ資格付与、ジェネリックメッセージハンドラ。多重継承はミックスインと型のインターフェースでシミュレートします。組み込みスクリプトエンジンによりにカスタム定義のスクリプトをアプリケーションに組み込めます。 単体アプリケーションと仮想マシンのクライアントで使えます。      
+      </p>
+      <h6>主な機能</h6>
+      <ul>
+<li>自由なオープンソース (MIT ライセンス)</li>
+<li>すべて揃ったソースコード</li>
+<li>Unicode 対応 (UTF-8)</li>
+<li>GUI による統合開発環境とデバッガ (ELENA IDE)</li>
+<li>オプション型</li>
+<li>多重ディスパッチ / 多重メソッド</li>
+<li>複数値による返値</li>
+<li>静的メソッドの継承</li>
+<li>可変長引数メソッド</li>
+<li>メソッドのイールド (yieldable method )</li>
+<li>クロージャー (閉包関数)</li>
+<li>ミックスイン</li>
+<li>型のインターフェース / 変換</li>
+<li>クラス / コードのテンプレート</li>
+<li>スクリプトエンジン</li>
+      <br>
+    </div>
+      <br>
+</div>
+
+<div class="container-fluid alt-color packages">
+    <br><br>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-3 ecosystem"><hr></div>
+        <div class="col-lg-4 col-md-6 ecosystem section-heading">
+          <h2 class="lead secondary-heading">
+            インストール方法
+          </h2>
+        </div>
+        <div class="col-lg-4 col-md-3 ecosystem"><hr></div>
+      </div>
+
+      <br>
+                <p>インストールしたいフォルダに zip ファイルの内容をすべて展開します。</p>   
+             
+                <p>必要に応じて、 bin フォルダのパスをシステムの環境変数(例えば &lt;アプリケーションのルートフォルダ&gt;\bin)へ追加、あるいはセットアップの実行可能ファイルを使います。</p>
+
+                <p>ELENA を使うには Microsoft Visual C++ 2017 再頒布可能パッケージをインストールしてください。</p>
+
+                <p>ファイルを開いて、プログラムやライブラリのコンパイル、またはデバッグをするには ELENA GUI IDE (&lt;app root&gt;\bin\elide.exe) か ELENA コマンドラインコンパイラ  
+                (<app root>\bin\elc.exe) を使います。　 </p>
+
+                <p>ELENA IDE では File → Open → Open Project オプションを選択後に
+                プロジェクトファイル (*.prj) を開きます。つぎに、 Project →Compile オプションでプロジェクトのコンパイルと Project-Debug でデバッグを行います。</p>
+      <br>
+
+    </div>
+</div>
+
+<div class="container-fluid alt-color packages">
+    <br><br>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-3 ecosystem"><hr></div>
+        <div class="col-lg-4 col-md-6 ecosystem section-heading">
+          <h2 class="lead secondary-heading">
+            スポンサー募集
+          </h2>
+        </div>
+        <div class="col-lg-4 col-md-3 ecosystem"><hr></div>
+      </div>
+
+      <br>
+                <p>このプロジェクトが気に入りましたら<a href="https://github.com/sponsors/arakov/">スポンサー契約</a>から資金援助をお願いします。</p>   
+      <br>
+
+    </div>
+</div>
+
+<footer class="container-fluid footer-menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-4 footer-menu-item">
+          <h6>ダウンロード</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang/releases/tag/v5.0.23">ELENA v5.0</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://ci.appveyor.com/project/arakov/elena-lang/build/artifacts">ナイトリービルド</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 footer-menu-item">
+          <h6>ドキュメンテーション</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual">ELENA マニュアル</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="api/index.html">標準ライブラリ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 footer-menu-item">
+          <h6>不具合を見つけたら</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang/issues/new">問題の報告</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 footer-menu-item">
+          <h6>コミュニティ</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang/discussions/">GitHub ディスカッション</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.reddit.com/r/elena_lang/">Reddit</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 footer-menu-item">
+          <h6>チュートリアル</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="http://rosettacode.org/wiki/Category:Elena">Rosetta code</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang/wiki/Tutorials">GitHub 掲載のチュートリアル</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 footer-menu-item">
+          <h6>ソースコード</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/ELENA-LANG/elena-lang">ソース</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://sourceforge.net/projects/elenalang/files/">バイナリのミラー</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br />
+  </footer>
+
+<footer class="container-fluid footer-copy">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 py-2">
+          <p>
+            ©2019 プログラミング言語 ELENA プロジェクト。 このウェブサイトのコンテンツは <a href="https://github.com/ELENA-LANG/elena-lang/blob/master/LICENSE">MIT ライセンス</a>です。
+          </p>
+        </div>
+        <div class="col-md-2 py-2">
+          <a class="btn btn-success" href="https://paypal.me/elenaprolang">寄付する</a>
+        </div>
+      </div>
+    </div>
+</footer>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

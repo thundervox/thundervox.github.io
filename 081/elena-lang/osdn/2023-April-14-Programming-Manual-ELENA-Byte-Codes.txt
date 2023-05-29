@@ -1,0 +1,43 @@
+=== ELENA バイトコード
+
+==== ELENA 仮想マシンのレジスタ
+
+|| '''ニーモニック''' || '''概要''' ||
+
+||f(p)     || フレームポインタ     (正数は現在のフレームを、負数は以前のフレームを指します) ||
+
+||s(p)     || スタックポインタ     (正数のみ)||
+
+||a(cc)    || アキュームレータ       (ebx)||
+
+||index    || データアキュームレータ (edx)||
+
+==== レジスタ操作
+
+|| '''コード''' || '''ニーモニック''' || '''概要'''                  ||
+
+|| 91h      || getai i               || acc <= acc![i]  ||
+
+|| 94h      || peekfi i             || ![fp+i] => acc  ||
+
+|| 95h      || peeksi i            || ![sp+i] => acc; ||
+
+|| 9Ch     || setf i || fp+i => acc ||
+
+|| C0h || setai i || ![sp] => acc![i]||
+
+|| 9Fh || setm m || m => index||
+
+|| 9Eh || setr r || r => acc||
+
+|| BBh || savesi i || ![sp:i] <= index||
+
+|| C4h || storefi i || ![fp+i] <= acc ||
+
+|| C3h || storesi i  || ![sp+i] <= acc||
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

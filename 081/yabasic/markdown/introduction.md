@@ -7,7 +7,7 @@
 
 This document describes yabasic. You will find information about the yabasic interpreter (the program **yabasic** under Unix or **yabasic.exe** under Windows) as well as the language (which is, of course, a sort of basic) itself.
 
-This document applies to version **2.90** of yabasic
+This document applies to version **2.90.3** of yabasic
 
 However, it does *not* contain the latest news about yabasic or a FAQ. As such information tends to change rapidly, it is presented online only at www.yabasic.de.
 

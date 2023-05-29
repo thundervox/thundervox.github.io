@@ -13,4 +13,4 @@
  * [Commands and functions related with time]()<sup>**?**</sup>
  * [Other commands]()<sup>**?**</sup>
  * [Graphics and printing]()<sup>**?**</sup>
- * [The foreign function interface]()<sup>**?**</sup>
+ * [The foreign function interface](the-foreign-function-interface.html)

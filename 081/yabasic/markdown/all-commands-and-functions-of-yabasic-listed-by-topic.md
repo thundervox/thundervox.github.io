@@ -1,6 +1,6 @@
 # Chapter 5. All commands and functions of yabasic listed by topic
 
- * [Numbers with base 2 or 16]()<sup>**?**</sup>
+ * [Numbers with base 2 or 16](numbers-with-base-2-or-16.html)
  * [Number processing and conversion](number-processing-and-conversion.html)
  * [Conditions and control structures]()<sup>**?**</sup>
  * [Data keeping and processing]()<sup>**?**</sup>

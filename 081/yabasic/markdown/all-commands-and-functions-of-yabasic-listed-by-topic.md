@@ -10,7 +10,7 @@
  * [Libraries](libraries.html)
  * [Invoking other program from within yabasic](invoking-other-program-from-within-yabasic.html)
  * [Adding new code to a running program](adding-new-code-to-a-running-program.html)
- * [Commands and functions related with time](commands-and-functions-related-with-time.html)<sup>**?**</sup>
+ * [Commands and functions related with time](commands-and-functions-related-with-time.html)
  * [Other commands](other-commands.html)
  * [Graphics and printing](graphics-and-printing.html)
  * [The foreign function interface](the-foreign-function-interface.html)

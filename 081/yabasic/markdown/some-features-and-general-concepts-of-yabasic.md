@@ -33,4 +33,4 @@
   * Two more complex examples
   * See also
 
-This chapter presents some general concepts and terms, which deserve a description on their own, but are not associated with a single command or function in yabasic. Most of these topics do not lend themselves to be read alone, rather they might be read (or skimmed) as background material if an entry from the alphabetical list of commands refers to them.
+This chapter presents some general concepts and terms, which deserve a description on their own, but are not associated with a single command or function in yabasic. Most of these topics do not lend themselves to be read alone, rather they might be read (or skimmed) as background material if an entry from the [alphabetical list of commands]()<sup>**?**</sup> refers to them.

@@ -3,8 +3,8 @@
  * [Numbers with base 2 or 16](numbers-with-base-2-or-16.html)
  * [Number processing and conversion](number-processing-and-conversion.html)
  * [Conditions and control structures](conditions-and-control-structures.html)
- * [Data keeping and processing]()<sup>**?**</sup>
- * [String processing]()<sup>**?**</sup>
+ * [Data keeping and processing](data-keeping-and-processing.html)
+ * [String processing](string-processing.html)
  * [File operations and printing]()<sup>**?**</sup>
  * [Subroutines]()<sup>**?**</sup>
  * [Libraries]()<sup>**?**</sup>

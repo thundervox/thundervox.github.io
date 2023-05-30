@@ -1,7 +1,7 @@
-# A Brief History Of FMSLogo
+# A Brief History Of <span class="notranslate">FMSLogo</span>
 
-Seymour Papert (and others) designed the Logo language to be powerful enough for computer research, but simple enough so that it could be enjoyed by children.
-Papert used Logo to conduct Artificial Intelligence and Robotics research at the Massachusetts Institute of Technology.
+Seymour Papert (and others) designed the <span class="notranslate">Logo</span> language to be powerful enough for computer research, but simple enough so that it could be enjoyed by children.
+Papert used <span class="notranslate">Logo</span> to conduct Artificial Intelligence and Robotics research at the Massachusetts Institute of Technology.
 One of the robots that Logo controlled had a dome-shaped protective casing over its electronics that made it resemble a turtle.
 As personal computers became more affordable, the physical turtle was replaced by a virtual turtle on a computer screen.
 The virtual turtle was given a pen to help it fit into the familiar world of childhood learning.
@@ -9,12 +9,12 @@ Drawing is already a natural part of childhood, but drawing with Logo is differe
 To draw with Logo, you must learn to think about drawing, enough so that you can teach a complete idiot (the turtle) how to draw.
 
 Throughout the 1980s, as computers became more affordable, Logo was integrated into the curriculum of many schools.
-This led to a proliferation of different Logo software packages, each sharing the core spirit of Logo, but designed for specific computers.
+This led to a proliferation of different <span class="notranslate">Logo</span> software packages, each sharing the core spirit of Logo, but designed for specific computers.
 
 In the early 1990s, a lecturer at UC Berkeley name Brian Harvey, wanted to write a computer science textbook for non-professional programmers.
-He selected Logo as the language for his textbook.
-At this time, there were many Logo environments, each with their own incompatibilities, some of which were no longer available for purchase.
-To overcome the incompatibilities between different versions of Logo, Harvey created a new version of Logo and ported it to every popular computer of the time.
+He selected <span class="notranslate">Logo</span> as the language for his textbook.
+At this time, there were many <span class="notranslate">Logo</span> environments, each with their own incompatibilities, some of which were no longer available for purchase.
+To overcome the incompatibilities between different versions of <span class="notranslate">Logo</span>, Harvey created a new version of Logo and ported it to every popular computer of the time.
 He named it UCBLogo and based his textbook on it.
 UCBLogo was written 1993 and given away free-of-charge.
 

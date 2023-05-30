@@ -69,4 +69,4 @@
   - A very simple program
   - Graphics with bitmaps
   - A menu to choose from
-- 9\. The Copyright of yabasic
+- [9\. The Copyright of yabasic](the-copyright-of-yabasic.html)

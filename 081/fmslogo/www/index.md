@@ -21,7 +21,7 @@ FMSLogo includes support for:
 * Calling into native DLLs
 * Creating windows dialog boxes
 * Event driven programming (mouse, keyboard, timer)
-* Controlling multimedia devices (WAV sound files, CD-ROM control, etc.)</li>
+* Controlling multimedia devices (WAV sound files, CD-ROM control, etc.)
 * 3D Perspective drawing (wire-frame and solids)
 * Creating animated GIFs
 

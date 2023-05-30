@@ -3,7 +3,7 @@
 FMSLogo is a free implementation of a computing environment called Logo, which is an interactive programming language that is simple, powerful, and best of all fun.
 You can download FMSLogo from the project portal on SourceForge.
 
-![]()
+![Logo Example](./media/logoexample.png)
 
 FMSLogo includes support for:
 
@@ -33,8 +33,3 @@ FMSLogo includes support for:
 * FMSLogo has a strong, international user community with over a decade of classroom experience.
 
 Because of this, FMSLogo is ideal for elementary school computer labs.
-
-<!--
-
--->
-

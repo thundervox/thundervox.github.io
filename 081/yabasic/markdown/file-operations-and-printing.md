@@ -96,10 +96,10 @@ either a comment or a marker for a file-number
 
 can be used in the print-command to place the output at a specified position
 
-[**\@**]()<sup>**?**</sup>
+[**@**]()<sup>**?**</sup>
 
 synonymous to at
 
-[**\;**]()<sup>**?**</sup>
+[**;**]()<sup>**?**</sup>
 
 suppress the implicit newline after a print-statement

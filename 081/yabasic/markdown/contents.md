@@ -30,7 +30,7 @@
   - [Other commands](other-commands.html)
   - [Graphics and printing](graphics-and-printing.html)
   - [The foreign function interface](the-foreign-function-interface.html)
-- 6\. Some features and general concepts of yabasic
+- [6\. Some features and general concepts of yabasic](some-features-and-general-concepts-of-yabasic.html)
   - Logical shortcuts
   - Conditions and expressions
   - Comparing strings or numbers

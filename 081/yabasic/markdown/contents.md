@@ -16,21 +16,20 @@
   - [Setting defaults](the-yabasic-program-under-unix.html#setting-defaults)
 - [4\. Command line options of yabasic](command-line-options-of-yabasic.html)
 - [5\. All commands and functions of yabasic listed by topic](all-commands-and-functions-of-yabasic-listed-by-topic.html)
-  - Numbers with base 2 or 16
-  - Number processing and conversion
-  - Conditions and control structures
-  - Data keeping and processing
-  - String processing
-  - File operations and printing
-  - Subroutines
-  - Libraries
-  - Invoking other program from within yabasic
-  - Adding new code to a running program
-  - Commands and functions related with time
-  - Other commands
-  - Graphics and printing
-  - The foreign function interface
-
+  - [Numbers with base 2 or 16](numbers-with-base-2-or-16.html)
+  - [Number processing and conversion](number-processing-and-conversion.html)
+  - [Conditions and control structures](conditions-and-control-structures.html)
+  - [Data keeping and processing](data-keeping-and-processing.html)
+  - [String processing](string-processing.html)
+  - [File operations and printing](file-operations-and-printing.html)
+  - [Subroutines](subroutines.html)
+  - [Libraries](libraries.html)
+  - [Invoking other program from within yabasic](invoking-other-program-from-within-yabasic.html)
+  - [Adding new code to a running program](adding-new-code-to-a-running-program.html)
+  - [Commands and functions related with time](commands-and-functions-related-with-time.html)
+  - [Other commands](other-commands.html)
+  - [Graphics and printing](graphics-and-printing.html)
+  - [The foreign function interface](the-foreign-function-interface.html)
 - 6\. Some features and general concepts of yabasic
   - Logical shortcuts
   - Conditions and expressions

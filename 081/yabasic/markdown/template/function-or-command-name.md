@@ -12,7 +12,7 @@ print foobar(n)
 
 ## Description
 
-some information
+some description here
 
 
 ## Note

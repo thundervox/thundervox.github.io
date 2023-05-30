@@ -19,7 +19,7 @@
 * Adding code to a running program
   * Purpose
   * How the various functions and commands differ
-* Creating a standalone program from your yabasic-program
+* Creating a *standalone* program from your yabasic-program
   * Creating a standalone-program from the command line
   * Creating a standalone-program from within your program
   * Points to consider before creating a standalone program

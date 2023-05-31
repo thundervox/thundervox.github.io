@@ -1,0 +1,241 @@
+=== メソッド
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Method is a function declared inside the class scope. It is associated with an instance of the class (similar, a static method / constructor is bound with the class itself). To invoke the method we have to send a message. The process of resolving the method based on the incoming message is called dispatching. If no methods are found an exception is raised. The method which implements the method resolving is called a dispatcher.
+
+メソッドは、クラススコープ内で宣言された関数です。クラスのインスタンスに関連付けられます(同様に、静的メソッド/コンストラクタはクラス自体にバインドされます)。メソッドを呼び出すには、メッセージを送信する必要があります。着信メッセージに基づいてメソッドを解決するプロセスは、ディスパッチと呼ばれます。メソッドが見つからない場合は、例外が発生します。メソッドの解決を実装するメソッドは、ディスパッチャと呼ばれます。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        // メソッドの宣言
+
+        callMe()
+
+        {
+
+            console.writeLine("I'm called")
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+        // メッセージを送ることでメソッドを呼び出す
+
+        a.callMe();
+
+    }
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+    I'm called
+
+}}}
+
+Methods arguments are enclosed in brackets and separated by a comma. If method has no arguments the brackets are empty. The method body is placed after the brackets. In normal cases the code is enclosed inside curly brackets. The statements are separated by a semicolon (except the last one, where the terminator sign is optional). 
+
+メソッドの引数は、角括弧で囲まれ、カンマで区切られます。メソッドに引数がない場合、角括弧は空です。メソッド本体は角括弧の後に配置されます。通常、コードは中括弧で囲まれます。ステートメントはセミコロンで区切られます(最後のステートメントを除き、末尾記号はオプションです)。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        methodWithoutArgs()
+
+        {
+
+           console.writeLine("A method body is placed here")
+
+        }
+
+        
+
+        methodWithWeakArgs(arg1, arg2)
+
+        {
+
+            console.write("methodWithWeakArgs is called with two args:");
+
+            console.writeLine(arg1);
+
+            console.writeLine(arg2);
+
+        }
+
+        
+
+        methodWithStrongTypedArgs(int arg1, string arg2)
+
+        {
+
+        }
+
+    }
+
+}}}
+
+All methods should return the value. If the return statement is not specified, the method returns itself:
+
+すべてのメソッドは値を戻す必要があります。 return ステートメントが指定されていない場合、メソッドはそれ自体を返します。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        myMethod()
+
+        {
+
+            console.writeLine("myMethod is called and return")
+
+            // 返値が未指定のため、メソッドは
+
+            // 現在のクラスのインスタンスを返す
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+        
+
+        var retVal := a.myMethod();
+
+        console.write(retVal);
+
+    }
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+    myMethod is called and return
+
+    '$private'A
+
+}}}
+
+To return a value from the method we have to use a return operator - '''!^'''. It terminates the code flow and returns the following expression. The operator must be the last one in the scope.
+
+メソッドから値を返すには、返値演算子 '''!^''' を使用する必要があります。これにより、コード・フローが終了し、次の式が返されます。演算子は、スコープ内の最後の演算子である必要があります。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        sum(arg1, arg2)
+
+        {
+
+            // 返値演算子は式の結果を返します 
+
+            ^ arg1 + arg2
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+        
+
+        var retVal := a.sum(1,2);
+
+        console.write(retVal);
+
+    }
+
+}}}
+
+The program will print the sum of two numbers:
+
+このプログラムは数値の合計を表示します。
+
+{{{ code ruby
+
+    3 
+
+}}}
+
+If the method body contains only the return operator we can simplify our code:
+
+メソッド本体に return 演算子のみが含まれている場合は、コードを簡略化できます。
+
+{{{ code ruby
+
+    // ...
+
+        sum(arg1, arg2)
+
+            // イコール = シンボルの後にある本文を返す 
+
+            = arg1 + arg2
+
+    // ...
+
+}}}
+
+We can specify the method returning type. Similar to C-like languages it can be placed before the method name:
+
+メソッドの返値の型を指定できます。C言語と同様に、メソッド名の前に配置できます。
+
+{{{ code ruby
+
+    // ...
+
+        // 返値型を明示した強い型付けのメソッドを宣言
+
+        int sum(int arg1, int arg2)
+
+            = arg1 + arg2
+
+    // ...
+
+}}}
+
+If the returning type is not provided the method result is weak and we can expect any type as a result of 
+
+the operation.
+
+返値型が未指定の場合、メソッドの結果は弱い型付けとなるため、処理結果として任意の型を予期することができる。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。

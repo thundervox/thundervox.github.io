@@ -1,0 +1,32 @@
+= ホーム
+
+翻訳準備中
+
+ようこそ ELENA wiki へ！
+
+== 目次
+
+ * ELENA について
+
+ * 取扱説明書
+
+ * チュートリアル
+
+== ELENA について
+
+^ 訳注: この説明書きは6回 ([https://elena-lang.github.io ウェブサイト], [https://github.com/ELENA-LANG/elena-lang リポジトリ], [https://github.com/ELENA-LANG/elena-lang/wiki Wiki], [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual プログラミングマニュアル], [https://github.com/ELENA-LANG/elena-lang/blob/master/doc/lang/manual.md プログラミングマニュアル(旧版)], [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Language ELENA Programming Language] )ほど散見しているので、保守の手間や読み手のことを考えて減らそう。 ^
+
+=== 主要機能
+
+== 取扱説明書
+
+== チュートリアル
+
+　
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/Home Home (2020-January-30 rev. 78)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

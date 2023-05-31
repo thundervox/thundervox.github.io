@@ -1,0 +1,48 @@
+==== 基本フィールド
+
+基本型は該当するラッパー構造体へボックス化されます。このような構造体を宣言するには基本フィールドを宣言してください。
+
+{{{ code ruby
+
+// 32bit 整数ラッパーの宣言
+
+struct MyIntNumber
+
+{
+
+    embeddable __int theValue[4];
+
+} 
+
+    
+
+// Unicode 文字ラッパーの宣言
+
+struct MyCharValue
+
+{
+
+    embeddable __raw theValue[4];
+
+}
+
+    
+
+//  64bit 浮動小数点数ラッパーの宣言
+
+struct MyRealNumber
+
+{
+
+    embeddable __float theValue[8];
+
+}
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

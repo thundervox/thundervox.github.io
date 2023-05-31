@@ -1,0 +1,340 @@
+== プロパティ
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+In ELENA class fields cannot be directly accessed outside their classes. So we have to provide special means to work with them - '''properties'''.
+
+ELENAでは、クラスフィールドはクラスの外部から直接アクセスすることはできません。それらを扱うための(クラスの外部からフィールドへアクセスするための)特別な手段を提供する必要があります ― 'それが ''properties''' (プロパティ) です。
+
+Properties are special sort of class members used to mimic field-like syntax. Though the operations with properties look like direct ones (similar to C), "under the hood" special access methods are used : '''get''' and '''set'''. 
+
+プロパティは、フィールドのような構文を模倣するために使用される特別な種類のクラスメンバである。プロパティを有する操作は直接的な操作 (Cと同様)のように見えるが、「フードの下で (内部では)」特別なアクセスメソッド、すなわち '''get''' および '''set''' が使用される。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    public program()
+
+    {
+
+        var s := "MyString";
+
+        // クラスのプロパティにアクセスするのは非に常簡単です
+
+        console.printLine("s.Length=",s.Length);
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    s.Length=8
+
+}}}
+
+In simplest case the property declaration is quite straight-forward and consists of only a get-method (so-called read-only property):
+
+最も単純なケースでは、プロパティ宣言は非常に単純で、get メソッド (いわゆる読み取り専用プロパティ)のみで構成されます。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        // フィールドの宣言
+
+        x := 2;
+
+        
+
+        // get メソッドと合致する読み取り専用プロパティの宣言
+
+        X = x;
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+        
+
+        console.printLine("a.X=",a.X);
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    a.X=2
+
+}}}
+
+複数行に渡るコードの get メソッドが必要な場合、以下のように完全な get メソッド宣言を使います。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        // フィールドの宣言
+
+        x := 2;
+
+        
+
+        // 通常の get メソッドは get 属性から書き始めます
+
+        get RealX()
+
+        {
+
+            var r := x.toReal();
+
+            
+
+            ^ r
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+        
+
+        console.printLine("a.RealX=",a.RealX);
+
+    }
+
+}}}
+
+その結果は以下のとおりです。
+
+{{{ code ruby
+
+    a.RealX=2.0
+
+}}}
+
+プロパティ値の設定が必要ならば、同じく set メソッドも宣言してください。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        // フィールドの宣言
+
+        x := 2;
+
+        
+
+        // 単純な get メソッドの宣言
+
+        X = x;
+
+        
+
+        // 単純な set メソッドの宣言
+
+        set X(val)
+
+        {
+
+            x := val
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+        
+
+        // プロパティ値の設定
+
+        a.X := 3;
+
+        
+
+        console.printLine("a.X=",a.X);
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    a.X=3
+
+}}}
+
+ほかの方法でプロパティを宣言するには明示的(定型、形式的)なプロパティの宣言といわれているものを使います。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        // フィールドの宣言
+
+        int x := 2;
+
+        
+
+        // 明示的なプロパティの宣言
+
+        int X
+
+        {
+
+            // get メソッド
+
+            get()
+
+                = x;
+
+                
+
+            // set メソッド
+
+            set(int x)
+
+            {
+
+                this x := x
+
+            }
+
+        }
+
+    }
+
+}}}
+
+プロパティは弱い型付けと強い型付けのどちらのプロパティも指定できます (前述の用例のように)。
+
+'''prop''' プロパティのテンプレートを使うとコードが簡素化(わかりやすく、軽くなる)します。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        // prop テンプレートによるプロパティの宣言
+
+        prop X;
+
+        
+
+        printMe()
+
+        {
+
+            // フィールドはそのまま使えます
+
+            console.printLine("A.X=",X)
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // クラスの範囲外では該当するプロパティを使います
+
+        var a := new A();
+
+        a.X := 2;
+
+        
+
+        a.printMe()
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    A.X=2
+
+}}}
+
+弱い型付けと強い型付けのどちらのプロパティもサポートしています。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        // 強い型付けのプロパティを使用 
+
+        prop int X;
+
+    // ... 
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

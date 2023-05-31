@@ -1,0 +1,337 @@
+==== クラス
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Putting aside primitive types every program object is an instance of a class. A class is a structure encapsulating data (fields) with operations with them (methods). A class can specify constructors to create an object and conversion routines to convert it from another object.
+
+基本型を別にすれば、すべてのプログラムのオブジェクトはクラスのインスタンスである。クラスは、データ (フィールド) とそれに対する操作 (メソッド) をカプセル化した構造体である。クラスは、コンストラクタを指定してオブジェクトを作成し、変換ルーチンを指定して別のオブジェクトから変換することができる。
+
+Declaring and using classes is straightforward for anyone familiar with C-like object-oriented languages:
+
+クラスを宣言し使用することは、Ｃライクなオブジェクト指向言語に精通している人はとっても簡単である。
+
+{{{ code ruby
+
+import extensions;
+
+    
+
+// 名前 A のクラスを宣言
+
+class A
+
+{
+
+    // 名前 A のフィールドを宣言
+
+    field a;
+
+        
+
+    // デフォルトのコンストラクタを宣言
+
+    constructor()
+
+    {
+
+        a := "Some value"
+
+    }
+
+        
+
+    // 名前 printMe のクラスを宣言
+
+    method printMe()
+
+    {
+
+        console.printLine(a)
+
+    }
+
+}
+
+    
+
+public program()
+
+{
+
+    // クラス A のインスタンスを作成
+
+    var o := new A();
+
+        
+
+    // メソッドの呼び出し
+
+    o.printMe()
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+Some value
+
+}}}
+
+The keyword '''class''' specifies a normal class. A class body is enclosed in curly brackets. A class name declared right before the class body. A field can be declared in any place inside the class body. It can starts with an attribute '''field'''. Implicit constructor is named '''constructor'''. A method can be declared with a keyword '''method'''. The code could be placed inside curly brackets.
+
+キーワード '''class''' は通常のクラスを指定します。クラス本体は中括弧で囲まれます。クラス本体の直前に宣言されたクラス名です。フィールドはクラス本体内の任意の場所で宣言できます。フィールドは属性 '''field''' で開始できます。暗黙的なコンストラクタは '''constructor''' と名付けられます。メソッドはキーワード '''method''' で宣言できます。コードは中括弧内に置くことができます。
+
+The classes form an hierarchy. Every one (except the super one) has a parent. If the parent is not specified the class inherits '''system'Object''' (a super class). A child class can override any non-sealed method of its parent. An instance of a child class is simultaneously of a parent type (so called is-a relation). So we could assign a child to a variable of a parent type. But the overridden methods will be used (polymorphic code). In case of weak types (or type-less) this is true as well (we only assume that all variables are of the super type).
+
+クラスは階層を形成する。すべてのクラス(スーパークラスを除く)には親がある。親が指定されていない場合、クラスは '''system'Object''' (スーパークラス) を継承する。子クラスは、その親の非封印メソッドをオーバーライドできる。子クラスのインスタンスは、同時に親型 (いわゆる is-a 関係) である。したがって、子を親型の変数に割り当てることができる。しかし、オーバーライドされたメソッドが使用される(ポリモーフィックコード)。弱い型付け(または型のない型)の場合も同様である (すべての変数がスーパー型であると仮定するだけである)。
+
+{{{ code ruby
+
+import  extensions;
+
+    
+
+class Parent
+
+{
+
+    field f;
+
+        
+
+    constructor()
+
+    {
+
+        f := "some value"
+
+    }
+
+        
+
+    printMe()
+
+    {
+
+        console.printLine("parent:",f)
+
+    }
+
+}
+
+    
+
+class Child : Parent
+
+{
+
+    printMe()
+
+    {
+
+        console.printLine("child:",f)
+
+    }
+
+}
+
+    
+
+public program()
+
+{
+
+    Parent p := new Parent();
+
+    Child c := new Child();
+
+        
+
+     p.printMe();
+
+     c.printMe()
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+parent:some value
+
+child:some value
+
+}}}
+
+The parent clause should follow the class name and be introduced with a colon. To override the method we have only declare it once again with the same name and signature.
+
+Parent 節は、クラス名の後に続くべきであり、コロンと共に導入されるべきである。メソッドをオーバーライドするために、同じ名前および署名でもう一度宣言するだけであった。
+
+In ELENA a type (or a class) can be used directly in the code like any other symbols. The only difference that we cannot invoke the default constructor. The named constructors should be used instead. ''NOTE : the default constructor will be called automatically.''
+
+ELENA では、型 (またはクラス) は、任意の他のシンボルのようにコード内で直接使用することができる。唯一の違いは、デフォルトコンストラクタを呼び出すことができないことである。名前付きコンストラクタが代わりに使用されるべきである。''注:デフォルトのコンストラクタは自動的に呼び出されます。''
+
+{{{ code ruby
+
+import extensions;
+
+    
+
+// 名前 A のクラスを宣言
+
+class A
+
+{
+
+    field a;
+
+        
+
+    // デフォルトのコンストラクタ
+
+    constructor()
+
+    {
+
+        a := "a"
+
+     }
+
+        
+
+    // new という名前の明示的なコンストラクタ
+
+    constructor new()
+
+    {
+
+        // デフォルトのコンストラクタは自動的に呼び出されます
+
+    }
+
+}
+
+    
+
+// 名前 B のクラスを宣言
+
+class B
+
+{
+
+    field b;
+
+        
+
+    // デフォルトのコンストラクタ
+
+    constructor()
+
+    {
+
+        b := 2
+
+    }
+
+        
+
+    // new という名前の明示的なコンストラクタ
+
+    constructor new()
+
+    {
+
+        // デフォルトのコンストラクタは自動的に呼び出されます
+
+    }
+
+}
+
+    
+
+// ファクトリー関数
+
+factory(class)
+
+    // メッセージの送信 - 名前と処理結果を返します 
+
+    = class.new();
+
+    
+
+public program()
+
+{
+
+    // 直接的にクラスを用いてオブジェクトを作成
+
+    var a := factory(A);
+
+    var b := factory(B);
+
+        
+
+    // オブジェクトの型を表示
+
+    console
+
+        .printLine(a)
+
+        .printLine(b);
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+mylib'$private'A
+
+mylib'$private'B
+
+}}}
+
+By default a class is declared private. It means it cannot be accessed outside its namespace. In the case of a library we would like to reuse it. So we have to provide a public attribute:
+
+デフォルトでは、クラスはプライベートで宣言される。これは、その名前空間の範囲外ではアクセスできないことを意味する。ライブラリの場合、それを再利用したいので、パブリック属性を提供しなければならない。
+
+{{{ code ruby
+
+public class B
+
+{
+
+}
+
+}}}
+
+Now the class can be accessed either outside the library or by a reference:
+
+これで、クラスはライブラリの外部から、または参照によってアクセスできるようになった。
+
+{{{ code ruby
+
+public program()
+
+{
+
+    var b := new mylib'B()
+
+}
+
+}}}
+
+A reference (or a full name) consists of a namespace (which in turn can contain sub-namespaces separated by apostrophes) and a proper name separated by an apostrophe.
+
+参照 (またはフルネーム) は、名前空間 (アポストロフィで区切られた下位名前空間を含むことができます)と、アポストロフィで区切られた固有名で構成されます。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。

@@ -1,0 +1,60 @@
+==== 変換コンストラクタ
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Conversion constructors are implicit (unnamed) constructors with a strong-typed argument. The compiler will automatically convert the instance of a specified type if there is a conversion constructor with this type:
+
+変換コンストラクタは、強い型付きの引数を持つ暗黙的な (無名の) コンストラクタである。指定された型を持つ変換コンストラクタがある場合、コンパイラは指定された型のインスタンスを自動的に変換する。
+
+{{{ code ruby
+
+import extensions;
+
+A;
+
+B
+
+{
+
+    A a;
+
+    
+
+    // A 型からの変換方法を宣言
+
+    constructor(A a)
+
+    {
+
+        this a := a
+
+    }
+
+}
+
+public program()
+
+{
+
+    A a := new A();
+
+    
+
+    // A から B への自動変換
+
+    B b := a;
+
+}
+
+}}}
+
+''Note that the conversion constructors do not call the default one. All the class variable initialization should be done here independently.''
+
+''変換コンスラクタはデフォルトのコンストラクタを呼び出さないことに注意してください。すべてのクラス変数の初期化は、ここで個別に行われる必要があります。''
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

@@ -44,7 +44,7 @@ Rust, CPython, Zig などがありますし、探せばラッパーや拡張機�
 
 ## 筆者について
 
-性格・適性診断によれば、[INTP](https://www.16personalities.com/ja/intp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC), ソウルカラーはオレンジ、エニアグラム[タイプ3](https://jp.indeed.com/%E3%82%B5%E3%83%BC%E3%83%81%E3%81%82%E3%82%8C/enneagram/type3-achiever?hl=ja) という、かなり暑苦しくて極めて面倒くさい人なので、今回の件も「頭に型抜きバームクーヘン」詰まっているくらいの人が型抜かれて限界になっただけと諦めてください。そういうものです。
+性格・適性診断によれば、[INTP](https://www.16personalities.com/ja/intp%E5%9E%8B%E3%81%AE%E6%80%A7%E6%A0%BC), ソウルカラーはオレンジ、[右左脳タイプ](https://croissant-online.jp/life/118373/)、エニアグラム[タイプ3](https://jp.indeed.com/%E3%82%B5%E3%83%BC%E3%83%81%E3%81%82%E3%82%8C/enneagram/type3-achiever?hl=ja) という、かなり暑苦しくて極めて面倒くさい人なので、今回の件も「頭に型抜きバームクーヘン」詰まっているくらいの人が型抜かれて限界になっただけと諦めてください。そういうものです。
 
 いままでありがとうございました。
 

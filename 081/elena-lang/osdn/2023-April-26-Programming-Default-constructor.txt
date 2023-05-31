@@ -1,0 +1,298 @@
+==== デフォルトコンストラクタ
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+A default constructor is an implicit (unnamed) constructor without arguments. A class can have only one default constructor. To declare default constructor we have to do following:
+
+デフォルトのコンストラクタは、引数のない暗黙的な (無名) コンストラクタです。クラスはデフォルトのコンストラクタを一本だけ持つことができます。デフォルトのコンストラクタを宣言するには以下の操作を行う必要があります。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        // デフォルトコンストラクタの宣言
+
+        constructor()
+
+        {
+
+        }
+
+    }    
+
+    
+
+    public program()
+
+    {
+
+        // デフォルトコンストラクタを用いてオブジェクトを作成  
+
+        var a := new A();
+
+        
+
+        console.printLine(a)
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    mylib'$private'A
+
+}}}
+
+If no constructors are declared the default one is auto-generated.
+
+コンストラクタが宣言されていない場合、デフォルトのコンストラクタは自動生成されます。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    // コンストラクタなしでクラスを宣言
+
+    A;
+
+    
+
+    public program()
+
+    {
+
+        // デフォルトコンストラクタを用いてオブジェクトを作成
+
+        var a := new A();
+
+        
+
+        console.printLine(a)
+
+    }
+
+}}}
+
+If the default constructor is internal, it cannot be called outside the module the class is declared in. 
+
+デフォルトのコンストラクタが internal 修飾子の場合、クラスが宣言されているモジュールの外部から呼び出すことはできません。
+
+Protected default constructor does not allow to create the class directly. For example the following code cannot be compiled:
+
+protected 修飾子が指定されているデフォルトコンストラクタでは、クラスを直接作成できません。例えばば、以下のコードはコンパイルできません:
+
+{{{ code ruby
+
+    A
+
+    {
+
+        protected constructor() {}
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+    }
+
+}}}
+
+コンパイル時にエラーが発生します。
+
+{{{ code ruby
+
+    default or conversion constructor is not found
+
+}}}
+
+The object still can be created if we provide a public named constructor:
+
+public 修飾子指定の名前付きコンストラクタを用意する方法でもオブジェクトを作成することができます。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        // クラスの外部から呼び出すことができない
+
+        // protected 修飾子指定のデフォルトのコンストラクタの宣言
+
+        protected constructor() {}
+
+    
+
+        // public 修飾子指定の名前付きコンストラクタの宣言
+
+        constructor new()
+
+        {
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // public 修飾子を指定した名前付きコンストラクタの呼び出し
+
+        var a := A.new();
+
+    }
+
+}}}
+
+''Note that the default constructor is automatically called inside named constructors.''
+
+''デフォルトのコンストラクタは、名前付きコンストラクタ内で自動的に呼び出されることに注意してください。''
+
+The default constructor can be private as well. In this case, class cannot be inherited outside itself:
+
+デフォルトのコンストラクタはプライベートにすることもできます。この場合、クラス自体は外部継承できません。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        private constructor() {}
+
+    }
+
+    
+
+    B : A;
+
+    
+
+    public program()
+
+    {
+
+        var b := new B();
+
+    }
+
+}}}
+
+このコードはエラーが発生します。
+
+{{{ code ruby
+
+    parent class A cannot be inherited
+
+}}}
+
+Unlike '''sealed''' classes, ones with private constructors can be inherited internally:
+
+'''sealed''' クラスとは異なり、プライベートなコンストラクタを持つクラスは内部継承できます。
+
+{{{ code ruby
+
+    abstract A
+
+    {
+
+        abstract printMe();
+
+        
+
+        private constructor() {}
+
+        
+
+        static A Value1 = new A
+
+        {
+
+            printMe()
+
+            {
+
+                console.writeLine("A.Value1")
+
+            }
+
+        };
+
+        
+
+        static A Value2 = new A
+
+        {
+
+            printMe()
+
+            {
+
+                console.writeLine("A.Value2")
+
+            }
+
+        };
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a1 := A.Value1;
+
+        var a2 := A.Value2;
+
+        
+
+        a1.printMe();
+
+        a2.printMe();
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    A.Value1
+
+    A.Value2
+
+}}}
+
+''Note that '''string''' classes cannot have default constructor''.
+
+'' '''string''' クラスではデフォルトのコンストラクタを扱えない (記述できない) ことに注意してください。''
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

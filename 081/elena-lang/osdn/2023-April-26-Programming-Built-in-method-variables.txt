@@ -1,0 +1,204 @@
+==== 組み込みメソッド変数
+
+There are two built-in method variables in every class method : '''self''' and '''super'''.
+
+すべてのクラスメソッドには '''self''' と '''super''' の組み込みメソッド変数があります。
+
+'''self''' variable refers to the incoming message target. Note that the message target is not always the same as the method owner (for examples it refers to the group object for mixins). 
+
+'''self''' 変数は、受信メッセージターゲットを参照します。メッセージターゲットは、メソッドの所有者と必ずしも同じではないことに注意してください (例えば、ミックスインのグループオブジェクトを参照します)。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        whoAmI()
+
+        {
+
+            // self はメッセージターゲットを参照します - 
+
+            // クラス A のインスタンス
+
+            console.printLine(self)
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+        
+
+        // メッセージの送信
+
+        a.whoAmI()
+
+    }
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+    '$private'A
+
+}}}
+
+We have to use '''self''' variable if we want to invoke another method of the same class:
+
+同一クラスにある別のメソッドを呼び出したい場合は '''self''' 変数を使用してください。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        whoAmI()
+
+        {
+
+            // self はメッセージターゲットを参照します - 
+
+            // クラス A のインスタンス
+
+            console.printLine(self)
+
+        }
+
+        
+
+        invokeWhoAmI()
+
+        {
+
+            // invoking the class method  
+
+            self.whoAmI()
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+        
+
+        // メッセージの送信
+
+        a.invokeWhoAmI()
+
+    }
+
+}}}
+
+実行結果は同じです。
+
+{{{ code ruby
+
+    '$private'A
+
+}}}
+
+組み込み変数
+
+'''super''' は親メソッドを呼び出すために使います。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    Base
+
+    {
+
+        test()
+
+        {
+
+            console.printLine("Base.test()")
+
+        }
+
+    } 
+
+    
+
+    A : Base
+
+    {
+
+        test()
+
+        {
+
+            // 親メソッドの呼び出し
+
+            super.test();
+
+            
+
+            console.printLine("A.test()");        
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := new A();
+
+        
+
+        a.test()
+
+    }
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+    Base.test()
+
+    A.test()
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

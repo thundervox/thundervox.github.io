@@ -1,1 +1,3 @@
-document ディレクトリの TexTra 機械翻訳版
+documentation ディレクトリの TexTra 機械翻訳版
+
+ポストエディットなどは後ほど。

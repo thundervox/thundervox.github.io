@@ -20,7 +20,7 @@ In this tutorial we will create a simple window containing the message "Hello wo
 ```
 GTK-Server 2.4.6 - The GTK-server Tutorial: a "Hello world" application. より引用
 
-直訳すると「このチュートリアルは "Hello world!" を含むシンプルなウィンドウを作成します」なんだけど、 containing は displaying に、 create は way や method に読み替えると「本書は "Hello world!" ウィンドウを表示する方法についてやさしく説明します」かな。 simple は「東京都やさし区（架空の地名）」みたいな強引に意訳しただけですが、あるとないとでは読者の緊張感は少しほぐれるかもしれないなあと考えてみる。
+直訳すると「このチュートリアルは "Hello world!" を含むシンプルなウィンドウを作成します」なんだけど、 containing は displaying に、 create は way や method に読み替えると「本書はウィンドウに "Hello world!" を表示する方法についてやさしく説明します」かな。 simple は「東京都やさし区（架空の地名）」みたいな強引に意訳しただけですが、あるとないとでは読者の緊張感は少しほぐれるかもしれないなあと考えてみる。
 
 なに言っているのかわからないなら、実際に翻訳してみるといいと思う。その深淵に気づくことができるなら翻訳者としての才能の片鱗はあるかもしれないね。
 

@@ -1,0 +1,58 @@
+==== シングルトン
+
+シングルトンは初期化できない (コンストラクタは使用不要) 特別なクラスでありシングルインスタンスのみで構成します。通常、シングルトンはステートレスです(ただし、static フィールドは扱えます)。シングルトンは必ず Sealed になります。
+
+シングルトンクラスは '''singleton''' 属性で宣言します。このクラスはクラスの参照を使うことで参照可能です:
+
+{{{ code ruby
+
+import extensions;
+
+// シングルトンの宣言
+
+public singleton StringHelpers
+
+{
+
+    // 文字列の先頭文字を取得
+
+    char first(string str)
+
+    {
+
+        ^ str[0]
+
+    }
+
+}
+
+public program()
+
+{
+
+    var str := "My string";
+
+    
+
+    // シングルトンメソッドの呼び出し
+
+    console.printLine("Calling StringHelpers.First(""",str,""")=", 
+
+         StringHelpers.first(str))
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+Calling StringHelpers.First("My string")=M
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+

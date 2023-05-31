@@ -1,0 +1,276 @@
+=== 多重メソッド
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Methods can have the same name but different signatures (argument types). An appropriate method can be resolved in the compile-time (so called method overloading) if all arguments are known. Otherwise it will be resolved in the run-time (so called message dispatching). 
+
+メソッドは同じ名前を持つ(宣言、定義)ことができますが、シグネチャ(引数の型)が異なります。すべての引数(に関する情報)がわかっている場合は、コンパイル時に適切なメソッドを解決できます(メソッドオーバーロードと呼ばれます)。それ以外の場合は、実行時に解決されます(メッセージディスパッチと呼ばれます)。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        // シグニチャの異なるニ種類の
+
+        // 同名メソッドを宣言します
+
+        myMethod(int n)
+
+        {
+
+            console.printLine("myMethod<int>(",n,")")
+
+        }
+
+        
+
+        myMethod(string s)
+
+        {
+
+            console.printLine("myMethod<string>(",s,")")
+
+        }
+
+    }  
+
+    
+
+    public program()
+
+    {
+
+        auto o := new A();
+
+        // コンパイル時にメッセージをオーバーロード
+
+        o.myMethod(1);
+
+        o.myMethod("string");
+
+        
+
+        // 実行時にメッセージをディスパッチ
+
+        var v1 := o;
+
+        var v2 := 1;
+
+        var v3 := "string";
+
+        // 引数の型は不明 (弱い型付け)
+
+        v1.myMethod(v2);
+
+        v1.myMethod(v3);
+
+    }
+
+}}}
+
+The output in both cases will be the same:
+
+どちらとも実行結果は同じです。
+
+{{{ code ruby
+
+    myMethod<int>(1)
+
+    myMethod<string>(string)
+
+    myMethod<int>(2)
+
+    myMethod<string>(string)
+
+}}}
+
+If no method matches the arguments an exception is invoked: 
+
+引数に一致するメソッドがない場合は、例外が発生します。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        // シグニチャの異なるニ種類の
+
+        // 同名メソッドを宣言します
+
+        myMethod(int n)
+
+        {
+
+            console.printLine("myMethod<int>(",n,")")
+
+        }
+
+        
+
+        myMethod(string s)
+
+        {
+
+            console.printLine("myMethod<string>(",s,")")
+
+        }
+
+    }  
+
+    
+
+    // ダミークラスの宣言
+
+    B;
+
+    
+
+    public program()
+
+    {
+
+        var o := new A();
+
+        // 実行時にメッセージをディスパッチ
+
+        var v := new B();
+
+        o.myMethod(v);
+
+    }
+
+}}}
+
+このプログラムはエラーが起きます。
+
+{{{ code ruby
+
+    mytest'$private'A : Method myMethod[2] not found
+
+    Call stack:
+
+    system'Exception#class.new[2]:exceptions.l(79)
+
+    system'MethodNotFoundException#class.new[2]:exceptions.l(156)
+
+    system'MethodNotFoundException#class.new[3]:exceptions.l(163)
+
+    system'$private'entry.#invoke[0]:win32_app.l(41)
+
+    mytest'program.#invoke[0]:test.l(25)
+
+    system'$private'entry.#invoke[0]:win32_app.l(37)
+
+    system'#startUp:win32_app.l(59)
+
+}}}
+
+We can declare a default message handler which will be called for any non-resolved argument:
+
+未解決の引数に対して呼び出されるデフォルトメッセージハンドラを宣言することができる。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    A
+
+    {
+
+        // シグニチャの異なるニ種類の
+
+        // 同名メソッドを宣言します
+
+        myMethod(int n)
+
+        {
+
+            console.printLine("myMethod<int>(",n,")")
+
+        }
+
+        
+
+        myMethod(string s)
+
+        {
+
+            console.printLine("myMethod<string>(",s,")")
+
+        }
+
+        
+
+        // デフォルトのメソッド
+
+        myMethod(o)
+
+        {
+
+            console.printLine("deault myMethod(",o,")")
+
+        }    
+
+    }   
+
+        
+
+    // ダミークラスの宣言
+
+    B;
+
+    
+
+    public program()
+
+    {
+
+        var o := new A();
+
+        // 実行時にメッセージをディスパッチ   
+
+        var v := new B();
+
+        var v2 := 2;
+
+        // デフォルトのパンドラが呼び出されます
+
+        o.myMethod(v);
+
+        // このメソッドは int 型の引数で呼び出されます
+
+        o.myMethod(v2);
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    deault myMethod('$private'B)
+
+    myMethod<int>(2)
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

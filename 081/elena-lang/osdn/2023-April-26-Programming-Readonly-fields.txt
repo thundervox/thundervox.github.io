@@ -1,0 +1,47 @@
+==== 読み取り専用フィールド
+
+読み取り専用フィールドはクラスのコンストラクタでのみ初期化される特別な種類のクラスフィールドです。読み取り専用フィールドを宣言するには '''readonly''' 属性を使います。こうすることで、定数クラス、または構造体のフィールド全体は読み取り専用になります。
+
+ 
+
+{{{ code ruby
+
+class MyClass
+
+{
+
+   // 読み取り専用フィールドの宣言
+
+   readonly int x;
+
+   constructor(int x)
+
+    {
+
+       // コンストラクタで初期化します
+
+       this x := x
+
+    }
+
+        
+
+    printMe()
+
+    {
+
+        // クラスメソッドで使えますが変更不能です
+
+        console.printLine("MyClass.x=",x)
+
+    }
+
+}
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

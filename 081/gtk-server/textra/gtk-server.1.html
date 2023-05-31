@@ -1,0 +1,223 @@
+コンテンツタイプ:text/html;charset=UTF-8<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><meta http-equiv="Content-Type" content="text/html; charset=utf8"><TITLE>gtk-serverのマニュアルページ</TITLE>
+</HEAD><BODY>
+<H1>gtk-サーバ</H1>セクション:ユーザーコマンド(1)<BR><A HREF="#index">索引</A><A HREF="/cgi-bin/man/man2html">メインコンテンツに戻る</A><HR>
+          <A NAME="lbAB"></A>
+        <H2>名前</H2>gtk-server:シェルスクリプトおよびインタプリタ言語用のGUIアクセス。<A NAME="lbAC"></A><H2>概要</H2>
+          <B>gtk-サーバ</B>
+          <I>&lt;-stdin>&lt;標準></I>
+          <I>&lt;-tcp>=ホスト:ポート[:max]</I>
+          <I>&lt;-sock>=ホスト:ポート</I>
+          <I>&lt;-udp>=ホスト:ポート</I>
+          <I>&lt;-fifo>=ファイル名</I>
+          <I>&lt;-ipc>=数値</I>
+          <I>[-log=ファイル名]</I>
+          <I>[-シグナル=数値]</I>
+          <I>[-cfg=ファイル名]</I>
+          <I>[-pre=文字列]</I>
+          <I>[-post=文字列]</I>
+          <I>[-ハンドル]</I>
+          <I>[-デタッチ]</I>
+          <I>[-nocreate]</I>
+          <I>[-showconf]</I>
+          <I>[-start=マクロ]</I>
+          <I>[-init=ハンドシェイク]</I>
+          <I>[-ssl=[証明書.pem]]</I>
+          <I>[-password=パスワード]</I>
+          <I>[-ca=証明書.pem]</I>
+          <A NAME="lbAD"></A>
+        <H2>説明</H2>
+
+<P>GTKサーバは、(シェル)スクリプトまたはインタプリタ言語から起動できるバイナリです。GTKサーバは、構成ファイル&#39;GTK-server.cfg&#39;を読み込み、その後クライアントスクリプトがGTK関数を実行できます。これらのGTK関数は、2方向パイプ、名前付きパイプ、またはTCPまたはUDP接続を使用して、プレーンテキストでgtkサーバに送信されます。<P>GTKサーバは、共通デスクトップ環境(CDE)の「dtksh」に触発されたものです。<A NAME="lbAE"></A><H2>引数</H2>
+
+<P>GTKサーバは、次のいずれかの引数を使用して起動する必要があります。<DL COMPACT>
+<DT>
+          <B>-stdin(標準入力)</B>
+        <DD>2方向パイプを使用してGTKサーバーを起動します。クライアントスクリプト言語は、通信を有効にするためにGTKサーバーへの2方向パイプを起動する必要があります。(たとえば、KSHおよびAWKでは、記号「&amp;」がこのために使用されます。)<DT>
+          <B>-tcp=ホスト:ポート[:max]</B>
+        <DD>GTKサーバをTCPサーバとして起動します。クライアントスクリプト言語は、このホストとポートに接続する必要があります。通常、&#39;localhost&#39;と1024より大きいポート番号が使用されます。&#39;max&#39;部分は、接続できるクライアントスクリプトの最大数を決定します。&#39;max&#39;が省略された場合、接続できるクライアントスクリプトは1つだけです。<DT>
+          <B>-sock=ホスト:ポート</B>
+        <DD>GTKサーバをTCPクライアントとして起動します。クライアントスクリプト言語はサーバのように動作し、コマンドをGTKサーバに送信します。<DT>
+          <B>-udp=ホスト:ポート</B>
+        <DD>GTKサーバをUDPモードで起動します。クライアントスクリプトは、UDPプロトコルを使用して&lt;host>と&lt;port>に接続する必要があります。<DT>
+          <B>-fifo=&lt;ファイル></B>
+        <DD>名前付きパイプを使用してGTKサーバーを起動します。パイプはGTKサーバーによって自動的に作成され、&lt;file>という名前が付けられます。スクリプトが終了すると、名前付きパイプは自動的に削除されます。パイプが自動的に作成されないようにするには、[nocreate]オプションも使用します。<DT>
+          <B>-ipc=数値</B>
+        <DD>メッセージキューを使用してGTKサーバーを起動します。番号は1～65535の範囲内である必要があり、キュー番号を指定します。スクリプトが終了すると、GTKサーバーはメッセージキューをメモリから削除します。<BR><P>GTKサーバーがメッセージキューを使用して起動された後、後続のGTK要求は、引数「msg」を使用してGTKサーバーバイナリとともに送信される必要があります。通信チャネルの番号と、送信される文字列を指定する必要があります。例:<BR><P>
+          <B>gtk-server-msg=1,gtk_init NULL NULL(NULLの場合)</B>
+          <BR>
+        <P>ここでは、GTK関数が通信チャネル1に送信されます。番号、カンマ、および文字列の間にスペースがないことを確認してください。スペースがない場合、GTKサーバはこれらを個別の引数と見なします。<BR><P>メッセージキューは、Unixコマンド&#39;ipcs&#39;を使用して取得することも、Unixコマンド&#39;ipcrm&#39;を使用して削除することもできます。<BR><P></DL>
+          <A NAME="lbAF"></A>
+        <H2>オプション</H2>
+
+<P>GTKサーバは、次のオプションのパラメータを受け入れます。<DL COMPACT>
+<DT>
+          <B>-log=&lt;ファイル名></B>
+        <DD>GTKサーバーをデバッグモードで起動します。&#39;filename&#39;という名前のファイルが作成されます。このログファイルには、GTKサーバーが受信した文字列と、それらの文字列に対するGTKサーバーの応答が含まれています。<DT>
+          <B>-signal=&lt;数値></B>
+        <DD>GTKサーバーが終了したときにクライアントプログラムに送信する必要があるシグナルを定義します(UNIXのみ)。<DT>
+          <B>-cfg=&lt;ファイル名></B>
+        <DD>GTKサーバーに対して、構成ファイルが標準の場所に見つからない場合に、どこで構成ファイルを見つけることができるかを説明します。<DT>
+          <B>-pre=&lt;文字列></B>
+        <DD>指定されたストリングをGTKサーバーのreturnstringsの前に置きます。<DT>
+          <B>-post=&lt;文字列></B>
+        <DD>指定されたストリングをGTKサーバーのreturnstringsの後ろに置きます。<DT>
+          <B>-nocreate</B>
+        <DD>fifoオプションと組み合わせて使用します。指定された場合、パイプファイルはGTKサーバによって作成されませんが、クライアントプログラムによって作成される必要があります。<DT>
+          <B>-ハンドル</B>
+        <DD>このオプションは、通信を同期化するために使用できます。指定された場合、クライアント・スクリプトは、自己定義ハンドル(たとえば、固有の番号)で始まるリクエストを送信できます。GTKサーバーは、着信リクエストを解析するときにこのハンドルを無視しますが、このリクエストの戻り文字列は同じハンドルで始まります。<DT>
+          <B>-デタッチ</B>
+        <DD>指定した場合、GTKサーバはバックグラウンドへのスポーンを試みます。<DT>
+          <B>-showconf</B>
+        <DD>GTKサーバが起動すると、コンフィグファイルからGTK呼び出しに関する情報を読み込みます。この引数は、情報を標準出力にダンプします。これは、スクリプトをデバッグするときに特に便利です。<DT>
+          <B>-start=&lt;マクロ></B>
+        <DD>GTKサーバーが起動したら、何かをする前に、まず指定されたマクロを実行してください。<DT>
+          <B>-init=&lt;ハンドシェイク></B>
+        <DD>ソケット・モードで実行している場合、GTKサーバーは、ハンドシェイクするためのストリングを送信し、それ自体を他の側と識別することができます。<DT>
+          <B>-ssl[=cert.pem]と入力します。</B>
+        <DD>ソケットモードで実行している場合、このオプションはSSL接続を設定します。SSLネゴシエーション中にGTKサーバによってリモートホストに提示されるオプションのcertificatefileを提供できます。<DT>
+          <B>-ca=証明書.pem</B>
+        <DD>ソケット・モードで実行している場合、このオプションはSSL接続を設定します。リモート・ホストによって提示された認証を検証するには、このオプションにcertificatefileを指定する必要があります。<DT>
+          <B>-password=文字列</B>
+        <DD>sslオプションと組み合せて使用します。このオプションでは、キーが暗号化されている場合にSSL証明書のキーを復号化するためのパスワードを指定する必要があります。<DT>
+          <B>-デバッグ</B>
+        <DD>GTKサーバは、クライアントスクリプトとGTKサーバ間の情報交換の出力を含む小さなグラフィカルパネルを開始します。4つのボタンが表示されます:(1)クライアントスクリプトからの入力を1行ずつ実行するための「ステップ」ボタン、(2)クライアントスクリプトにそのコマンドを一度に実行させるための「実行」ボタン、(3)そのような実行を一時停止するための「一時停止」ボタン、および(4)GTKサーバを完全に停止するための「終了」ボタン。<DT>
+          <B>-nonl(英語の可能性あり</B>
+        <DD>デフォルトでは、GTKサーバは各応答の後に改行を追加します。このオプションを選択すると、これが発生しなくなります。<P></DL>
+          <A NAME="lbAG"></A>
+        <H2>Shebangスウェーデン語のページ</H2>
+
+<P>GTKサーバコンフィグファイルには、マクロで実装されたスタンドアロンプログラムを含めることができます。ほとんどのUnixスクリプトと同様に、コンフィグファイルの最初の行にShebangスウェーデン語のページを追加して、GTKサーバで実行できます。<P>
+          <B>#!/usr/bin/gtk-server-this(#!/usr/bin/gtk-server-this)</B>
+        <P>GTKサーバは、最初に実行される&#39;main&#39;という名前のマクロを検索します。<P>
+          <A NAME="lbAH"></A>
+        <H2>文字列</H2>
+
+<P>クライアントプログラムは、文字列をGTKサーバーに送信できます。文字列にスペースが含まれる場合、クライアントプログラムは文字列を二重引用符で囲む必要があります。または、一重引用符を使用することもできます。文字列が一重引用符を含めて文字どおりにGTKサーバーに到達するようにするには、文字列全体の前に&#39;@&#39;記号を付ける必要があります。<P>
+          <A NAME="lbAI"></A>
+        <H2>共有オブジェクト/DLL/モジュール</H2>
+
+<P>GTKサーバーが共有オブジェクトとしてコンパイルされている場合、関数&#39;gtk&#39;をクライアントプログラムにインポートできます。すべてのGTK呼び出しは、この関数に文字列引数として渡すことができます(S式形式)。この関数は常に、最後のGTK呼び出しの結果を含む文字列へのポインタを返します。<P>GTKサーバの&#39;gtk&#39;関数のC-prototype定義は次のとおりです。<P>
+          <B>(char*)gtk(char*S-式)</B>
+        <P>GTKサーバをS-Lang、Scriptbasic、またはKornshellモジュールとしてコンパイルすることもできます。これらはクライアントプログラムにインポートできます。詳細については、ソースパッケージの各ディレクトリを参照してください。<P>インポートされた「gtk」関数に対して最初に「gtk_server_cfg」を呼び出す場合にのみ、オプション「log」、「cfg」、「pre」および「post」を送信できます。次に例を示します。<P>gtk&quot;gtk_server_cfg log=/dir/logfile cfg=/my/dir/gtk-server.cfg post=.&quot;と入力します。<P>これで、GTKサーバー・モジュールは、場所&#39;/my/dir&#39;にある構成ファイルを開き、構成されたログ・ファイルにログを出力します。また、返されるすべての応答の後ろにドットを付けます(これらの個別のオプションの前に、ダミー・コマンド&#39;gtk_server_cfg&#39;を置くこともできます)。<P>
+          <A NAME="lbAJ"></A>
+        <H2>内部コマンド</H2>
+
+<P>GTKサーバは、次の内部コマンドを認識します。<DL COMPACT>
+<DT>
+          <B>gtk_server_version(gtkサーバのバージョン)</B>
+        <DD>このコマンドは、GTKサーバーの現在のバージョンを返します。<DT>
+          <B>gtk_サーバ_ffi</B>
+        <DD>このコマンドは、GTKサーバのコンパイルに使用された外部関数インタフェース(FFI、FFCALL、C/Invoke、またはDYNCALL)を返します。<DT>
+          <B>gtk_server_toolkit(英語の可能性あり)</B>
+        <DD>このコマンドは、GTKサーバーのコンパイルに使用されたバックエンド(GTK1、GTK2、またはXForms)を返します。<DT>
+          <B>gtk_server_os(gtkサーバOS)</B>
+        <DD>このコマンドは、GTKサーバーがコンパイルされたプラットフォームを返します。<DT>
+          <B>gtk_server_enum&lt;サーバ名></B>
+        <DD>このコマンドは、GTKサーバー構成ファイルで定義された列挙に属する値を返します。列挙が定義されていない場合は、空の応答が返されます。例:<P><BR>gtk_server_enum GTK_RESPONSE_OK&lt;サーバー名><P><DT>
+          <B>gtk_server_callback&lt;引数></B>
+        <DD>このコマンドを使用すると、クライアントプログラムはウィジェットの1つに対するシグナルを取得します。デフォルトでは、シグナルを受信したときにウィジェットIDが返されます。&lt;argument>が0の場合、コマンドはすぐにクライアントプログラムに戻り、クライアントプログラムは自身でGTKイテレーションを実行する必要があります。シグナルがなかった場合、戻り値は0になります。&lt;argument>が1の場合、コマンドはすべてのGTKウィジェットも更新しますが、シグナルが発生した場合にクライアントスクリプトに戻るのは*のみ*です。この設定はほとんどの状況に適しています。&#39;1&#39;の代わりに、&#39;wait&#39;または&#39;WAIT&#39;という用語も使用できます。最後に、&lt;argument>が2の場合、コマンドは保留中のすべてのGTKイベントを更新し、最後の既知のシグナルですぐに戻ります。シグナルがなかった場合、戻り値は0になります。2の代わりに、&#39;update&#39;または&#39;UPDATE&#39;という用語も使用できます。<DT>
+          <B>gtk_server_callback_value&lt;引数>&lt;タイプ></B>
+        <DD>コールバック関数から値を取得する必要がある場合は、この関数を使用して実行できます。たとえば、GTK1のCListウィジェットの&quot;select-row&quot;シグナルは、行番号と列番号をコールバック関数に渡します。これらは、シグナルの1番目と2番目の引数として発生します(引数0はウィジェットIDを渡します)。CListウィジェットのクリックされた列番号を取得するには、このウィジェットのシグナルがoccurendを取得した直後に、クライアントプログラムで&#39;gtk_server_callback_value 2 INT&#39;を呼び出します。これにより、列が取得されます。最初の引数の範囲は0～7です。2番目の引数の&#39;type&#39;は、タイプを指定するINT、STRING、またはPOINTERです。この関数は、GTKサーバーがXFormsまたはMotifバックエンド用にコンパイルされている場合は使用できません。<DT>
+          <B>gtk_server_connect&lt;widgetID>&lt;シグナル>&lt;説明>[フラグ]</B>
+        <DD>このコマンドは、追加のコールバックシグナルをウィジェットに追加します。最初の引数は、ウィジェットの作成時に返されるウィジェットIDを参照します。2番目の引数は、GTKプログラミングで使用されるシグナル名です。たとえば、「clicked」、「enter」、「pressed」などです。3番目の引数は、シグナルが発生したときにGTKサーバによって返される文字列です。オプションの最後の引数は、イベントをさらに伝播するためにGTKを説明します。[flag]が省略されているか0の場合、発生したシグナルはクライアントプログラムによってのみ処理されます。0以外の値もイベントをGTKに伝播します。<P>GTKサーバーがXForms用にコンパイルされている場合、フォームのIDを最初の引数として指定する必要があり、その後にイベント・マスクを入力する必要があります。イベント・マスクは、KeyPressMask、KeyReleaseMask、ButtonPressMask、ButtonReleaseMask、EnterWindowMask、LeaveWindowMask、PointerMotionMask、またはButtonMotionMaskのいずれかです。これらはプレーン値(X-Serverヘッダー・ファイルに記述されています)として入力することも、GTKサーバーの構成ファイルにENUMとして定義することもできます。<P>GTKサーバーがMotif用にコンパイルされている場合、ウィジェットのIDが最初の引数として使用され、コールバックシグナルの名前が2番目の引数として使用されます。コールバックシグナル名が&#39;XmNactivateCallback&#39;のように元のMotif文字列として設定されている場合、この文字列は、GTKサーバー構成ファイルのSTR_NAME構成フィールドを使用して実際の文字列に変換できます。実際の文字列名は、Motifのヘッダーファイルで検索できます。<DT>
+          <B>gtk_server_connect_after&lt;widgetID>&lt;シグナル>&lt;説明>[フラグ]</B>
+        <DD>「gtk_server_connect」と似ていますが、シグナルは他のシグナルが発生した後に発生します。この関数は、GTKサーバーがXFormsまたはMotifバックエンド用にコンパイルされている場合は使用できません。<DT>
+          <B>gtk_server_disconnect&lt;ウィジェットID>&lt;説明></B>
+        <DD>以前に「gtk_server_connect」または「gtk_server_connect_after」で定義されたウィジェットからシグナルを切断します。configfileで定義されたシグナルは、signalnamesが説明にも使用されている場合に切断できます。この関数は、GTKサーバーがXFormsバックエンド用にコンパイルされている場合には使用できません。<DT>
+          <B>gtk_server_enable_c_string_escaping&lt;文字列></B>
+        <DD>このコマンドは、GTKサーバをCエスケープモードにします。返される文字列は二重引用符で囲まれ、デフォルトでは、特殊文字BELL、CR、newline、TAB、二重引用符、およびバックスラッシュの前にエスケープ記号「\」が付きます。これにより、クライアントプログラムが実際に特殊文字を解釈することなく文字列をデバッグできます。デフォルトの文字セットを変更するには、「gtk_server_set_c_string_escaping」を使用します(下記参照)。<DT>
+          <B>gtk_server_disable_c_string_escaping(gtk_server_disable_c_string_escap</B>
+        <DD>Cエスケープモードをオフにします(デフォルト)。<DT>
+          <B>gtk_server_set_c_string_escaping&lt;引数></B>
+        <DD>GTKサーバによって返される前にエスケープされるべき文字のセットを定義します。<DT>
+          <B>gtk_server_enable_print_line_count(gtk_server_enable_print_line_countの</B>
+        <DD>このコマンドは、返された文字列に含まれる行数を最初の行に出力するモードを有効にします。これは、サーバが2方向パイプ(-stdinオプション)で起動されたときに複数行の値を取得する場合に便利です。クライアントとサーバの相互作用の例:<P><BR>>gtk_text_buffer_get_text&lt;ウィジェットID>&lt;startIter>&lt;endIter>0<BR>行1<BR>行2<BR>>gtk_server_enable_printing_line_count&lt;行数><BR>1個<BR>オーケー<BR>>gtk_text_buffer_get_text&lt;ウィジェットID>&lt;startIter>&lt;endIter>0<BR>2個<BR>行1<BR>行2<P><DT>
+          <B>gtk_server_disable_print_line_count(gtk_server_disable_print_line_countの</B>
+        <DD>行数印刷モードをオフにします(デフォルト)。<DT>
+          <B>gtk_server_mouse&lt;引数></B>
+        <DD>この呼び出しでは、マウスポインタの状態を取得できます。&lt;argument>が0の場合、ウィジェット上のマウスのx座標が返されます。&lt;argument>が1の場合、ウィジェット上のy座標が返されます。&lt;argument>が2の場合、マウスボタンの状態が返されます。これは、1(左ボタン)、2(中央ボタン)、3(右ボタン)、4または5(その他のボタン)の値です。「button-press-event」シグナルをウィジェットに接続する必要があります。<P>最後に、&lt;argument>が3の場合、マウスのscrollbuttonの方向が返されます。「0」は上、「1」は下、「2」は左、「3」は右を意味します。「scroll-event」シグナルをウィジェットに接続する必要があります。<P>XFormsの場合、&#39;ButtonPressMask&#39;および&#39;PointerMotion&#39;マスクをフォームに接続する必要があり、Motifの場合、シグナル&#39;XmNinputCallback&#39;をDrawingAreaに接続する必要があります。<P>Xformsの場合、結果はXイベント・タイプの列挙です。戻り値が256の場合は左マウス・ボタンが押され、戻り値が512の場合は中央マウス・ボタンが押され、1024の場合は右マウス・ボタンが押されます。また、Ctrl、Alt、Shiftなどの修飾キーも通知されます。戻り値の完全な表を次に示します:<P><BR>1=Shiftキー<BR>2=CAPS_LOCKまたはSHIFT_LOCK<BR>4=コントロールキー<BR>8=MODIFIER1(Xの設定によって決定)<BR>16=MODIFIER2(Xの設定によって決定)<BR>32=MODIFIER3(Xの設定によって決定)<BR>64=MODIFIER4(Xの設定によって決定)<BR>128=MODIFIER5(Xの設定により決定)<BR>256=マウスボタン1(左)<BR>512=MOUSEBUTTON2(中央)<BR>1024=MOUSEBUTTON3(右)<BR>2048=マウスボタン4<BR>4096=MOUSEBUTTON5(マウスボタン)<P><BR>返される結果には、上記の値の組み合わせを含めることもできます。たとえば、結果260は、&lt;CTRL>キーと左マウスボタンの両方が同時に押されたことを意味します。<DT>
+          <B>gtk_server_define&lt;gtk function>&lt;signal>&lt;returnvalue>&lt;amount>&lt;arg1>.&lt;argn></B>
+        <DD>このコールは、新しいGTK関数を定義します。GTK関数がすでにconfigfileで使用可能な場合は、自動的に再定義されます。GTK関数を定義する構文は、&#39;gtk-server.cfg&#39;ファイルで使用される構文に似ています。詳細は、&#39;gtk-server.cfg&#39;のmanページを参照してください。<DT>
+          <B>gtk_server_redefine&lt;gtk function>&lt;シグナル>&lt;returnvalue>&lt;amount>&lt;arg1>.&lt;argn></B>
+        <DD>このコールは、&#39;gtk-server.cfg&#39;ファイルに記述されているGTK関数を再定義します。GTK関数がconfigfileで使用できない場合は、新しいGTK関数として定義されます。GTK関数を再定義する構文は、&#39;gtk-server.cfg&#39;ファイルで使用される構文と似ています。詳細は、&#39;gtk-server.cfg&#39;のマニュアルページを参照してください。<DT>
+          <B>gtk_server_require&lt;ライブラリ名></B>
+        <DD>&lt;libraryname>がシステムで使用可能かどうかをチェックします。&lt;libraryname>が使用可能でない場合、このコールは「0」を戻します。使用可能でない場合は、「1」を戻します。&lt;libraryname>が構成ファイルに記述されていない場合、このコールはclientscriptの実行時にライブラリを開こうとします。<DT>
+          <B>gtk_server_timeout&lt;ミリ秒>&lt;ウィジェット>&lt;シグナル></B>
+        <DD>この呼び出しは、GTKまたはMotifのアイドルループでタイムアウトを設定します。&#39;gtk_server_callback wait&#39;でイベントを待機すると、設定されたミリ秒の後にイベントが生成されるため、コールバック関数は設定されたwidgetIDまたは文字列を返します。GTKサーバーのconfigfileまたは&#39;gtk_server_connect&#39;でシグナルを接続してください。最初に呼び出してください。そうしないと、シグナルは認識されません。この関数は、タイムアウトを識別するための固有のハンドルを返します。ハンドルは、&#39;gtk_server_timeout_remove&#39;でタイムアウトを削除するために使用できます。GTKはタイムアウトを繰り返し実行しますが、Motifではタイムアウトは1回実行されます。この関数は、GTKサーバーがXFormsバックエンド用にコンパイルされている場合は使用できません。<DT>
+          <B>gtk_server_timeout_remove&lt;ハンドル></B>
+        <DD>以前に設定されたタイムアウトを削除します。この関数は、GTKサーバーがXFormsバックエンド用にコンパイルされている場合には使用できません。<DT>
+          <B>gtk_server_opaque(gtk_server_opa</B>
+        <DD>未定義のウィジェットを返します。これは、GtkIterやGdkColorなど、GTKが特定のタイプのウィジェットを作成するための明示的な呼び出しを持たない場合に使用できます。この関数は、GTKサーバーがXFormsまたはMotifバックエンド用にコンパイルされている場合は使用できません。<DT>
+          <B>gtk_server_toplevel&lt;サーバー名></B>
+        <DD>X階層の最上位のウィジェットを返します。この関数は、GTKサーバがMotifバックエンド用にコンパイルされている場合にのみ使用できます。<DT>
+          <B>gtk_server_echo&lt;文字列1>&lt;文字列2>.&lt;stringn></B>
+        <DD>これはデバッグ関数です。GTKサーバに送信される文字列を返します。STDINモードの場合、またはプログラミング言語コンソールからGTKサーバを使用する場合に便利です。また、この関数は、TCP/UDPモードで実行中にIP接続を開いたままにするためにも使用できます。<DT>
+          <B>gtk_server_exit&lt;サーバ名></B>
+        <DD>GTKサーバを終了し、割り当てられたすべてのリソースを解放します。<DT>
+          <B>gtk_server_pid&lt;サーバID></B>
+        <DD>GTKサーバの現在のプロセスIDを返します(UNIXのみ)。<DT>
+          <B>gtk_server_macro_var&lt;マクロ>&lt;変数名></B>
+        <DD>マクロで定義された変数の値を返します。変数名は&#39;a&#39;から&#39;z&#39;までさまざまです。マクロの詳細については、&#39;gtk-server.cfg&#39;のマンページも参照してください。<DT>
+          <B>gtk_server_macro_define&lt;マクロ定義></B>
+        <DD>マクロを定義します。定義はconfigfileと同じ形式にする必要があります。マクロ内の行は改行で区切る必要があります。マクロの詳細については、&#39;gtk-server.cfg&#39;マンページも参照してください。<DT>
+          <B>gtk_server_macro_redefine&lt;macrodefinition>&lt;マクロ定義></B>
+        <DD>マクロを再定義します。定義は、構成ファイルと同じ形式にする必要があります。マクロの詳細については、&#39;gtk-server.cfg&#39;マンページも参照してください。<DT>
+          <B>gtk_server_key(gtkサーバキー)</B>
+        <DD>最後に押されたキーの値を返します。最初に&#39;key-press-event&#39;をウィジェットに接続する必要があります。接続しない場合、イベントはGTKによって認識されません。次に例を示します。<P><BR>gtk_server_connect&lt;widgetID>&quot;key-press-event&quot;&quot;キー押下&quot;<P>XFormsでは、少なくとも&#39;KeyPressMask&#39;イベント・マスクをフォームに接続する必要があります。XFormsは、Xヘッダー・ファイルからの標準イベント・マスクを使用します。&#39;KeyPressMask&#39;の値が1の場合は、次のように接続する必要があります:<P>gtk_server_connect&lt;formID>1を実行します。<P><BR>Motifの場合、入力をキャプチャできるのはDrawingAreaウィジェットのみです。シグナル「XmNinputCallback」はDrawingAreaに接続する必要があります:<P>gtk_server_connect&lt;DrawingAreaID>&quot;XmNinputCallback&quot;&quot;keypressed&quot;<P><DT>
+          <B>gtk_server_cfg(英語の可能性あり)</B>
+        <DD>GTKサーバがライブラリとしてコンパイルされる場合、このコマンドはログファイルの場所とその他のオプションを設定できます。例:<P><BR>gtk_server_cfg-log=/tmp/gtk-server.log-post=.-デバッグ<DT>
+          <B>gtk_server_state(gtkサーバの状態)</B>
+        <DD>押された状態キーの値を返します。Shiftキーが押された場合は&#39;1&#39;を返し、Ctrlキーが押された場合は&#39;4&#39;、Altキーが押された場合は&#39;8&#39;を返します。GTKでは、最初に&#39;key-press-event&#39;をウィジェットに接続する必要があります。そうでない場合、イベントはGTKによって認識されません。Motifの場合、シグナル&#39;XmNinputCallback&#39;はDrawingAreaに接続される必要があります。この関数は、GTKサーバーがXFormsバックエンド用にコンパイルされている場合は使用できません。例:<P><BR>GTK:gtk_server_connect&lt;widgetID>&quot;キー押下イベント&quot;&quot;keypressed&quot;<P>Motif:gtk_server_connect&lt;DrawingArea>XmNinputCallback&quot;keypressed&quot;<P><DT>
+          <B>gtk_server_pack&lt;フォーマット>&lt;値1>[.値n]</B>
+        <DD>BASE64でエンコードされた文字列のメモリー・レイアウトを戻します。これは、GTK関数の引数の1つがBASE64タイプとして定義されている場合に使用できます。たとえば、配列または構造体の場合です。&lt;format>は、&#39;printf&#39;関数と同様にタイプを指定します。%cはchar、%sはshort、%iはinteger、%lはlong、%fはfloat、%dはdoubleを意味します。&lt;values>の数は、フォーマット指定子の数と一致する必要があります。4つの整数メンバーを持つ構造体を含むメモリー・レイアウトの作成例:<P><BR>gtk_server_pack%i%i%i%i 1 1 5 6<P><BR>返された文字列AQAAAAEAAAAFAAAABgAAAA==は、引数タイプがBASE64である関数に引数として渡すことができます。<P><DT>
+          <B>gtk_server_unpack&lt;フォーマット>&lt;base64文字列></B>
+        <DD>BASE64でエンコードされた文字列からS式を返します。これは、GTK関数の引数の1つがPTR_BASE64型として定義されている場合に使用できます。たとえば、引数に配列または構造体の定義が含まれている場合です。&lt;format>は、&#39;printf&#39;関数と同様に型を指定します。%cはchar、%sはshort、%iはinteger、%lはlong、%fはfloat、%dはdoubleを意味します。4つの整数メンバを持つ構造体を含むメモリレイアウトをアンパックする例:<P><BR>gtk_server_unpack%i%i%i%i AQAAAAEAAAAFAAAABgAAAA==<P><BR>これは文字列&quot;1 1 5 6&quot;を返します。<P><DT>
+          <B>gtk_server_data_format&lt;フォーマット></B>
+        <DD>PTR_BASE64引数のメモリー・レイアウトを定義します。PTR_BASE64引数タイプを持つ実際の関数を使用する前に設定する必要があります。例:<P><BR>gtk_server_data_format%i%i%i%i<P><DT>
+          <B>gtk_server_unpack_from_pointer&lt;フォーマット>&lt;ポインタ></B>
+        <DD>ポインタが指すメモリ領域からS式を返します。これは、GTK関数の引数の1つがPTR_LONG型として定義されている場合に使用できます。たとえば、引数に配列または構造体へのポインタが含まれている場合などです。&lt;format>は、&#39;printf&#39;関数と同様に型を指定します。%cはchar、%sはshort、%iはinteger、%lはlong、%fはfloat、%dはdoubleを意味します。3つの整数メンバを持つ構造体を含むメモリレイアウトを展開する例:<P><BR>gtk_server_unpack_from_pointer%i%i%i 7478512を実行します。<P><DT>
+          <B>gtk_server_string_from_pointer&lt;ポインタ></B>
+        <DD>ポインタから文字ポインタまでの文字列を返します。C構文では、これは&#39;**&#39;構造体で、GTK APIがエラーメッセージを返すときに使用されることがあります。次に例を示します。<P><BR>gtk_server_string_from_pointer(gtk_server_string_from_pointer)62667232<P></DL>
+          <A NAME="lbAK"></A>
+        <H2>ファイル</H2>
+          <I>gtk-server.cfg(gtkサーバー設定ファイル)</I>
+        <DL COMPACT><DT><DD>GTKサーバーの構成ファイル。</DL>
+          <A NAME="lbAL"></A>
+        <H2>例</H2>GTKサーバを使用したスクリプトの例は、ソースパッケージにあります。また、最新のdemoscriptsを参照してください。<A HREF="http://www.gtk-server.org/.">http://www.gtk-server.org/.</A><A NAME="lbAM"></A><H2>ライセンス</H2>GPLライセンス。<P>このプログラムはフリーソフトウェアです。Free Software Foundationが発行したGNU General Public License(バージョン2または(お客様の選択により)それ以降のバージョン)の条件に従って、再配布または変更することができます。<P>このプログラムは、有用であることを願って配布されていますが、いかなる保証もありません。商品性や特定の目的に対する適合性についての黙示的な保証もありません。詳細については、GNU General Public Licenseを参照してください。<P>このプログラムと共にGNU General Public Licenseのコピーを受け取っているはずです。受け取っていない場合は、Free Software Foundation,Inc.(59 Temple Place,Suite 330,Boston,MA 02111-1307 USA)までご連絡ください。<A NAME="lbAN"></A><H2>バグ</H2>バグの報告先:<A HREF="mailto:bugs@gtk-server.org">bugs@gtk-server.org(バグ@gtk-server.org</A><A NAME="lbAO"></A><H2>関連項目</H2><A HREF="/cgi-bin/man/man2html?1+stop-gtk-server">停止-gtk-サーバ</A>(1)項<A HREF="/cgi-bin/man/man2html?1+gtk-server.cfg">gtk-server.cfg(gtkサーバー設定ファイル)</A>(1件)<A NAME="lbAP"></A><H2>著者</H2>Peter van Eerten氏による最初のコンセプト、設計、実装、電子メール:<A HREF="mailto:peter@gtk-server.org">peter@gtk-server.org(英語の可能性あり)</A><P>現在のバージョンのGTK-サーバは、他の多くの人の助けを借りて作成されました。クレジットについては、ソースパッケージのCREDITSファイルを参照してください。<P><HR>
+          <A NAME="index"></A>
+        <H2>索引</H2>
+<DL>
+<DT>
+          <A HREF="#lbAB">名前</A>
+        <DD><DT>
+          <A HREF="#lbAC">概要</A>
+        <DD><DT>
+          <A HREF="#lbAD">説明</A>
+        <DD><DT>
+          <A HREF="#lbAE">引数</A>
+        <DD><DT>
+          <A HREF="#lbAF">オプション</A>
+        <DD><DT>
+          <A HREF="#lbAG">Shebangスウェーデン語のページ</A>
+        <DD><DT>
+          <A HREF="#lbAH">文字列</A>
+        <DD><DT>
+          <A HREF="#lbAI">共有オブジェクト/DLL/モジュール</A>
+        <DD><DT>
+          <A HREF="#lbAJ">内部コマンド</A>
+        <DD><DT>
+          <A HREF="#lbAK">ファイル</A>
+        <DD><DT>
+          <A HREF="#lbAL">例</A>
+        <DD><DT>
+          <A HREF="#lbAM">ライセンス</A>
+        <DD><DT>
+          <A HREF="#lbAN">バグ</A>
+        <DD><DT>
+          <A HREF="#lbAO">関連項目</A>
+        <DD><DT>
+          <A HREF="#lbAP">著者</A>
+        <DD></DL>
+<HR>このドキュメントはによって作成されました<A HREF="/cgi-bin/man/man2html">man2html(英語の可能性あり</A>マニュアルページを使用します。<BR>時間:2022年10月10日18:15:40 GMT</BODY>
+</HTML>

@@ -1,0 +1,49 @@
+==== 可変長配列フィールド
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Arrays are special case of primitive built-in types. The array declaration consists of the element type and empty square brackets ('''[]'''). A primitive arrays are encapsulated into a string classes (both reference and structure ones). The string class must have only one field of an array type with '''!__string''' prefix.
+
+配列は、プリミティブ組込み型の特殊なケースであり、配列宣言は、要素型および空角括弧 ('''[]''') からなる。プリミティブ配列は、文字列クラス (参照クラスおよび構造体クラスの両方) にカプセル化される。文字列クラスは、接頭辞 '''!__string''' を有する配列型のフィールドを1つだけ有さなければならない。
+
+{{{ code ruby
+
+class MyArray
+
+{
+
+    // system'Object の配列を宣言
+
+    __string object[] theArray;
+
+    
+
+    constructor allocate(int len)
+
+        = new object[](len);
+
+}
+
+struct MyString
+
+{
+
+    // system'CharValue の配列を宣言
+
+    __string char[] theArray;
+
+        
+
+    constructor allocate(int len)
+
+        = new char[](len);
+
+}
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

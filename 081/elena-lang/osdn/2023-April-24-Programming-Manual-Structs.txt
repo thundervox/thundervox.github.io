@@ -1,0 +1,114 @@
+==== 構造体
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Structs are special kind of classes which are stored in-place, rather than by reference in the memory heap. Structs are sealed (meaning they cannot be inherited). They hold mostly small data values (such as numbers, handlers, pointers). All primitive data handlers are structs.
+
+構造体は、メモリヒープ内での参照ではなく、その場で格納される特別な種類のクラスである。構造体は Sealed である (継承できないことを意味する)。構造体は、ほとんどが小さなデータ値 (数値、ハンドラ、ポインタなど) を保持する。すべての基本データハンドラは構造体である。
+
+Struct fields can be either primitive or another structures. No reference types are allowed. All fields should be strong typed for that reason.
+
+構造体フィールドは、基本型または別の構造体のいずれかにすることができます。参照型は使用できません。そのため、すべてのフィールドは強い型付けである必要があります。
+
+In most cases the use of structs is quite straightforward.
+
+ほとんどの場合、構造体の使用は非常に簡単である。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    // declaring a struct
+
+    struct Record
+
+    {
+
+       // 構造体フィールドの宣言
+
+       int x;
+
+       int y;
+
+       
+
+       // 構造体コンストラクタの宣言
+
+       constructor(int x, int y)
+
+       {
+
+           // クラスメンバーとローカルメンバーを区別するために接頭辞 this を使用
+
+           this x := x;
+
+           this y := y
+
+       }
+
+       
+
+       printMe()
+
+       {
+
+           console.printLine("Record(",x,",",y,")");
+
+       }
+
+    }    
+
+    
+
+    public program()
+
+    {
+
+        // 構造体の作成
+
+        auto r := new Record(2, 4);
+
+        
+
+        // 構造体メソッドの呼び出し
+
+        r.printMe()
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    Record(2,4)
+
+}}}
+
+Note that structs are stored in-place. It means that in our example the object was declared in the method stack. Every time it is used as a weak type, it will be boxed and unboxed after the operation. To improve performance we can declare a struct to be a constant one to avoid unboxing operation. For example all numbers are constant structs:
+
+構造体は所定の場所に格納されることに注意してください。この例では、オブジェクトはメソッドスタックで宣言されたことを意味します。弱い型付けとして使用されるたびに、操作後にボックス化とアンボックス化が繰り返されます。パフォーマンスを向上させるために、構造体を定数として宣言して、アンボックス化操作を回避できます。たとえば、すべての数値は定数の構造体です。
+
+{{{ code ruby
+
+    // 定数の構造体を宣言
+
+    public const struct IntNumber : IntBaseNumber
+
+    {
+
+        // フィールドは基本型である 32-bit 整数型  
+
+        embeddable __int theValue[4];
+
+    ...
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+

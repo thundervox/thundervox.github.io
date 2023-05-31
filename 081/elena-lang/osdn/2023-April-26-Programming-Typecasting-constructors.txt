@@ -1,0 +1,94 @@
+==== 型キャストコンストラクタ
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+In normal case constructors should not have a returning statement. The exception is a typecasting constructor. Typecasting constructor contains only returning expression and the result is converted to the class type. Similar to conversion constructors, the default one is not called.
+
+通常、コンストラクタは return ステートメントを持つべきではありません。例外は型キャストコンストラクタです。型キャストコンストラクタには return ステートメントのみが含まれ、結果は class 型に変換されます。変換コンストラクタと同様に、デフォルトのコンストラクタは呼び出されません。
+
+{{{ code ruby
+
+A
+
+{
+
+    // 型キャストコンストラクタ
+
+    constructor load(n)
+
+    // 返値は想定値へ変換します
+
+        = n;
+
+}
+
+}}}
+
+If the appropriate conversion constructor exists it will be used:
+
+該当する変換コンストラクタがあれば、それを使います。
+
+{{{ code ruby
+
+A
+
+{
+
+    // 変換コンストラクタ
+
+    constructor(int n) {}
+
+    // 型キャストコンストラクタ 
+
+    constructor load(int n)
+
+    // 変換コンストラクタを呼び出します
+
+        = n;
+
+}
+
+}}}
+
+Typecasting constructor is the only way to create a '''string''' class (one with variable length), because default one is not allowed:
+
+型キャストコンストラクタは、 '''string''' クラス (可変長のもの)を作成する唯一の方法です。これは、デフォルトのコンストラクタで許可されていないためです。
+
+{{{ code ruby
+
+MyArray
+
+{
+
+    // 可変長クラスの宣言 (いわゆる文字列)
+
+    __string object[] list;
+
+    
+
+    // 型キャストコンストラクタ 
+
+    constructor allocate(int n)
+
+    // 変換結果はクラス A へ自動的にボックス化します
+
+        = new object[](n);
+
+}
+
+public program()
+
+{
+
+    var myArray := MyArray.allocate(3);
+
+} 
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

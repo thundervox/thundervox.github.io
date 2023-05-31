@@ -1,0 +1,36 @@
+==== 文字列
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+(訳注:こちらは文字列リテラルとは異なり文字列型の解説文となります。紛らわしいのでご注意を)
+
+Strings are special type of classes (both structs and nonstructural classes) which is used to contain the arrays. As a result the class length is variable. No default constructors (without parameters) are allowed.
+
+文字列は配列を含むために使用される特別な型のクラス(構造クラスと非構造クラスの両方)である。その結果、クラスは可変長である。デフォルトコンストラクタ (パラメータなし) は使用できない。
+
+{{{ code ruby
+
+public const struct String : BaseValue
+
+{
+
+    __string byte[] theArray;
+
+    
+
+    constructor allocate(int size)
+
+        = new byte[](size + 1);
+
+}}}
+
+It can contain only a single field marked as '''!__string''' one.
+
+これは、 '''!__string''' とマークされた単体フィールドのみを含むことができる。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

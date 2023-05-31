@@ -1,0 +1,150 @@
+==== Ref 引数
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+In ELENA, arguments can be passed either "by value" or "by reference". "By value" parameter cannot be reassigned inside the function, method or a constructor. On the other hand, "by reference" parameters can be changed and these changes will be visible outside the function. As a result, they can be used to return multiple values.
+
+ELENAでは、引数は「値渡し」または「参照渡し」のいずれかで渡すことができます。「値渡し」パラメータは、関数、メソッドまたはコンストラクタ内で再割り当てできません。一方、「参照渡し」パラメータは変更でき、これらの変更は関数の外部で表示されます。そのため、複数値を返すために使用できます。
+
+Note that the terms "by value" and "by reference" are misleading. In fact all dynamically allocated objects are passed by reference. So we use them in the sense if they can be reassigned inside the function or not. 
+
+「値渡し」および「参照渡し」という用語は誤解を招くことに注意してください。実際には、動的に割り当てられたすべてのオブジェクトは参照によって渡されます。したがって、関数内で再割り当てできるかどうかという意味で使用します。
+
+To declare a "by reference" argument it must be preceded by '''ref''' attribute. Similar this attribute is used to pass the parameter:
+
+「参照渡し」引数を宣言するには、頭に  '''ref''' 属性を指定する必要があります。同様に、この属性はパラメータを渡すために使用されます。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    // byref 引数の宣言
+
+    exchange(ref v1, ref v2)
+
+    {
+
+        var tmp := v1;
+
+        // byref 引数は関数の内側で変更できます
+
+        v1 := v2;
+
+        v2 := tmp
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var o1 := 2;
+
+        var o2 := "abc";
+
+        
+
+        console.printLine("before:",o1,",",o2);
+
+        // byref 引数を渡します
+
+        exchange(ref o1, ref o2);
+
+        console.printLine("after:",o1,",",o2)
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    before:2,abc
+
+    after:abc,2
+
+}}}
+
+「参照渡し」の引数は弱い型付け (前述の用例のように)、または強い型付けを指定できます。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    // 強い型付けの関数を宣言
+
+    minMax(ref int min, ref int max, params int[] args)
+
+    {
+
+        min := args[0];
+
+        max := args[0];
+
+        for (int i := 1, i < args.Length, i += 1)
+
+        {    
+
+            if (min > args[i])
+
+            {
+
+                min := args[i]
+
+            };
+
+            if (max < args[i])
+
+            {
+
+                max := args[i]
+
+            }
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // ここで byref 引数を宣言できます
+
+        minMax(ref int min, ref int max, 1,3,-4,7);
+
+        
+
+        console.printLine("min is ", min);
+
+        console.printLine("max is ", max);
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    min is -4
+
+    max is 7
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

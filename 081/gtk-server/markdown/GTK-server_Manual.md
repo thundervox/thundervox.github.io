@@ -26,8 +26,7 @@ After that, you have to specify the amount of arguments needed for this GTK func
 
 ## 3. Catching callback signals
 
-To catch a callback signal from a widget, an internal GTK-server function must be used. The name of the function is ```gtk_server_callback'
-```. This function takes only one argument, a ```0```, ```1``` or a ```2```. Instead of the ```1``` also the word 'wait' can be used, and instead of ```2``` the word ```update``` can be used. The function checks if the userinterface has received a callback signal.
+To catch a callback signal from a widget, an internal GTK-server function must be used. The name of the function is ```gtk_server_callback```. This function takes only one argument, a ```0```, ```1``` or a ```2```. Instead of the ```1``` also the word 'wait' can be used, and instead of ```2``` the word ```update``` can be used. The function checks if the userinterface has received a callback signal.
 
 If the argument to ```gtk_server_callback``` is ```2``` then the GTK-server will update all events waiting in the queue and check if there is a callback waiting. With this argument, ```gtk_server_callback``` returns immediately. If there is no callback, a ```0``` is returned, else the widgetID is returned. If the argument is ```1``` the GTK-server will update all events in the queue and wait until an event has occured. Only then ```gtk_server_callback``` returns, with the widgetID on which the signal took place. Finally, if the argument is ```0``` the function will not update the userinterface, but it will only check on an event and return immediately. In this case, the client program has to take care of updating the userinterface by itself - this is sometimes necessary when it needs to wait for other events (like network events) instead of GUI events.
 

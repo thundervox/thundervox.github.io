@@ -1,0 +1,122 @@
+==== メソッドの修飾子
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Method declaration can be accompanied with modifiers. We already know two method modifier types : visibility (such as '''public''', '''private''', '''protected''' and '''internal''') and instancing (e.g. '''static'''). Modifiers are used to restrict the method application in one or another way.
+
+我々は、2つのメソッド修飾子タイプ、すなわち、可視性 ('''public''', '''private''', '''protected''', '''internal'''など) およびインスタンス化 (例えば '''static''') を既に知っている。修飾子は、1つまたは別の方法でメソッドアプリケーションを制限するために使用される。
+
+'''Abstract''' modifier is used to declare an abstract method which should overridden in derived classes. Abstract methods can be declared only inside an abstract class. Non-abstract class cannot have abstract methods. As a result '''abstract''' modifier is used to enforce the method overriding
+
+'''Abstract''' 修飾子は、派生クラスでオーバーライドする必要がある抽象メソッドを宣言するために使用されます。抽象メソッドは抽象クラスの内部でのみ宣言できます。非抽象クラスは抽象メソッドを持つことができません。その結果、 '''abstract''' 修飾子はメソッドの上書きを強制するために使用されます。
+
+{{{ code ruby
+
+    // declaring an abstract class 
+
+    abstract class GraphicObject
+
+    {
+
+        // 抽象メソッドの宣言
+
+        // 抽象メソッドの中身は空にしてください
+
+        abstract draw();
+
+    }
+
+    
+
+    class Circle : GraphicObject
+
+    {
+
+        // 抽象メソッドのオーバーライド
+
+        draw() 
+
+        {
+
+            // method implementation
+
+        }
+
+    }
+
+}}}
+
+Another special case of abstract method is '''predefined'''. It is used to declare a method returning type in advanced. For example a super class Object has several predefined method to be correctly used in branching statements:
+
+抽象メソッドのもう1つの特殊なケースは '''predefined''' です。これは、上位型を返すメソッドを宣言するために使用されます。たとえば、スーパークラスオブジェクトには、分岐ステートメントで正しく使用されるいくつかの事前定義されたメソッドがあります。
+
+{{{ code ruby
+
+    public class Object
+
+    {
+
+        // ...
+
+        predefined bool less(o) {}
+
+        predefined bool greater(o) {}
+
+        predefined bool notless(o) {}
+
+        predefined bool notgreater(o) {}
+
+        // ...
+
+    }
+
+}}}
+
+'''Predefined''' methods can be declared in non-abstract methods. When predefined method is re-declared it should has the same returning type as it was declared.
+
+'''Predefined''' メソッドは、非抽象メソッドで宣言することができる。予め定義されたメソッドが再宣言されるとき、それは宣言されたのと同じ戻りタイプを有するべきである。
+
+'''Sealed''' modifier is used to prevent the method from overriding. The compiler can use this information to generate more optimized invoke code.
+
+'''Sealed'''修飾子は、メソッドがオーバーライドするのを防止するために使用される。コンパイラは、この情報を使用して、より最適化された呼び出しコードを生成することができる。
+
+{{{ code ruby
+
+    Base
+
+    {
+
+        // Sealed メソッドの宣言 
+
+        sealed mySealedMethod()
+
+        {
+
+        }
+
+    }
+
+    
+
+    A : Base
+
+    {
+
+        //  method cannot be overriden (メソッドはオーバーライドできない) のエラーになります
+
+        sealed mySealedMethod()
+
+        {
+
+        }
+
+    }
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

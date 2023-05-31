@@ -1,0 +1,116 @@
+==== 多重コンストラクタ
+
+通常のメソッドと同じくコンストラクタはコンパイル時や実行時に渡された引数に従いディスパッチできます。
+
+{{{ code ruby
+
+import extensions;
+
+A
+
+{
+
+    constructor new(int arg)
+
+    {
+
+        console.printLine("Passing an integer to named constructor")
+
+    }
+
+    
+
+    constructor new(string arg)
+
+    {
+
+        console.printLine("Passing a string to named constructor")
+
+    }
+
+    
+
+    constructor(int arg)
+
+    {
+
+        console.printLine("Passing an integer to unnamed constructor")
+
+    }
+
+    
+
+    constructor(string arg)
+
+    {
+
+        console.printLine("Passing a string to unnamed constructor")
+
+    }
+
+}
+
+public program()
+
+{
+
+    // コンパイル時のディスパッチ
+
+    A a1 := A.new(1);
+
+    A a2 := A.new("s");
+
+    
+
+    // 実行時のディスパッチ
+
+    var class := A;
+
+    var arg := 1;   
+
+    // コンパイル時にクラスと引数ともに不明
+
+    var o1 := class.new(arg);
+
+    // コンパイル時に引数は不明
+
+    o1 := new A(arg);
+
+    arg := "s";    
+
+    // コンパイル時にクラスと引数ともに不明
+
+    var o2 := class.new(arg);
+
+    // コンパイル時に引数は不明
+
+    o2 := new A(arg);    
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+Passing an integer to named constructor
+
+Passing a string to named constructor
+
+Passing an integer to named constructor
+
+Passing an integer to unnamed constructor
+
+Passing a string to named constructor
+
+Passing a string to unnamed constructor
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

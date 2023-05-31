@@ -1,0 +1,129 @@
+==== フィールドの初期化
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Constructors are traditional place to initialize the fields. But in some cases it is more convenient to do it in place, after the declaration.  
+
+コンストラクタは、フィールドを初期化するための従来の場所であるが、場合によっては、宣言後に、その場でそれを行うことがより便利である。
+
+{{{ code ruby
+
+class Record
+
+{
+
+    // 初期化式は定数にできます
+
+    int x := 0;
+
+    // 処理結果を使えます
+
+    string y := "My" + "String";
+
+    // またはクラスの作成  
+
+    z := new Object(); 
+
+}
+
+}}}
+
+In this case, we could not declare a constructor at all and use the default one:
+
+この場合、コンストラクタをまったく宣言せず、デフォルトのコンストラクタを使用します。
+
+{{{ code ruby
+
+public program()
+
+{
+
+    var p := new Record();
+
+}
+
+}}}
+
+An initialization expression can be used alone, for example in the derived classes. In this case we have to use '''this''' qualifier:
+
+初期化式は、派生クラスなどで単独で使用できます。この場合は、 '''this''' 修飾子を使用する必要があります。
+
+{{{ code ruby
+
+class MySpecialRecord : Record
+
+{
+
+    // 既存のフィールドを初期化するために接頭辞 thisを使用する必要がある
+
+    this x := 2; 
+
+} 
+
+}}}
+
+And of course we could use it for initializing class fields right in the code:
+
+もちろん、コード内のクラスフィールドを初期化するために使用することもできる。
+
+{{{ code ruby
+
+struct Point
+
+{
+
+    int x := 0;
+
+    int y := 0;
+
+        
+
+    printMe()
+
+    {
+
+        console.printLine("x:",x,",y:",y)
+
+    }
+
+}
+
+    
+
+public program()
+
+{
+
+    var p := new Point
+
+    {
+
+        this x := 1;
+
+            
+
+        this y := 2; 
+
+    };
+
+        
+
+    p.printMe()
+
+}
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+x:1,y:2
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

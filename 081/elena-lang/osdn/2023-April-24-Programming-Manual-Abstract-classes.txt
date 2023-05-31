@@ -1,0 +1,78 @@
+==== 抽象クラス
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+An abstract class is a special class used as a basis for creating specific classes that conform to its protocol, or the set of operations it supports. Abstract classes are not instantiated directly. It differs from an interface that the children can extend its functionality (declaring new methods). The abstract class can contain both abstract and normal methods. An abstract method must have an empty body (semicolon)
+
+抽象クラスは、そのプロトコルに準拠する特定のクラス、またはそれがサポートする一連の操作を作成するための基底クラスとして使用される特殊なクラスです。抽象クラスは直接インスタンス化されません。これは、子クラスがその機能を拡張できる (新しいメソッドを宣言する) インタフェースとは異なります。抽象クラスには、抽象メソッドと通常のメソッドの両方を含めることができます。抽象メソッドには、空の本体 (セミコロン) が必要です。
+
+{{{ code ruby
+
+import extensions;
+
+abstract class Bike
+
+{  
+
+    abstract run(); 
+
+}
+
+  
+
+class Honda4 : Bike
+
+{  
+
+    // 抽象メソッドのオーバーライド
+
+    run()
+
+    {
+
+        console.printLine("running safely")
+
+    }
+
+}    
+
+public program()
+
+{
+
+    Bike obj := new Honda4();
+
+    obj.run()
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+running safely
+
+}}}
+
+Classes based on an abstract class must implement all the parent abstract methods. If a child class adds a new abstract methods or implements only some of the parent abstract methods, it should be declared abstract as well.
+
+抽象クラスに基づくクラスは、すべての親抽象メソッドを実装する必要があります。子クラスが新しい抽象メソッドを追加するか、親抽象メソッドの一部のみを実装する場合は、抽象クラスも同様に宣言する必要があります。
+
+{{{ code ruby
+
+abstract class BikeWithTrolley : Bike
+
+{
+
+    abstract pack();
+
+}
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+

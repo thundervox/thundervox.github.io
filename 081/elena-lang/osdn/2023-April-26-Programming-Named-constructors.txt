@@ -1,0 +1,362 @@
+==== 名前付きコンストラクタ
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Named constructors are constructors with explicitly stated names. In many aspects they are similar to static methods and can be called by sending appropriate messages to class symbols. In contrast to static methods, however, they always return the class instance and automatically call the class default constructor. As a result, a class can have several constructors with the same signature but different names. 
+
+名前付きコンストラクタは、明示的に記述された名前を持つコンストラクタです。多くの点で、静的メソッドに類似しており、クラスシンボルに適切なメッセージを送信することによって呼び出すことができます。ただし、静的メソッドとは対照的に、常にクラスインスタンスを返し、自動的にクラスのデフォルトコンストラクタを呼び出します。その結果、クラスには、同じシグニチャで異なる名前を持つ複数のコンストラクタが存在する可能性があります。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        // デフォルトのコンストラクタを宣言
+
+        constructor()
+
+        {
+
+            console.writeLine("default constructor")
+
+        }
+
+        
+
+        // 整数型の引数を用いる名前付きコンストラクタの宣言
+
+        constructor new(int arg)
+
+        {
+
+            console.writeLine("A.new<int>[2]")
+
+        }
+
+        
+
+        // 整数型の引数を用いる二番目の名前付きコンストラクタの宣言
+
+        constructor load(int arg)
+
+        {
+
+            console.writeLine("A.load<int>[2]")
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // デフォルトのコンストラクタでクラスを作成
+
+        var a1 := new A();        
+
+        // 名前付きコンストラクタでクラスを作成
+
+        // 備考: デフォルトコンストラクタは自動的に呼び出されます 
+
+        var a2 := A.new(1);
+
+        // 名前付きコンストラクタでクラスを作成
+
+        // 備考: デフォルトコンストラクタは自動的に呼び出されます   
+
+        var a3 := A.load(1);
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    default constructor
+
+    default constructor
+
+    A.new<int>[2]
+
+    default constructor
+
+    A.load<int>[2]
+
+}}}
+
+If default constructor is not explicitly declared the protected one is auto-generated. As a result it cannot be called outside the class
+
+デフォルトのコンストラクタが明示的に宣言されていない場合、 protected 修飾子のコンストラクタは自動生成される。そのため、クラス外で呼び出すことはできない。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        constructor new(int arg)
+
+        {
+
+            console.writeLine("A.new<int>[2]")
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // コンパイル時にエラーになります
+
+        var a1 := new A();    
+
+    }
+
+}}}
+
+We can invoke another named-constructor from a constructor. To do it the resend expression should be declared before the method body. If the method body is an empty it can be omitted.
+
+コンストラクタから別の名前付きコンストラクタを呼び出すことができる。それを行うために、再送信の式は、メソッド本体の前に宣言されるべきである。メソッド本体が空である場合、それ (式) は省略可能である。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        // デフォルトのコンストラクタを宣言
+
+        constructor()
+
+        {
+
+            console.writeLine("default constructor")
+
+        }     
+
+        
+
+        // 整数型の引数を用いる名前付きコンストラクタの宣言
+
+        constructor new(int arg)
+
+        {
+
+            console.writeLine("A.new<int>[2]")
+
+        }
+
+        
+
+        // 整数型の引数を用いる二番目の名前付きコンストラクタの宣言
+
+        constructor load(int arg)
+
+            // 再送信の式を宣言
+
+            <= new(arg)
+
+        {
+
+            console.writeLine("A.load<int>[2]")
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := A.load(1);    
+
+    }
+
+}}}
+
+その実行結果は、
+
+{{{ code ruby
+
+    default constructor
+
+    A.new<int>[2]
+
+    A.load<int>[2]
+
+}}}
+
+Similar the parent constructor could be called (providing the class does not contain the constructor with the same name and a signature): 
+
+同様に、親コンストラクタを呼び出すことができる(クラスが同じ名前およびシグネチャを有するコンストラクタを含まない場合)。
+
+{{{ code ruby
+
+    Base
+
+    {
+
+        constructor()
+
+        {
+
+            console.writeLine("base default constructor")
+
+        } 
+
+        
+
+        // 整数型の引数を用いる名前付きコンストラクタの宣言
+
+        constructor new(int arg)
+
+        {
+
+            console.writeLine("Base.new<int>[2]")
+
+        }
+
+    }
+
+    
+
+    A : Base
+
+    {
+
+        // デフォルトのコンストラクタを宣言
+
+        constructor()
+
+        {
+
+            console.writeLine("A default constructor")
+
+        } 
+
+                
+
+        // 整数型の引数を用いる二番目の名前付きコンストラクタの宣言
+
+        constructor load(int arg)
+
+            // 親コンストラクタの呼び出し
+
+            <= new(arg)
+
+        {
+
+            console.writeLine("A.load<int>[2]")
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        var a := A.load(1);    
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    A default constructor
+
+    Base.new<int>[2]
+
+    A.load<int>[2]
+
+}}}
+
+If we want to call the parent constructor with the same name we have to declare a redirection to itself:
+
+同じ名前で親コンストラクタを呼び出したい場合は、それ本体 (itself) へのリダイレクションを宣言する必要がある。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    Parent
+
+    {
+
+        constructor new()
+
+        {
+
+            console.printLine("parent constructor")
+
+        }
+
+    }
+
+    
+
+    Child : Parent
+
+    {
+
+        constructor new()
+
+            // 本体に関するリダイレクト先の宣言
+
+            <= new()
+
+        {
+
+            console.printLine("child constructor")
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        Child.new();
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    parent constructor
+
+    child constructor
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

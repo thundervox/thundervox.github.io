@@ -1,0 +1,118 @@
+==== メソッドの再送信
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+In some cases the method body contains only a single statement which sends another method to itself. For example we may simulate an optional argument with the code below:
+
+場合によっては、メソッド本体には、別のメソッドをそれ自体(メソッド)に送信する1つのステートメントのみが含まれている。たとえば、次のコードでオプションの引数をシミュレートすることができる。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        trim()
+
+        {
+
+            // メソッドの本体には別のメソッドを呼び出すコードだけがある
+
+            self.trim(#32)
+
+        }
+
+        
+
+        trim(char ch)
+
+        {
+
+            // ... 
+
+        }
+
+    }
+
+}}}
+
+In such cases we can simplify our code by using so-called re-sending method body. It is placed after '''<=''' operator and contains only a message name with parameters enclosed in brackets. The message can be the same (but of course with different argument list) or another one.
+
+このような場合は、いわゆる再送メソッド本体を使用してコードを簡略化できます。これは '''<=''' 演算子の後に配置され、大カッコで囲まれたパラメータを持つメッセージ名のみが含まれます。メッセージは同じもの(ただし、引数リストは異なります)でも、別のものでもかまいません。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        // 再送信メソッドの宣言
+
+        trim()
+
+            <= trim(#32);
+
+        
+
+        trim(char ch)
+
+        {
+
+           // ...
+
+        }
+
+    }
+
+}}}
+
+Re-sending methods are especially useful for multi-method default implementation:
+
+再送信メソッドは、マルチメソッドのデフォルト実装では特に便利です。
+
+{{{ code ruby
+
+    A
+
+    {
+
+        // 整数の引数を受け入れる多重メソッドの宣言
+
+        do(int arg)
+
+        {
+
+            // ... 
+
+        }
+
+        
+
+        // 文字列の引数を受け入れる多重メソッドの宣言
+
+        do(string s)
+
+        {
+
+            // ... 
+
+        }
+
+        
+
+        // 引数を整数へキャストする多重メソッドの宣言
+
+        do(arg)
+
+            <= do(cast int(arg));
+
+    } 
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

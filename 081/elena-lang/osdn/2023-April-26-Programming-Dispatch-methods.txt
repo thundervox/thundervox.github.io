@@ -1,0 +1,78 @@
+==== メソッドのディスパッチ
+
+再送信メソッドは同一クラスにメッセージを送信する。これに対して、ディスパッチメソッドは受信したメッセージを別のオブジェクトにディスパッチします。例えば以下のコードは、
+
+{{{ code ruby
+
+    Variable
+
+    {
+
+        field value;
+
+        
+
+        constructor(value)
+
+        {
+
+            this value := value
+
+        }
+
+        
+
+        add(v)
+
+        {
+
+            // メッセージを別のオブジェクトにディスパッチします
+
+            ^ value.add(v)
+
+        }
+
+    }
+
+}}}
+
+ディスパッチメソッドを使用するとコードを簡素化できます
+
+{{{ code ruby
+
+    Variable
+
+    {
+
+        field value;
+
+        
+
+        constructor(value)
+
+        {
+
+            this value := value
+
+        }
+
+        
+
+        // ディスパッチメソッドには転送先のステートメントのみが含まれます
+
+        add(v)
+
+            => value;
+
+    }
+
+}}}
+
+ディスパッチメソッドのターゲットは '''=>''' シンボルの後に配置すると式の本体になります。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

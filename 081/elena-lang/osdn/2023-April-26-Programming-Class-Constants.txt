@@ -1,0 +1,97 @@
+==== クラス定数
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Class constants are the special case of static fields which value are inherited by the children. Class constants can be initialized only by in-place initializers (in compile-time). They can be used to provide class meta information. For example using so-called accumulator constants we can extend the class meta information in the derived classes:
+
+クラス定数は、値が子クラスによって継承される静的フィールドの特殊なケースです。クラス定数は、適所 (in-place) 初期化子 (コンパイル時) によってのみ初期化できます。クラスのメタ情報を提供するために使用できます。たとえば、いわゆる accumulator 定数を使用して、派生クラスに関するクラスのメタ情報を拡張できます:
+
+{{{ code ruby
+
+import extensions;
+
+class Base
+
+{
+
+    // accumulator 俗世の宣言
+
+    const object[] theFamily;
+
+    
+
+    // クラスへの参照の追加
+
+    this theFamily += Base;
+
+    
+
+    // 継承可能な静的メソッドを宣言 (すべての派生クラスからアクセス可能)
+
+    sealed static printFamily()
+
+    {
+
+        console.printLine(theFamily.asEnumerable())
+
+    }
+
+}
+
+class A : Base
+
+{
+
+    // 派生クラスの参照を追加
+
+    this theFamily += A;
+
+}    
+
+class B : Base
+
+{
+
+    // 派生クラスの参照を追加
+
+    this theFamily += B;
+
+}    
+
+public program()
+
+{
+
+    console.print("A:");
+
+    A.printFamily();
+
+    
+
+    console.print("B:");
+
+    B.printFamily();
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+A:mytest'$private'Base#class,mytest'$private'A#class
+
+B:mytest'$private'Base#class,mytest'$private'B#class
+
+}}}
+
+An accumulator attribute of the class A contains the class and its parent. The similar attribute of the class B contains its own copy of the attribute. If a new class will be derived from B, the attribute will be inherited and can be extended further and so on.
+
+クラス A の accumulator 属性にはクラスと親クラスが含まれています。クラス B の同属性には属性の独自コピーが含まれます。クラス B から新しいクラスわ派生する場合、属性は継承され、さらに拡張できます。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。

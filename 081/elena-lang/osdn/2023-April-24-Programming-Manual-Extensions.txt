@@ -1,0 +1,284 @@
+==== 拡張
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Extensions are special stateless classes used to declare extension methods. Extension methods allow you to extend the original class functionality without creating a new derived type, recompiling, or otherwise modifying the original type. Every method declared in an extension class is an extension method.
+
+拡張は、拡張メソッドを宣言するために使用される特殊なステートレス・クラスです。拡張メソッドを使用すると、新しい派生型を作成したり、再コンパイルしたり、元の型を変更したりすることなく、元のクラス機能を拡張できます。拡張クラスで宣言されたメソッドはすべて拡張メソッドになります。
+
+In normal cases extension classes is never used directly (except in mixins). To be used in other modules they should be declared as a public one. To start to use the extension it is enough to declare it in the same namespace as the code where it will be used. If the extension is declared in another module, the module should be included into the code (using '''import''' statement).
+
+通常時、拡張クラスは直接使用されることはありません (ミックスインを除く)。他のモジュールで使用するには、パブリッククラスとして宣言する必要があります。拡張を使用するには、使用するコードと同じ名前空間で宣言するだけで十分です。拡張が別のモジュールで宣言されている場合は、そのモジュールをコードに含める必要があります ('''import''' ステートメントを使用)。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    // 拡張の宣言
+
+    public extension MyExtension
+
+    {
+
+        // 拡張の各メンバは拡張メソッドです。
+
+        printMe()
+
+        {
+
+            console.printLine("I'm printing ", self);
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // 様々な型の拡張メソッドを呼び出し
+
+        2.printMe();
+
+        "abc".printMe();
+
+        2.3r.printMe()
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    I'm printing 2
+
+    I'm printing abc
+
+    I'm printing 2.3
+
+}}}
+
+Extensions methods are used in ELENA in many places. For example '''print''' and '''printLine''' are extension variadic methods. If the class already have the method with the same name it will be used instead of extension one. For example if we extend our previous example with a new class containing the method '''printMe'''
+
+ELENA では多くの場所で拡張メソッドが使用されています。たとえば、 '''print''' と '''printLine''' は拡張可変長メソッドです。クラスに同じ名前のメソッドがすでに存在する場合は、拡張メソッドの代わりに使用されます。たとえば、前の例を拡張して、 '''printMe''' というメソッドを含む新しいクラスを作成したとします。
+
+{{{ code ruby
+
+    MyClass
+
+    {
+
+        printMe()
+
+        {
+
+            console.printLine("I'm printing myself");
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        auto o := new MyClass();
+
+        o.printMe();
+
+    }
+
+}}}
+
+The correct method will be invoked:
+
+該当するメソッドが呼び出されます。
+
+{{{ code ruby
+
+    I'm printing myself
+
+}}}
+
+弱い型付けのオブジェクトならば、拡張が呼び出されます。
+
+{{{ code ruby
+
+    public program()
+
+    {
+
+        var o := new MyClass();
+
+        o.printMe();
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    I'm printing mytest'$private'MyClass
+
+}}}
+
+So it is a good practice not to mix the extension and normal method names.
+
+そのため、拡張メソッド名と通常のメソッド名を混在させないようにすることをお勧めします。
+
+Extensions can be weak one, meaning that they can extends any object (or instances of '''system'Object''' class). But we could always specify the exact extension target:
+
+拡張は弱い型付けになる可能性があります。つまり、拡張はあらゆるオブジェクト(または'''system'Object'''クラスのインスタンス)を拡張できます。しかし、常に正確な拡張ターゲットを指定することができます。
+
+{{{ code ruby
+
+    // MyClass の拡張を宣言
+
+    public extension MyStrongExtension : MyClass
+
+    {
+
+        printMe()
+
+        {
+
+            console.printLine("I'm printing MyClass");
+
+        }
+
+    }
+
+    
+
+    MyClass
+
+    {
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        auto o := new MyClass();
+
+        o.printMe();
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    I'm printing MyClass
+
+}}}
+
+It is possible to have several extension method with the same name as long as the extension targets are not the same.
+
+拡張対象が同じでない限り、同じ名前を有するいくつかの拡張メソッドを有することが可能である。
+
+The extension can be resolved both in compile and run time. The compiler tries to resolve all extensions directly. But if there are several similar extensions it will generate a run-time dispatcher. 
+
+拡張機能はコンパイル時と実行時の両方で解決できます。コンパイラはすべての拡張機能を直接解決しようとしますが、似たような拡張が複数ある場合は、実行時ディスパッチャを生成します。
+
+{{{ code ruby
+
+    // クラスの宣言
+
+    A;
+
+    B;
+
+    
+
+    // 複数の強い型の拡張を同名で宣言する
+
+    extension AOp : A
+
+    {
+
+        // A のインスタンスを拡張
+
+        whoAmI()
+
+        {
+
+            console.printLine("I'm instance of A")
+
+        }
+
+    }
+
+    
+
+    extension BOp : B
+
+    {
+
+        // B のインスタンスを拡張 
+
+        whoAmI()
+
+        {
+
+            console.printLine("I'm instance of B")
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // 弱い型付けの変数を宣言
+
+        var a := new A();
+
+        var b := new B();
+
+    
+
+        // コンパイル時に拡張に関する解決はできないため
+
+        // 実行時にディスパッチャーが使われます
+
+        a.whoAmI();
+
+        b.whoAmI();
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    I'm instance of A
+
+    I'm instance of B
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+

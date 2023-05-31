@@ -1,0 +1,169 @@
+==== クラスフィールド
+
+クラスフィールドはクラス本体の内側で宣言してください。 '''Field''' と型属性は省略可能です。
+
+{{{ code ruby
+
+class MyClass
+
+{
+
+    // 完全修飾によるフィールドの宣言
+
+    field int x;
+
+        
+
+    // field 属性は省略可能
+
+    int y;
+
+        
+
+     // 型属性は省略可能
+
+    field z;
+
+        
+
+    // 最小構成の宣言
+
+    f;
+
+}
+
+}}}
+
+フィールド名を指定することでメソッドにあるフィールドにアクセスできます。
+
+{{{ code ruby
+
+import extensions;
+
+    
+
+class MyClass
+
+{
+
+    // フィールド名 x の宣言
+
+    int x;
+
+    
+
+    constructor()
+
+    {
+
+        // コンストラクタはフィールドを初期化するのに一般的な場所です
+
+        x := 2
+
+    }
+
+    
+
+    printX()
+
+    {
+
+        // 名前によりフィールドを参照します
+
+        console.printLine("MyClass.x="x)
+
+    }    
+
+}    
+
+    
+
+public program()
+
+{
+
+    var o := new MyClass();
+
+        
+
+    o.printX()
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+MyClass.x=2
+
+}}}
+
+ローカル変数とフィールドが同名の場合は接頭辞 '''this''' を使うとフィールドを区別できます。
+
+{{{ code ruby
+
+class MyClass
+
+{
+
+    // フィールド x の宣言
+
+    int x;
+
+    
+
+    // 引数名 x の宣言
+
+    constructor(int x)
+
+    {
+
+        // フィールドとローカルを区別するには this 修飾子を使います
+
+        this x := x
+
+    }
+
+    
+
+    printX()
+
+    {
+
+        // 接頭辞 this を使うとフィールドを直接参照します
+
+        console.printLine("MyClass.x=",this x)
+
+    }    
+
+}
+
+    
+
+public program()
+
+{
+
+    var o := new MyClass(3);
+
+        
+
+    o.printX()
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+MyClass.x=3
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。

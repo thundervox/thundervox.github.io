@@ -1,0 +1,264 @@
+==== 可変長引数メソッド
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+可変長引数関数は可変長引数を扱う関数です。例えば、 '''printLine''' は可変長引数に対応した拡張メソッドです。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    public program()
+
+    {
+
+        console.print("variadic function ", "can ", "take ");
+
+        console.print("any ", "number ", "of ", "arguments ");
+
+        console.printLine("!")
+
+    }
+
+}}}
+
+Variadic methods can mix normal and variadic arguments. But the variadic argument should be the last one. The variadic argument starts with '''params''' attribute and should be an array type.
+
+可変長メソッドにおいて、通常の引数と可変長引数は併用できます。ただし、可変長引数は最後の位置に指定してください。可変長引数は '''params''' 属性で書き始めた後に続けて配列型を指定してください。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    singleton Ops
+
+    {
+
+        // 通常の引数と可変長引数を併用した
+
+        // 可変長メソッドの宣言
+
+        sum(int l, params int[] args)
+
+        {
+
+            int sum := l;
+
+            // 可変長引数は Length[1], at[2] や setAt[3] などの
+
+            // 基本操作をサポーした特別な配列型と考えられます
+
+            int len := args.Length;
+
+            for (int i := 0, i < len, i += 1)
+
+            {
+
+                sum += args[i]
+
+            };
+
+            
+
+            ^ sum
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // 可変長引数は空できます。
+
+        console.printLine(Ops.sum(1));
+
+        // あるいは「好きな」個数の引数を扱えます
+
+        console.printLine(Ops.sum(1,2));
+
+        console.printLine(Ops.sum(1,2,3,4,5));
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    1
+
+    3
+
+    15
+
+}}}
+
+A variadic argument can be boxed into normal array automatically:
+
+可変長引数は通常の配列へ自動的にボックス化します。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    singleton Ops
+
+    {
+
+        boxVArg(params object[] args)
+
+        {
+
+            // 可変長引数は自動的に動的配列へボックス化
+
+            var o := args;
+
+            
+
+            // ボックス化した可変長引数をコレクションとして出力
+
+            console.printLine(o.asEnumerable())
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        Ops.boxVArg(1,2.0r,"abc");
+
+    }
+
+}}}
+
+このプログラムの実行結果は、
+
+{{{ code ruby
+
+    1,2.0,abc
+
+}}}
+
+In some cases we have to pass a variadic argument further into another variadic function. It can be done with a help the '''params''' attribute. Let's summarize and print integers. We will do it by using two variadic function: one to summarize a variadic argument and another to represent it as a string.
+
+場合によっては、可変長引数をさらに別の可変長関数に渡す必要がある。これは、'''params'''属性の助けを借りて行うことができる。ここでは、整数を要約して出力する。ここでは、2つの可変長関数を使用して、1つは可変長引数を要約し、もう1つはそれを文字列として表現する。
+
+{{{ code ruby
+
+    import extensions;
+
+        
+
+    singleton Ops
+
+    {
+
+        concat(params int[] args)
+
+        {
+
+            string ret ;
+
+            for(int i := 0, i < args.Length, i += 1)
+
+            {
+
+                if (ret == nil) {
+
+                    ret := ""
+
+                }
+
+                else ret += ",";
+
+                
+
+                ret += args[i].toPrintable()
+
+            };
+
+            
+
+            ^ ret
+
+        }
+
+        
+
+        int sum(params int[] args)
+
+        {
+
+            int sum := 0;
+
+            for(int i := 0, i < args.Length, i += 1)
+
+            {
+
+                sum := sum + args[i]
+
+            };
+
+            
+
+            ^ sum
+
+        }
+
+        
+
+        sumAndPrint(params int[] args)
+
+        {
+
+            // 続けて可変長引数を渡します
+
+            console.printLine("sum(",self.concat(params args),")=",
+
+                self.sum(params args));
+
+        }
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        Ops.sumAndPrint(1,2,3,4,5);
+
+    }
+
+}}}
+
+もちろん、実行結果は、
+
+{{{ code ruby
+
+    sum(1,2,3,4,5)=15
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

@@ -1,0 +1,96 @@
+==== カスタムディスパッチャ
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+A custom dispatcher is a special case of a dispatch method. A class dispatcher is invoked every time when the message handler has to be resolved in compile-time. '''system'Object''' contains the default implementation which looks through a method table and invoke the appropriate method or raises an exception of no match is found. It is possible to override the class dispatcher to implement some dynamic features, such as mixins. 
+
+カスタム・ディスパッチャは、ディスパッチ・メソッドの特殊なケースです。クラス・ディスパッチャは、コンパイル時にメッセージ・ハンドラを解決する必要があるたびに起動されます。 '''system'Object''' には、メソッドテーブルを参照して適切なメソッドを起動するか、一致が見つからないという例外を発生させるデフォルトの実装が含まれています。クラス・ディスパッチャをオーバーライドして、ミックスインなどの動的機能を実装することができます。
+
+A custom dispatcher is a dispatch method named '''dispatch''' without arguments and an output type.
+
+カスタムディスパッチャは、引数と出力タイプを持たない '''dispatch''' という名前のディスパッチ・メソッドです。
+
+Let's implement mixin classes to simulate multiple-inheritance. A mixin is a class that can be used as a part of a special group object, which functionality consists of several not related with each other classes. We will implement a group object with a help of a custom dispatcher:
+
+多重継承をシミュレートするために、ミックスインクラスを実装しましょう。ミックスインは、特別なグループオブジェクトの一部として使用できるクラスであり、その機能は、互いに関連のない複数のクラスで構成されています。カスタムディスパッチャを使用して、グループオブジェクトを実装します。
+
+{{{ code ruby
+
+    // ミックスインの宣言
+
+    singleton CameraFeature
+
+    {
+
+        cameraMsg
+
+            = "camera";
+
+    }
+
+     
+
+    // ミックスインの宣言
+
+    class MobilePhone
+
+    {
+
+        mobileMsg
+
+            = "phone";
+
+    }
+
+    
+
+    // オブジェクトのグループを宣言
+
+    class CameraPhone : MobilePhone
+
+    {
+
+        // カスタムディスパッチャーの宣言
+
+        dispatch() => CameraFeature;
+
+    }
+
+     
+
+    public program()
+
+    {
+
+       var cp := new CameraPhone();
+
+     
+
+       console.writeLine(cp.cameraMsg);
+
+       console.writeLine(cp.mobileMsg)
+
+    }
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    camera
+
+    phone
+
+}}}
+
+A custom dispatcher redirects all not resolved by the class messages to its target. 
+
+カスタム・ディスパッチャーは、クラス・メッセージによって解決されなかったすべてのメッセージをターゲットにリダイレクトします。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

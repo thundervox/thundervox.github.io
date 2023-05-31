@@ -1,0 +1,10 @@
+= バイナリ
+
+最新版は https://sourceforge.net/projects/elenalang (または OSDN)からダウンロードしてください。
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/Binaries Binaries (2013-October-16 rev. 1)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

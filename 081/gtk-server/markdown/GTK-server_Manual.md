@@ -18,7 +18,7 @@ In the config file you have to describe the GTK function you want to invoke. Ent
 FUNCTION_NAME = gtk_toggle_button_new_with_label, clicked, WIDGET, 1, STRING
 ```
 
-In this line, the GTK function **gtk_toggle_button_new_with_label** is described. (To find out what the properties are for GTK functions, consult the GTK documentation at https://www.gtk.org/) The next argument describes the type of callback for this widget. A callback is a signal to which the GTK library has to listen. In this case, the toggle button by default will respond to a ```clicked``` signal. This signal occurs when you click with your mouse on this button. Remember, except for the names of the GTK-functions and signals you have to use capitals here!
+In this line, the GTK function **gtk_toggle_button_new_with_label** is described. (To find out what the properties are for GTK functions, consult the GTK documentation at [https://www.gtk.org/](https://www.gtk.org/)) The next argument describes the type of callback for this widget. A callback is a signal to which the GTK library has to listen. In this case, the toggle button by default will respond to a ```clicked``` signal. This signal occurs when you click with your mouse on this button. Remember, except for the names of the GTK-functions and signals you have to use capitals here!
 
 After the callback signal you have to enter which value is expected back from the GTK function (the returnvalue). In the example above, a widget will be returned to the script. Other returnvalues are ```STRING```, ```BOOL```, ```LONG```, ```FLOAT``` and ```NONE```.Using Glade XML files
 

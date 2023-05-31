@@ -1,0 +1,34 @@
+==== 固定長配列フィールド
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+It is possible to declare fixed size array in a data structure. They are useful when you write methods that interop with data sources from other languages or platforms. The array type must be a structure itself. To declare a fixed size array field the field name should be followed by the size constant enclosed in square brackets:
+
+データ構造において固定サイズ配列を宣言することが可能である。これらは、他の言語またはプラットフォームからのデータソースと相互作用するメソッドを書くときに有用である。配列型は、構造自体でなければならない。固定サイズの配列フィールドを宣言するためには、フィールド名の後に、角括弧で囲まれたサイズ定数が続くべきである。
+
+{{{ code ruby
+
+struct WSADATA
+
+{
+
+    short wVersion;
+
+    short wHighVersion;
+
+    // バイト単位による固定長配列の宣言 
+
+    byte  szDescription[257];
+
+    byte  szSystemStatus[129];
+
+}
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

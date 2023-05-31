@@ -1,4 +1,4 @@
-# GTK-server
+# GTK-server 2.4.6
 
 たまごかけごはんサーバー……
 

@@ -1,0 +1,274 @@
+==== インターフェース
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+An interface is a special case of an abstract class. For performance reason a new method cannot be declared for the interface children (except private ones). As a result an interface method can be called semi-directly (via a method table). An interface methods can be both abstract and normal ones (like in abstract classes).
+
+インターフェイスは抽象クラスの特殊なケースです。パフォーマンス上の理由から、インターフェイスの子 (プライベートなものを除く) に対して新しいメソッドを宣言することはできません。その結果、インターフェイスメソッドは (メソッドテーブルを介して) 半直接的に呼び出すことができます。インターフェイスメソッドは、抽象メソッドと通常のメソッドの両方にすることができます (抽象クラスのように) 。
+
+{{{ code ruby
+
+    interface IObserver
+
+    {
+
+        // インタフェースの抽象メソッドを宣言
+
+        abstract notify();
+
+    }
+
+}}}
+
+Though we could directly inherit the interface:
+
+また、インタフェースを直接継承することもできる。
+
+{{{ code ruby
+
+    class Oberver : IObserver
+
+    {
+
+        notify() 
+
+        {
+
+            console.printLine("I'm notified")
+
+        }
+
+    }
+
+}}}
+
+it is unpractical, because we cannot extends the class functionality. Instead we can use a template named '''interface''':
+
+クラス機能を拡張できないため、実用的ではない。代わりに、 '''interface''' という名前のテンプレートを使用することができる。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    // インタフェースの宣言
+
+    interface IObserver
+
+    {
+
+        // 実装するインタフェースメソッドの宣言
+
+        abstract notify();
+
+    }
+
+    
+
+    // インタフェースをサポートするクラスの作成
+
+    class MyClass : interface<IObserver>
+
+    {
+
+        // 実装するインタフェースメソッド
+
+        notify() 
+
+        {
+
+            console.printLine("I'm notified")
+
+        }
+
+        
+
+        // 各種機能の実装
+
+        doSomework()
+
+        {
+
+            console.printLine("I'm doing some work")
+
+        }
+
+    }
+
+    
+
+    // インターフェースを呼び出す単純なルーチン
+
+    sendNotification(IObserver observer)
+
+    {
+
+        observer.notify()
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // MyClass のインタフェースを作成
+
+        auto myObject := new MyClass();
+
+        
+
+        // do some work
+
+        myObject.doSomework();
+
+        
+
+        // オブジェクトを明示的に型キャストすることでに
+
+        // インターフェース実装を関数に渡します
+
+        sendNotification(cast IObserver(myObject));    
+
+    }        
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+    I'm doing some work
+
+    I'm notified
+
+}}}
+
+The class can implement several interfaces (so we can by-pass a problem with a single inheritance). 
+
+このクラスは複数のインターフェースを実装することができます (そのため、単一継承の問題を回避することができます)。
+
+{{{ code ruby
+
+    import extensions;
+
+    
+
+    // インタフェースの宣言
+
+    interface IObserver
+
+    {
+
+        // 実装するインタフェースメソッドの宣言
+
+        abstract notify();
+
+    }
+
+    
+
+    // 二番目のメソッドを宣言
+
+    interface IWork
+
+    {
+
+        abstract doSomework();
+
+    }
+
+    
+
+    // creating a class supporting both interfaces
+
+    class MyClass : interface<IObserver>, interface<IWork>
+
+    {
+
+        // 両方のインターフェースをサポートするクラスの作成
+
+        notify() 
+
+        {
+
+            console.printLine("I'm notified")
+
+        }
+
+        
+
+        // 二番目のインターフェースを宣言
+
+        doSomework()
+
+        {
+
+            console.printLine("I'm doing some work")
+
+        }
+
+    }
+
+    
+
+    // インターフェースを呼び出す単純なルーチン
+
+    sendNotification(IObserver observer)
+
+    {
+
+        observer.notify()
+
+    }
+
+    
+
+    public program()
+
+    {
+
+        // MyClass  のインスタンスを作成
+
+        auto myObject := new MyClass();
+
+        
+
+        // 二番目のインターフェースに暗黙的に型キャスト
+
+        IWork work := myObject;
+
+        
+
+        // 二番目のインターフェースを使用
+
+        work.doSomework();
+
+        
+
+        // オブジェクトを明示的に型キャストすることで
+
+        // インターフェース実装を関数に渡します
+
+        sendNotification(cast IObserver(myObject));    
+
+    }
+
+}}}
+
+実行結果は同じです。
+
+{{{ code ruby
+
+    I'm doing some work
+
+    I'm notified
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+

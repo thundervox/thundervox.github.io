@@ -1,0 +1,52 @@
+==== Sealed / Closed クラス
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+'''Sealed''' and '''Closed''' attributes are used to improve the performance of the operations with the classes. A sealed class cannot be inherited. As a result the compiler can generate direct method calls for this class (of course when the type is known). All structs and singletons are sealed by default. Declaring a sealed class is quite simple:
+
+'''Sealed''' と '''Closed''' の属性は、クラスを使用した操作のパフォーマンスを向上させるために使用されます。Sealed クラスは継承できません。その結果、コンパイラは、このようなクラスの直接メソッド呼び出しを生成できます (もちろん、型が判明している場合)。すべての構造体とシングルトンはデフォルトで Sealed です。 Sealed クラスの宣言は非常に簡単です。
+
+{{{ code ruby
+
+sealed class MySealedClass
+
+{
+
+}
+
+}}}
+
+Closed classes can be inherited but no new methods (private ones or new fields are allowed). All interfaces are closed. When the type is closed, the compiler can use a method table to resolve the method call.
+
+Closed クラスは継承できるが、新規メソッドは Closed メソッドを継承できない (プライベートなメソッドや新規フィールドは可能である)。すべてのインタフェースは Closed である。型が Closed の場合、コンパイラはメソッドテーブルを使用してメソッドの呼び出しを解決します。
+
+{{{ code ruby
+
+closed class MyBaseClass
+
+{
+
+    // "virtual" メソッドの宣言
+
+    myMethod() {}
+
+}
+
+    
+
+class MyChileClass : MyBaseClass
+
+{
+
+    // メソッドのオーバーライド
+
+    myMethod() {}
+
+}
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+

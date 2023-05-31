@@ -55,7 +55,7 @@ fi
 
 Please keep in mind that the GTK-server always returns it's data as a string. In order to use the returned result as a number, some languages (like Scriptbasic) need a typecast.
 
-## Using Glade XML files
+## 4. Using Glade XML files
 
 If you have designed a user interface with Glade, the GTK-server can read the resulting XML file and realize the interface. First point to the location of the XML file:
 

@@ -1,0 +1,136 @@
+==== 静的フィールド
+
+^ 訳注: 気力と余裕が尽きたので Textra 版のポストエディットは後日とします。 ^
+
+Static fields are class variables which are shared by all class instances. They can be accessed both from normal and static methods. A value changed in one class instances, will be changed for all class instances. Note that static fields are not inherited by the children classes (similar to the traditional static fields in the languages like C#.).
+
+静的フィールドは、すべてのクラスインスタンスによって共有されるクラス変数であり、通常メソッドおよび静的メソッドの両方からアクセスすることができる。1つのクラスインスタンスにおいて変更された値は、すべてのクラスインスタンスに対して変更されることになる。静的フィールドは、(C# のような言語における従来の静的フィールドと同様に) 子クラスによって継承されないことに留意されたい。
+
+Let's implement a singleton pattern (''Note that we declare a dynamic singleton to tell apart from a static singleton''):
+
+では、シングルトンパターンを実装してみましょう (''静的シングルトンと区別するために動的シングルトンを宣言することに注意してください'')。
+
+{{{ code ruby
+
+import extensions;
+
+public class DynamicSingleton
+
+{
+
+    // クラスが直接使用されないようにするために
+
+    // プライベートコンストラクタを宣言します
+
+    private constructor() {}
+
+    
+
+    callMe()
+
+    {
+
+        console.printLine("I'm a singleton")
+
+    }
+
+    
+
+    // 静的フィールドの宣言
+
+    static DynamicSingleton instance;
+
+    
+
+    // フィールドのアクセスで使う静的プロパティの宣言
+
+    static DynamicSingleton Instance
+
+    {
+
+        get()
+
+        {
+
+            if (instance == nil)
+
+            {
+
+                instance := new DynamicSingleton();
+
+            };
+
+            
+
+            ^ instance
+
+        }
+
+    }
+
+}
+
+public program()
+
+{
+
+    DynamicSingleton.Instance.callMe();
+
+}
+
+}}}
+
+実行結果は、
+
+{{{ code ruby
+
+I'm a singleton
+
+}}}
+
+静的シングルトン ('''singleton''' 属性で宣言) は静的フィールドも扱えます。
+
+{{{ code ruby
+
+singleton MySingleton
+
+{
+
+    static mySingletonField := "Some value";
+
+    
+
+    printMe()
+
+    {
+
+        console.printLine(mySingletonField)
+
+    }
+
+}
+
+public program()
+
+{
+
+    MySingleton.printMe()
+
+}
+
+}}}
+
+その実行結果は以下のとおりです。
+
+{{{ code ruby
+
+some value
+
+}}}
+
+----
+
+この記事は [https://github.com/ELENA-LANG/elena-lang/wiki/ELENA-Programming-Manual ELENA Programming Manual (2023-March-06 rev. 213)] の邦訳です。
+
+使用許諾条件は ELENA 言語に従うものとします。
+

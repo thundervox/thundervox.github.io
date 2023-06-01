@@ -7,7 +7,7 @@
 * [Chapter 2. First steps](#chapter-2-first-steps)
 * [Chapter 3. GTK programming - the main window](#chapter-3-gtk-programming---the-main-window)
 * [Chapter 4. GTK programming - containers](#chapter-4-gtk-programming---containers)
-* Chapter 5: GTK programming - labels
+* [Chapter 5: GTK programming - labels](#chapter-5-gtk-programming---labels)
 * Chapter 6: GTK programming - buttons
 * Chapter 7. GTK programming - the mainloop
 * Chapter 8. GTK programming - closing the main window
@@ -165,3 +165,41 @@ Pretty easy, isn't it?
 
 
 ## Chapter 4. GTK programming - containers
+
+According to the original GTK principles, we must define a container to pack our widgets. It is possible to define the window as a container, but personally, I prefer to use tables. If a table is defined, it is easy to define your widgets using relational coordinates. To create a table on the window, the function "gtk_table_new" must be used. This function returns a widget and uses 3 arguments (we will use no callback signals for the table). The first 2 arguments determine the amount of rows and columns in the table. The third argument is a boolean argument. We can workaround this by using the same trick as we did for the typedefinitions: using '0' for 'false' and '1' for 'true'.
+
+Also, the table must be nailed to the window. This is done with "gtk_container_add". This function uses 2 arguments: the widget (Window) on which the other widget (Table) will be nailed. Our configfile now will look like:
+
+```bash
+#
+LIB_NAME = libgtk-x11-2.0.so
+#
+FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
+FUNCTION_NAME = gtk_window_new, NONE, WIDGET, 1, LONG
+FUNCTION_NAME = gtk_window_set_title, NONE, NONE, 2, WIDGET, STRING
+FUNCTION_NAME = gtk_table_new, NONE, WIDGET, 3, LONG, LONG, LONG
+FUNCTION_NAME = gtk_container_add, NONE, NONE, 2, WIDGET, WIDGET
+#
+```
+
+This is the AWK script:
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+#
+
+BEGIN{
+
+GTK = "gtk-server -stdin"
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
+print "gtk_window_set_title " WINDOW " \"This is a title\"" |& GTK; GTK |& getline
+print "gtk_table_new 30 30 1" |& GTK; GTK |& getline TABLE
+print "gtk_container_add " WINDOW " " TABLE |& GTK; GTK |& getline
+```
+
+
+## Chapter 5: GTK programming - labels
+

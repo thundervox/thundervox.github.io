@@ -203,3 +203,45 @@ print "gtk_container_add " WINDOW " " TABLE |& GTK; GTK |& getline
 
 ## Chapter 5: GTK programming - labels
 
+Now, the message "Hello world" must appear in our window. We have to define a label. There is a very convenient GTK function for this: "gtk_label_new", with only 1 argument containing the text to be displayed.
+
+But also, this widget has to be 'packed' onto the table. We will use the "gtk_table_attach_defaults" function. The first argument determines the table we want to use, the second the widget to pack, then the left x and right x coordinate (related to the table) are mentioned, and finally the upper and lower y coordinate are mentioned.
+
+```sh
+#
+LIB_NAME = libgtk-x11-2.0.so
+#
+FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
+FUNCTION_NAME = gtk_window_new, NONE, WIDGET, 1, LONG
+FUNCTION_NAME = gtk_window_set_title, NONE, NONE, 2, WIDGET, STRING
+FUNCTION_NAME = gtk_table_new, NONE, WIDGET, 3, LONG, LONG, LONG
+FUNCTION_NAME = gtk_container_add, NONE, NONE, 2, WIDGET, WIDGET
+FUNCTION_NAME = gtk_label_new, NONE, WIDGET, 1, STRING
+FUNCTION_NAME = gtk_table_attach_defaults, NONE, NONE, 6, WIDGET, WIDGET, LONG, LONG, LONG, LONG
+#
+```
+
+And the AWK script:
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+
+#
+BEGIN{
+
+GTK = "gtk-server -stdin"
+
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
+print "gtk_window_set_title " WINDOW " \"This is a title\"" |& GTK; GTK |& getline
+print "gtk_table_new 30 30 1" |& GTK; GTK |& getline TABLE
+print "gtk_container_add " WINDOW " " TABLE |& GTK; GTK |& getline
+print "gtk_label_new \"Hello world\"" |& GTK; GTK |& getline LABEL
+print "gtk_table_attach_defaults " TABLE " " LABEL " 1 29 3 7" |& GTK; GTK |& getline
+```
+
+
+## Chapter 6: GTK programming - buttons
+

@@ -1,4 +1,4 @@
-# Logical shortcuts
+## Logical shortcuts
 
 *Logical shortcuts* are no special language construct and there is no keyword for them; they are just a way to evaluate *logical expressions*. Logical expressions (i.e. a series of conditions or comparisons joined by [**and**]()<sup>**?**</sup> or [**or**]()<sup>**?**</sup>) are only evaluated until the final result of the expression can be determined. An example:
 

@@ -14,7 +14,7 @@
 * [Chapter 8. GTK programming - closing the main window](#chapter-8-gtk-programming---closing-the-main-window)
 * [Chapter 9. Using colors](#chapter-9-using-colors)
 * [Chapter 10. Connecting to the GTK-server with TCP or UDP](#chapter-10-connecting-to-the-gtk-server-with-tcp-or-udp)
-* Chapter 11. Connecting to the GTK-server with FIFO
+* [Chapter 11. Connecting to the GTK-server with FIFO](#chapter-11-connecting-to-the-gtk-server-with-fifo)
 * Chapter 12. Logging
 
 
@@ -506,4 +506,135 @@ There are more possibilities using GTK rc-files, like coloring a whole set of wi
 
 
 ## Chapter 10. Connecting to the GTK-server with TCP or UDP
+
+Instead of using 2-way pipes, it is also possible to connect your script by TCP or UDP.
+
+To start the GTK-server using TCP sockets, the argument to the server must be of the format <tcp=ipaddress:port>. With UDP the format is almost the same: <udp=ipaddress:port>.
+
+For example:
+
+```bash
+gtk-server -tcp=localhost:50000
+```
+
+Now the server is started and it will listen to your localhost IP address (127.0.0.1). Your script must connect to TCP port 50000. If we rewrite our "Hello world" application to a TCP connection, the script would look like this:
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+#
+
+BEGIN{
+
+system("gtk-server -tcp=localhost:50000 &")
+
+GTK = "/inet/tcp/0/localhost/50000"
+
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
+print "gtk_window_set_title " WINDOW " \"This is a title\"" |& GTK; GTK |& getline
+print "gtk_table_new 30 30 1" |& GTK; GTK |& getline TABLE
+print "gtk_container_add " WINDOW " " TABLE |& GTK; GTK |& getline
+print "gtk_label_new \"Hello world\"" |& GTK; GTK |& getline LABEL
+print "gtk_table_attach_defaults " TABLE " " LABEL " 1 29 3 7" |& GTK; GTK |& getline
+print "gtk_button_new_with_label Exit" |& GTK; GTK |& getline BUTTON
+print "gtk_table_attach_defaults " TABLE " " BUTTON " 20 28 23 27" |& GTK; GTK |& getline
+print "gtk_widget_show " LABEL |& GTK; GTK |& getline
+print "gtk_widget_show " BUTTON |& GTK; GTK |& getline
+print "gtk_widget_show " TABLE |& GTK; GTK |& getline
+print "gtk_widget_show " WINDOW |& GTK; GTK |& getline
+
+EVENT = 0
+
+do {
+
+    print "gtk_main_iteration" |& GTK; GTK |& getline
+    print "gtk_server_callback 0" |& GTK; GTK |& getline EVENT
+
+} while (EVENT != BUTTON && EVENT != WINDOW)
+
+close(GTK)
+fflush("")
+}
+```
+
+As of version 3.1, the GNU AWK script language has built-in network support. The above script connects AWK to the server by a TCP port. It might happen that the AWK interpreter executes to fast; therefore, after startup of the GTK-server it might be necessary to wait for a second, in order for the GTK-server to initialize.
+
+Finally it is possible to connect multiple scripts to 1 GTK-server using TCP (so not UDP). In this way you can avoid running multiple instances of the GTK-server in memory, each of which will consume a TCP port. (This functionality is not available in a Windows environment, since the Windows OS does not support forking.) To enable this functionality, start the GTK-server like this:
+
+```bash
+gtk-server -tcp localhost:50000:16
+```
+
+The number '16' defines the maximum amount of client scripts allowed to use the GTK-server at the same time. You can use any number here (the maximum depending on your OS and hardware). It is a nice idea to start the GTK-server this way during boot time. You can create a "rc" script to take care of that, so the GTK-server will run permanently in the background. When necessary, any of your scripts can connect by TCP, so you have always have access to GTK GUI's.
+
+
+## Chapter 11. Connecting to the GTK-server with FIFO
+
+Finally you can connect to the GTK-server by using a named pipe. A named pipe is a file with a special feature: it can deliver messages to other processes or programs. The first message delivered to the pipe is also the first to be read by the other side; and vice versa. Hence the abbreviation FIFO, which actually means "First In First Out".
+
+To start the GTK-server using FIFO pipes, the argument to the server must be: fifo=<name>. The GTK-server will create a named pipe (which in fact is a file on your hard disk) with the filename <name>.
+
+For example:
+
+```bash
+gtk-server -fifo=mypipe
+```
+    
+In Windows, the syntax is different. The GTK-server will create two independent named pipes, which also behave like a file. The named pipes have predefined names, so these do not have to be specified. To start the GTK-server with named pipes in Windows, just enter:
+
+```bash
+gtk-server -fifo
+```
+
+Now, the client script first has to open the named pipe "\\.\pipe\out", and second the named pipe "\\.\pipe\in". As mentioned, the names of these pipes are predefined. Also the order in which to open the pipes is important! The 'out' pipe must be opened first, and is used by the client script to write information to; the 'in' pipe must be used to read information from.
+
+Let's continue with our AWK program. The AWK program must be adjusted a little bit, in order to use the named pipe. It is already clear that a named pipe behaves like a file. So to enable communication, we must write and read from this file. In AWK the program will look as follows:
+
+```gawk
+function GTK(call)
+{
+print call >> "mypipe"
+close("mypipe", "to")
+getline < "mypipe"
+close("mypipe", "from")
+return $0
+}
+
+#-------------------------------------------
+
+BEGIN{
+
+system("gtk-server -fifo=mypipe &")
+GTK("gtk_init NULL NULL")
+WINDOW = GTK("gtk_window_new 0")
+GTK("gtk_window_set_title " WINDOW " \"This is a title\"")
+TABLE = GTK("gtk_table_new 30 30 1")
+GTK("gtk_container_add " WINDOW " " TABLE)
+LABEL = GTK("gtk_label_new \"Hello world\"")
+GTK("gtk_table_attach_defaults " TABLE " " LABEL " 1 29 3 7")
+BUTTON = GTK("gtk_button_new_with_label Exit")
+GTK("gtk_table_attach_defaults " TABLE " " BUTTON " 20 28 23 27")
+GTK("gtk_widget_show_all " WINDOW)
+
+EVENT = 0
+
+do {
+
+    EVENT = GTK("gtk_server_callback WAIT")
+
+} while (EVENT != BUTTON && EVENT != WINDOW)
+
+print "gtk_server_exit" >> "gtk"
+}
+```
+
+As you can see, the structure of the program has changed. The communication part is put into a separate function now (called 'GTK'). The two 'close' statements in this function are needed to let AWK flush it's IO buffers.
+
+Also, instead of showing each GTK widget separately, the GTK function "gtk_widget_show_all" will show the parent widget WINDOW and all children attached to it. Do not forget to put this new function into the configfile! You should know how to define it by now.
+
+The mainloop has changed, now the 'gtk_server_callback' function has the argument 'WAIT', which will take over the previous 'gtk_main_iteration'. So the callback function will wait, until an event has occured. It returns to the AWK program with the widget ID which emitted the signal.
+
+Finally the GTK library is exited by printing a plain 'gtk_server_exit' to the pipe, without waiting for answer from the GTK-server.
 

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>sub</title>
+
+
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+  <meta content="zoiba" name="author">
+
+</head>
+
+
+<body style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">sub ... end sub<br>
+
+</span>
+</div>
+
+<br>
+
+<span class="text"> サブルーチンを定義します。<br></span> <br><span class="text"></span><span class="smallTitle"> 文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);"><span class="syntax2">
+sub </span>
+<span class="syntax2"></span><span class="syntax">name</span><span class="syntax2"> </span>
+<span class="syntax2">( </span>
+<span class="syntax">parmlist {...}</span><span class="syntax2">
+</span><span class="syntax2"> </span>
+<span class="syntax2">)
+</span><span class="syntax2">
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">&nbsp;&nbsp;&nbsp; </span><span style="color: rgb(102, 102, 102);" class="syntax">ブロック命令</span><span class="syntax2">
+</span><span class="syntax2">
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">end sub
+
+<br>
+
+</span>
+</div>
+
+<span class="text">
+</span><br>
+
+<span class="text"></span><span class="syntax"> name</span> <span class="text"> はサブルーチン名です。先頭は数字文字以外の英数文字列で必ず記述してください。例えば、 1printString は違法であるのに対して printString1 は合法です。</span><br class="text"><span class="text"> </span><span class="syntax">parmlist</span><span class="text"> サブルーチンへ引数を渡すのに使われる 1 本、またはそれ以上から成る変数の定義です。</span><br class="text"><span class="text">プログラムの開発期間中、プログラムの特定部分で同一命令手順を何度も書くことが求められる場合があります。そのような場合、 sdlBasic には命令手順を一度書くだけでプログラム全体から必要なときに再呼び出しが可能になる機能があります。サブルーチンの内側で使われる変数はローカル変数であるため、メインプログラムやほかのサブルーチンで同名変数を偶然使われたとしても外部の同名変数には影響を与えません。これは配列にも該当します。&nbsp;</span><span class="text"><a style="font-weight: bold;" href="../Array/common.html">Commons</a>, <a style="font-weight: bold;" href="../Array/shared.html">Shared</a> および <a style="font-weight: bold;" href="../Array/dim.html">Dim</a></span><span class="text"> コマンドを参照してください。</span><br class="text"><span class="text">サブルーチンにパラメータのリストを渡せますが、 Function とは異なり、その結果は返せません。パラメータの入力が不要なサブルーチンは括弧を付けずにメインプログラムから呼び出せます。</span><span class="text"><br></span> <br><span class="text"></span><span class="smallTitle"> 用例: </span><span style="font-family: Arial,Helvetica,sans-serif;"></span><br>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code"><span style="font-weight: bold;">Sub&nbsp;</span> printString(a$)</span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; prints(a$)</span><br class="code"><span style="font-weight: bold;" class="code">end Sub</span><br class="code"><span class="code">printString("yo!!!") </span><br>
+
+</div>
+
+<br>
+
+<span class="text"></span><span class="text"><a style="font-weight: bold;" href="../Array/common.html">Commons</a>, <a style="font-weight: bold;" href="../Array/shared.html">Shared</a> および <a style="font-weight: bold;" href="../Array/dim.html">Dim</a></span><span class="text"> コマンドを参照してください。</span>
+</body>
+</html>

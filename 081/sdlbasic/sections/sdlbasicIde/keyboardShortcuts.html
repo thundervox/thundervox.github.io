@@ -1,0 +1,681 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+  
+
+
+  
+  
+  
+  <title>キーボードショートカット</title>
+  <meta content="zoiba" name="author">
+
+
+
+  
+  
+  <link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+
+<body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+
+
+<div style="text-align: left; background-color: rgb(0, 102, 0);"><span class="title">キーボードショートカット</span><span class="title"><br class="text">
+
+
+
+</span></div>
+
+
+
+<span class="text"><br>
+
+
+
+</span>
+<div style="text-align: justify;"><span class="text"></span><span class="text"></span><span class="text">sdlBasic はエディタは、 SciTE と同じく、 Scintilla で定義されているデフォルトのキー割り当てを使うため、そのキーボード入力コマンド</span><span class="text"></span><span class="text">の大半は Windows と GTK+ の慣習と共通性があります。移動キー (矢印、PageUp/Down, Home と End) は Shift キーを押したままにするとストリームの選択範囲を拡大・縮小します。また、 Shift と Alt キーを押したままにすると矩形範囲選択をします。特定のキーは英語配列以外のキーボード、あるいは GTK+ ウィンドウマネージャなどのシステムで予約済みとなるため利用できない場合があります。user.shortcuts の設定は機能にキーを割り当てるために使います。備考として Home キーの動作は vc.home.key オプションで変更可能です。メニューにはそのコマンドに対応するキーボード操作が記載されています。メニューに対応するコマンドがなく、あまり一般的ではないコマンドは以下の通りです。</span><br>
+
+<span class="text"></span></div>
+
+<span class="text">
+
+<br>
+
+
+
+<table style="width: 100%;" summary="キーボードコマンド" border="0" cellpadding="4" cellspacing="0">
+
+
+
+  <tbody>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">テキストサイズを拡大します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+Keypad+</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">テキストサイズを縮小します。</td>
+
+
+
+      <td class="text">Ctrl+Keypad-</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">通常のテキストサイズに戻します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+Keypad/</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">最近開いたファイルを巡回します。</td>
+
+
+
+      <td class="text">Ctrl+Tab</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">ブロックのインデントをします。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Tab</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">ブロックのインデントを解除します。</td>
+
+
+
+      <td class="text">Shift+Tab</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">先頭の単語を削除します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+BackSpace</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">末尾の単語を削除します。</td>
+
+
+
+      <td class="text">Ctrl+Delete</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">先頭から現在の位置まで削除します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+Shift+BackSpace</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">現在の位置から末尾まで削除します。</td>
+
+
+
+      <td class="text">Ctrl+Shift+Delete</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">ドキュメントの冒頭へ移動します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+Home</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">ドキュメントの冒頭まで選択範囲を広げます。</td>
+
+
+
+      <td class="text">Ctrl+Shift+Home</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">現在の行の先頭へ移動します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Alt+Home</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">現在の行の先頭まで選択範囲を広げます。</td>
+
+
+
+      <td class="text">Alt+Shift+Home</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">ドキュメントの最後へ移動します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+End</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">ドキュメントの最後まで選択範囲を広げます。</td>
+
+
+
+      <td class="text">Ctrl+Shift+End</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">現在の行の末尾へ移動します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Alt+End</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">現在の行の末尾まで選択範囲を広げます。</td>
+
+
+
+      <td class="text">Alt+Shift+End</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">折り畳み位置の展開と縮小をします。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+Keypad*</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">ブックマークを作成または削除します。</td>
+
+
+
+      <td class="text">Ctrl+F2</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">次のブックマークへ移動します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">F2</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">次のブックマークを選択します。</td>
+
+
+
+      <td class="text">Alt+F2</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">選択したテキストを元に後方検索します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+F3</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">選択したテキストを元に前方検索します。</td>
+
+
+
+      <td class="text">Ctrl+Shift+F3</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">上方向へスクロールします。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+Up</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">下方向へスクロールします。</td>
+
+
+
+      <td class="text">Ctrl+Down</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">行を切り取ります。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+L</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">行をコピーします。</td>
+
+
+
+      <td class="text">Ctrl+Shift+T</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">行を削除します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+Shift+L</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">現在の行と前行を入れ替えます。</td>
+
+
+
+      <td class="text">Ctrl+T</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">現在の行を複製します。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+D</td>
+
+
+
+    </tr>
+
+
+
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    <tr>
+
+
+
+      <td class="text">前の段落へ移動します。Shift キーを併用すると選択範囲を広げます。</td>
+
+
+
+      <td class="text">Ctrl+[</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">次の段落へ移動します。Shift キーを併用すると選択範囲を広げます。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+]</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">前の単語へ移動します。Shift キーを併用すると選択範囲を広げます。</td>
+
+
+
+      <td class="text">Ctrl+Left</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">次の単語へ移動します。Shift キーを併用すると選択範囲を広げます。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+Right</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text">前の単語位置まで移動します。Shift キーを併用すると選択範囲を広げます。</td>
+
+
+
+      <td class="text">Ctrl+/</td>
+
+
+
+    </tr>
+
+
+
+    <tr>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">次の単語位置まで移動します。Shift キーを併用すると選択範囲を広げます。</td>
+
+
+
+      <td class="text" style="background-color: rgb(255, 255, 204);">Ctrl+\</td>
+
+
+
+    </tr>
+
+
+
+  
+  
+  </tbody>
+</table>
+
+
+
+<br>
+
+
+
+</span>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  
+  
+  <title>pen()</title>
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+  
+  <meta content="zoiba" name="author">
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">
+
+pen()<br>
+
+</span>
+</div>
+
+<span class="text"><br>テキストカラーを設定します。あるいは </span><span class="syntax">color</span><span class="text"> の省略時は現在のテキストカラーを返します。<br><br></span><span class="syntax2"> </span> <span class="smallTitle"> 文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2"> pen( </span><span class="syntax">color</span><span class="syntax2"> </span> <span class="syntax2"> ) <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">
+</span>
+<span class="syntax"> variable </span> <span class="syntax2"> = pen() <br></span>
+</div>
+
+<span class="text"><br>
+</span><span class="syntax">color</span><span class="text"> は Uint32, 十六進数形式、または rgb()&nbsp;コマンドで変換された RGB 値で表されます。Uint32 形式で表記したカラーが返されます。<br><br></span><span class="syntax2"> </span> <span class="smallTitle"> 用例: <br></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"><span style="font-weight: bold;">
+pen(</span> 16711680 )</span><span class="syntax2"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+printS("これは赤色のテキストです")
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"> printS( "テキストカラー = Uint32 " &amp; pen() </span> <span class="syntax2"> ) <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"><span style="font-weight: bold;">
+pen(</span> 0x0000ff <span style="font-weight: bold;">)</span>&nbsp;  </span><span class="syntax2"></span><span class="syntax2"></span>
+<span class="syntax2">
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+printS("これは青色のテキストです")
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"> printS( "テキストカラー = Uint32 " &amp; pen() </span> <span class="syntax2"> ) <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"><span style="font-weight: bold;">
+pen(</span> rgb(0,255,0) <span style="font-weight: bold;">)</span>&nbsp;  </span><span class="syntax2"></span>
+<span class="syntax2">
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+printS("これは緑色のテキストです")
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"> printS( "テキストカラー = Uint32 " &amp; pen() </span> <span class="syntax2"> ) <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+waitKey
+
+<br>
+
+</span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>dim</title>
+
+
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+  <meta content="zoiba" name="author">
+
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">dim<br>
+
+</span>
+</div>
+
+<span class="text"><br>指定された名前で配列または変数を作成します。配列で扱えるインデックスは最大五本です。また、ゼロで初期化されます。変数は必要に応じて Dim ステートメントで割り当てることも可能です。</span><span class="syntax2"><br></span> <span class="smallTitle"><br>文法:<br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);"><span class="syntax2">dim {Common|Shared} </span> <span class="syntax">name </span><span class="syntax2">[] <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">dim {Common|Shared} </span>
+<span class="syntax">name
+</span><span class="syntax2"> = </span>
+<span class="syntax">expression
+</span><span class="syntax2"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">dim {Common|Shared} </span> <span class="syntax">name </span><span class="syntax2">[ </span> <span class="syntax">maxValue </span><span class="syntax2"> {,...} ] <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">dim {Common|Shared} </span> <span class="syntax">name </span><span class="syntax2">[ </span> <span class="syntax">minValue </span><span class="syntax2"> To </span> <span class="syntax">maxValue </span><span class="syntax2"> {,...} ] <br></span>
+</div>
+
+<span class="text"><br>Common は変数と配列をグローバルとして宣言します。Sub または Function で使用時は、これらを Shared として宣言する必要はありません。Common が使えるのは Sub や Function の外側に限ります。</span><br class="text"><span class="text"> Shared として宣言する変数と配列はルーチンの外側で Common 宣言として定義しないでください。Shared が使えるのは Sub や Function の内側に限ります。</span><br class="text"><span class="text"> 変数や配列を複数同時に一括宣言するにはカンマで書き分けます。</span><span class="text"><br></span> <span class="smallTitle"><br>用例: <br></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code"><span style="font-weight: bold;">dim</span>
+a[1]
+, b[3,5]
+, counter
+, x
+, y
+
+</span><span class="syntax2"><br>
+
+</span>
+</div>
+
+<span class="text">
+インデックスの未指定時は、動的配列が作成されます。どのような値 (数値や文字列) でもインデックスとして使えますが、内部処理では文字列として格納されます。用例:
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">a[1] = "one"
+
+<br>
+
+</span>
+</div>
+
+<span class="text">
+
+and
+
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">a["1"] = "one"
+
+<br>
+
+</span>
+</div>
+
+<span class="text">
+は同じです。必要とする量のインデックスを扱えますが、その結果は単独文字列になります。用例:
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">a["この",22] = "ナントカの値"
+<br>
+
+</span>
+</div>
+
+<span class="text">
+は以下と同じ記法です。
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">a["この,22"] = "ナントカの値"
+<br>
+
+</span>
+</div>
+
+<span class="text"> 未割り当ての動的配列からインデックスを要求すると、空文字列 "" を返します。<br></span> <span class="text">動的配列と静的配列に関する唯一の相違点は、要素が参照渡しではなく、値渡しとなることです。<br></span> <span class="smallTitle"><br>用例: <br></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">' 配列の作成
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code"><span style="font-weight: bold;">dim</span>
+a[3 To 10, 5]
+
+</span><br>
+
+</div>
+
+<span class="text">
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">' 配列の作成と代入
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code"><span style="font-weight: bold;">dim</span>
+myVar = 100
+
+</span><span class="syntax2"><br>
+
+</span>
+</div>
+
+<span class="smallTitle"><br>
+
+用例:
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code"><span style="font-weight: bold;">dim
+</span>array$[100]
+
+</span><br>
+
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">for i = 0 to 100
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">array$[i]="record"+str$(i)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">next
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">for i = 0 to 100
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">print(array$[i])
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">next
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code"><span style="font-weight: bold;">dim</span>
+array$[10 to 110]
+
+</span><span class="syntax2"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">for i = 10 to 110
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">array$[i]="record"+str$(110-i)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">next
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">for i = 10 to 110
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">print(array$[i])
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">next
+
+</span><span class="text code"><br>
+
+</span>
+</div>
+
+<br>
+
+<span class="text"><a href="erase.html"><span style="font-weight: bold;">erase</span></a> コマンドを参照してください。</span>
+</body>
+</html>

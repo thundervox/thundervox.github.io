@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>if</title>
+
+
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+  <meta content="zoiba" name="author">
+
+</head>
+
+
+<body style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">if ... then ... end if<br>
+
+</span>
+</div>
+
+<br>
+
+<span class="text"> 分岐条件に従いコードを実行します。<br></span> <br><span class="text"></span><span class="smallTitle"> 文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);"><span class="syntax2">if </span><span class="syntax">condition
+expression</span><span class="syntax2"> then
+</span><br class="syntax2">
+
+</div>
+
+<div class="syntax2" style="text-align: left; background-color: rgb(239, 239, 255);">
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<span style="color: rgb(102, 102, 102);"> 条件が true のときにコマンドが実行されます。
+</span><br>
+
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);"><span class="syntax2">
+
+end if
+
+</span><span class="syntax2"></span><br>
+
+<span class="syntax2"></span></div>
+
+<span class="syntax2">
+<span class="text"></span></span><br>
+
+<span class="text"></span><span class="text"> <span style="font-weight: bold;">if</span> ステートメントは判定条件が true の場合に限り特定の命令を実行します。これにより実行対象となるプログラムを決定します。</span><br class="text"><span class="text"> if ステートメントは式の結果が true または false であるかにより条件式の評価を決定します。例えば、 5&gt;1=true あるいは 10&lt;3=false です。</span><br class="text"><span class="text"> 式が true ならば、その直後のステートメントから end if ステートメントまでの区間にあるコマンドを実行します。それ以外にも、式が false ならば、その区間を無視します。</span><span class="syntax2"><span class="syntax2"><br></span> <span class="smallTitle"></span></span><br><span class="text"></span><span class="syntax2"><span class="smallTitle"> 用例: <br></span></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">for n = 1 to 20 </span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; a=rnd(10) </span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; print a </span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">if</span> a&gt;5 <span style="font-weight: bold;">then</span></span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; print "5 以上の乱数です" </span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">end if</span></span><br class="code"><span class="code"> next </span><br>
+
+</div>
+
+<br>
+
+<span class="text"><a href="11else.html"><span style="font-weight: bold;">else</span></a>, <a href="12elseIf.html"><span style="font-weight: bold;">elseif</span></a>, <a href="80and.html"><span style="font-weight: bold;">and</span></a>, <a href="81or.html"><span style="font-weight: bold;">or</span></a>, <a href="82not.html"><span style="font-weight: bold;">not</span></a> および <a style="font-weight: bold;" href="83xor.html">xor</a> コマンドを参照してください。</span>
+</body>
+</html>

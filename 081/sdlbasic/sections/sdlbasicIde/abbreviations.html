@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+
+
+
+  
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <title>短縮入力</title>
+  <meta content="zoiba" name="author">
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+
+<body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+
+
+
+
+
+<div style="text-align: left; background-color: rgb(0, 102, 0);"><span class="title">短縮入力</span><span class="title"><br class="text">
+
+
+
+
+
+
+</span></div>
+
+
+
+
+
+
+<span class="text"><br>
+
+</span>
+<div style="text-align: justify;"><span class="text"></span><span class="text"></span><span class="text">短縮入力を使うには、コマンドの入力後に短縮入力の展開コマンド、または  Ctrl+B キーを使います。短縮入力は短縮入力ファイルで定義された展開文字列へ置換されます。オプションのメニューコマンドから短縮入力ファイルを開くことで短縮入力候補を追加できます。</span><br><span class="text"></span><br><span class="text">短縮入力ファイルの各行は "短縮入力=展開文字列" と定義します。</span><br><span class="text">短縮入力名には上位 ASCII 文字 (アクセント記号) も含めた英数字を使えます (無論、 CR と LF も含めた制御文字を除く)。</span><br><span class="text">プロパティファイル名には制限があります: 先頭はシャープ (#)、スペース、タブで記述でいません (ただしスペースは内側に記述できます)。また、 '=' 文字は内側に記述できません。</span><br><span class="text">短縮入力名は最大 32 文字までに制限されています。恐らく短縮入力では十分足りるでしょう……。</span><br><span class="text"></span><br><span class="text">改行文字の展開は '\n' を指定します。また、キャレットの位置を展開するには '|' 文字を指定します。リテラルに '|' 文字を記述するには、 '||' を使います。</span><br><span class="text">展開時、先行するテキストから名前を区切る必要はありません。すなわち、'é' を '&amp;eacute;' と定義すると、その定義を単語の内側で展開可能です。
+</span><br><span class="text">名前が別名の末尾ならば、それよりも短いものに限り展開されます。すなわち、'ring' と 'gathering' を定義すると、以後は 'ring' の参照可能部分に限り展開されます。&nbsp;</span></div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+
+
+
+  
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  <title>sdlBasic プログラムの実行方法</title>
+  <meta content="zoiba" name="author">
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+
+<body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+
+<div style="text-align: left; background-color: rgb(0, 0, 0);"><span class="title">sdlBasic プログラムの実行方法</span><span class="title"></span><br class="text">
+
+
+<span class="title"></span></div>
+
+
+<span class="title">
+
+</span>
+
+<span class="text"><br>
+
+
+
+
+sdlBasic のプログラムはプレーンテキストで記述します。プレーンテキスト (.TXT) 形式で保存可能のであれば、どのような種類のテキストエディタでも使えます。sdlBasic で記述したプログラムを実行するには、 sdlBasic 実行可能ファイルである sdlbasic.exe (Linux では sdlBasic) が現在のディレクトリ、あるいはパスの通ったディレクトリに存在することが必要です。インクルードファイルを使う場合は、ソースファイルと同一ディレクトリにある必要があります。<br>
+
+
+<br>
+
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 255);"><span class="subTitle">コマンドラインにおける sdlBasic の実行方法</span><span class="text"></span><br>
+
+
+</div>
+
+
+<span class="text">Windows コマンドライン、または Linux シェルから使うには、このように入力します。<br>
+
+<br>
+
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">sdlbasic filename</span><span class="text"></span><br>
+
+
+<span class="text"></span></div>
+
+
+<span class="text"><br>
+
+filename には実行したいファイルの名前を指定します。例えば、プログラム myprog.sdlbas を実行するには<br>このように記述します:<br>
+
+<br>
+
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">sdlbasic myprog.sdlbas</span><span class="text"></span><br>
+
+
+<span class="text"></span></div>
+
+
+<span class="text"><br>
+
+以下はプログラムの開始前にインタプリタへ渡せるスイッチの便覧です。つまり、 <br>
+
+<br>
+
+</span>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+
+  <tbody>
+
+    <tr>
+
+      <td style="width: 110px;"><span class="text">
+
+--nosound</span></td>
+
+      <td style="width: 702px;"><span class="text">: SDL サウンドシステムの起動を禁止します。</span></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="width: 110px;"><span class="text">
+
+--nosocket</span></td>
+
+      <td style="width: 702px;"><span class="text">: SDL ソケットの起動を禁止します。</span></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="width: 110px;"><span class="text">
+
+--debug</span></td>
+
+      <td style="width: 702px;"><span class="text">: デバッグモードの有効化</span></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="width: 110px;"><span class="text">--nodefaults</span></td>
+
+      <td style="width: 702px;"><span class="text">: プログラム開始時にデフォルトのディスプレイ設定によるディスプレイウィンドウの作成を禁止します。</span></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="width: 110px;"><span class="text">
+
+--version</span></td>
+
+      <td style="width: 702px;"><span class="text">: sdlBasic のリリース番号を表示します。</span></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="width: 110px;"><span class="text">--help</span></td>
+
+      <td class="text" style="width: 702px;">: sdlBrt のパラメータ便覧を表示します。</td>
+
+    </tr>
+
+    <tr>
+
+      <td><span class="text">--copyright</span></td>
+
+      <td class="text">: 著作権関連の情報を表示します。</td>
+
+    </tr>
+
+    <tr>
+
+      <td><span class="text">--license</span></td>
+
+      <td class="text">: ライセンス関連の情報を表示します。</td>
+
+    </tr>
+
+  
+  </tbody>
+</table>
+
+<span class="text"><br>
+
+
+よって、このようにコマンドラインを記述します。<br>
+
+<br>
+
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">sdlbasic myprog.sdlbas --nosound</span><span class="text"></span><br>
+
+
+<span class="text"></span></div>
+
+
+<span class="text"><br>
+
+
+特定の Linux マシンにおいて、ほかのアプリケーションでサウンドカード機能の使用時にサウンドデバイスで問題が起こることがあります。こちらではプログラムを以下の方法で開始して問題に対処します。<br>
+
+<br>
+
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">artsdsp -m sdlbasic myprog.sdlbas</span><span class="text"></span><br>
+
+
+<span class="text"></span></div>
+
+
+<span class="text"></span><br>
+
+
+<span class="text"></span><span class="subTitle">Windows または KDE から sdlBasic プログラムを実行するには<br></span><span class="text"><br>最も簡単な方法は拡張子 .sdlbas を実行可能ファイル sdlBrt.exe へ関連付けることです。その後、この拡張子が付いたファイルをダブルクリックするだけで、 Windows または KDE では sdlBasic インタプリタが自動起動するようになります。</span>
+</body>
+</html>

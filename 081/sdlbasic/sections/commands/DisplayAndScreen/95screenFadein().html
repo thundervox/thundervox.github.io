@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>screenFadein()</title>
+
+
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+  <meta content="zoiba" name="author">
+
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">screenFadein()<br>
+
+</span>
+</div>
+
+<span class="text"><br>指定されたスロットに関してブラックカラーでフェードインします。このコマンドの動作は非同期モードであるため、フェードイン処理中であってもプログラムの実行を停止しません。<br><br></span><span class="smallTitle">文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);"><span class="syntax2">screenFadein( </span> <span class="syntax">screen </span><span class="syntax2">, </span> <span class="syntax">imageslot </span><span class="syntax2">, </span> <span class="syntax">time </span><span class="syntax2"> ) <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2"></span><span class="syntax">variable </span><span class="syntax2"> = screenFadein( </span> <span class="syntax">screen </span><span class="syntax2"> ) <br></span>
+</div>
+
+<span class="smallTitle"><br>
+
+</span><span class="text">time パラメータの未指定時はフェードインの状態を返します。<br>
+
+</span>
+<div style="margin-left: 40px;"><span class="text">1 ならば処理中です。</span><br><span class="text">0 ならば完了です。</span><br>
+
+<span class="text"></span></div>
+
+<span class="text">Time は秒で表されます。<br><br></span><span class="smallTitle">用例: <br></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="text code">circle(320,240,200)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">grab(1,0,0,640, 480)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">cls
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">screenfadein(0,1,4)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">while <span style="font-weight: bold;">screenfade(</span> 0 <span style="font-weight: bold;">)</span> =1
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">&nbsp;&nbsp;&nbsp;
+wait(40)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">wend
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">prints( "完了しました！　なにかキーを押すと終了します")
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">waitKey
+
+<br>
+
+</span>
+</div>
+
+<br>
+
+<span class="text">
+<a href="../SDLtime/wait%28%29.html"><span style="font-weight: bold;">wait()</span></a>, <a href="95screenFadeOut%28%29.html"><span style="font-weight: bold;">screenFadeOut()</span></a> および <a style="font-weight: bold;" href="95screenCrossFade%28%29.html">screenCrossFade()</a> コマンドを参照してください。</span>
+</body>
+</html>

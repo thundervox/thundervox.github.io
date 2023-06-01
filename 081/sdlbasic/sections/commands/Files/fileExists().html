@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+  
+  
+  
+  
+  <title>fileExists()</title>
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+
+  
+  
+  <meta content="zoiba" name="author">
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">
+
+fileExists()<br>
+
+
+</span>
+</div>
+
+
+<span class="text"><br>filename で指定されたファイルが存在すれば true を、そうでなければ false を返します。ファイルの存在テストの内部処理では開閉を行うためファイルは開きません。<br><br></span> <span class="smallTitle">文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">
+</span>
+<span class="syntax"> variable </span> <span class="syntax2"> = fileExists( </span> <span class="syntax"> filename </span> <span class="syntax2"> ) <br></span>
+</div>
+
+
+<span class="smallTitle"><br>
+
+用例:
+<br>
+
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+' ファイルの存在を確認します
+<br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">if not 
+<span style="font-weight: bold;">fileExists(</span> "myfile.txt" <span style="font-weight: bold;">)</span> then&nbsp;
+
+</span>
+<span class="syntax2"><br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+print "\"myfile.txt\" ファイルは存在しません。"
+<br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">end if<br>
+
+
+</span>
+</div>
+
+
+</body>
+</html>

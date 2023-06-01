@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  
+  
+  <title>read()</title>
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+  
+  <meta content="zoiba" name="author">
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">
+
+read()<br>
+
+</span>
+</div>
+
+<span class="text"><br>インラインデータ構造から指定されたポインタの位置に従い Data 値を読み取ります。<br></span> <span class="smallTitle"><br>文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2"> read( </span> <span class="syntax"> {pointer} </span> <span class="syntax2"> ) <br></span>
+</div>
+
+<span class="text"><br>ポインタを渡さない場合、 read コマンドは現在の Data 値を読み取り後に次の Data 値へポインタを移動します。<br></span> <span class="smallTitle"><br>用例: <br></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+data(1,2,3,4,5,6,7,8)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+for i = 0 to 7
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">&nbsp; &nbsp; fprints(
+<span style="font-weight: bold;">read()</span>&amp; " - " )&nbsp; 
+ 
+</span>
+<span class="syntax2"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+next
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+prints(chr(13))
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+for i =0 to 20
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">&nbsp; &nbsp; n=rnd(7)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">&nbsp;&nbsp;&nbsp; prints(
+<span style="font-weight: bold;">read(</span> n <span style="font-weight: bold;">)</span> )</span><span class="syntax2"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+next
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+waitKey
+
+<br>
+
+</span>
+</div>
+
+<span class="text"><br>
+<a href="data%28%29.html">data()</a> コマンドを参照してください。
+</span>
+<span class="syntax2"><br>
+
+</span>
+</body>
+</html>

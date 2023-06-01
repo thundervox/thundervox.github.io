@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+
+
+  
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+
+
+  
+  
+  
+  
+  <title>変数のスコープ</title>
+  <meta content="zoiba" name="author">
+
+
+
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+
+<body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+
+
+
+
+<div style="background-color: rgb(0, 0, 0); text-align: left;"><span class="title">変数のスコープ</span><span class="title"></span></div>
+
+
+
+
+
+<br class="text">
+
+
+<span class="text"></span><span class="text">変数の作成時、現在のコンテキストがスコープとなります。つまり、現在のスコープ、またはそれよりも広範囲にあるものは</span><span class="text">可視状態となります。スコープの最大範囲はモジュールです。<br><br class="text"></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">Dim newVar = 12</span><br class="text">
+
+
+</div>
+
+
+<br class="text">
+
+
+<span class="text">以下のスコープはルーチンです。<br>
+
+<br class="text">
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">Function myRoutine()</span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; Dim newVar = 12</span><br class="code"><span class="code">End Function</span><br class="text">
+
+
+</div>
+
+
+<br class="text">
+
+
+<span class="text">sdlBasic はルーチンの内側で変数を検出したとき、ルーチンに関する変数の</span><span class="text">スコープで同名変数の有無を確認後に使用します。</span><br>
+
+<br class="text">
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">Dim myVar = "module variable"&nbsp;&nbsp;&nbsp;&nbsp; ' これはモジュールレベルで宣言されます</span><br class="code"><span class="code">Function myRoutine()</span><br class="code"><span class="code">&nbsp;&nbsp; Dim myVar = "routine variable" ' これはルーチンレベルで宣言されます</span><br class="code"><span class="code">&nbsp;&nbsp; myVar = "new value"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' ルーチン版のローカル myVar を使用</span><br class="code"><span class="code">&nbsp;&nbsp; return myVar</span><br class="code"><span class="code">End Function</span><br class="code"><span class="code">print myRoutine()</span><br class="code"><span class="code">print myVar</span><br class="text">
+
+
+</div>
+
+
+<br class="text">
+
+
+<span class="text">そうでない場合は、モジュール変数の有無を確認後に使用します。</span><br class="text"><span class="text"></span><span class="text">&nbsp;</span><br class="text">
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">Dim myVar = "module variable" ' これはモジュールレベルで宣言されます</span><br class="code"><span class="code">Function myRoutine()</span><br class="code"><span class="code">&nbsp;&nbsp; myVar = "new value"&nbsp;&nbsp; ' モジュール版の myVar を使用</span><br class="code"><span class="code">&nbsp;&nbsp; return myVar</span><br class="code"><span class="code">End Function</span><br class="code"><span class="code">print myRoutine()</span><br class="code"><span class="code">print myVar</span><br class="text">
+
+
+</div>
+
+
+<span class="text">&nbsp;</span><br class="text">
+
+
+<span class="text">ルーチン、またはモジュール版の変数がなければ、現在の</span><span class="text">スコープに変数を作成します。<br><br class="text"></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">Function myRoutine()</span><br class="code"><span class="code">&nbsp;&nbsp; myVar = "new value"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ' ルーチンのスコープ内に変数を作成</span><br class="code"><span class="code">End Function</span><br class="text">
+
+
+</div>
+
+
+<span class="text">&nbsp;</span><br class="text">
+
+
+<span class="text">ルーチンのスコープにある変数はルーチンの内側に限り可視状態となるため、このようなスコープとなります。<br>
+
+<br class="text">
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">Function myRoutine()</span><br class="code"><span class="code">&nbsp;&nbsp; myVar = 12</span><br class="code"><span class="code">&nbsp;&nbsp; print myVar&nbsp;&nbsp; ' こちらの myVar は可視状態です</span><br class="code"><span class="code">End Function</span><br class="code"><br class="code"><span class="code">myRoutine()</span><br class="code"><span class="code">print myVar&nbsp; ' こちらの myVar は不可視状態です</span><br class="text">
+
+
+</div>
+
+
+<br class="text">
+
+
+<span class="text">sdlBasic による変数の作成を禁止するには <a href="../commands/Runtime/optionExplicit.html"><span style="font-weight: bold;">Option Explicit</span></a> ステートメントを使います。</span><br class="text"><span class="text">&nbsp;</span><br class="text"><span class="text"><span style="font-weight: bold;">Option Explicit</span>&nbsp;の指定後は変数の使用前に宣言する必要があります。<br><br class="text"></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">Option Explicit</span><br class="code"><span class="code">Dim newVar = "作成してください"</span><br class="text">
+
+
+</div>
+
+
+<span class="text">&nbsp;</span><br class="text">
+
+
+<span class="text"><span style="font-weight: bold;">Option Explicit</span>&nbsp;の指定時、 <a href="../commands/Array/shared.html"><span style="font-weight: bold;">Shared</span></a> キーワードにより明確な可視状態で宣言、あるいは <a href="../commands/Array/common.html"><span style="font-weight: bold;">Common</span></a> (または Global) で宣言していなければ、モジュールレベルの変数はルーチンから不可視状態になります。<br>
+
+<br class="text">
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">Option Explicit</span><br class="code"><span class="code">Dim myVar = "モジュールの変数"</span><br class="code"><span class="code">&nbsp;</span><br class="code"><span class="code">Function myFunction()</span><br class="code"><span class="code">&nbsp;&nbsp; Shared myVar</span><br class="code"><span class="code">&nbsp;&nbsp; myVar = "新しい値"</span><br class="code"><span class="code">End Function</span><br class="text">
+
+
+</div>
+
+
+<span class="text">&nbsp;<br>
+
+または:<br>
+
+<br class="text">
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">Option Explicit</span><br class="code"><span class="code">Dim Common myVar = "モジュールの変数"</span><br class="code"><span class="code">&nbsp;</span><br class="code"><span class="code">Function myFunction()</span><br class="code"><span class="code">&nbsp;&nbsp; myVar = "新しい値"</span><br class="code"><span class="code">End Function</span><br class="text">
+
+
+
+
+
+</div>
+
+
+<div class="text" style="text-align: right;">&nbsp;</div>
+
+
+
+
+
+<div style="text-align: right;"><span class="text">&nbsp;</span></div>
+
+
+
+
+
+</body>
+</html>

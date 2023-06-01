@@ -1,0 +1,1253 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Brief introduction &#8212; Objeck Programming Language 6.3.1 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="A Brief introduction (日本語)" href="objeck_lang_jp.html" />
+    <link rel="prev" title="A Brief introduction (March 4, 2018)" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="objeck_lang_jp.html" title="A Brief introduction (日本語)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="A Brief introduction (March 4, 2018)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Objeck Programming Language 6.3.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">A Brief introduction</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="a-brief-introduction">
+<h1>A Brief introduction<a class="headerlink" href="#a-brief-introduction" title="Permalink to this headline">¶</a></h1>
+<p>Author: Randy Hollines</p>
+<p>Date: March 4, 2018</p>
+</div>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The Objeck language was designed to be an easy to use strongly typed
+object-oriented programming language. Back in 2008, when the language
+was under initial development, existing object-oriented and functional
+programming languages were examined and their features simplified for
+inclusion in Objeck.</p>
+<p>Major features include:</p>
+<ul class="simple">
+<li><p>Simple and intuitive class libraries</p></li>
+<li><p>Support for functional programming</p></li>
+<li><p>Concurrency (threads and mutexes)</p></li>
+<li><p>Automatic memory management</p></li>
+<li><p>Native JIT execution (byte to machine code)</p></li>
+<li><p>Unicode with I/O support for UTF-8</p></li>
+<li><p>Cross-platform libraries</p></li>
+<li><p>Full support for Windows, Linux and OS X</p></li>
+</ul>
+</div>
+<div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>To obtain binaries (or source code) please visit the project website at
+<a class="reference external" href="http://www.objeck.org/">objeck.org</a>. Interactive installers can be
+downloaded for Windows, Linux and macOS. Binary archive files (i.e.
+*.zip and *.tgz) can be downloaded for all other supported platforms.
+The distribution consists of a compiler, virtual machine and debugger
+an. The compiler is named <strong>obc</strong> while the virtual machine (VM) is
+named <strong>obr</strong>.</p>
+<p>Here’s the world famous “Hello World” program written in the Objeck:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hello</span> <span class="p">{</span>
+        <span class="n">function</span> <span class="p">:</span> <span class="no">Main</span><span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="nb">String</span><span class="o">[]</span><span class="p">)</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="s2">&quot;Hello World&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="s2">&quot;Καλημέρα κόσμε&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="s2">&quot;こんにちは 世界&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Save the above program in a UTF-8 text file called <strong>hello.obs</strong>. The
+preceding commands will create an executable named <strong>hello.obe</strong> and
+we’ll run it.</p>
+<p>To compile the code type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obc -src hello.obs -dest hello.obe
+</pre></div>
+</div>
+<p>To run the program type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obr hello.obe
+</pre></div>
+</div>
+<p>To better view the results on Windows try redirecting the output to a
+text file and opening it in Notepad:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obr hello.obe &gt; hello.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="compiling-and-running-code">
+<h1>Compiling and Running Code<a class="headerlink" href="#compiling-and-running-code" title="Permalink to this headline">¶</a></h1>
+<p>The Objeck compiler produces two types of binaries. The first type is an
+executable and the second type is a library. Libraries can be linked
+into executables by passing the names of libraries to the compiler. As a
+naming convention executables end with *<strong>.obe</strong> while shared
+libraries end with <strong>*.obl</strong>.</p>
+<p>Here are a few more examples. The first example compiles and runs a
+program that processes XML. For this program we link in the collections
+and XML parsing libraries.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obc -src examples/2_xml.obs -lib collect.obl,xml.obl -dest xml_path.obe
+obr xml_path.obe
+</pre></div>
+</div>
+<p>The next example compiles and runs program that uses the encryption
+library.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obc -src examples/7_encrypt.obs -lib encrypt.obl -dest encryption.obe
+obr encryption.obe
+</pre></div>
+</div>
+<p>For an extensive list of example programs check out the Rosetta code
+<a class="reference external" href="https://github.com/objeck/objeck-lang/tree/master/programs/rc">solutions</a>.
+To learn more about other libraries please check out the <a class="reference external" href="http://www.objeck.org/docs/api/index.html">API
+documentation</a>.</p>
+<p>Table 1 - Compiler Options</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-src</p></td>
+<td><p>path to source files delimited by ‘,’</p></td>
+</tr>
+<tr class="row-odd"><td><p>-lib</p></td>
+<td><p>path to library files delimited by ‘,’</p></td>
+</tr>
+<tr class="row-even"><td><p>-tar</p></td>
+<td><p>target output, options are <strong>exe</strong> for executable and
+<strong>lib</strong> for library; default is <strong>exe</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>-opt</p></td>
+<td><p>optimization level, <strong>s0</strong> thru <strong>s3</strong> being most
+aggressive; default is s0</p></td>
+</tr>
+<tr class="row-even"><td><p>-dest</p></td>
+<td><p>output filename</p></td>
+</tr>
+<tr class="row-odd"><td><p>-alt</p></td>
+<td><p>compile code that is written using a C-like syntax</p></td>
+</tr>
+<tr class="row-even"><td><p>-debug</p></td>
+<td><p>if set, produces debug out for the debugger (must be last
+argument)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-basics">
+<h1>The Basics<a class="headerlink" href="#the-basics" title="Permalink to this headline">¶</a></h1>
+<p>Let’s first look at literals, variables and control flow.</p>
+<div class="section" id="literals-and-variables">
+<h2>Literals and variables<a class="headerlink" href="#literals-and-variables" title="Permalink to this headline">¶</a></h2>
+<p>Literals are defined as they are in most programming languages. In
+Objeck literals are treated as objects and may have methods associated
+with them.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;\u00BD&#39;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="mi">13</span><span class="o">-&gt;</span><span class="no">Min</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="mi">3</span><span class="o">.</span><span class="mi">89</span><span class="o">-&gt;</span><span class="no">Sin</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="s2">&quot;Hello World&quot;</span><span class="o">-&gt;</span><span class="no">Size</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Here are a few examples of variable declarations and assignments.
+Variable types can be explicitly defined or implicitly inferred through
+assignments or casts. If a variable’s type is inferred it cannot be
+redefined later in the program however it can be cast.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="p">:</span> <span class="no">Int</span><span class="p">;</span>
+<span class="n">b</span> <span class="p">:</span> <span class="nb">Float</span> <span class="p">:</span><span class="o">=</span> <span class="mi">13</span><span class="o">.</span><span class="mi">5</span><span class="p">;</span>
+<span class="n">c</span> <span class="p">:</span><span class="o">=</span> <span class="mi">7</span><span class="o">.</span><span class="mi">25</span><span class="p">;</span> <span class="c1"># type inferred as Float</span>
+<span class="n">d</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="no">Int</span><span class="p">);</span> <span class="c1"># type inferred as Int</span>
+</pre></div>
+</div>
+<p>Table 2 - Data Types</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Char</p></td>
+<td><p>Unicode character value</p></td>
+</tr>
+<tr class="row-odd"><td><p>Char[]</p></td>
+<td><p>Unicode character array</p></td>
+</tr>
+<tr class="row-even"><td><p>Bool</p></td>
+<td><p>Boolean value</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bool[]</p></td>
+<td><p>Boolean array</p></td>
+</tr>
+<tr class="row-even"><td><p>Byte</p></td>
+<td><p>1-byte integer value</p></td>
+</tr>
+<tr class="row-odd"><td><p>Byte[]</p></td>
+<td><p>1-byte integer array</p></td>
+</tr>
+<tr class="row-even"><td><p>Int</p></td>
+<td><p>4-byte integer value</p></td>
+</tr>
+<tr class="row-odd"><td><p>Int[]</p></td>
+<td><p>4-byte integer array</p></td>
+</tr>
+<tr class="row-even"><td><p>Float</p></td>
+<td><p>8-byte decimal value</p></td>
+</tr>
+<tr class="row-odd"><td><p>Float[]</p></td>
+<td><p>8-byte decimal array</p></td>
+</tr>
+<tr class="row-even"><td><p>Object</p></td>
+<td><p>Reference to an abstract datatype</p></td>
+</tr>
+<tr class="row-odd"><td><p>Object[]</p></td>
+<td><p>Array of abstract datatypes</p></td>
+</tr>
+<tr class="row-even"><td><p>Function</p></td>
+<td><p>Functional reference</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="comments">
+<h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<p>Comments may span a single line or multiple lines. In addition, comments
+for bundles, classes, interfaces and functions/methods may be used to
+produce code documentation. Please refer to the <a class="reference external" href="http://www.objeck.org">project
+website</a> for additional information about
+generating documentation from your code.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">flag</span> <span class="p">:</span><span class="o">=</span> <span class="kp">false</span><span class="p">;</span> <span class="c1"># single line comment</span>
+<span class="c1">#~</span>
+<span class="n">multiline</span> <span class="n">comment</span><span class="o">.</span> <span class="n">flag</span> <span class="n">above</span>
+<span class="n">may</span> <span class="n">be</span> <span class="n">set</span> <span class="n">to</span> <span class="kp">true</span> <span class="ow">or</span> <span class="kp">false</span>
+<span class="o">~</span><span class="c1">#</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="logic-and-control-flow">
+<h2>Logic and control flow<a class="headerlink" href="#logic-and-control-flow" title="Permalink to this headline">¶</a></h2>
+<p>As with most languages Objeck supports conditional expressions and
+control flow logic. One nuance is that conditional statements end with
+semi-colons.</p>
+<div class="section" id="if-else">
+<h3>If/else<a class="headerlink" href="#if-else" title="Permalink to this headline">¶</a></h3>
+<p>An “if/else” statement is a basic control statement.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="p">:</span><span class="o">=</span> <span class="no">Console</span><span class="o">-&gt;</span><span class="no">ReadLine</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">ToInt</span><span class="p">();</span>
+<span class="k">if</span><span class="p">(</span><span class="n">number</span> <span class="o">&lt;&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="s2">&quot;Not equal to 3&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">number</span> <span class="o">&lt;</span> <span class="mi">13</span><span class="p">)</span> <span class="p">{</span>
+        <span class="s2">&quot;Less than 13&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="s2">&quot;Some other number&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="select">
+<h3>Select<a class="headerlink" href="#select" title="Permalink to this headline">¶</a></h3>
+<p>Select statements can be used to efficiently map integer and enum values
+to blocks of code.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">select</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">label</span> <span class="no">Color</span><span class="o">-&gt;</span><span class="ss">Red</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;Red&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span> <span class="p">}</span>
+        <span class="n">label</span> <span class="no">Color</span><span class="o">-&gt;</span><span class="ss">Green</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;Green&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span> <span class="p">}</span>
+        <span class="n">label</span> <span class="no">Color</span><span class="o">-&gt;</span><span class="ss">Purple</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;Purple&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span> <span class="p">}</span>
+        <span class="ss">other</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;Another color&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nb">select</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">label</span> <span class="mi">9</span><span class="p">:</span>
+        <span class="n">label</span> <span class="mi">19</span><span class="p">:</span> <span class="p">{</span> <span class="n">n</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span> <span class="p">}</span>
+        <span class="n">label</span> <span class="mi">27</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The language supports for the following looping statements</p>
+</div>
+<div class="section" id="do">
+<h3>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h3>
+<p>A “do” loop is a simple pre-test loop.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">i</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="do-while">
+<h3>Do/While<a class="headerlink" href="#do-while" title="Permalink to this headline">¶</a></h3>
+<p>A “do/while” loop is a basic post-test loop.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">do</span> <span class="p">{</span>
+        <span class="n">i</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;&gt;</span> <span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="for">
+<h3>For<a class="headerlink" href="#for" title="Permalink to this headline">¶</a></h3>
+<p>A “for” loop is a controlled loop with an explicated control expression.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">location</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;East Bay&quot;</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">location</span><span class="o">-&gt;</span><span class="no">Size</span><span class="p">();</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;)</span> <span class="p">{</span>
+        <span class="n">location</span><span class="o">-&gt;</span><span class="no">Get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="each">
+<h3>Each<a class="headerlink" href="#each" title="Permalink to this headline">¶</a></h3>
+<p>An “each” loop is a controlled loop that iterates though all elements in
+an array or collection.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">area_code</span> <span class="p">:</span><span class="o">=</span> <span class="no">Int</span><span class="o">-&gt;</span><span class="no">New</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+<span class="n">area_code</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">area_code</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">area_code</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">each</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span> <span class="n">values</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">area_code</span><span class="o">[</span><span class="n">i</span><span class="o">]-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h2>
+<p>There’s support for logical, mathematical and bitwise operators.
+Operator precedence from weakest to strongest is: <strong>logical, [+, -]</strong>
+and <strong>[*, /, %, &lt;&lt;, &gt;&gt;, and, or, xor]</strong>. Operators of the same
+precedence are evaluated from left-to-right.</p>
+<p>Table 3 - Logical</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&amp;</p></td>
+<td><p>And</p></td>
+</tr>
+<tr class="row-odd"><td><p>|</p></td>
+<td><p>Or</p></td>
+</tr>
+<tr class="row-even"><td><p>=</p></td>
+<td><p>Equal</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;&gt;</p></td>
+<td><p>Not equal and unary not</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;</p></td>
+<td><p>Less than</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;</p></td>
+<td><p>Greater than</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;=</p></td>
+<td><p>Less than or equal</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;=</p></td>
+<td><p>Greater than or equal</p></td>
+</tr>
+</tbody>
+</table>
+<p>Table 4 - Mathematical</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>+</p></td>
+<td><p>Add</p></td>
+</tr>
+<tr class="row-odd"><td><p>-</p></td>
+<td><p>Subtract</p></td>
+</tr>
+<tr class="row-even"><td><p>*</p></td>
+<td><p>Multiply</p></td>
+</tr>
+<tr class="row-odd"><td><p>/</p></td>
+<td><p>Divide</p></td>
+</tr>
+<tr class="row-even"><td><p>%</p></td>
+<td><p>Modulus</p></td>
+</tr>
+</tbody>
+</table>
+<p id="section-1">Table 5 - Bitwise</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&lt;&lt;</p></td>
+<td><p>Shift left</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;&gt;</p></td>
+<td><p>Shift right</p></td>
+</tr>
+<tr class="row-even"><td><p>and</p></td>
+<td><p>Bitwise and</p></td>
+</tr>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>Bitwise or</p></td>
+</tr>
+<tr class="row-even"><td><p>xor</p></td>
+<td><p>Bitwise xor</p></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 1 - Simple credit card validation</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Luhn</span> <span class="p">{</span>
+        <span class="n">function</span> <span class="p">:</span> <span class="no">IsValid</span><span class="p">(</span><span class="n">cc</span> <span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="o">~</span> <span class="no">Bool</span> <span class="p">{</span>
+                <span class="n">isOdd</span> <span class="p">:</span><span class="o">=</span> <span class="kp">true</span><span class="p">;</span> <span class="n">oddSum</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">evenSum</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="n">cc</span><span class="o">-&gt;</span><span class="no">Size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;)</span> <span class="p">{</span>
+                        <span class="n">digit</span> <span class="p">:</span> <span class="no">Int</span> <span class="p">:</span><span class="o">=</span> <span class="n">cc</span><span class="o">-&gt;</span><span class="no">Get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="s1">&#39;0&#39;</span><span class="p">;</span>
+                        <span class="k">if</span><span class="p">(</span><span class="n">isOdd</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="n">oddSum</span> <span class="o">+=</span> <span class="n">digit</span><span class="p">;</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                                <span class="n">evenSum</span> <span class="o">+=</span> <span class="n">digit</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">digit</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+                        <span class="p">};</span>
+                        <span class="n">isOdd</span> <span class="p">:</span><span class="o">=</span> <span class="n">isOdd</span> <span class="o">&lt;&gt;</span> <span class="kp">true</span><span class="p">;</span>
+                        <span class="p">};</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">oddSum</span> <span class="o">+</span> <span class="n">evenSum</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">function</span> <span class="p">:</span> <span class="no">Main</span><span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="nb">String</span><span class="o">[]</span><span class="p">)</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="no">IsValid</span><span class="p">(</span><span class="s2">&quot;49927398716&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="no">IsValid</span><span class="p">(</span><span class="s2">&quot;49927398717&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="no">IsValid</span><span class="p">(</span><span class="s2">&quot;1234567812345678&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="no">IsValid</span><span class="p">(</span><span class="s2">&quot;1234567812345670&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Code fragment from the Base64 encoding class</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># Primary encoding loop</span>
+<span class="n">r</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> <span class="n">i</span> <span class="p">:</span> <span class="no">Int</span><span class="p">;</span> <span class="n">a</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">end</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;)</span> <span class="p">{</span>
+<span class="n">a</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="o">]</span><span class="p">);</span>
+        <span class="n">r</span><span class="o">-&gt;</span><span class="no">Append</span><span class="p">(</span> <span class="n">lut</span><span class="o">[</span><span class="mh">0x3F</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">18</span><span class="p">)</span><span class="o">]</span> <span class="p">);</span>
+        <span class="n">r</span><span class="o">-&gt;</span><span class="no">Append</span><span class="p">(</span> <span class="n">lut</span><span class="o">[</span><span class="mh">0x3F</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">12</span><span class="p">)</span><span class="o">]</span> <span class="p">);</span>
+        <span class="n">r</span><span class="o">-&gt;</span><span class="no">Append</span><span class="p">(</span> <span class="n">lut</span><span class="o">[</span><span class="mh">0x3F</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">6</span><span class="p">)</span><span class="o">]</span> <span class="p">);</span>
+        <span class="n">r</span><span class="o">-&gt;</span><span class="no">Append</span><span class="p">(</span> <span class="n">lut</span><span class="o">[</span><span class="mh">0x3F</span> <span class="ow">and</span> <span class="n">a</span><span class="o">]</span> <span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="arrays-strings-and-collections">
+<span id="section-2"></span><h2>Arrays, strings and collections<a class="headerlink" href="#arrays-strings-and-collections" title="Permalink to this headline">¶</a></h2>
+<p>The language has support for dynamically allocated arrays, Unicode
+strings and various containers.</p>
+<div class="section" id="arrays">
+<h3>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">¶</a></h3>
+<p>Arrays can hold an indexed list of like types. Arrays are dynamically
+allocated from the heap and their memory managed by the garbage
+collector. The runtime system supports bounds checking and will cease
+execution (generating a stack trace) if array bounds are violated.</p>
+<p>Allocating and indexing arrays</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># allocate Int array</span>
+<span class="n">boxes</span> <span class="p">:</span><span class="o">=</span> <span class="no">Int</span><span class="o">-&gt;</span><span class="no">New</span><span class="o">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+<span class="n">boxes</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">boxes</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">boxes</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="n">boxes</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">boxes</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">boxes</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">dims</span> <span class="p">:</span><span class="o">=</span> <span class="n">boxes</span><span class="o">-&gt;</span><span class="no">Size</span><span class="p">();</span> <span class="c1"># get the dimensions</span>
+<span class="n">dims</span><span class="o">[</span><span class="mi">0</span><span class="o">]-&gt;</span><span class="no">PrintLine</span><span class="p">();</span> <span class="c1"># dimension 1</span>
+<span class="n">dims</span><span class="o">[</span><span class="mi">1</span><span class="o">]-&gt;</span><span class="no">PrintLine</span><span class="p">();</span> <span class="c1"># dimension 2</span>
+
+<span class="c1"># create some strings an iterate over them</span>
+<span class="n">directions</span> <span class="p">:</span><span class="o">=</span> <span class="nb">String</span><span class="o">-&gt;</span><span class="no">New</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">;</span>
+<span class="n">directions</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;North&quot;</span><span class="p">;</span>
+<span class="n">directions</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;South&quot;</span><span class="p">;</span>
+<span class="n">directions</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;East&quot;</span><span class="p">;</span>
+<span class="n">directions</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;West&quot;</span><span class="p">;</span>
+<span class="n">each</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span> <span class="n">directions</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">directions</span><span class="o">[</span><span class="n">i</span><span class="o">]-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="strings">
+<h3>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h3>
+<p>Character strings are a collection of Unicode characters backed by the
+<strong>String</strong> class. The string class supports a number of operations such
+as insert, find, substring, type parsing (i.e. <strong>String</strong> to <strong>Float</strong>),
+etc. Variable values can also be inlined into string literals. Strings
+can be converted into character arrays and UTF-8 byte arrays.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">name</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;DJ&quot;</span><span class="p">;</span>
+<span class="nb">name</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
+<span class="nb">name</span> <span class="o">+=</span> <span class="s2">&quot;Premier&quot;</span><span class="p">;</span>
+<span class="nb">name</span><span class="o">-&gt;</span><span class="no">SubString</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="nb">name</span><span class="o">-&gt;</span><span class="no">Size</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Code fragment from a sundial program</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Hour</span><span class="se">\t\t</span><span class="s2">sun hour angle</span><span class="se">\t\t</span><span class="s2">dial hour line angle from 6am to 6pm&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="k">for</span><span class="p">(</span><span class="n">h</span> <span class="p">:</span><span class="o">=</span> <span class="o">-</span><span class="mi">6</span><span class="p">;</span> <span class="n">h</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">;</span> <span class="n">h</span><span class="o">+=</span><span class="mi">1</span><span class="p">;)</span> <span class="p">{</span>
+        <span class="n">hra</span> <span class="p">:</span><span class="o">=</span> <span class="mi">15</span><span class="o">.</span><span class="mi">0</span> <span class="o">*</span> <span class="n">h</span><span class="p">;</span>
+        <span class="n">hra</span> <span class="o">-=</span> <span class="n">lng</span> <span class="o">-</span> <span class="n">ref</span><span class="p">;</span>
+        <span class="n">hla</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="n">slat</span><span class="o">*</span> <span class="p">(</span><span class="n">hra</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="nb">Float</span><span class="o">-&gt;</span><span class="no">Pi</span><span class="p">()</span><span class="o">/</span><span class="mi">360</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">Tan</span><span class="p">())</span>
+                <span class="o">-&gt;</span><span class="no">ArcTan</span><span class="p">()</span> <span class="o">*</span> <span class="mi">360</span><span class="o">.</span><span class="mi">0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">Float</span><span class="o">-&gt;</span><span class="no">Pi</span><span class="p">());</span>
+        <span class="s2">&quot;HR={$h}</span><span class="se">\t\t</span><span class="s2">HRA={$hra}</span><span class="se">\t\t</span><span class="s2">HLA={$hla}&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="collections">
+<h3>Collections<a class="headerlink" href="#collections" title="Permalink to this headline">¶</a></h3>
+<p>In addition, to arrays the language supports various collections such as
+Vectors, Lists and Maps. To learn more about the collections classes
+please check out the <a class="reference external" href="http://www.objeck.org/docs/api/index.html">API
+documentation</a>. In order
+to use these classes you must reference the collections bundle using the
+following line of code:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">use</span> <span class="no">Collection</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>When compiling a program that uses collections you must link in the
+required library, for example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obc -src genres.obs -lib collect.obl -dest genres.obe
+</pre></div>
+</div>
+<p><strong>Vectors</strong> are arrays that can be dynamically resized. They support
+fast indexing, iterating and appending of values. In order to improve
+performance memory for vectors is pre-allocated.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">genres</span> <span class="p">:</span><span class="o">=</span> <span class="no">Vector</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">();</span>
+<span class="n">genres</span><span class="o">-&gt;</span><span class="no">AddBack</span><span class="p">(</span><span class="s2">&quot;Hip hop&quot;</span><span class="p">);</span>
+<span class="n">genres</span><span class="o">-&gt;</span><span class="no">AddBack</span><span class="p">(</span><span class="s2">&quot;Classical&quot;</span><span class="p">);</span>
+<span class="n">genres</span><span class="o">-&gt;</span><span class="no">AddBack</span><span class="p">(</span><span class="s2">&quot;Jazz&quot;</span><span class="p">);</span>
+<span class="n">genres</span><span class="o">-&gt;</span><span class="no">AddBack</span><span class="p">(</span><span class="s2">&quot;Rock&quot;</span><span class="p">);</span>
+<span class="n">genres</span><span class="o">-&gt;</span><span class="no">AddBack</span><span class="p">(</span><span class="s2">&quot;Folk&quot;</span><span class="p">);</span>
+<span class="n">each</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span> <span class="n">genres</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">genres</span><span class="o">-&gt;</span><span class="no">Get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Lists</strong> are a collection of linear linked nodes. They support the fast
+insertion and removal of values. Memory for nodes is allocated on-demand
+however nodes may not be directly indexed as with <strong>Vectors</strong>.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">artists</span> <span class="p">:</span><span class="o">=</span> <span class="no">List</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">();</span>
+<span class="n">artists</span><span class="o">-&gt;</span><span class="no">AddBack</span><span class="p">(</span><span class="s2">&quot;Hendrix&quot;</span><span class="p">);</span>
+<span class="n">artists</span><span class="o">-&gt;</span><span class="no">AddFront</span><span class="p">(</span><span class="s2">&quot;Beck&quot;</span><span class="p">);</span>
+<span class="c1"># move cursor back for middle insertion</span>
+<span class="n">artists</span><span class="o">-&gt;</span><span class="no">Back</span><span class="p">();</span>
+<span class="n">artists</span><span class="o">-&gt;</span><span class="no">Insert</span><span class="p">(</span><span class="s2">&quot;Common&quot;</span><span class="p">);</span>
+<span class="c1"># move cursor to start of list</span>
+<span class="n">artists</span><span class="o">-&gt;</span><span class="no">Rewind</span><span class="p">();</span>
+<span class="c1"># iterate over values</span>
+<span class="k">while</span><span class="p">(</span><span class="n">artists</span><span class="o">-&gt;</span><span class="no">More</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">artists</span><span class="o">-&gt;</span><span class="no">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="n">artists</span><span class="o">-&gt;</span><span class="no">Next</span><span class="p">();</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Map</strong> and <strong>Hash</strong> classes manage key/value pairs. <strong>Maps</strong> manage
+values in tree and allocate memory on demand. Maps are slower than
+hashes however manage memory better. <strong>Hashes</strong> use keys as indices into
+arrays and support fast insertion and deletion at the cost of memory.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">area_codes</span> <span class="p">:</span><span class="o">=</span> <span class="no">IntMap</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">();</span>
+<span class="n">area_codes</span><span class="o">-&gt;</span><span class="no">Insert</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="s2">&quot;Oakland&quot;</span><span class="p">);</span>
+<span class="n">area_codes</span><span class="o">-&gt;</span><span class="no">Insert</span><span class="p">(</span><span class="mi">415</span><span class="p">,</span> <span class="s2">&quot;San Francisco&quot;</span><span class="p">);</span>
+<span class="n">area_codes</span><span class="o">-&gt;</span><span class="no">Insert</span><span class="p">(</span><span class="mi">650</span><span class="p">,</span> <span class="s2">&quot;Palo Alto&quot;</span><span class="p">);</span>
+<span class="n">area_codes</span><span class="o">-&gt;</span><span class="no">Insert</span><span class="p">(</span><span class="mi">408</span><span class="p">,</span> <span class="s2">&quot;San Jose&quot;</span><span class="p">);</span>
+<span class="n">area_codes</span><span class="o">-&gt;</span><span class="no">Find</span><span class="p">(</span><span class="mi">510</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="nb">String</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="objects-and-functions">
+<h1>Objects and Functions<a class="headerlink" href="#objects-and-functions" title="Permalink to this headline">¶</a></h1>
+<p>As mentioned in the introduction, Objeck supports object-oriented and
+functional programming concepts. To put class and functions into context
+the overall programing scope is as follows:</p>
+<p>Bundles → Classes → Methods/Functions → Local blocks</p>
+<div class="section" id="classes-and-interfaces">
+<h2>Classes and interfaces<a class="headerlink" href="#classes-and-interfaces" title="Permalink to this headline">¶</a></h2>
+<p>As in other languages, a <strong>class</strong> is an abstract collection of data
+with related operations. An <strong>interface</strong> is a set of operations (a
+contract) that implementing classes must honor. In Objeck, all classes
+and interfaces are public. Member variables of classes are protected
+from the outside world. However, classes that are inherited from the
+source of other classes may access their parent’s member variables.
+Outside calling classes must use “getters” and “setters” for which the
+compiler produces optimized code.</p>
+<p>Classes may contain public and private <strong>methods</strong> as well as static
+public <strong>functions</strong>. An <strong>interface</strong> may define any type of
+method/function (i.e. <strong>public</strong> or <strong>private</strong>) however it cannot
+define implementation. Lastly, Objeck supports <strong>reflection</strong> letting
+programmers dynamically introspect instances at runtime.</p>
+<p>Below is a code example of that demonstrates many of these concepts.
+Please refer to the <a class="reference external" href="http://www.objeck.org/docs/api/index.html">API
+documentation</a> to learn
+more about reflection and other features such as object serialization.</p>
+<p>Figure 2 - Classes, Interfaces and Reflection</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="no">Registration</span> <span class="p">{</span>
+        <span class="nb">method</span> <span class="p">:</span> <span class="n">virtual</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetColor</span><span class="p">()</span> <span class="o">~</span> <span class="nb">String</span><span class="p">;</span>
+        <span class="nb">method</span> <span class="p">:</span> <span class="n">virtual</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetMake</span><span class="p">()</span> <span class="o">~</span> <span class="nb">String</span><span class="p">;</span>
+        <span class="nb">method</span> <span class="p">:</span> <span class="n">virtual</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetModel</span><span class="p">()</span> <span class="o">~</span> <span class="nb">String</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">enum</span> <span class="no">EngineType</span> <span class="p">{</span>
+        <span class="no">Gas</span> <span class="p">:</span><span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="no">Hybrid</span><span class="p">,</span>
+        <span class="no">Electric</span><span class="p">,</span>
+        <span class="no">Warp</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Vehicle</span> <span class="p">{</span>
+        <span class="vi">@wheels</span> <span class="p">:</span> <span class="no">Int</span><span class="p">;</span>
+        <span class="vi">@color</span> <span class="p">:</span> <span class="nb">String</span><span class="p">;</span>
+        <span class="vi">@engine_type</span> <span class="p">:</span> <span class="no">EngineType</span><span class="p">;</span>
+
+        <span class="no">New</span><span class="p">(</span><span class="n">wheels</span> <span class="p">:</span> <span class="no">Int</span><span class="p">,</span> <span class="n">color</span> <span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">engine_type</span> <span class="p">:</span> <span class="no">EngineType</span><span class="p">)</span> <span class="p">{</span>
+                <span class="vi">@wheels</span> <span class="p">:</span><span class="o">=</span> <span class="n">wheels</span><span class="p">;</span>
+                <span class="vi">@color</span> <span class="p">:</span><span class="o">=</span> <span class="n">color</span><span class="p">;</span>
+                <span class="vi">@engine_type</span> <span class="p">:</span><span class="o">=</span> <span class="n">engine_type</span><span class="p">;</span>
+<span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetColor</span><span class="p">()</span> <span class="o">~</span> <span class="nb">String</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="vi">@color</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetEngine</span><span class="p">()</span> <span class="o">~</span> <span class="no">EngineType</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="vi">@engine_type</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">StarShip</span> <span class="n">from</span> <span class="no">Vehicle</span> <span class="n">implements</span> <span class="no">Registration</span> <span class="p">{</span>
+        <span class="no">New</span><span class="p">()</span> <span class="p">{</span>
+                <span class="no">Parent</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="s2">&quot;Metal Fuschia&quot;</span><span class="p">,</span> <span class="no">EngineType</span><span class="o">-&gt;</span><span class="no">Warp</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetMake</span><span class="p">()</span> <span class="o">~</span> <span class="nb">String</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s2">&quot;Excelsior&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetModel</span><span class="p">()</span> <span class="o">~</span> <span class="nb">String</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s2">&quot;NX-2000&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">EchoDescription</span><span class="p">()</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="s2">&quot;Partying with the Borg, they brought drinks!&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Pinto</span> <span class="n">from</span> <span class="no">Vehicle</span> <span class="n">implements</span> <span class="no">Registration</span> <span class="p">{</span>
+        <span class="no">New</span><span class="p">()</span> <span class="p">{</span>
+                <span class="no">Parent</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetMake</span><span class="p">()</span> <span class="o">~</span> <span class="nb">String</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s2">&quot;Ford&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetModel</span><span class="p">()</span> <span class="o">~</span> <span class="nb">String</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="s2">&quot;Pinto&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">VehicleTest</span> <span class="p">{</span>
+        <span class="n">function</span> <span class="p">:</span> <span class="no">Main</span><span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="nb">String</span><span class="o">[]</span><span class="p">)</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="n">pinto</span> <span class="p">:</span><span class="o">=</span> <span class="no">Pinto</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">();</span>
+                <span class="n">star_ship</span> <span class="p">:</span><span class="o">=</span> <span class="no">StarShip</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">();</span>
+                <span class="n">type_of</span> <span class="p">:</span><span class="o">=</span> <span class="n">pinto</span><span class="o">-&gt;</span><span class="no">TypeOf</span><span class="p">(</span><span class="no">Vehicle</span><span class="p">);</span>
+                <span class="n">type_of</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="n">type_of</span> <span class="p">:</span><span class="o">=</span> <span class="n">star_ship</span><span class="o">-&gt;</span><span class="no">TypeOf</span><span class="p">(</span><span class="no">Vehicle</span><span class="p">);</span>
+                <span class="n">type_of</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="n">type_of</span> <span class="p">:</span><span class="o">=</span> <span class="n">pinto</span><span class="o">-&gt;</span><span class="no">TypeOf</span><span class="p">(</span><span class="no">StarShip</span><span class="p">);</span>
+                <span class="n">type_of</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="n">registration</span> <span class="p">:</span><span class="o">=</span> <span class="n">star_ship</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="no">Registration</span><span class="p">);</span>
+                <span class="n">registration</span><span class="o">-&gt;</span><span class="no">GetMake</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="n">registration</span><span class="o">-&gt;</span><span class="no">GetColor</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="n">enterprise</span> <span class="p">:</span><span class="o">=</span> <span class="n">registration</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="no">StarShip</span><span class="p">);</span>
+                <span class="n">enterprise</span><span class="o">-&gt;</span><span class="no">EchoDescription</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="anonymous-classes">
+<h3>Anonymous classes<a class="headerlink" href="#anonymous-classes" title="Permalink to this headline">¶</a></h3>
+<p>Anonymous classes can be created that define “inline” required interface
+methods/functions. External variables may be referenced within an
+anonymous class if they’re passed as references to the class
+constructor.</p>
+<p>Figure 3 - Objeck Serialization and Inheritance</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="no">Greetings</span> <span class="p">{</span>
+        <span class="nb">method</span> <span class="p">:</span> <span class="n">virtual</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">SayHi</span><span class="p">()</span> <span class="o">~</span> <span class="no">Nil</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Hello</span> <span class="p">{</span>
+        <span class="n">function</span> <span class="p">:</span> <span class="no">Main</span><span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="nb">String</span><span class="o">[]</span><span class="p">)</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="n">hey</span> <span class="p">:</span><span class="o">=</span> <span class="no">Base</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">()</span> <span class="n">implements</span> <span class="no">Greetings</span> <span class="p">{</span>
+                        <span class="no">New</span><span class="p">()</span> <span class="p">{}</span>
+                        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">SayHi</span><span class="p">()</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                                <span class="s2">&quot;Hey...&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                        <span class="p">}</span>
+                <span class="p">};</span>
+
+                <span class="n">howdy</span> <span class="p">:</span><span class="o">=</span> <span class="no">Base</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">()</span> <span class="n">implements</span> <span class="no">Greetings</span> <span class="p">{</span>
+                        <span class="no">New</span><span class="p">()</span> <span class="p">{}</span>
+                        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">SayHi</span><span class="p">()</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                                <span class="s2">&quot;Howdy!&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                        <span class="p">}</span>
+                <span class="p">};</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enums-and-constants">
+<span id="section-3"></span><h3>Enums and Constants<a class="headerlink" href="#enums-and-constants" title="Permalink to this headline">¶</a></h3>
+<p>Enums are enumerated named constant values. Enums values are sequential
+and start from an offset. Constants, like enums, are named constant
+values however each value can be uniquely assigned.</p>
+<p>Figure 4 - Objeck Enums and Constants</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="no">Color</span> <span class="p">{</span>
+        <span class="no">Red</span><span class="p">,</span>
+        <span class="no">Blue</span><span class="p">,</span>
+        <span class="no">Green</span>
+<span class="p">}</span>
+
+<span class="n">enum</span> <span class="no">Direction</span> <span class="p">{</span>
+        <span class="no">Left</span> <span class="p">:</span><span class="o">=</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span>
+        <span class="no">Right</span><span class="p">,</span>
+        <span class="no">Up</span><span class="p">,</span>
+        <span class="no">Down</span>
+<span class="p">}</span>
+
+<span class="n">consts</span> <span class="no">Products</span> <span class="p">{</span>
+        <span class="no">Pip_Boy</span> <span class="p">:</span><span class="o">=</span> <span class="mi">101</span><span class="p">,</span>
+        <span class="no">Valut_Suit</span> <span class="p">:</span><span class="o">=</span> <span class="mi">111</span><span class="p">,</span>
+        <span class="no">Laser</span> <span class="p">:</span><span class="o">=</span> <span class="mi">675</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="serialization">
+<span id="section-4"></span><h3>Serialization<a class="headerlink" href="#serialization" title="Permalink to this headline">¶</a></h3>
+<p>Object serialization is a mechanism that transforms object instances
+into bytes and vice versa. Serialization can be used to persist an
+instance’s state (i.e. to disk) or pass a copy over a network.</p>
+<p>Figure 5 - Objeck Serialization and Inheritance</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">use</span> <span class="no">Collection</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Thingy</span> <span class="p">{</span>
+        <span class="vi">@id</span> <span class="p">:</span> <span class="no">Int</span><span class="p">;</span>
+
+        <span class="no">New</span><span class="p">(</span><span class="nb">id</span> <span class="p">:</span> <span class="no">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="vi">@id</span> <span class="p">:</span><span class="o">=</span> <span class="nb">id</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">Print</span><span class="p">()</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="vi">@id</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Person</span> <span class="n">from</span> <span class="no">Thingy</span> <span class="p">{</span>
+        <span class="vi">@name</span> <span class="p">:</span> <span class="nb">String</span><span class="p">;</span>
+        <span class="vi">@values</span> <span class="p">:</span> <span class="no">StringMap</span><span class="p">;</span>
+
+        <span class="no">New</span><span class="p">(</span><span class="nb">id</span> <span class="p">:</span> <span class="no">Int</span><span class="p">,</span> <span class="nb">name</span> <span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+                <span class="no">Parent</span><span class="p">(</span><span class="nb">id</span><span class="p">);</span>
+                <span class="vi">@name</span> <span class="p">:</span><span class="o">=</span> <span class="nb">name</span><span class="p">;</span>
+                <span class="vi">@values</span> <span class="p">:</span><span class="o">=</span> <span class="no">StringMap</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">();</span>
+                <span class="vi">@values</span><span class="o">-&gt;</span><span class="no">Insert</span><span class="p">(</span><span class="s2">&quot;Jason&quot;</span><span class="p">,</span> <span class="no">IntHolder</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">(</span><span class="mi">101</span><span class="p">));</span>
+                <span class="vi">@values</span><span class="o">-&gt;</span><span class="no">Insert</span><span class="p">(</span><span class="s2">&quot;Mark&quot;</span><span class="p">,</span> <span class="no">IntHolder</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">(</span><span class="mi">9</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">Print</span><span class="p">()</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="vi">@id</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="vi">@name</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="vi">@values</span><span class="o">-&gt;</span><span class="no">Find</span><span class="p">(</span><span class="s2">&quot;Jason&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="no">IntHolder</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                <span class="vi">@values</span><span class="o">-&gt;</span><span class="no">Find</span><span class="p">(</span><span class="s2">&quot;Mark&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="no">IntHolder</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">Get</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Serial</span> <span class="p">{</span>
+        <span class="n">function</span> <span class="p">:</span> <span class="no">Main</span><span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="nb">String</span><span class="o">[]</span><span class="p">)</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="n">t</span> <span class="p">:</span><span class="o">=</span> <span class="no">Thingy</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+                <span class="nb">p</span> <span class="p">:</span><span class="o">=</span> <span class="no">Person</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="s2">&quot;Bush&quot;</span><span class="p">);</span>
+
+                <span class="n">s</span> <span class="p">:</span><span class="o">=</span> <span class="no">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Serializer</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">();</span>
+                <span class="n">s</span><span class="o">-&gt;</span><span class="no">Write</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+                <span class="n">s</span><span class="o">-&gt;</span><span class="no">Write</span><span class="p">(</span><span class="nb">p</span><span class="p">);</span>
+
+                <span class="n">writer</span> <span class="p">:</span><span class="o">=</span> <span class="no">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">FileWriter</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">(</span><span class="s2">&quot;objects.dat&quot;</span><span class="p">);</span>
+                <span class="n">writer</span><span class="o">-&gt;</span><span class="no">WriteBuffer</span><span class="p">(</span><span class="n">s</span><span class="o">-&gt;</span><span class="no">Serialize</span><span class="p">());</span>
+                <span class="n">writer</span><span class="o">-&gt;</span><span class="no">Close</span><span class="p">();</span>
+
+                <span class="n">buffer</span> <span class="p">:</span><span class="o">=</span> <span class="no">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">FileReader</span><span class="o">-&gt;</span><span class="no">ReadBinaryFile</span><span class="p">(</span><span class="s2">&quot;objects.dat&quot;</span><span class="p">);</span>
+                <span class="n">d</span> <span class="p">:</span><span class="o">=</span> <span class="no">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Deserializer</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+
+                <span class="n">t2</span> <span class="p">:</span><span class="o">=</span> <span class="n">d</span><span class="o">-&gt;</span><span class="no">ReadObject</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="no">Thingy</span><span class="p">);</span>
+                <span class="n">t2</span><span class="o">-&gt;</span><span class="no">Print</span><span class="p">();</span>
+                <span class="n">p2</span> <span class="p">:</span><span class="o">=</span> <span class="n">d</span><span class="o">-&gt;</span><span class="no">ReadObject</span><span class="p">()</span><span class="o">-&gt;</span><span class="no">As</span><span class="p">(</span><span class="no">Person</span><span class="p">);</span>
+                <span class="n">p2</span><span class="o">-&gt;</span><span class="no">Print</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="higher-order-functions">
+<h2>Higher-order functions<a class="headerlink" href="#higher-order-functions" title="Permalink to this headline">¶</a></h2>
+<p>Higher order functions allow programmers to pass functions into
+methods/functions and have methods/functions return functions. The
+language has support for strongly typed functional references. Due to
+the compositional nature of this feature functional definitions may be
+nesting.</p>
+<p>Figure 6 - Functional Composition</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FofG</span> <span class="p">{</span>
+        <span class="vi">@f</span> <span class="p">:</span> <span class="n">static</span> <span class="p">:</span> <span class="p">(</span><span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span><span class="p">;</span>
+        <span class="vi">@g</span> <span class="p">:</span> <span class="n">static</span> <span class="p">:</span> <span class="p">(</span><span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span><span class="p">;</span>
+
+        <span class="n">function</span> <span class="p">:</span> <span class="no">Main</span><span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="nb">String</span><span class="o">[]</span><span class="p">)</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="n">compose</span> <span class="p">:</span><span class="o">=</span> <span class="no">Composer</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span><span class="p">,</span> <span class="n">G</span><span class="p">(</span><span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span><span class="p">);</span>
+                <span class="n">compose</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="n">function</span> <span class="p">:</span> <span class="n">F</span><span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">14</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">function</span> <span class="p">:</span> <span class="n">G</span><span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">15</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">function</span> <span class="p">:</span> <span class="n">native</span> <span class="p">:</span> <span class="no">Compose</span><span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="vi">@f</span><span class="p">(</span><span class="vi">@g</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="n">function</span> <span class="p">:</span> <span class="no">Composer</span><span class="p">(</span><span class="n">f</span> <span class="p">:</span> <span class="p">(</span><span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span><span class="p">,</span> <span class="n">g</span> <span class="p">:</span> <span class="p">(</span><span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="p">(</span><span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span> <span class="p">{</span>
+                <span class="vi">@f</span> <span class="p">:</span><span class="o">=</span> <span class="n">f</span><span class="p">;</span>
+                <span class="vi">@g</span> <span class="p">:</span><span class="o">=</span> <span class="n">g</span><span class="p">;</span>
+                <span class="k">return</span> <span class="no">Compose</span><span class="p">(</span><span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>More concretely, functions can be used by collections to perform
+operations such as applying the result of a given function to all the
+elements within a vector.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="p">:</span> <span class="n">native</span> <span class="p">:</span> <span class="no">Run</span><span class="p">()</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+        <span class="s2">&quot;Print roots...&quot;</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="n">values</span> <span class="p">:</span><span class="o">=</span> <span class="no">IntVector</span><span class="o">-&gt;</span><span class="no">New</span><span class="p">(</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="o">]</span><span class="p">);</span>
+        <span class="n">squares</span> <span class="p">:</span><span class="o">=</span> <span class="n">values</span><span class="o">-&gt;</span><span class="no">Apply</span><span class="p">(</span><span class="no">Square</span><span class="p">(</span><span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span><span class="p">);</span>
+        <span class="n">each</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span> <span class="n">squares</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">squares</span><span class="o">-&gt;</span><span class="no">Get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="p">:</span> <span class="no">Square</span><span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Int</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">value</span> <span class="o">*</span> <span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jit-compiling-methods-and-functions">
+<h2>JIT compiling methods and functions<a class="headerlink" href="#jit-compiling-methods-and-functions" title="Permalink to this headline">¶</a></h2>
+<p>In order to speed up program execution byte code for method/functions
+may be JIT compiled into machine code. Methods/functions are compiled
+the first time they are called and subsequent calls execute the
+per-compiled machine code.</p>
+<p>To direct the runtime to JIT compile code for a given function or method
+use the <strong>native</strong> keyword. Candidates for JIT compilation are
+frequently called methods/functions that are computationally expensive
+or a method/function with lots of long loops.</p>
+<p>Observe the execution time of this prime number program with and without
+the use of the <strong>native</strong> keyword.</p>
+<p>Figure 7 - Prime Numbers Using Jit Compilation</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FindPrime</span> <span class="p">{</span>
+        <span class="n">function</span> <span class="p">:</span> <span class="no">Main</span><span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="no">System</span><span class="o">.</span><span class="n">String</span><span class="o">[]</span><span class="p">)</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="no">Run</span><span class="p">(</span><span class="mi">100000</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">function</span> <span class="p">:</span> <span class="n">native</span> <span class="p">:</span> <span class="no">Run</span><span class="p">(</span><span class="n">topCandidate</span> <span class="p">:</span> <span class="no">Int</span><span class="p">)</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+                <span class="n">candidate</span> <span class="p">:</span> <span class="no">Int</span> <span class="p">:</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+                <span class="k">while</span><span class="p">(</span><span class="n">candidate</span> <span class="o">&lt;=</span> <span class="n">topCandidate</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">trialDivisor</span> <span class="p">:</span> <span class="no">Int</span> <span class="p">:</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+                        <span class="n">prime</span> <span class="p">:</span> <span class="no">Int</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                        <span class="n">found</span> <span class="p">:</span> <span class="no">Bool</span> <span class="p">:</span><span class="o">=</span> <span class="kp">true</span><span class="p">;</span>
+                        <span class="k">while</span><span class="p">(</span><span class="n">trialDivisor</span> <span class="o">*</span> <span class="n">trialDivisor</span> <span class="o">&lt;=</span> <span class="n">candidate</span> <span class="o">&amp;</span> <span class="n">found</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="k">if</span><span class="p">(</span><span class="n">candidate</span> <span class="o">%</span> <span class="n">trialDivisor</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                                        <span class="n">prime</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                                        <span class="n">found</span> <span class="p">:</span><span class="o">=</span> <span class="kp">false</span><span class="p">;</span>
+                                <span class="p">}</span>
+                                <span class="k">else</span> <span class="p">{</span>
+                                        <span class="n">trialDivisor</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                                <span class="p">};</span>
+                        <span class="p">};</span>
+
+                        <span class="k">if</span><span class="p">(</span><span class="n">found</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="n">candidate</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+                        <span class="p">};</span>
+                        <span class="n">candidate</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">};</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-libraries">
+<h2>Creating libraries<a class="headerlink" href="#creating-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Creating class libraries is pretty straightforward. Put one or more
+classes into one or more files and compile the code with the “<strong>-tar
+lib</strong>” option. Code for a class library cannot contain a “main”
+function.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pair</span> <span class="p">{</span>
+        <span class="vi">@key</span> <span class="p">:</span> <span class="no">Compare</span><span class="p">;</span>
+        <span class="vi">@value</span> <span class="p">:</span> <span class="no">Base</span><span class="p">;</span>
+
+        <span class="no">New</span><span class="p">(</span><span class="n">key</span> <span class="p">:</span> <span class="no">Compare</span><span class="p">,</span> <span class="n">value</span> <span class="p">:</span> <span class="no">Base</span><span class="p">)</span> <span class="p">{</span>
+                <span class="vi">@key</span> <span class="p">:</span><span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+        <span class="vi">@value</span> <span class="p">:</span><span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">GetKey</span><span class="p">()</span> <span class="o">~</span> <span class="no">Compare</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="vi">@key</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nb">method</span> <span class="p">:</span> <span class="kp">public</span> <span class="p">:</span> <span class="no">Get</span><span class="p">()</span> <span class="o">~</span> <span class="no">Base</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="vi">@value</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To compile the code type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obc -src pair.obs -tar lib -dest pair.obl
+</pre></div>
+</div>
+<p>To use the library in program type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obc -src points.obs -lib pair.obl -dest point.obe
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-the-debugger">
+<h1>Using the Debugger<a class="headerlink" href="#using-the-debugger" title="Permalink to this headline">¶</a></h1>
+<p>The command line debugger allows a programmer to inspect the behavior of
+a program at runtime. In order to use the debugger a program must first
+be compiled with debug symbols by passing the “-<strong>debug</strong>” option to
+the compiler.</p>
+<p>For a working example let’s use the Figure 1 - Simple credit card
+validation program in the “Operators” section of this document. We’ll
+first save the program to a UTF-8 (or ASCII) text file call
+<strong>luhn.obs</strong>. The following commands will create a debug executable
+called <strong>luhn.obe</strong>.</p>
+<p>To compile the code type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obc -src luhn.obs -dest luhn.obe -debug
+</pre></div>
+</div>
+<p>For this example let’s assume the source file is in the same location as
+the executable. To start the debugger type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>obd -exe luhn.obe -src .
+</pre></div>
+</div>
+<p>Let’s first set a breakpoint on line 17 and run the program.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; b luhn.obs:17
+added breakpoint: <span class="nv">file</span><span class="o">=</span><span class="s1">&#39;luhn.obs:17&#39;</span>
+&gt; r
+break: <span class="nv">file</span><span class="o">=</span><span class="s1">&#39;luhn.obs:17&#39;</span>, <span class="nv">method</span><span class="o">=</span><span class="s1">&#39;Luhn-&gt;Main(..)&#39;</span>
+</pre></div>
+</div>
+<p>Next let’s list the code around the breakpoint.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">l</span>
+        <span class="mi">12</span><span class="p">:</span> <span class="p">};</span>
+        <span class="mi">13</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="n">oddSum</span> <span class="o">+</span> <span class="n">evenSum</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="mi">14</span><span class="p">:</span> <span class="p">}</span>
+        <span class="mi">15</span><span class="p">:</span>
+        <span class="mi">16</span><span class="p">:</span> <span class="n">function</span> <span class="p">:</span> <span class="no">Main</span><span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="nb">String</span><span class="o">[]</span><span class="p">)</span> <span class="o">~</span> <span class="no">Nil</span> <span class="p">{</span>
+<span class="o">=&gt;</span>      <span class="mi">17</span><span class="p">:</span> <span class="no">IsValid</span><span class="p">(</span><span class="s2">&quot;49927398716&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="mi">18</span><span class="p">:</span> <span class="no">IsValid</span><span class="p">(</span><span class="s2">&quot;49927398717&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="mi">19</span><span class="p">:</span> <span class="no">IsValid</span><span class="p">(</span><span class="s2">&quot;1234567812345678&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="mi">20</span><span class="p">:</span> <span class="no">IsValid</span><span class="p">(</span><span class="s2">&quot;1234567812345670&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="no">PrintLine</span><span class="p">();</span>
+        <span class="mi">21</span><span class="p">:</span> <span class="p">}</span>
+        <span class="mi">22</span><span class="p">:</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Now let’s step into the “IsValid” function.</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">s</span>
+<span class="o">&gt;</span> <span class="k">break</span><span class="p">:</span> <span class="n">file</span><span class="o">=</span><span class="s1">&#39;luhn.obs:2&#39;</span><span class="p">,</span> <span class="nb">method</span><span class="o">=</span><span class="s1">&#39;Luhn-&gt;IsValid(..)&#39;</span>
+<span class="o">&gt;</span> <span class="n">l</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="k">class</span> <span class="nc">Luhn</span> <span class="p">{</span>
+<span class="o">=&gt;</span>      <span class="mi">2</span><span class="p">:</span> <span class="n">function</span> <span class="p">:</span> <span class="no">IsValid</span><span class="p">(</span><span class="n">cc</span> <span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="o">~</span> <span class="no">Bool</span> <span class="p">{</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="n">isOdd</span> <span class="p">:</span><span class="o">=</span> <span class="kp">true</span><span class="p">;</span> <span class="n">oddSum</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">evenSum</span> <span class="p">:</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="p">:</span><span class="o">=</span> <span class="n">cc</span><span class="o">-&gt;</span><span class="no">Size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;)</span> <span class="p">{</span>
+        <span class="mi">5</span><span class="p">:</span> <span class="n">digit</span> <span class="p">:</span> <span class="no">Int</span> <span class="p">:</span><span class="o">=</span> <span class="n">cc</span><span class="o">-&gt;</span><span class="no">Get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="s1">&#39;0&#39;</span><span class="p">;</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="k">if</span><span class="p">(</span><span class="n">isOdd</span><span class="p">)</span> <span class="p">{</span>
+        <span class="mi">7</span><span class="p">:</span> <span class="n">oddSum</span> <span class="o">+=</span> <span class="n">digit</span><span class="p">;</span>
+        <span class="mi">8</span><span class="p">:</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="mi">9</span><span class="p">:</span> <span class="n">evenSum</span> <span class="o">+=</span> <span class="n">digit</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">digit</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span>
+        <span class="mi">10</span><span class="p">:</span> <span class="p">};</span>
+<span class="o">&gt;</span> <span class="n">n</span>
+</pre></div>
+</div>
+<p>Let’s print out the value for “cc”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; p cc
+print: <span class="nv">type</span><span class="o">=</span>System.String, <span class="nv">value</span><span class="o">=</span><span class="s2">&quot;49927398716</span>
+</pre></div>
+</div>
+<p>Now let’s break on line 9 and print the value for “evenSum”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; b <span class="m">9</span>
+added breakpoint: <span class="nv">file</span><span class="o">=</span><span class="s1">&#39;luhn.obs:9&#39;</span>
+&gt; c
+&gt; break: <span class="nv">file</span><span class="o">=</span><span class="s1">&#39;luhn.obs:9&#39;</span>, <span class="nv">method</span><span class="o">=</span><span class="s1">&#39;Luhn-&gt;IsValid(..)&#39;</span>
+&gt; n
+&gt; break: <span class="nv">file</span><span class="o">=</span><span class="s1">&#39;luhn.obs:11&#39;</span>, <span class="nv">method</span><span class="o">=</span><span class="s1">&#39;Luhn-&gt;IsValid(..)&#39;</span>
+&gt; p evenSum
+print: <span class="nv">type</span><span class="o">=</span>Int, <span class="nv">value</span><span class="o">=</span><span class="m">2</span>
+</pre></div>
+</div>
+<p>Lastly, let’s print out the call stack before exiting.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; stack
+stack:
+frame: <span class="nv">pos</span><span class="o">=</span><span class="m">2</span>, <span class="nv">class</span><span class="o">=</span>Luhn, <span class="nv">method</span><span class="o">=</span>IsValid<span class="o">(</span>o.System.String<span class="o">)</span>, <span class="nv">file</span><span class="o">=</span>luhn.obs:5
+frame: <span class="nv">pos</span><span class="o">=</span><span class="m">1</span>, <span class="nv">class</span><span class="o">=</span>Luhn, <span class="nv">method</span><span class="o">=</span>Main<span class="o">(</span>o.System.String*<span class="o">)</span>, <span class="nv">file</span><span class="o">=</span>luhn.obs:17
+&gt; q
+breakpoints cleared.
+goodbye.
+</pre></div>
+</div>
+<p>Table 6 - Debugger Commands</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 51%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>[b]</strong>reak</p></td>
+<td><p>sets a breakpoint</p></td>
+<td><p>b luhn.obs:17</p>
+<p>b</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>breaks</p></td>
+<td><p>shows all breakpoints</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>[d]</strong>elete</p></td>
+<td><p>deletes a breakpoint</p></td>
+<td><p>d luhn.obs:17</p></td>
+</tr>
+<tr class="row-odd"><td><p>clear</p></td>
+<td><p>clears all breakpoints</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>[n]</strong>ext</p></td>
+<td><p>moves to the next line within the
+same method/function with debug
+information</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>[s]</strong>tep</p></td>
+<td><p>moves to the next line with debug
+information</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>[j]</strong>ump</p></td>
+<td><p>jumps out of an existing
+method/function and moves to the
+next line with debug information</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>args</p></td>
+<td><p>specifies program arguments</p></td>
+<td><p>args “Hello World”</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>[r]</strong>un</p></td>
+<td><p>runs a loaded program</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>[p]</strong>rint</p></td>
+<td><p>prints the value of an expression,
+along with metadata</p></td>
+<td><p>p cc</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>[l]</strong>ist</p></td>
+<td><p>lists a range of lines in a source
+file or the lines near the current
+breakpoint</p></td>
+<td><p>L</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>[i]</strong>nfo</p></td>
+<td><p>displays the variables for a class</p></td>
+<td><p>i</p></td>
+</tr>
+<tr class="row-even"><td><p>stack</p></td>
+<td><p>displays the method/function call
+stack</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>exe</p></td>
+<td><p>loads a new executable</p></td>
+<td><p>exe &quot;luhn.obe&quot;</p></td>
+</tr>
+<tr class="row-even"><td><p>src</p></td>
+<td><p>specifies a new source path</p></td>
+<td><p>src &quot;.&quot;</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>[q]</strong>uit</p></td>
+<td><p>exits a given debugging session</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">A Brief introduction</a></li>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#compiling-and-running-code">Compiling and Running Code</a></li>
+<li><a class="reference internal" href="#the-basics">The Basics</a><ul>
+<li><a class="reference internal" href="#literals-and-variables">Literals and variables</a></li>
+<li><a class="reference internal" href="#comments">Comments</a></li>
+<li><a class="reference internal" href="#logic-and-control-flow">Logic and control flow</a><ul>
+<li><a class="reference internal" href="#if-else">If/else</a></li>
+<li><a class="reference internal" href="#select">Select</a></li>
+<li><a class="reference internal" href="#do">Do</a></li>
+<li><a class="reference internal" href="#do-while">Do/While</a></li>
+<li><a class="reference internal" href="#for">For</a></li>
+<li><a class="reference internal" href="#each">Each</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#operators">Operators</a></li>
+<li><a class="reference internal" href="#arrays-strings-and-collections">Arrays, strings and collections</a><ul>
+<li><a class="reference internal" href="#arrays">Arrays</a></li>
+<li><a class="reference internal" href="#strings">Strings</a></li>
+<li><a class="reference internal" href="#collections">Collections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#objects-and-functions">Objects and Functions</a><ul>
+<li><a class="reference internal" href="#classes-and-interfaces">Classes and interfaces</a><ul>
+<li><a class="reference internal" href="#anonymous-classes">Anonymous classes</a></li>
+<li><a class="reference internal" href="#enums-and-constants">Enums and Constants</a></li>
+<li><a class="reference internal" href="#serialization">Serialization</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#higher-order-functions">Higher-order functions</a></li>
+<li><a class="reference internal" href="#jit-compiling-methods-and-functions">JIT compiling methods and functions</a></li>
+<li><a class="reference internal" href="#creating-libraries">Creating libraries</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-the-debugger">Using the Debugger</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">A Brief introduction (March 4, 2018)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="objeck_lang_jp.html"
+                        title="next chapter">A Brief introduction (日本語)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/objeck_lang.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="objeck_lang_jp.html" title="A Brief introduction (日本語)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="A Brief introduction (March 4, 2018)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Objeck Programming Language 6.3.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">A Brief introduction</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Randy Hollines.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+  </body>
+</html>

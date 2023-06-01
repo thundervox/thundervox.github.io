@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  
+  
+  <title>textRender()</title>
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+  
+  <meta content="zoiba" name="author">
+</head>
+
+
+<body style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">
+
+textRender()<br>
+
+</span>
+</div>
+
+<span class="text"><br>指定されたテキストをイメージスロットへレンダリングします。現在のフォントでは指定されたサイズを使います。イメージスロット番号の省略時は、レンダリングしたテキストは最初に見つかった空きスロットへ保存後に、そのインデックス番号を返します。レンダリングのスタイルとして指定可能なパラメータは、 0 はソリッド (デフォルト)、 1 は陰影付き、 2 はブレンドです。テキストカラーは現在のインクカラーに従います。<span style="font-weight: bold;">ink()</span> コマンドを参照してください。<br><br></span><span class="syntax2"> </span> <span class="smallTitle"> 文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">
+</span>
+<span class="syntax"> variable </span> <span class="syntax2"> = textRender( </span> <span class="syntax"> text </span> <span class="syntax2"> , </span> <span class="syntax"> size </span> <span class="syntax2"> ) <br></span>
+</div>
+<div style="text-align: left;">
+<span class="syntax2"><br>
+</span><span class="text">この場合、イメージスロットは sdlBasic により自動割り当てが行われます。その後、イメージスロットの番号は </span><span class="syntax">variable</span><span class="syntax2"> へ返されます。<br></span><span class="syntax"></span><span class="syntax2"><br></span><span class="smallTitle"> 文法: </span><br>
+
+
+<div style="background-color: rgb(239, 239, 255); text-align: left;">
+<span class="syntax2"> textRender( </span> <span class="syntax"> text </span> <span class="syntax2"> , </span> <span class="syntax"> size </span> <span class="syntax2"> , </span> <span class="syntax"> slot </span> <span class="syntax2"> ) <br></span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);"><span class="syntax2">
+textRender( 
+</span>
+<span class="syntax">
+text
+</span>
+<span class="syntax2">
+, 
+</span>
+<span class="syntax">
+size
+</span>
+<span class="syntax2">
+, 
+</span>
+<span class="syntax">
+slot
+</span>
+<span class="syntax2">
+, 
+</span>
+<span class="syntax">
+style
+</span>
+<span class="syntax2">
+ )
+</span><span class="syntax2"></span><br>
+</div>
+<span class="syntax"><br>text </span><span class="text">は出力対象のテキストです。</span><span class="syntax2"><br></span> <span class="text"> </span> <span class="syntax"> size </span> <span class="text"> はポイントで表されたテキストのサイズです。<br></span><span class="syntax"> slot </span> <span class="text"> は生成後のイメージが保存されるイメージスロットの番号です。</span><br><span class="syntax2"> </span> <span class="text"> </span> <span class="syntax"> style </span> <span class="text"> 指定可能なパラメータとして、 0 はソリッド (デフォルト)、 1 は陰影付き、 2 はブレンドです。</span><br><span class="syntax2"><br></span><span class="smallTitle">用例: </span><span class="syntax2"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+a$=" 
+sdlBasic 
+"
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+ink(rgb(255,128,0))
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"><span style="font-weight: bold;">
+textrender(</span> a$, 16, 1 <span style="font-weight: bold;">)</span>
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+pastebob(100,200,1)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+prints("なにかキーを押すと終了します。")
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+while inkey=0
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">&nbsp;&nbsp;&nbsp; bob(1,xmouse,20,1)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">&nbsp;&nbsp;&nbsp; sprite(1,20,ymouse,1)
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+end while
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">
+
+waitkey
+
+<br>
+
+</span>
+</div>
+
+</body>
+</html>

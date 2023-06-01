@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+  
+  
+  
+  
+  <title>colorCycling()</title>
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+
+  
+  
+  <meta content="zoiba" name="author">
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">
+
+colorCycling()<br>
+
+
+</span>
+</div>
+
+
+<span class="text"><br>パレットインデックスにあるカラーパレットのカラーを前方、または後方へシフト操作することでカラーパレットを循環参照します。これは 256 色カラーモード専用です。<br><br></span> <span class="smallTitle"> 文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2"> ColorCycling( </span> <span class="syntax"> startindex </span> <span class="syntax2"> , </span> <span class="syntax"> endindex </span> <span class="syntax2"> , </span> <span class="syntax"> direction </span> <span class="syntax2"> , </span> <span class="syntax"> delay </span> <span class="syntax2"> ) <br></span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2"> ColorCycling( </span> <span class="syntax"> startindex </span> <span class="syntax2"> , </span> <span class="syntax"> endindex </span> <span class="syntax2"> , </span> <span class="syntax"> direction </span> <span class="syntax2"> ) <br></span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">
+
+ColorCycling()
+
+<br>
+
+
+</span>
+</div>
+
+
+<span class="text"><br>
+
+</span><span class="syntax">startindex</span><span class="text">&nbsp;は循環参照におけるカラーパレットの開始インデックスです。<br></span> <span class="syntax">endindex</span><span class="text">&nbsp;は循環参照におけるカラーパレットの終了インデックスです。<br></span> <span class="syntax">direction</span><span class="text">&nbsp;は循環参照方向です。 <span style="font-weight: bold;">0</span> または <span style="font-weight: bold;">1</span> を指定します。<br></span> <span class="text"> </span><span class="syntax">delay</span><span class="text">&nbsp;はカラー同士をシフトする場合の遅延時間です。delay 値の指定時、 <span style="font-weight: bold;">colorCycling()</span>&nbsp;</span><span class="text">は非同期モードで実行されます。さもなくば、 delay を省略した場合は、呼び出し時にプログラムの実行は停止します。</span> <span class="syntax2"> <br></span><span class="text"> 引数を指定せずに <span style="font-weight: bold;">colorCycling()</span> を呼び出すと非同期モードによるカラーの循環参照を停止します。</span><span class="syntax2"><span class="text"></span><br>
+
+
+</span>
+</body>
+</html>

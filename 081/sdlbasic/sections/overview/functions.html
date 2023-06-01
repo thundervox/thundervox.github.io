@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>関数</title>
+
+
+  <meta content="zoiba" name="author">
+
+  <link rel="stylesheet" href="../style.css" type="text/css">
+
+</head>
+
+
+<body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="background-color: rgb(0, 0, 0); text-align: left;"><span class="title">関数</span><span class="title"><br class="text">
+
+</span></div>
+
+<span class="text"><br>
+
+</span><span class="text">プログラムの開発期間中、プログラムの特定部分で同一命令手順を何度も書くことが求められる場合があります。そのような場合、 sdlBasic には命令手順を一度書くだけでプログラム全体から必要なときに再呼び出しが可能になる機能があります。</span><br class="text"><span class="text">関数の内側で使われる変数はローカル変数であるため、メインプログラムやほかの関数で同名変数を偶然使われたとしても外部の同名変数には影響を与えません。これは配列にも該当します。</span><br class="text"><span class="text">詳しい情報は Global, Shared, Dim, Common ステートメントを参照してください。</span><br class="text"><span class="text"> 関数本体で処理した情報の内容をパラメータのリストとして関数へ渡せます。パラメータの入力が不要な関数は括弧を付けずにメインプログラムから呼び出せます。オプションとして、関数は Return ステートメントで指定された値を返せます。</span><br class="text"><span class="text">sdlBasic は C から return ステートメントを借用しています。加えて、標準的な方法で関数から値を返せます。<br><br></span><span class="text">
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">function add( a, b )</span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; add = a + b</span><br class="code"><span class="code">end function</span><br>
+
+<span class="text"></span></div>
+
+<span class="text"><br>
+こう書くこともできます。<br>
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">function add( a, b )</span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; Return a + b</span><br class="code"><span class="code">end function</span><br>
+
+<span class="text"></span></div>
+
+<span class="text"><br>
+sdlBasic は return ステートメントが実行された時点で関数を終了します。<br><br>以下のステートメントで関数を呼び出せます。<br>
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">newSumm= add( 3, 4)</span><br>
+
+<span class="text"></span></div>
+
+<span class="text"><br>
+この用例では、関数の返値を newSumm 変数へ 7 を代入します。<br>関数の結果を破棄すると、サブルーチンと同じものとして扱われます。 <br>
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">' Len() の返値を破棄</span><br class="code"><span class="code">len("123")</span><br>
+
+<span class="text"></span></div>
+
+<span class="text"><br>
+の返値は破棄されます。<br><br>関数名はプログラムの同一スコープ内で使われている変数、または配列と同名にできません。つまり、以下のコードは使えません。<br>
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">myVariable = 1</span><br class="code"><span class="code">function myVariable()</span><br class="code"><span class="code">&nbsp;&nbsp; &nbsp;...</span><br class="code"><span class="code">end function</span><br>
+
+<span class="text"></span></div>
+
+<span class="text"><br>
+ただし、このコードは使えます。<br>
+<br>
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">function myFuntion()</span><br class="code"><span class="code">&nbsp;&nbsp; &nbsp;myVariable=1</span><br class="code"><span class="code">end function<br><br class="code"></span><span class="code">function myVariable()</span><br class="code"><span class="code">&nbsp;&nbsp; &nbsp;...</span><br class="code"><span class="code">end function</span><br>
+
+<span class="text"></span></div>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  
+
+
+  
+  <title>common</title>
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+
+  
+  <meta content="zoiba" name="author">
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">common<br>
+
+
+</span>
+</div>
+
+
+<span class="text"><br>指定された名前でグローバルな配列または変数を作成します。<br></span> <span class="smallTitle"><br>文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);"><span class="syntax2">common </span>
+<span class="syntax">variable
+</span><span class="syntax2"><br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">common </span>
+<span class="syntax">array[]
+</span><span class="syntax2"><br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">common </span>
+<span class="syntax">name[ maxValue ] [[...]] [, ... ]
+</span><span class="syntax2"><br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">common </span>
+<span class="syntax">name[ minValue To maxValue ][[...]]
+[, ...]
+</span><span class="syntax2"><br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">common </span>
+<span class="syntax">name = expression { , ... }
+</span><span class="syntax2"><br>
+
+
+</span>
+</div>
+
+
+<span class="text"><br>これらはグローバルスコープでアクセス可能であるため、 Sub または Function で使用時は Shared として宣言する必要はありません。<span style="font-weight: bold;">global</span> ステートメントでも同じ結果となります。Common が使えるのは Sub や Function の外側に限ります。Sub または Function ではなく、 Dim をお使いください。詳しい情報は <a href="dim.html"><span style="font-weight: bold;">Dim</span></a> を参照してください。</span><span class="syntax2"><br></span> <span class="smallTitle"><br>用例: <br></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">' 配列の作成
+<br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code"><span style="font-weight: bold;">common</span>
+myGlobalArray[3 To 10, 5]
+
+</span><span class="syntax2"><br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code"><br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code">' グローバル変数の作成と代入を行います
+<br>
+
+
+</span>
+</div>
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="code"><span style="font-weight: bold;">common</span>
+myGlobalVar = 100
+
+</span><span class="syntax2"><br>
+
+
+</span>
+</div>
+
+
+<br>
+
+
+<span class="text"><a href="shared.html"><span style="font-weight: bold;">shared</span></a> コマンドを参照してください。</span>
+</body>
+</html>

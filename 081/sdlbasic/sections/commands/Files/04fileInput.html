@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>file input</title>
+
+
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+  <meta content="zoiba" name="author">
+
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">file input #<br>
+
+</span>
+</div>
+
+<span class="text"><br>ファイル </span><span class="syntax">stream</span><span class="text"> (ストリーム) から一行読み取ります。</span><span class="text"> </span><span class="syntax">stream</span><span class="text"> で参照されたファイルから文字列を読み取り後に、その結果を data 変数として返します。行送り (ラインフィード) 記号は自動的に削除します。</span><br><span class="smallTitle"><br>文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);"><span class="syntax2">
+file Input #</span><span class="syntax">stream</span><span class="syntax2">
+</span><span class="syntax2">
+, </span>
+<span class="syntax2"></span><span class="syntax">data</span><span class="syntax2">
+</span><span class="syntax2">
+<br>
+
+</span>
+</div>
+
+<span class="text"><br>
+
+</span>
+<span class="text"></span><span class="text"></span><span class="syntax">stream</span><span class="text"> は以前に <a href="00open...For...As.html">open</a> コマンドで開かれたファイルです。</span><span class="syntax2"><br></span> <span class="syntax">data</span><span class="text"> は文字列の保存先となる変数です。<br><br></span> <span class="smallTitle">用例: <br></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="text code">
+' テキストファイルを開く
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">open "myfile.txt" for input as 1
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">' ファイルの終わりまで読み取ります
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">while not eof( 1 )
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">' ファイルから一行読み取って表示します
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"><span style="font-weight: bold;">file
+input
+&nbsp;#</span>1, data$&nbsp;</span><span class="syntax2"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">print data$
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">end while
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">' ファイルを閉じます
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code">close( 1 )
+
+<br>
+
+</span>
+</div>
+
+<br>
+
+<span class="text"><a href="04fileOutput.html"><span style="font-weight: bold;">file output #</span></a> コマンドを参照してください。</span>
+</body>
+</html>

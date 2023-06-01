@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>function</title>
+
+
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+  <meta content="zoiba" name="author">
+
+</head>
+
+
+<body style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">function ... end function&nbsp;</span>
+</div>
+
+<br>
+
+<span class="text"> ユーザ定義関数を作成します。関数とはプログラムで複数箇所で頻繁に使われる命令手順です。<br></span> <br><span class="text"></span><span class="smallTitle"> 文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);"><span class="syntax2">function&nbsp;</span><span class="syntax">name </span><span class="syntax2">( </span> <span class="syntax">parmlist </span><span class="syntax2"> {...} ) <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">&nbsp;&nbsp;&nbsp; shared </span> <span class="syntax">variable </span><span class="syntax2"> {, ..} <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">&nbsp;&nbsp;&nbsp; dim </span> <span class="syntax">variable </span><span class="syntax2"> {, ...} <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">&nbsp;&nbsp;&nbsp;
+<span style="color: rgb(102, 102, 102);">commands
+
+</span></span><span class="syntax2"><br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">&nbsp;&nbsp;&nbsp; {exit
+function}
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">&nbsp;&nbsp;&nbsp;
+{return function}
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">&nbsp;&nbsp;&nbsp; { </span><span class="syntax">functionName </span><span class="syntax2"> = </span> <span class="syntax">expression </span><span class="syntax2">} <br></span>
+</div>
+
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2">end function
+
+<br>
+
+</span>
+</div>
+
+<span class="text">
+</span><br>
+
+<span class="text"></span><span class="syntax"> name</span> <span class="text"> はユーザ定義関数名です。先頭は数字文字以外の英数文字列で必ず記述してください。例えば、 <span style="font-style: italic;">1printString</span> は違法であるのに対して <span style="font-style: italic;">printString1</span> は合法です。</span><br class="text"><span class="text"> </span><span class="syntax">args</span><span class="text"> は関数へ引数を渡すのに使われる変数の定義です。</span><br class="text"><span class="text"> {,...} を指定すると可変長引数を関数で扱います。<br><br class="text"></span> <span class="text">関数の内側で使われる変数はローカル変数であるため、メインプログラムやほかの関数で同名変数を偶然使われたとしても外部の同名変数には影響を与えません。これは配列にも該当します。詳しい情報は <a style="font-weight: bold;" href="../Array/common.html">common</a> ステートメントを参照してください。</span><br class="text"><span class="text"> 関数本体で処理した情報の内容をパラメータのリストとして関数へ渡せます。パラメータの入力が不要な関数は括弧を付けずにメインプログラムから呼び出せます。</span><br class="text"><span class="text">オプションとして、関数は <a style="font-weight: bold;" href="return.html">return</a> ステートメントで指定された値を返せます。命令の呼び出しで返された値は破棄できます。この場合、関数の動作はサブルーチンと同じです。</span><span class="syntax2"><br><span class="smallTitle"></span></span><br><span class="text"></span><span class="syntax2"><span class="smallTitle"> 用例: <br></span></span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="syntax2"></span><span class="code"><span style="font-weight: bold;">function</span> myFunction(a,b)</span><br class="code"><span class="code">&nbsp;&nbsp;&nbsp; return a*b</span><br class="code"><span style="font-weight: bold;" class="code">end function</span><br class="code"><span class="code">print myFunction(10,4)</span><br class="code"><span class="code">print myFunction(3,5)</span><br class="code"><span class="code">print myFunction(7,8) </span><br>
+
+<span class="text"></span></div>
+
+<span class="text"><br>必要であればオプションの args を併用できます。引数の総数を取得するには <a href="argument%28%29.html"><span style="font-weight: bold;">argument()</span></a> を呼び出します。また、 <a href="argument%28%29.html"><span style="font-weight: bold;">argument(n)</span></a> 関数は呼び出し元から渡された特定の引数を返します。</span><span class="syntax2"><span class="syntax2"><br></span> <span class="smallTitle"></span></span><br><span class="text"></span><span class="syntax2"><span class="smallTitle"> 用例: <br></span> </span><span class="syntax2">
+<div style="text-align: left; background-color: rgb(255, 255, 204); font-weight: normal;"><span class="code">' sum として args が渡されます
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204); font-weight: normal;">
+<span class="code"><span style="font-weight: bold;">function</span>
+sumNumbers( a )
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204); font-weight: normal;">
+<span class="code">&nbsp;&nbsp;&nbsp; total =
+0
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204); font-weight: normal;">
+<span class="code">&nbsp;&nbsp;&nbsp; for i =
+1 to argument()
+&nbsp;&nbsp;&nbsp;  <br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204); font-weight: normal;">
+<span class="code">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; total = total + argument( i )  <br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204); font-weight: normal;">
+<span class="code">&nbsp;&nbsp;&nbsp; end for
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204); font-weight: normal;">
+<span class="code">&nbsp;&nbsp;&nbsp; return
+sum
+
+<br>
+
+</span>
+</div>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span style="font-weight: bold;" class="code">end
+function</span><span class="text code">
+<br>
+
+</span>
+</div>
+
+</span><br class="text">
+
+
+<span class="text"><a href="../Array/shared.html"><span style="font-weight: bold;">shared</span></a> , <a href="../Array/dim.html"><span style="font-weight: bold;">dim</span></a> , <a href="exitFunction.html"><span style="font-weight: bold;">exit function</span></a> および <a href="return.html"><span style="font-weight: bold;">return</span></a> コマンドを参照してください。</span>
+</body>
+</html>

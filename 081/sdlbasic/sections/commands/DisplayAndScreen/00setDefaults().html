@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+  
+  
+  
+  
+  <title>setDefaults()</title>
+  <link rel="stylesheet" href="../../style.css" type="text/css">
+
+
+  
+  
+  <meta content="zoiba" name="author">
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+
+<div style="text-align: left; background-color: rgb(204, 204, 255);">
+<span class="subTitle">
+
+setDefaults()<br>
+
+
+</span>
+</div>
+
+
+<span class="text"><br>ディスプレイに関するパラメータの変更、フォントとカーソルの初期化、デフォルトのスクリーンに関するパラメータを設定します。<br>このコマンドはコマンドライン引数 <span style="font-weight: bold;">--nodefaults</span> と併用すると便利です。これにより .sdlbas プログラムの開始時にデフォルトのディスプレイウィンドウの作成を禁止します。この方法はプログラムの開始時にウィンドウを点滅させることなくカスタムディスプレイを開くことができます。sdlBrt に <span style="font-weight: bold;">--nodefaults</span> オプションを指定して起動する場合は、スプライト、 bobs、グラフィックスコマンド、およびスクリーンとディスプレイ関連のコマンド全般へアクセスする前に <span style="font-weight: bold;">setDefaults()</span> コマンドを必ず呼び出してください。<br></span> <span class="smallTitle"><br>文法: <br></span>
+<div style="text-align: left; background-color: rgb(239, 239, 255);">
+<span class="syntax2"> setDefaults( </span> <span class="syntax"> width </span> <span class="syntax2"> , </span> <span class="syntax"> height </span> <span class="syntax2"> , </span> <span class="syntax"> depth </span> <span class="syntax2"> , </span> <span class="syntax"> mode </span> <span class="syntax2"> ) <br></span>
+</div>
+
+
+<span class="text">
+</span>
+<span class="syntax"><br>width</span><span class="text"> </span><span class="text"> はディスプレイの幅です。</span><span class="syntax2"><br></span> <span class="text"> </span> <span class="syntax"> height</span><span class="text"> </span><span class="text"> はディスプレイの高さです。</span><span class="syntax2"><br></span> <span class="text"> </span> <span class="syntax"> depth</span><span class="text"> </span><span class="text"> はディスプレイのカラー深度です。よく使われる値は: </span><span class="syntax2"><br>
+
+
+</span>
+<div style="margin-left: 40px;"><span class="text"> 8 = 256 色パレットカラー </span><br><span class="text"> </span><span class="text"> 16 = 65000 色カラー </span><br><span class="text"> </span><span class="text"> 32 = フルカラー </span><br>
+
+<span class="text"></span></div>
+
+
+
+<span class="text">
+</span>
+<span class="text">
+</span>
+<span class="syntax"> mode</span><span class="text"> </span><span class="text"> ディスプレイを開く方法の指定です。指定可能な値は: </span><span class="syntax2"><br>
+
+
+</span>
+<div style="margin-left: 40px;"><span class="text"> 0 = フルスクリーン </span><br><span class="text"> </span><span class="text"> 1 = 固定サイズのウィンドウ </span><br><span class="text"> </span><span class="text"> 2 = 可変サイズのウィンドウ </span><br>
+
+<span class="text"></span></div>
+
+
+
+<span class="text">
+</span>
+<span class="smallTitle"><br>
+
+用例:
+<br>
+
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);">
+<span class="text code"><span style="font-weight: bold;">
+setDefault(</span> 800, 600, 16, 1 <span style="font-weight: bold;">)</span>
+<br>
+
+
+</span>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;" lang="en">
+<head>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <title>グラフィックスコマンド</title>
+  <meta content="zoiba" name="author">
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+
+<body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+
+
+
+
+
+<div style="background-color: rgb(0, 0, 0); text-align: left;"><span class="title">グラフィックとサウンド<br>
+
+
+
+</span><span class="title"></span></div>
+
+
+
+
+
+
+<span class="text"><br>
+
+</span>
+<div style="text-align: justify;"><span class="text"> sdlBasic の文法は AMOS / DarkBASIC の哲学に従います。番号により呼び出されるサウンド</span><span class="text">とイメージ保存用のデータバンクがあります。</span><span class="text"></span><span class="text">ディスクにあるマルチメディアファイルをスロットへロードするには専用コマンド群を使います。 sdlBasic はイメージ、サウンドとミュージックに関する多種多様なファイル形式を扱えます。最大&nbsp;32768 枚</span><span class="text">までのイメージと</span><span class="text">最大 1024 本までのサウンドファイルに関するロードとメモリへの保存が可能です。当然、ソースを記述することでパラメータの値を変更可能ですが、通常の使用範囲では、現在値で十分事足ります。<br><br>専用コマンドはコンピュータのサウンドカードを用いてサウンドスロットに保存されたサウンドを再生します。サウンドは異なるサウンドチャンネルから再生可能であるため、複数のサウンドを同時再生することもできます。サウンドの再生において、 sdlBasic で管理されている</span><span class="text">最大</span><span class="text">チャンネル数を動的変更可能です。<br></span><span class="text"></span><span class="text"></span><br><span class="text">sdlBasic はイメージスロットに保存されたイメージをコンピュータのモニタへ表示する方法として、スプライトと Bob と呼ばれる二種類のインストラクション方式があります。最大&nbsp;1024 枚のスプライトと最大 1024 枚の bob を同時に表示可能です。Bob とスプライトは背景にある既存のグラフィックを一切破壊せずにオブジェクトを移動できるため、ビデオゲームで求められるオブジェクトの移動に最適です。スプライトと bob は「スクリーンスワップ」を実行するたびに </span><span class="text">「更新 (コンピュータのモニタへ再描画)」されます。適切なコマンドを使うことで</span><span class="text">スプライト同士、または Bob 同士</span><span class="text"> </span><span class="text">での当たり判定を検出可能です。</span><br><span class="text"> スプライトはスクリーンから完全に独立しています。必要に応じて、専用コマンドを用いることにより希望する座標範囲内にクリッピング可能です。</span><br><span class="text"> Bob はスプライトと非常によく似ていますが、スプライトとは異なり、その座標はスクリーンと相対的</span><span class="text">です。つまり、 Bob はスクリーンのサーフェス範囲外では存在できないため、 Bob の座標系はスクリーンの相対座標となります。従って、スクリーンをスクロール処理するとスクリーンの Bob もそのスクロールに追従します。指定された Bob に関してスクリーンで操作する方法を決めることができます。&nbsp;Bob はスクリーンの広域スクロール処理を行うプログラムに最適です。<br></span><br><span class="text"> </span><br><span class="text"> ディスプレイはコンピュータのモニタにおけるイメージの表示先であり、ウィンドウ、またはフルスクリーン表示を使えます。デフォルトで sdlBasic はデスクトップのカラー深度に従いウィンドウ (</span><span class="text">640 x 480 ピクセル) </span><span class="text">を開きます。setDisplay() コマンドでディスプレイのパラメータを変更可能です。グラフィックスはディスプレイへ直接出力しない代わりに、仮想スクリーンで処理されます。</span><span class="text"> sdlBasic では最大 8 枚 (0 ～ 7) までの仮想スクリーンを扱えます。仮想スクリーンはグラフィック操作全般の</span><span class="text">処理を行う</span><span class="text">デジタルキャンバスの一種です。スクリーン 0 はデフォルトのディスプレイ寸法で開かれます。</span><span class="text">この場合はディスプレイ全般のサーフェスにデフォルトの設定が適用されます。当然、このパラメータの変更、および複数のスクリーンを開いたり閉じることは可能です。</span><span class="text">ビデオゲーム</span><span class="text">における一般的な慣習として、スクリーンの大部分はゲーム領域を、残りはスコアや残機などを表示します。</span><br>
+
+<span class="text"></span></div>
+
+<span class="text">
+<br>
+
+
+
+</span><span class="smallTitle">用例: </span><span class="text"><br>
+
+
+
+</span>
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">screenOpen(0,640,400,0,0,640,400,0)</span><br class="code"><span class="code">screenOpen(1,640,80,0,400,640,80,0)</span><span class="text"></span><br>
+
+
+
+<span class="text"></span></div>
+
+
+
+<span class="text"><br>
+
+</span>
+<div style="text-align: justify;"><span class="text"> この場合、スクリーン 0 は 640x400 ピクセルのサイズでありディスプレイの上部に置かれます。また、同時にスクリーン 1 は 640x80 のサイズであり、スクリーン 0 では、ディスプレイの下部に置かれます。</span><br><span class="text"> このように記述することで可視範囲よりも大きいスクリーンを開くことがでます。</span><br>
+
+<span class="text"></span></div>
+
+<span class="text">
+<br>
+</span><span class="smallTitle">用例: </span><br>
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">screenOpen(0,6400,400,0,0,640,400,0)</span><span class="text"></span><br>
+
+
+
+<span class="text"></span></div>
+
+
+
+<span class="text"><br>
+
+</span>
+<div style="text-align: justify;"><span class="text">上述の用例はディスプレイに </span><span class="text">640x400 ピクセル</span><span class="text">のビューポートを開きますが、そのスクリーンは十倍の広さとなるため可視範囲外へ及びます。</span><br><span class="text"> 以下のコマンドを記述することでスクロールが可能になります。&nbsp; </span><br>
+
+<span class="text"></span></div>
+
+<span class="text">
+<br>
+
+
+</span><span class="smallTitle">用例: </span><br>
+
+
+
+<div style="text-align: left; background-color: rgb(255, 255, 204);"><span class="code">offset(640,0)</span><br class="code"><span class="code">従ってスクリーンは X 座標の 640 ピクセルへ移動します。そのため、以下のルーチンの動作は、</span><br class="code"><span class="code">&nbsp;for i= 0 to 6400-640</span><br class="code"><span class="code">&nbsp;&nbsp; offset(i,0)</span><br class="code"><span class="code">&nbsp;&nbsp; screenSwap</span><br class="code"><span class="code">&nbsp;next</span><span class="text"></span><br>
+
+
+
+<span class="text"></span></div>
+
+
+
+<span class="text"><br>
+
+</span>
+<div style="text-align: justify;"><span class="text">これはシンプルで効率的なスクロール処理ルーチンです。</span><br><span class="text"> 別のスクリーンへ切り換えるには、スクリーン番号 n を screen(n) コマンドへ指定します。&nbsp; </span><br><span class="text"> すべてのグラフィックコマンドは現在のスクリーンを操作します。すなわち、未指定時は最後に開かれたスクリーンが対象となります。</span><br><span class="text"> 処理速度の都合により、スクリーン関連機能を外したい場合は、 directScreen() コマンドが使えます。当然、この方法を選ぶと望ましくない副作用が起きることが考えられますが、とりわけ旧式の低速なパソコンでプログラムの動作速度はかなり向上します。</span></div>
+
+
+<div style="text-align: right;"><span class="code"></span><span class="text"></span><span class="text"></span><span class="text"></span></div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

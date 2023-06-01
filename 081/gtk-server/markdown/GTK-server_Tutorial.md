@@ -100,7 +100,7 @@ GTK = "gtk-server -stdin"
 print "gtk_init NULL NULL" |& GTK; GTK |& getline
 ```
 
-The line starting with 'print' will actually create a 2-way pipe to the GTK-server. This is a genuine AWK technique. The pipe operator "|&" was borrowed from KSH. It sets up a communication channel on which plain data can be sent and received. As you can see, the AWK script sends the GTK function name as plain text towards the server, and after that, the server will send information back.
+The line starting with 'print' will actually create a 2-way pipe to the GTK-server. This is a genuine AWK technique. The pipe operator "\|&" was borrowed from KSH. It sets up a communication channel on which plain data can be sent and received. As you can see, the AWK script sends the GTK function name as plain text towards the server, and after that, the server will send information back.
 
 This is an important thing to remember: every time information is sent to the GTK-server, the server will send information back! If the GTK function has no returnvalue (like "gtk_init"), the server will return a plain "ok" to the script. If the GTK function was not recognized, the server will return a "-1". Please keep in mind that the GTK-server always will return a string.
 

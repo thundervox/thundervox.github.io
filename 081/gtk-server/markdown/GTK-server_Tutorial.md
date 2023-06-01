@@ -1,5 +1,6 @@
 # The GTK-server Tutorial: a "Hello world" application
 
+
 ## Contents
 
 * [Introduction](#introduction)
@@ -8,13 +9,14 @@
 * [Chapter 3. GTK programming - the main window](#chapter-3-gtk-programming---the-main-window)
 * [Chapter 4. GTK programming - containers](#chapter-4-gtk-programming---containers)
 * [Chapter 5: GTK programming - labels](#chapter-5-gtk-programming---labels)
-* Chapter 6: GTK programming - buttons
-* Chapter 7. GTK programming - the mainloop
-* Chapter 8. GTK programming - closing the main window
+* [Chapter 6: GTK programming - buttons](#chapter-6-gtk-programming---buttons)
+* [Chapter 7. GTK programming - the mainloop](#chapter-7-gtk-programming---the-mainloop)
+* [Chapter 8. GTK programming - closing the main window](#chapter-8-gtk-programming---closing-the-main-window)
 * Chapter 9. Using colors
 * Chapter 10. Connecting to the GTK-server with TCP or UDP
 * Chapter 11. Connecting to the GTK-server with FIFO
 * Chapter 12. Logging
+
 
 ## Introduction
 
@@ -135,7 +137,7 @@ print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
 
 You can see that the returnvalue of the GTK function is captured in the variable "WINDOW". Later on, we can use the variable to perform actions on our window. Let's do that right now; let's define a name in the titlebar of our window. The GTK function for this is called "gtk_window_set_title". It has no returnvalue, and it uses 2 arguments: the window of which the title must be set, and the title itself. This is our configfile now:
 
-```sh
+```bash
 #
 LIB_NAME = libgtk-x11-2.0.so
 #
@@ -207,7 +209,7 @@ Now, the message "Hello world" must appear in our window. We have to define a la
 
 But also, this widget has to be 'packed' onto the table. We will use the "gtk_table_attach_defaults" function. The first argument determines the table we want to use, the second the widget to pack, then the left x and right x coordinate (related to the table) are mentioned, and finally the upper and lower y coordinate are mentioned.
 
-```sh
+```bash
 #
 LIB_NAME = libgtk-x11-2.0.so
 #
@@ -244,4 +246,118 @@ print "gtk_table_attach_defaults " TABLE " " LABEL " 1 29 3 7" |& GTK; GTK |& ge
 
 
 ## Chapter 6: GTK programming - buttons
+
+We will also create an "Exit" button. Clicking on this button will exit our "Hello world" application. We must capture the click signal so the AWK script can exit. The GTK function "gtk_button_new_with_label" will create a button, and it also will put some text on it. However, it must be clear that the 'click' signal must be captured.
+
+Well, we are ready now with creating widgets. Finally all widgets must be shown to the world. This is achieved by the GTK function "gtk_widget_show". This function takes only 1 argument, namely, the widget to be shown.
+
+```bash
+#
+LIB_NAME = libgtk-x11-2.0.so
+#
+FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
+FUNCTION_NAME = gtk_window_new, NONE, WIDGET, 1, LONG
+FUNCTION_NAME = gtk_window_set_title, NONE, NONE, 2, WIDGET, STRING
+FUNCTION_NAME = gtk_table_new, NONE, WIDGET, 3, LONG, LONG, LONG
+FUNCTION_NAME = gtk_container_add, NONE, NONE, 2, WIDGET, WIDGET
+FUNCTION_NAME = gtk_label_new, NONE, WIDGET, 1, STRING
+FUNCTION_NAME = gtk_table_attach_defaults, NONE, NONE, 6, WIDGET, WIDGET, LONG, LONG, LONG, LONG
+FUNCTION_NAME = gtk_button_new_with_label, clicked, WIDGET, 1, STRING
+FUNCTION_NAME = gtk_widget_show, NONE, NONE, 1, WIDGET
+```
+
+So the button will return an identifier, and it has 1 argument containing the text to be printed on the button. The callback signal is defined as "clicked". In the GTK documentation all signals which can be emitted by a button are described. The term 'clicked' is a real GTK term for the 'click'-signal. Let's put the button on the window and make it visible. Please note that also the TABLE container must be shown!
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+#
+
+BEGIN{
+
+GTK = "gtk-server -stdin"
+
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
+
+print "gtk_window_set_title " WINDOW " \"This is a title\"" |& GTK; GTK |& getline
+print "gtk_table_new 30 30 1" |& GTK; GTK |& getline TABLE
+print "gtk_container_add " WINDOW " " TABLE |& GTK; GTK |& getline
+print "gtk_label_new \"Hello world\"" |& GTK; GTK |& getline LABEL
+print "gtk_table_attach_defaults " TABLE " " LABEL " 1 29 3 7" |& GTK; GTK |& getline
+print "gtk_button_new_with_label Exit" |& GTK; GTK |& getline BUTTON
+print "gtk_table_attach_defaults " TABLE " " BUTTON " 20 28 23 27" |& GTK; GTK |& getline
+print "gtk_widget_show " LABEL |& GTK; GTK |& getline
+print "gtk_widget_show " BUTTON |& GTK; GTK |& getline
+print "gtk_widget_show " TABLE |& GTK; GTK |& getline
+print "gtk_widget_show " WINDOW |& GTK; GTK |& getline
+```
+
+
+## Chapter 7. GTK programming - the mainloop
+
+We enter the final stage: defining the mainloop. With GTK you have the possibility to run through all GTK events once. This is performed by the GTK function "gtk_main_iteration". In this iteration the GTK library will check if any event has occured. In our program we want to check if the "click"-signal was emitted by the button. Below the final configfile and AWK program:
+
+```bash
+#
+LIB_NAME = libgtk-x11-2.0.so
+#
+FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
+FUNCTION_NAME = gtk_window_new, NONE, WIDGET, 1, LONG
+FUNCTION_NAME = gtk_window_set_title, NONE, NONE, 2, WIDGET, STRING
+FUNCTION_NAME = gtk_table_new, NONE, WIDGET, 3, LONG, LONG, LONG
+FUNCTION_NAME = gtk_container_add, NONE, NONE, 2, WIDGET, WIDGET
+FUNCTION_NAME = gtk_label_new, NONE, WIDGET, 1, STRING
+FUNCTION_NAME = gtk_table_attach_defaults, NONE, NONE, 6, WIDGET, WIDGET, LONG, LONG, LONG, LONG
+FUNCTION_NAME = gtk_button_new_with_label, clicked, WIDGET, 1, STRING
+FUNCTION_NAME = gtk_widget_show, NONE, NONE, 1, WIDGET
+FUNCTION_NAME = gtk_main_iteration, NONE, WIDGET, 0
+```
+
+And the AWK script:
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+#
+
+BEGIN{
+
+GTK = "gtk-server -stdin"
+
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
+print "gtk_window_set_title " WINDOW " \"This is a title\"" |& GTK; GTK |& getline
+print "gtk_table_new 30 30 1" |& GTK; GTK |& getline TABLE
+print "gtk_container_add " WINDOW " " TABLE |& GTK; GTK |& getline
+print "gtk_label_new \"Hello world\"" |& GTK; GTK |& getline LABEL
+print "gtk_table_attach_defaults " TABLE " " LABEL " 1 29 3 7" |& GTK; GTK |& getline
+print "gtk_button_new_with_label Exit" |& GTK; GTK |& getline BUTTON
+print "gtk_table_attach_defaults " TABLE " " BUTTON " 20 28 23 27" |& GTK; GTK |& getline
+print "gtk_widget_show " LABEL |& GTK; GTK |& getline
+print "gtk_widget_show " BUTTON |& GTK; GTK |& getline
+print "gtk_widget_show " TABLE |& GTK; GTK |& getline
+print "gtk_widget_show " WINDOW |& GTK; GTK |& getline
+
+EVENT = 0
+
+do {
+    print "gtk_main_iteration" |& GTK; GTK |& getline
+    print "gtk_server_callback 0" |& GTK; GTK |& getline EVENT
+
+} while (EVENT != BUTTON)
+
+close(GTK)
+fflush("")
+}
+```
+
+Let's take a closer look at the mainloop. We have defined the GTK function "gtk_main_iteration" in the configfile. It will run once, triggered by any GTK event, and update all GTK widgets accordingly. But the function "gtk_server_callback" cannot be found in the configfile! Why not? Because this is an internal function of the GTK-server. It retrieved the last occured signal from the GTK library. If a signal was emitted, the GTK-server returns the widget ID. Else a '0' is returned. In the AWK script above the return value is captured in a variable, which is checked in the 'while' of the mainloop.
+
+If the mainloop closes, the 2-way pipe to the GTK-server will be closed as well. Finally, all AWK buffers are flushed.
+
+
+## Chapter 8. GTK programming - closing the main window
 

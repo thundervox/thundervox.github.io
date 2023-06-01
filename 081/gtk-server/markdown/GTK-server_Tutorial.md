@@ -664,9 +664,8 @@ The last argument 'log' will put the GTK-server to logging mode. The logging wil
 Well, that is it. You are a GTK guru now. Go guify your scripts!
 
 ---
-Copyright© December 2003 - October 2004, Peter van Eerten  -  http://www.gtk-server.org/
+Copyright© December 2003 - October 2004, Peter van Eerten  -  [https://www.gtk-server.org/](https://www.gtk-server.org/)
 
 2nd revision july 2006 - PvE.
 
 3rd revision december 2008 - PvE.
-

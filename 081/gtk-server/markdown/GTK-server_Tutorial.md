@@ -5,8 +5,8 @@
 * [Introduction](#introduction)
 * [Chapter 1. Setting up your environment](#chapter-1-setting-up-your-environment)
 * [Chapter 2. First steps](#chapter-2-first-steps)
-* Chapter 3. GTK programming - the main window
-* Chapter 4. GTK programming - containers.
+* [Chapter 3. GTK programming - the main window](#chapter-3-gtk-programming---the-main-window)
+* [Chapter 4. GTK programming - containers](#chapter-4-gtk-programming---containers)
 * Chapter 5: GTK programming - labels
 * Chapter 6: GTK programming - buttons
 * Chapter 7. GTK programming - the mainloop
@@ -82,5 +82,86 @@ FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
 
 Next to the name of the GTK function, more definitions are encountered. First a 'NONE' is defined. This first NONE defines the callback signal. Callback signals occur when you click with your mouse on a button, for example. The initialization of the GTK library however has no callback signal of itself. The second NONE defines the returnvalue of the "gtk_init" function; it means that the function does not have a return value. Then the number '2', this number defines the amount of arguments to the "gtk_init" function. And finally, the last two definitions specify the type of the arguments. If 'NULL' is defined, it means that the argument has no specific type.
 
+
 ## Chapter 3. GTK programming - the main window
 
+Well, so far so good! We have a start with our AWK script, and we have a first setup of the gtk-server.cfg file. Now, let's go on with the real programming and put the "gtk_init" into our AWK script:
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+#
+BEGIN{
+
+GTK = "gtk-server -stdin"
+
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+```
+
+The line starting with 'print' will actually create a 2-way pipe to the GTK-server. This is a genuine AWK technique. The pipe operator "|&" was borrowed from KSH. It sets up a communication channel on which plain data can be sent and received. As you can see, the AWK script sends the GTK function name as plain text towards the server, and after that, the server will send information back.
+
+This is an important thing to remember: every time information is sent to the GTK-server, the server will send information back! If the GTK function has no returnvalue (like "gtk_init"), the server will return a plain "ok" to the script. If the GTK function was not recognized, the server will return a "-1". Please keep in mind that the GTK-server always will return a string.
+
+Okay, we are ready to create our main window. The GTK function we will use is called "gtk_window_new". This function however will return an identifier referring to the created window. If a GTK function returns an identifier for a widget, this must be defined as WIDGET in the configfile. But also, it has a "GtkWindowType"-argument which is a C typedefinition. How to explain this in our configfile?
+
+The C typedefinitions are a little bit tricky. There are a lot of GTK typedefinitions, and to define all these in the GTK-server would be extremely redundant. The C programming language however uses an internal integer numbering for the typedefinitions. If you look at the typedefinitions for "GtkWindowType", there are 2 types defined: GTK_WINDOW_TOPLEVEL and GTK_WINDOW_POPUP. Now, the C language will refer to the first type with '0' and to the second type with '1'. These are regular integer numbers. In that case, we can define the argument type for "gtk_window_new" as LONG. The gtk-server configfile will now look like this:
+
+```bash
+#
+LIB_NAME = libgtk-x11-2.0.so
+#
+FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
+FUNCTION_NAME = gtk_window_new, NONE, WIDGET, 1, LONG
+#
+
+```
+
+We will not yet define a callback signal for the window. All right, let's go to the AWK script!
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+#
+
+BEGIN{
+
+GTK = "gtk-server -stdin"
+
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
+```
+
+You can see that the returnvalue of the GTK function is captured in the variable "WINDOW". Later on, we can use the variable to perform actions on our window. Let's do that right now; let's define a name in the titlebar of our window. The GTK function for this is called "gtk_window_set_title". It has no returnvalue, and it uses 2 arguments: the window of which the title must be set, and the title itself. This is our configfile now:
+
+```sh
+#
+LIB_NAME = libgtk-x11-2.0.so
+#
+FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
+FUNCTION_NAME = gtk_window_new, NONE, WIDGET, 1, LONG
+FUNCTION_NAME = gtk_window_set_title, NONE, NONE, 2, WIDGET, STRING
+#
+```
+
+And the AWK script will look like this:
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+#
+BEGIN{
+
+GTK = "gtk-server -stdin"
+
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
+print "gtk_window_set_title " WINDOW " \"This is a title\"" |& GTK; GTK |& getline
+```
+
+Pretty easy, isn't it?
+
+
+## Chapter 4. GTK programming - containers

@@ -6,7 +6,7 @@
 if (a<>0 and b/a>2) print "b is at least twice as big as a"
 ```
 
-The logical expression ```a<>0 and b/a>2``` consists of two comparisons, both of which must be true, if the ```print``` statement should be executed. Now, if the first comparison (```a<>0```) is ```false```, the whole logical expression can never be ```true``` and the second comparison (```b/a>2````) need not be evaluated.
+The logical expression ```a<>0 and b/a>2``` consists of two comparisons, both of which must be true, if the ```print``` statement should be executed. Now, if the first comparison (```a<>0```) is ```false```, the whole logical expression can never be ```true``` and the second comparison (```b/a>2```) need not be evaluated.
 
 This is exactly, how yabasic behaves: The evaluation of a composed logical expressions is terminated immediately, as soon as the final result can be deduced from the already evaluated parts.
 

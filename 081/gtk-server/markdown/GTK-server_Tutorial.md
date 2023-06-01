@@ -15,7 +15,7 @@
 * [Chapter 9. Using colors](#chapter-9-using-colors)
 * [Chapter 10. Connecting to the GTK-server with TCP or UDP](#chapter-10-connecting-to-the-gtk-server-with-tcp-or-udp)
 * [Chapter 11. Connecting to the GTK-server with FIFO](#chapter-11-connecting-to-the-gtk-server-with-fifo)
-* Chapter 12. Logging
+* [Chapter 12. Logging](#chapter-12-logging)
 
 
 ## Introduction
@@ -574,7 +574,7 @@ The number '16' defines the maximum amount of client scripts allowed to use the 
 
 Finally you can connect to the GTK-server by using a named pipe. A named pipe is a file with a special feature: it can deliver messages to other processes or programs. The first message delivered to the pipe is also the first to be read by the other side; and vice versa. Hence the abbreviation FIFO, which actually means "First In First Out".
 
-To start the GTK-server using FIFO pipes, the argument to the server must be: fifo=<name>. The GTK-server will create a named pipe (which in fact is a file on your hard disk) with the filename <name>.
+To start the GTK-server using FIFO pipes, the argument to the server must be: fifo=<name>. The GTK-server will create a named pipe (which in fact is a file on your hard disk) with the filename \<name\>.
 
 For example:
 
@@ -637,4 +637,36 @@ Also, instead of showing each GTK widget separately, the GTK function "gtk_widge
 The mainloop has changed, now the 'gtk_server_callback' function has the argument 'WAIT', which will take over the previous 'gtk_main_iteration'. So the callback function will wait, until an event has occured. It returns to the AWK program with the widget ID which emitted the signal.
 
 Finally the GTK library is exited by printing a plain 'gtk_server_exit' to the pipe, without waiting for answer from the GTK-server.
+
+
+## Chapter 12. Logging
+
+When you run into problems during your GTK programming, it might come handy to see the strings which were received by the GTK-server. Also, you might want to check the responses of the GTK-server to your input. Luckily the GTK-server is able to produce a logfile. To enable the logging facility of the GTK-server, just start as follows:
+
+```bash
+gtk-server -stdin -log=log.txt
+```
+
+or
+
+```bash
+gtk-server -tcp=localhost:50000 -log=mylog.txt &
+```
+
+or
+
+```bash
+gtk-server -fifo=mypipe -log=program.log &
+```
+
+The last argument 'log' will put the GTK-server to logging mode. The logging will be redirected to the specified file.
+
+Well, that is it. You are a GTK guru now. Go guify your scripts!
+
+---
+Copyright© December 2003 - October 2004, Peter van Eerten  -  http://www.gtk-server.org/
+
+2nd revision july 2006 - PvE.
+
+3rd revision december 2008 - PvE.
 

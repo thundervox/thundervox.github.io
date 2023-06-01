@@ -50,7 +50,7 @@ Now your shell environment is setup properly for scripts using the GTK-server wi
 
 During the process of creating the AWK script, also the GTK-server configfile will be created. Every time a GTK function is used, this function must be specified in the configfile as well. But first, let's program a few default AWK lines to get started:
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -88,7 +88,7 @@ Next to the name of the GTK function, more definitions are encountered. First a 
 
 Well, so far so good! We have a start with our AWK script, and we have a first setup of the gtk-server.cfg file. Now, let's go on with the real programming and put the "gtk_init" into our AWK script:
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -120,7 +120,7 @@ FUNCTION_NAME = gtk_window_new, NONE, WIDGET, 1, LONG
 
 We will not yet define a callback signal for the window. All right, let's go to the AWK script!
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -148,7 +148,7 @@ FUNCTION_NAME = gtk_window_set_title, NONE, NONE, 2, WIDGET, STRING
 
 And the AWK script will look like this:
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -185,7 +185,7 @@ FUNCTION_NAME = gtk_container_add, NONE, NONE, 2, WIDGET, WIDGET
 
 This is the AWK script:
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -224,7 +224,7 @@ FUNCTION_NAME = gtk_table_attach_defaults, NONE, NONE, 6, WIDGET, WIDGET, LONG, 
 
 And the AWK script:
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -267,7 +267,7 @@ FUNCTION_NAME = gtk_widget_show, NONE, NONE, 1, WIDGET
 
 So the button will return an identifier, and it has 1 argument containing the text to be printed on the button. The callback signal is defined as "clicked". In the GTK documentation all signals which can be emitted by a button are described. The term 'clicked' is a real GTK term for the 'click'-signal. Let's put the button on the window and make it visible. Please note that also the TABLE container must be shown!
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -316,7 +316,7 @@ FUNCTION_NAME = gtk_main_iteration, NONE, WIDGET, 0
 
 And the AWK script:
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -384,7 +384,7 @@ As you can see, the GTK function "gtk_window_new" is redefined with the callback
 
 If we run our AWK script now, the main window will listen to the "delete-event" signal. However, we must change our mainloop also, to really exit the application. Below a suggestion on how to do this:
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -427,7 +427,7 @@ It is also possible to use colors in your application. This might seem strange s
 
 In our example, let's try to color the button. First we have to give this widget a particular name. Let's name it "exitbutton". After the name has been set, the script has to read an external file which contains the color definitions.
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -489,7 +489,7 @@ FUNCTION_NAME = gtk_rc_parse, NONE, NONE, 1, STRING
 
 Now, we need to create a file called "gtkrc" which contains the colordefintions for our button. This file resides in the same directory as our script and may look like this:
 
-```css
+```
 style "mystyle"
 {
   bg[NORMAL] = { 65535, 0, 0 }
@@ -519,7 +519,7 @@ gtk-server -tcp=localhost:50000
 
 Now the server is started and it will listen to your localhost IP address (127.0.0.1). Your script must connect to TCP port 50000. If we rewrite our "Hello world" application to a TCP connection, the script would look like this:
 
-```gawk
+```awk
 #!/usr/bin/gawk -f
 #
 # AWK Hello world application using GTK
@@ -592,7 +592,7 @@ Now, the client script first has to open the named pipe "\\.\pipe\out", and seco
 
 Let's continue with our AWK program. The AWK program must be adjusted a little bit, in order to use the named pipe. It is already clear that a named pipe behaves like a file. So to enable communication, we must write and read from this file. In AWK the program will look as follows:
 
-```gawk
+```awk
 function GTK(call)
 {
 print call >> "mypipe"

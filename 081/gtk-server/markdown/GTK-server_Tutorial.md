@@ -12,7 +12,7 @@
 * [Chapter 6: GTK programming - buttons](#chapter-6-gtk-programming---buttons)
 * [Chapter 7. GTK programming - the mainloop](#chapter-7-gtk-programming---the-mainloop)
 * [Chapter 8. GTK programming - closing the main window](#chapter-8-gtk-programming---closing-the-main-window)
-* Chapter 9. Using colors
+* [Chapter 9. Using colors](#chapter-9-using-colors)
 * Chapter 10. Connecting to the GTK-server with TCP or UDP
 * Chapter 11. Connecting to the GTK-server with FIFO
 * Chapter 12. Logging
@@ -77,7 +77,6 @@ It is allowed to use "#" in the configfile as well, so you can put your comments
 #
 LIB_NAME = libgtk-x11-2.0.so
 #
-
 FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
 #
 ```
@@ -360,4 +359,71 @@ If the mainloop closes, the 2-way pipe to the GTK-server will be closed as well.
 
 
 ## Chapter 8. GTK programming - closing the main window
+
+You may find that it is not possible to close your window with the regular closing facility's of your windowmanager. In Windows you cannot use the cross at the right top of the window. However, this is perfectly ok since the 'delete' signal emitted by the main window is not captured in the AWK script!
+
+In order to close the window in a regular way (without the EXIT button), we must define a callback signal for our main window. The name of the signal when we try to close the window, is called "delete-event". Our configfile must be changed to this:
+
+```bash
+#
+LIB_NAME = libgtk-x11-2.0.so
+#
+FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
+FUNCTION_NAME = gtk_window_new, delete-event, WIDGET, 1, LONG
+FUNCTION_NAME = gtk_window_set_title, NONE, NONE, 2, WIDGET, STRING
+FUNCTION_NAME = gtk_table_new, NONE, WIDGET, 3, LONG, LONG, LONG
+FUNCTION_NAME = gtk_container_add, NONE, NONE, 2, WIDGET, WIDGET
+FUNCTION_NAME = gtk_label_new, NONE, WIDGET, 1, STRING
+FUNCTION_NAME = gtk_table_attach_defaults, NONE, NONE, 6, WIDGET, WIDGET, LONG, LONG, LONG, LONG
+FUNCTION_NAME = gtk_button_new_with_label, CLICK, WIDGET, 1, STRING
+FUNCTION_NAME = gtk_widget_show, NONE, NONE, 1, WIDGET
+FUNCTION_NAME = gtk_main_iteration, NONE, WIDGET, 0
+```
+
+As you can see, the GTK function "gtk_window_new" is redefined with the callback signal "delete-event". Please make sure you do not use capitals for the GTK signal!
+
+If we run our AWK script now, the main window will listen to the "delete-event" signal. However, we must change our mainloop also, to really exit the application. Below a suggestion on how to do this:
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+#
+
+BEGIN{
+
+GTK = "gtk-server -stdin"
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
+print "gtk_window_set_title " WINDOW " \"This is a title\"" |& GTK; GTK |& getline
+print "gtk_table_new 30 30 1" |& GTK; GTK |& getline TABLE
+print "gtk_container_add " WINDOW " " TABLE |& GTK; GTK |& getline
+print "gtk_label_new \"Hello world\"" |& GTK; GTK |& getline LABEL
+print "gtk_table_attach_defaults " TABLE " " LABEL " 1 29 3 7" |& GTK; GTK |& getline
+print "gtk_button_new_with_label Exit" |& GTK; GTK |& getline BUTTON
+print "gtk_table_attach_defaults " TABLE " " BUTTON " 20 28 23 27" |& GTK; GTK |& getline
+print "gtk_widget_show " LABEL |& GTK; GTK |& getline
+print "gtk_widget_show " BUTTON |& GTK; GTK |& getline
+print "gtk_widget_show " TABLE |& GTK; GTK |& getline
+print "gtk_widget_show " WINDOW |& GTK; GTK |& getline
+
+EVENT = 0
+
+do {
+
+    print "gtk_main_iteration" |& GTK; GTK |& getline
+    print "gtk_server_callback 0" |& GTK; GTK |& getline EVENT
+
+} while (EVENT != BUTTON && EVENT != WINDOW)
+
+close(GTK)
+fflush("")
+}
+```
+
+## Chapter 9. Using colors
+
+It is also possible to use colors in your application. This might seem strange since the coloring of widgets is a sake of GDK instead of GTK. However, with the GTK-server you can use GTK commands for coloring widgets.
+
+In our example, let's try to color the button. First we have to give this widget a particular name. Let's name it "exitbutton". After the name has been set, the script has to read an external file which contains the color definitions.
 

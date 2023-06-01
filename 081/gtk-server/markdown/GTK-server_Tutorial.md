@@ -13,7 +13,7 @@
 * [Chapter 7. GTK programming - the mainloop](#chapter-7-gtk-programming---the-mainloop)
 * [Chapter 8. GTK programming - closing the main window](#chapter-8-gtk-programming---closing-the-main-window)
 * [Chapter 9. Using colors](#chapter-9-using-colors)
-* Chapter 10. Connecting to the GTK-server with TCP or UDP
+* [Chapter 10. Connecting to the GTK-server with TCP or UDP](#chapter-10-connecting-to-the-gtk-server-with-tcp-or-udp)
 * Chapter 11. Connecting to the GTK-server with FIFO
 * Chapter 12. Logging
 
@@ -426,4 +426,84 @@ fflush("")
 It is also possible to use colors in your application. This might seem strange since the coloring of widgets is a sake of GDK instead of GTK. However, with the GTK-server you can use GTK commands for coloring widgets.
 
 In our example, let's try to color the button. First we have to give this widget a particular name. Let's name it "exitbutton". After the name has been set, the script has to read an external file which contains the color definitions.
+
+```gawk
+#!/usr/bin/gawk -f
+#
+# AWK Hello world application using GTK
+#
+
+BEGIN{
+
+GTK = "gtk-server -stdin"
+
+print "gtk_init NULL NULL" |& GTK; GTK |& getline
+print "gtk_window_new 0" |& GTK; GTK |& getline WINDOW
+print "gtk_window_set_title " WINDOW " \"This is a title\"" |& GTK; GTK |& getline
+print "gtk_table_new 30 30 1" |& GTK; GTK |& getline TABLE
+print "gtk_container_add " WINDOW " " TABLE |& GTK; GTK |& getline
+print "gtk_label_new \"Hello world\"" |& GTK; GTK |& getline LABEL
+print "gtk_table_attach_defaults " TABLE " " LABEL " 1 29 3 7" |& GTK; GTK |& getline
+print "gtk_button_new_with_label Exit" |& GTK; GTK |& getline BUTTON
+print "gtk_widget_set_name " BUTTON " exitbutton" |& GTK; GTK |& getline
+print "gtk_table_attach_defaults " TABLE " " BUTTON " 20 28 23 27" |& GTK; GTK |& getline
+print "gtk_rc_parse gtkrc" |& GTK; GTK |& getline
+print "gtk_widget_show " LABEL |& GTK; GTK |& getline
+print "gtk_widget_show " BUTTON |& GTK; GTK |& getline
+print "gtk_widget_show " TABLE |& GTK; GTK |& getline
+print "gtk_widget_show " WINDOW |& GTK; GTK |& getline
+
+EVENT = 0
+
+do {
+
+    print "gtk_main_iteration" |& GTK; GTK |& getline
+    print "gtk_server_callback 0" |& GTK; GTK |& getline EVENT
+
+} while (EVENT != BUTTON && EVENT != WINDOW)
+
+close(GTK)
+fflush("")
+}
+```
+
+As you can see the commands ```gtk_widget_set_name``` and ``gtk_rc_parse``` are used. The first command sets the name, the second reads the colordefinitions. Of course these commands should be available in the configfile as well:
+
+```bash
+#
+LIB_NAME = libgtk-x11-2.0.so
+#
+FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
+FUNCTION_NAME = gtk_window_new, delete-event, WIDGET, 1, LONG
+FUNCTION_NAME = gtk_window_set_title, NONE, NONE, 2, WIDGET, STRING
+FUNCTION_NAME = gtk_table_new, NONE, WIDGET, 3, LONG, LONG, LONG
+FUNCTION_NAME = gtk_container_add, NONE, NONE, 2, WIDGET, WIDGET
+FUNCTION_NAME = gtk_label_new, NONE, WIDGET, 1, STRING
+FUNCTION_NAME = gtk_table_attach_defaults, NONE, NONE, 6, WIDGET, WIDGET, LONG, LONG, LONG, LONG
+FUNCTION_NAME = gtk_button_new_with_label, CLICK, WIDGET, 1, STRING
+FUNCTION_NAME = gtk_widget_show, NONE, NONE, 1, WIDGET
+FUNCTION_NAME = gtk_main_iteration, NONE, WIDGET, 0
+FUNCTION_NAME = gtk_widget_set_name, NONE, NONE, 2, WIDGET, STRING
+FUNCTION_NAME = gtk_rc_parse, NONE, NONE, 1, STRING
+```
+
+Now, we need to create a file called "gtkrc" which contains the colordefintions for our button. This file resides in the same directory as our script and may look like this:
+
+```css
+style "mystyle"
+{
+  bg[NORMAL] = { 65535, 0, 0 }
+  bg[PRELIGHT] = { 40000, 40000, 40000 }
+  bg[ACTIVE] = { 0, 65535, 0 }
+}
+
+widget "*.*.exitbutton*" style "mystyle"
+```
+
+Again, the command ```gtk_rc_parse``` reads the file and puts the widgets with the name "exitbutton" to the mentioned colors. Here, the colors are defined as RGB triplets. Now, when the button is in a normal state, the color will be red; when the button is pressed, the color will be green. Finally, when the mouse moves over the button, the color will be grey.
+
+There are more possibilities using GTK rc-files, like coloring a whole set of widgets to a specific color. Please consult the GTK manual at [https://www.gtk.org/](https://www.gtk.org/) for detailed explanations on rc-files.
+
+
+## Chapter 10. Connecting to the GTK-server with TCP or UDP
 

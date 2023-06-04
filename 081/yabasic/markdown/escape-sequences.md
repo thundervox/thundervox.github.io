@@ -16,8 +16,8 @@ Escape-sequences may occur within any string at any position; they are replaced 
 | \f              | *formfeed*                     |
 | \a              | *alert* (i.e. a beeping sound) |
 | \\\             | *backslash*                    |
-| \\'             | *single quote*                |
-| \\"             | *double quote*                |
-| \\xHEX          | *```chr$(HEX)```* (see below)                |
+| \\'             | *single quote*                 |
+| \\"             | *double quote*                 |
+| \\xHEX          | *```chr$(HEX)```* (see below)  |
 
 Note, that an escape sequences of the form \xHEX allows one to encode arbitrary characters as long as you know their position (as a hex-number) within the ascii-charset: For example ```\x012``` is transformed into the character ```chr$(18)``` (or ```chr$(dec("12",16))```. Note that \x requires a hexa-decimal number (and the hexadecimal string "12" corresponds to the decimal number 18).

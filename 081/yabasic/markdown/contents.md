@@ -34,7 +34,7 @@
   - [Logical shortcuts](logical-shortcuts.html)
   - [Conditions and expressions](conditions-and-expressions.html)
   - [Comparing strings or numbers](comparing-strings-or-numbers.html)
-  - References on arrays
+  - [References on arrays](references-on-arrays.html)
   - Specifying Filenames under Windows
   - Escape-sequences
   - Subroutines: Collecting your code for reuse in one program

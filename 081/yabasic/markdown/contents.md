@@ -35,7 +35,7 @@
   - [Conditions and expressions](conditions-and-expressions.html)
   - [Comparing strings or numbers](comparing-strings-or-numbers.html)
   - [References on arrays](references-on-arrays.html)
-  - Specifying Filenames under Windows
+  - [Specifying Filenames under Windows](specifying-filenames-under-windows.html)
   - Escape-sequences
   - Subroutines: Collecting your code for reuse in one program
   - Libraries: Collecting your code for reuse in many programs

@@ -16,3 +16,6 @@
 
 着手すれば猪突猛進とはいえ、いまはあまりしたくはないかな。環境を買えるために、液晶ディスプレイの買い替えと模様替えをしたくらいでは、また同じ失敗をオープンソース翻訳で繰り返すだけなのは明白です。
 
+## Vircon32
+
+[機械翻訳版](https://github.com/thundervox/Vircon32Documents/tree/main/machine-translation/textra/japanese)作っておいたので色々と安定してきたらポストエディットしますね。

@@ -31,9 +31,9 @@
   - [Graphics and printing](graphics-and-printing.html)
   - [The foreign function interface](the-foreign-function-interface.html)
 - [6\. Some features and general concepts of yabasic](some-features-and-general-concepts-of-yabasic.html)
-  - Logical shortcuts
-  - Conditions and expressions
-  - Comparing strings or numbers
+  - [Logical shortcuts](logical-shortcuts.html)
+  - [Conditions and expressions](conditions-and-expressions.html)
+  - [Comparing strings or numbers](comparing-strings-or-numbers.html)
   - References on arrays
   - Specifying Filenames under Windows
   - Escape-sequences

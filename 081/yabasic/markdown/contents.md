@@ -37,7 +37,7 @@
   - [References on arrays](references-on-arrays.html)
   - [Specifying Filenames under Windows](specifying-filenames-under-windows.html)
   - [Escape-sequences](escape-sequences.html)
-  - Subroutines: Collecting your code for reuse in one program
+  - [Subroutines: Collecting your code for reuse in one program](subroutines-collecting-your-code-for-reuse-in-one-program.html)
   - Libraries: Collecting your code for reuse in many programs
   - Adding code to a running program
   - Creating a standalone program from your yabasic-program

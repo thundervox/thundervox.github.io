@@ -38,7 +38,7 @@
   - [Specifying Filenames under Windows](specifying-filenames-under-windows.html)
   - [Escape-sequences](escape-sequences.html)
   - [Subroutines: Collecting your code for reuse in one program](subroutines-collecting-your-code-for-reuse-in-one-program.html)
-  - Libraries: Collecting your code for reuse in many programs
+  - [Libraries: Collecting your code for reuse in many programs](libraries-collecting-your-code-for-reuse-in-many-programs.html)
   - Adding code to a running program
   - Creating a standalone program from your yabasic-program
   - Interaction with functions from a non-yabasic library or dll

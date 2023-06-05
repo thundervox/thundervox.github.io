@@ -2,9 +2,9 @@
 
 Sometimes you may want to give one of your yabasic-programs to other people. However, what if those other people do not have yabasic installed ? In that case you may create a standalone-program from your yabasic-program, i.e. an executable, that may be executed on its own, standalone, even (and especially !) on computers, that do not have yabasic installed. Having created a standalone program, you may pass it around like any other program (e.g. one written in C) and you can be sure that your program will execute right away.
 
-Such a °*standalone*-program is simply created by copying the full yabasic-interpreter and your yabasic-program (plus all the libraries that it may ```import```) together into a single, new program, whose name might be chosen at will (under windows of course it should have the ending ```.exe```). If you decide to create a standalone-program, there are three facilities in yabasic, that you may use:
+Such a *standalone*-program is simply created by copying the full yabasic-interpreter and your yabasic-program (plus all the libraries that it may ```import```) together into a single, new program, whose name might be chosen at will (under windows of course it should have the ending ```.exe```). If you decide to create a standalone-program, there are three facilities in yabasic, that you may use:
 
-* The bind-command, which does the actual job of creating the standalone program from the yabasic-interpreter and your program.
+* The [**```bind```**]()<sup>**?**</sup>-command, which does the actual job of creating the standalone program from the yabasic-interpreter and your program.
 
 * The command-line Option --bind (see options), which does the same from the command-line.
 
@@ -30,7 +30,7 @@ yabasic -bind foo.exe foo.yab
 
 This command does not execute your program foo.yab but rather create a standalone-program foo.exe. Note: under Unix you would probably name the standalone program foo or such, omitting the windows-specific ending .exe.
 
-Yabasic will confirm by printing something like: ---Info: Successfully bound 'yabasic' and 'foo.yab' into 'foo.exe'.
+Yabasic will confirm by printing something like: ```---Info: Successfully bound 'yabasic' and 'foo.yab' into 'foo.exe```.
 
 After that you will find a program foo.exe (which must be made executable with the chmod-command under Unix first). Now, executing this program foo.exe (or foo under Unix) will produce the output Hello World !.
 

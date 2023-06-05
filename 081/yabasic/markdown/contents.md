@@ -43,27 +43,91 @@
   - Creating a standalone program from your yabasic-program
   - Interaction with functions from a non-yabasic library or dll
 - 7\. All commands and functions of yabasic grouped alphabetically
-  - A
-  - B
-  - C
-  - D
-  - E
-  - F
-  - G
-  - H
-  - I
-  - L
-  - M
-  - N
-  - O
-  - P
-  - R
-  - S
-  - T
-  - U
-  - V
-  - W
-  - X
+  - A <sup>(10)</sup>
+    - abs()
+    - acos()
+    - and
+    - and()
+    - arraydim()
+    - arraysize()
+    - asc()
+    - asin()
+    - at()
+    - atan()
+  - B <sup>(07)</sup>
+    - backcolor
+    - beep
+    - bell
+    - bin$()
+    - bind()
+    - bitnot()
+    - break
+  - C <sup>(16)</sup>
+    - case
+    - ceil()
+    - chomp$()
+    - chr$()
+    - circle
+    - clear
+    - clear screen
+    - clear window
+    - close
+    - close curve
+    - close printer
+    - close window
+    - color
+    - compile
+    - continue
+    - cos()
+  - D <sup>(09)</sup>
+    - data
+    - date$
+    - dec()
+    - default
+    - dim
+    - do
+    - doc
+    - docu$
+    - dot
+  - E <sup>(00)</sup>
+    - ?
+  - F <sup>(00)</sup>
+    - ?
+  - G <sup>(00)</sup>
+    - ?
+  - H <sup>(00)</sup>
+    - ?
+  - I <sup>(00)</sup>
+    - ?
+  - L <sup>(00)</sup>
+    - ?
+  - M <sup>(00)</sup>
+    - ?
+  - N <sup>(00)</sup>
+    - ?
+  - O <sup>(00)</sup>
+    - ?
+  - P <sup>(00)</sup>
+    - ?
+  - R <sup>(00)</sup>
+    - ?
+  - S <sup>(00)</sup>
+    - ?
+  - T <sup>(00)</sup>
+    - ?
+  - U <sup>(03)</sup>
+    - until
+    - upper$()
+    - using
+  - V <sup>(01)</sup>
+    - val()
+  - W <sup>(04)</sup>
+    - wait
+    - wend
+    - while
+    - window origin
+  - X <sup>(01)</sup>
+    - xor()
   - Symbols and Special characters
 - 8\. A few example programs
   - A very simple program

@@ -4,7 +4,7 @@
 
 *Libraries* build upon [**subroutines**]()<sup>**?**</sup> and take the concept of code-reuse one step further: They allow code to be shared between *different* programs (as compared to subroutines, which on their own allow code-reuse within a single program only). Moreover, it is possible and in fact common, that the author of a library and the author of a program using that library, are different persons, each writing their respective code on their own.
 
-## A simple example
+### A simple example
 
 Here is a program, that asks the user for two numbers and then uses a library ```adder``` to add those:
 

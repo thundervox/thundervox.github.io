@@ -51,7 +51,9 @@ endif
 print "Hello World !"
 ```
 
-If you run this program (which may be saved in the file ```foo.yab```) via ```yabasic foo.yab```, the [**peek("isbound")**]()<sup>**?**</sup> in the first line will check, if the program is already part of a standalone-program. If *not* (i.e. if the yabasic-interpreter and the yabasic-program are separate files) the [**bind**]()<sup>**?**</sup>-command will create a standalone program foo containing both. As a result you would see the output ```Successfully created the standalone executable 'foo' !```. Note: Under Windows you would probably choose the filename ```foo.exe```.
+If you run this program (which may be saved in the file ```foo.yab```) via ```yabasic foo.yab```, the [**peek("isbound")**]()<sup>**?**</sup> in the first line will check, if the program is already part of a standalone-program. If *not* (i.e. if the yabasic-interpreter and the yabasic-program are separate files) the [**bind**]()<sup>**?**</sup>-command will create a standalone program foo containing both. As a result you would see the output ```Successfully created the standalone executable 'foo' !```. 
+
+**Note**: Under Windows you would probably choose the filename ```foo.exe```.
 
 Now, if you run this standalone executable ```foo``` (or ```foo.exe```), the very same yabasic-program that is shown above will be executed again. However, this time the [**peek("isbound")**]()<sup>**?**</sup> will return ```TRUE``` and therefore the condition of the ```if```-statement is *false* and the three lines after then are not executed. Rather the last ```print```-statement will run, and you will see the output ```Hello World !```.
 

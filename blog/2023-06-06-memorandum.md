@@ -36,6 +36,12 @@ Ring basd operating system の実現性なんて考えてみたものの、機�
 OS の S を反転して 2 とな。化学式とは違うけどね。
 考えてみたものの、使い道がない。
 
+
+### g∞<sup>6</sup> 
+
+メガネ屋のロゴかよ。
+
+
 ### Linux Distribution
 
 TinyCore ベースにしてシェルは zx で、ウィンドウマネージャは dwm か i3 では

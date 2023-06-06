@@ -23,9 +23,7 @@ print "Hello World !"
 Normally you would start this yabasic-program by typing ```yabasic foo.yab``` and as a result the string ```Hello World !``` would appear on your screen. However, to create a standalone-program from ```foo.yab``` you would type:
 
 ```powershell
-
 yabasic -bind foo.exe foo.yab
-
 ```
 
 This command does *not* execute your program ```foo.yab``` but rather create a standalone-program ```foo.exe```.

@@ -42,7 +42,7 @@ You should specify a buffer as the type of a parameter or the return type, if th
 
 This first example prints the cosine of 2, not by using yabasics own cos-function but by calling out to the standard C-library:
 
-```
+```basic
 if peek$("os")="windows" then
   lib$ = "msvcrt.dll"
 else
@@ -207,7 +207,7 @@ Current year:            2019
 
 This final example just invokes libcurl to report its version. This is somewhat involved, because the matching function curl_version_info (see its man-page) returns a structure, which contains a pointer to a string, as can be seen from the structures definition:
 
-```
+```c
 typedef struct {
   CURLversion age;          /* see description below */
   const char *version;      /* human readable string */

@@ -94,3 +94,32 @@ The relevant Windows-function MessageBoxA is found within the library user32.dll
 
 ### Internal steps during a call to a foreign function
 
+A remark on libffi: this is the library which allows yabasic to call functions from other libraries libffi is used by many other programming-languages for the same purpose; in yabasic it is linked statically (rather than dynamically) so that its functionality is available right from the start. Summing up: libffi itself need not be loaded but helps to call functions from other loaded libraries.
+
+Here is the sequence of events during a foreign function call (e.g. foreign_function_call):
+
+* Yabasic parses the type specifications and argument values provided and collects the necessary information for libffi.
+
+* The named library is loaded with the appropriate call (which is different under Windows and Unix). This step might easily fail, e.g. if you misspelled the name of the library or your system cannot find the library.
+
+* With the help of libffi the named function is invoked.
+
+* If you specified the option unload_library, the library that has been loaded is unloaded again.
+
+* The return value of the function is converted to a form suitable for yabasic and your program continues.
+
+Errors are reported during every step.
+
+### Abbreviations for long names
+
+Yabasics functions for dealing with foreign libraries start with foreign_function or foreign_buffer (e.g. foreign_buffer_alloc). To help in typing, these names can all be abbreviated by contracting foreign_function into frnfn and foreign_buffer into frnbf. In the examples below, both forms appear.
+
+### Structurs and buffers
+
+The C-language provides a wide variety of simple datatypes (like numbers an strings) and allows to aggregate simple datatypes to structures such a structure contains a set of simple types arranged without overlap (but sometimes with gaps). Yabasic on itself does not know the internals of a structure but rather treats it as a uniform buffer. Structure and buffer are just flipsides of the same memory area viewed either from C or yabasic. For your yabasic-program a buffer is represented by a handle, which is just a simple printable string (containing the size and the memory adress).
+
+The detailed knowledge about the simple types within a structure must be coded into your program, which uses the command (or function) foreign_buffer_set and foreign_buffer_get. Both functions require type and offset (which needs to be looked up in documentation of the foreign library) of the simple type within the structure and a handle to the buffer, which contains the structure.
+
+Beeing essentially a memory area, a buffer is created with foreign_buffer_alloc and destroyed with foreign_buffer_free if needed no more.
+
+Besides representing a structure, a buffer can also provide room to store raw areas of memory for use by the foreign library; example might be image- or sound-content.

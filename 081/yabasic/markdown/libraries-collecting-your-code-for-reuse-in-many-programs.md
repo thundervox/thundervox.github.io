@@ -40,7 +40,7 @@ The code of the subroutine add has been moved to its own file ```adder.yab```.
 
 1\. The subroutine ```add``` needs to be called as adder.add, which consists of filename (```adder.yab``` but without the ending ```.yab```) and the name of the subroutine (```add```) within that file.
 
-2\. This is an exampe of *namespaces*.
+2\. This is an example of *namespaces*.
 
 ### Namespaces
 

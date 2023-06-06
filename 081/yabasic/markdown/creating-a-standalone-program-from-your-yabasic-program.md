@@ -30,7 +30,7 @@ yabasic -bind foo.exe foo.yab
 
 This command does *not* execute your program ```foo.yab``` but rather create a standalone-program ```foo.exe```.
 
-Note: under Unix you would probably name the standalone program ```foo``` or such, omitting the windows-specific ending ```.exe```.
+**Note**: under Unix you would probably name the standalone program ```foo``` or such, omitting the windows-specific ending ```.exe```.
 
 Yabasic will confirm by printing something like: ```---Info: Successfully bound 'yabasic' and 'foo.yab' into 'foo.exe```.
 

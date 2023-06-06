@@ -123,3 +123,125 @@ The detailed knowledge about the simple types within a structure must be coded i
 Beeing essentially a memory area, a buffer is created with foreign_buffer_alloc and destroyed with foreign_buffer_free if needed no more.
 
 Besides representing a structure, a buffer can also provide room to store raw areas of memory for use by the foreign library; example might be image- or sound-content.
+
+### Two more complex examples
+
+**Dealing with time**
+
+The example below deals with the time functions from the standard C-library; some of them deal with the tm structure for keeping the segmented time; to understand the example it is good to have the tm-structure at hand; see below. In addition it might be helpful to consult the manpages of the various C-functions (e.g. localtime)involved.
+
+```c
+struct tm {
+    int tm_sec;    /* Seconds (0-60) */
+    int tm_min;    /* Minutes (0-59) */
+    int tm_hour;   /* Hours (0-23) */
+    int tm_mday;   /* Day of the month (1-31) */
+    int tm_mon;    /* Month (0-11) */
+    int tm_year;   /* Year - 1900 */
+    int tm_wday;   /* Day of the week (0-6, Sunday = 0) */
+    int tm_yday;   /* Day in the year (0-365, 1 Jan = 0) */
+    int tm_isdst;  /* Daylight saving time */
+};
+```
+
+The example plays with the two forms of keeping the time, either as unix-time (number of seconds since epoch) or as a segmented time (sec, min, etc.). The six steps are each introduced by comments, please see below.
+
+```basic
+# First: Determine the correct library depending on OS
+#
+if peek$("os")="windows" then
+  lib$ = "msvcrt.dll"
+else
+  lib$ = "libm.so.6"
+endif
+
+# Second: Get the unix-time
+#
+# time() has a pointer argument to store the result (in addition to returning it)
+# we pass NULL, so only the return value is relevant
+#
+null$ = foreign_buffer_alloc$(-1)
+now = foreign_function_call(lib$,"int","time","buffer",null$)
+print "Seconds since the epoch: ",now
+
+# Third: Convert the unix-time to a segmented time
+#
+# localtime() does not accept the time-value as an argument, but rather requires a pointer
+# to the time-value, so we construct a buffer for one int and put in our value
+now$ = foreign_buffer_alloc$(foreign_function_size("int"))
+foreign_buffer_set now$,0,"int",now
+
+# Dump the buffer for educational purpose
+print "Dump of buffer:          ",foreign_buffer_dump$(now$)
+# localtime() returns a structure with the componentes (year, day, sec, etc.) as elements
+local$ = foreign_function_call$(lib$,"buffer","localtime","buffer",now$)
+
+# Fourth: Get the current year from the resulting buffer
+#
+# assuming, that year is the sixth element of the structure
+# so offset is 5
+offset = 5 * foreign_function_size("int")
+year = foreign_buffer_get(local$,offset,"int")
+print "Current year:            ", year + 1900
+# Fifth: manipulate the segmented time
+
+#
+# set year to something else
+foreign_buffer_set local$,offset,"int",year-50
+
+# Sixth: convert time-structure from localtime into ascii
+#
+print "50 years back:           ", foreign_function_call$(lib$,"string","asctime","buffer",local$)
+```
+
+On my computer this program produces the following output:
+
+```
+Seconds since the epoch: 1559014899
+Dump of buffer:          F3ADEC5C
+Current year:            2019
+50 years back:           Tue May 28 05:41:39 1969
+```
+
+**Getting the version of libcurl**
+
+This final example just invokes libcurl to report its version. This is somewhat involved, because the matching function curl_version_info (see its man-page) returns a structure, which contains a pointer to a string, as can be seen from the structures definition:
+
+```
+typedef struct {
+  CURLversion age;          /* see description below */
+  const char *version;      /* human readable string */
+  unsigned int version_num; /* numeric representation */
+  const char *host;         /* human readable string */
+  int features;             /* bitmask, see below */
+  char *ssl_version;        /* human readable string */
+  long ssl_version_num;     /* not used, always zero */
+  const char *libz_version; /* human readable string */
+  const char * const *protocols; /* protocols */
+
+  ...                       /* more lines omitted */
+
+} curl_version_info_data;
+```
+
+Please note, that the yabasic-code below uses abbreviations (e.g. frnfn_call instead of foreign_function_call.
+
+```
+# Get structure with version info
+info$ = frnfn_call$("libcurl.so.4","buffer","curl_version_info","int",1)
+# dump it for reference
+print frnbf_dump$(info$,32)
+# assume, that the pointer to version string is at offset 8
+sinfo$ = frnbf_get_buffer$(info$,8)
+# print readable version
+print frnbf_get$(sinfo$,0,10)
+```
+
+The printing of [**frnbf_dump**]()<sup>**?**</sup> gives a hint on the internal offsets within the structure and helps to determine that offset of 8 for the next call.
+
+On my system this program produces ```7.61.1``` for the version of curl.
+
+### See also
+
+[**foreign_function_call**]()<sup>**?**</sup>, [**foreign_function_call2**]()<sup>**?**</sup>, [**foreign_function_size**]()<sup>**?**</sup>, [**foreign_buffer_alloc**]()<sup>**?**</sup>, [**foreign_buffer_free**]()<sup>**?**</sup>, [**foreign_buffer_size**]()<sup>**?**</sup>, [**foreign_buffer_dump**]()<sup>**?**</sup>, [**foreign_buffer_set**]()<sup>**?**</sup>, [**foreign_buffer_set_buffer**]()<sup>**?**</sup>, [**foreign_buffer_get**]()<sup>**?**</sup>, [**foreign_buffer_get2**]()<sup>**?**</sup>, [**foreign_buffer_get_buffer**]()<sup>**?**</sup>, [**system**]()<sup>**?**</sup>
+

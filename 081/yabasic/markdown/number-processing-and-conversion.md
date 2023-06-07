@@ -8,7 +8,7 @@ Returns the absolute value of its numeric argument
 
 Returns the arcus cosine of its numeric argument
 
-[**and()**]()<sup>**?**</sup>
+[**and()**](./cmdfunc/and2.html)
 
 The bitwise arithmetic ```and```
 

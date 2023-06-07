@@ -4,13 +4,13 @@
 
 Returns the absolute value of its numeric argument
 
-[**acos()**]()<sup>**?**</sup>
+[**acos()**](./cmdfunc/acos.html)
 
 Returns the arcus cosine of its numeric argument
 
 [**and()**]()<sup>**?**</sup>
 
-The bitwise arithmetic and
+The bitwise arithmetic ```and```
 
 [**asin()**]()<sup>**?**</sup>
 
@@ -38,7 +38,7 @@ Compute the bitwise exclusive or of its two arguments
 
 [**euler**]()<sup>**?**</sup>
 
-Another name for the constant 2.71828182864
+Another name for the constant ```2.71828182864```
 
 [**exp()**]()<sup>**?**</sup>
 

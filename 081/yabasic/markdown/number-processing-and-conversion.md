@@ -82,13 +82,13 @@ compute the remainder of a division
 
 [**bitnot()**]()<sup>**?**</sup>
 
-the bitwise arithmetic not
+the bitwise arithmetic ```not```
 
 [**or()**]()<sup>**?**</sup>
 
-arithmetic or, used for bit-operations
+arithmetic ```or```, used for bit-operations
 
-[**pi**](pi.html)
+[**pi**](./cmdfunc/pi.html)
 
 a constant with the value ```3.14159```
 

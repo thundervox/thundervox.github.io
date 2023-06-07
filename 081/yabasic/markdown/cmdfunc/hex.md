@@ -29,5 +29,5 @@ This program reads the file foo and prints its output as a *hex*-dump using the 
 ## See also
 
  * [decbin](decbin.html)
- * [numbers with base 2 or 16](numbers-with-base-2-or-16.html)
+ * [numbers with base 2 or 16](../numbers-with-base-2-or-16.html)
 

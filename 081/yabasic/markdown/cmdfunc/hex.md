@@ -10,7 +10,7 @@ print hex$(foo)
 
 ## Description
 
-The ```hex$```-function converts a number into a string with its hexadecimal representation. ```\hex$``` is the inverse of the ```dec```-function.
+The ```hex$```-function converts a number into a string with its hexadecimal representation. ```hex$``` is the inverse of the ```dec```-function.
 
 ## Example
 

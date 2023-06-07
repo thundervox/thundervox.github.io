@@ -10,14 +10,14 @@ bell
 
 ## Description
 
-The beep-command rings the bell within your computer once. beep is a synonym for bell.
+The ```beep```-command rings the bell within your computer once. ```beep``` is a synonym for [```bell```](bell.html).
 
 ## Example
 
 ```basic
-print "This is a problem ...":beep
+print "This is a problem ...":bell
 ```
 
 ## See also
 
- * [bell](bell.html)
+ * [beep](beep.html)

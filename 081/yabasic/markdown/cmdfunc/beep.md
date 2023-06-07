@@ -1,6 +1,6 @@
 # beep
 
-Ring the bell within your computer; a synonym for bell.
+Ring the bell within your computer; a synonym for ```bell```.
 
 ## Synopsis
 

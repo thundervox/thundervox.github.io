@@ -16,7 +16,7 @@ The bitwise arithmetic ```and```
 
 Returns the arcus sine of its numeric argument
 
-[atan()](./cmdfunc/atan.html)
+[**atan()**](./cmdfunc/atan.html)
 
 Returns the arctangent of its numeric argument
 

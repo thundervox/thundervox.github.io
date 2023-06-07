@@ -44,11 +44,11 @@ Another name for the constant 2.71828182864
 
 Compute the exponential function of its single argument
 
-[**frac()**]()<sup>**?**</sup>
+[**frac()**](./cmdfunc/abs.html)
 
 Return the fractional part of its numeric argument
 
-[**int()**]()<sup>**?**</sup>
+[**int()**](./cmdfunc/int.html)
 
 Return the integer part of its single numeric argument
 
@@ -56,7 +56,7 @@ Return the integer part of its single numeric argument
 
 Compute the ceiling for its (float) argument
 
-[**floor()**]()<sup>**?**</sup>
+[**floor()**](./cmdfunc/floor.html)
 
 Compute the floor for its (float) argument
 
@@ -104,9 +104,9 @@ shift its argument bitwise to the left
 
 shift its argument bitwise to the right
 
-[**sig()**]()<sup>**?**</sup>
+[**sig()**](./cmdfunc/sig.html)
 
-return the sign of its argument
+Return the sign of its argument
 
 [**sin()**]()<sup>**?**</sup>
 

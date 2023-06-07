@@ -1,80 +1,80 @@
 ## Number processing and conversion
 
-[**abs()**]()<sup>**?**</sup>
+[**abs()**](./cmdfunc/abs.html)
 
-returns the absolute value of its numeric argument
+Returns the absolute value of its numeric argument
 
 [**acos()**]()<sup>**?**</sup>
 
-returns the arcus cosine of its numeric argument
+Returns the arcus cosine of its numeric argument
 
 [**and()**]()<sup>**?**</sup>
 
-the bitwise arithmetic and
+The bitwise arithmetic and
 
 [**asin()**]()<sup>**?**</sup>
 
-returns the arcus sine of its numeric argument
+Returns the arcus sine of its numeric argument
 
 [**atan()**]()<sup>**?**</sup>
 
-returns the arctangent of its numeric argument
+Returns the arctangent of its numeric argument
 
 [**bin$()**]()<sup>**?**</sup>
 
-converts a number into a sequence of binary digits
+Converts a number into a sequence of binary digits
 
 [**cos()**]()<sup>**?**</sup>
 
-return the cosine of its single argument
+Return the cosine of its single argument
 
 [**dec()**]()<sup>**?**</sup>
 
-convert a base 2 or base 16 number into decimal form
+Convert a base 2 or base 16 number into decimal form
 
 [**eor()**]()<sup>**?**</sup>
 
-compute the bitwise exclusive or of its two arguments
+Compute the bitwise exclusive or of its two arguments
 
 [**euler**]()<sup>**?**</sup>
 
-another name for the constant 2.71828182864
+Another name for the constant 2.71828182864
 
 [**exp()**]()<sup>**?**</sup>
 
-compute the exponential function of its single argument
+Compute the exponential function of its single argument
 
 [**frac()**]()<sup>**?**</sup>
 
-return the fractional part of its numeric argument
+Return the fractional part of its numeric argument
 
 [**int()**]()<sup>**?**</sup>
 
-return the integer part of its single numeric argument
+Return the integer part of its single numeric argument
 
 [**ceil()**]()<sup>**?**</sup>
 
-compute the ceiling for its (float) argument
+Compute the ceiling for its (float) argument
 
 [**floor()**]()<sup>**?**</sup>
 
-compute the floor for its (float) argument
+Compute the floor for its (float) argument
 
 [**round()**]()<sup>**?**</sup>
 
-round its argument to the nearest integer
+Round its argument to the nearest integer
 
 [**log()**]()<sup>**?**</sup>
 
-compute the natural logarithm
+Compute the natural logarithm
 
 [**max()**]()<sup>**?**</sup>
 
-return the larger of its two arguments
+Return the larger of its two arguments
 
 [**min()**]()<sup>**?**</sup>
 
-return the smaller of its two arguments
+Return the smaller of its two arguments
 
 [**mod**]()<sup>**?**</sup>
 

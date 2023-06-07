@@ -10,7 +10,7 @@ bell
 
 ## Description
 
-The ```bell```-command rings the bell within your computer once. This command is *not* a sound-interface, so you can neither vary the length or the height of the sound (technically, it just prints ```\a```). ```bell``` is exactly the same as [```beep```](bell.html).
+The ```bell```-command rings the bell within your computer once. This command is *not* a sound-interface, so you can neither vary the length or the height of the sound (technically, it just prints ```\a```). ```bell``` is exactly the same as [```beep```](beep.html).
 
 ## Example
 

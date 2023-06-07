@@ -24,7 +24,7 @@ This example compares the functions ```int``` and ```floor```, starting with ```
 
 ## See also
 
- * [ceil](ceil)
+ * [ceil](ceil.html)
  * [int](int.html)
  * [frac](frac.html)
  * [round](round.html)

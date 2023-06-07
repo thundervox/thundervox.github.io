@@ -24,7 +24,7 @@ end while
 print
 ```
 
-This program reads the file foo and prints its output as a *hex*-dump using the ```hex```-function.
+This program reads the file ```foo``` and prints its output as a *hex*-dump using the ```hex```-function.
 
 ## See also
 

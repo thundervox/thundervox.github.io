@@ -12,7 +12,7 @@ Returns the arcus cosine of its numeric argument
 
 The bitwise arithmetic ```and```
 
-[**asin()**]()<sup>**?**</sup>
+[**asin()**](./cmdfunc/asin.html)
 
 Returns the arcus sine of its numeric argument
 
@@ -88,9 +88,9 @@ the bitwise arithmetic not
 
 arithmetic or, used for bit-operations
 
-[**pi**]()<sup>**?**</sup>
+[**pi**](pi.html)
 
-a constant with the value 3.14159
+a constant with the value ```3.14159```
 
 [**ran()**]()<sup>**?**</sup>
 

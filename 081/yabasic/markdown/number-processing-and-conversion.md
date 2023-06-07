@@ -16,7 +16,7 @@ The bitwise arithmetic ```and```
 
 Returns the arcus sine of its numeric argument
 
-[**atan()**]()<sup>**?**</sup>
+[atan()](./cmdfunc/atan.html)
 
 Returns the arctangent of its numeric argument
 
@@ -44,7 +44,7 @@ Another name for the constant ```2.71828182864```
 
 Compute the exponential function of its single argument
 
-[**frac()**](./cmdfunc/abs.html)
+[**frac()**](./cmdfunc/frac.html)
 
 Return the fractional part of its numeric argument
 

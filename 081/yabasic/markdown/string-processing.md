@@ -8,7 +8,7 @@ accepts a string and returns the position of its first character within the asci
 
 remove a single trailing newline from its string-argument; if the string does not end in a newline, the string is returned unchanged
 
-[**chr$](./cmdfunc/chr.html)**]()
+[**chr$()**](./cmdfunc/chr.html)
 
 accepts a number and returns the character at this position within the ascii charset
 

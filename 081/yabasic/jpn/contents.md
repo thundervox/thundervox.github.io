@@ -1,18 +1,18 @@
 # Yabasic
 ---
 
-# **Table of Contents**
+# **目次**
 
-- [1\. Introduction](introduction.html)
-  - [About this document](introduction.html#about-this-document)
-  - [About yabasic](introduction.html#about-yabasic)
-- [2\. The yabasic-program under Windows](the-yabasic-program-under-windows.html)
-  - [Starting yabasic](the-yabasic-program-under-windows.html#starting-yabasic)
-  - [Options](the-yabasic-program-under-windows.html#options)
-  - [The context Menu](the-yabasic-program-under-windows.html#the-context-menu)
-- [3\. The yabasic-program under Unix](the-yabasic-program-under-unix.html)
-  - [Starting yabasic](the-yabasic-program-under-unix.html#starting-yabasic)
-  - [Options](the-yabasic-program-under-unix.html#options)
+- [1\. はじめに](introduction.html)
+  - [本書について](introduction.html#about-this-document)
+  - [yabasic について](introduction.html#about-yabasic)
+- [2\. Windows 版の yabasic プログラム](the-yabasic-program-under-windows.html)
+  - [yabasic の起動方法](the-yabasic-program-under-windows.html#starting-yabasic)
+  - [オプション](the-yabasic-program-under-windows.html#options)
+  - [コンテキストメニュー](the-yabasic-program-under-windows.html#the-context-menu)
+- [3\. Unix 版の yabasic プログラム](the-yabasic-program-under-unix.html)
+  - [yabasic の起動方法](the-yabasic-program-under-unix.html#starting-yabasic)
+  - [オプション](the-yabasic-program-under-unix.html#options)
   - [Setting defaults](the-yabasic-program-under-unix.html#setting-defaults)
 - [4\. Command line options of yabasic](command-line-options-of-yabasic.html)
 - [5\. All commands and functions of yabasic listed by topic](all-commands-and-functions-of-yabasic-listed-by-topic.html)
@@ -104,30 +104,15 @@
   - M <sup>(00)</sup>
     - ?
   - N <sup>(00)</sup>
-    - ?
   - O <sup>(00)</sup>
-    - ?
   - P <sup>(00)</sup>
-    - ?
-  - R <sup>(00)</sup>
-    - ?
-  - S <sup>(00)</sup>
-    - ?
-  - T <sup>(00)</sup>
-    - ?
-  - U <sup>(03)</sup>
-    - until
-    - upper$()
-    - using
-  - V <sup>(01)</sup>
-    - val()
-  - W <sup>(04)</sup>
-    - wait
-    - wend
-    - while
-    - window origin
-  - X <sup>(01)</sup>
-    - xor()
+  - R
+  - S
+  - T
+  - U
+  - V
+  - W
+  - X
   - Symbols and Special characters
 - 8\. A few example programs
   - A very simple program

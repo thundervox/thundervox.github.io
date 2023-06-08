@@ -14,11 +14,11 @@ If the argument of the ```abs```-function is positive (e.g. 2) it is returned un
 
 ## Example
 
-This example will print ```2 2```
-
 ```basic
 print abs(-2),abs(2)
 ```
+
+This example will print ```2 2```
 
 ## See also
 

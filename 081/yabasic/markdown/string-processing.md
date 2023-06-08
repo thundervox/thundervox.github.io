@@ -1,6 +1,6 @@
 ## String processing
 
-[**asc()**]()<sup>**?**</sup>
+[**asc()**](./cmdfunc/asc.html)
 
 accepts a string and returns the position of its first character within the ascii charset
 
@@ -8,7 +8,7 @@ accepts a string and returns the position of its first character within the asci
 
 remove a single trailing newline from its string-argument; if the string does not end in a newline, the string is returned unchanged
 
-[**chr$()**]()<sup>**?**</sup>
+[**chr$](./cmdfunc/chr.html)**]()
 
 accepts a number and returns the character at this position within the ascii charset
 
@@ -16,7 +16,7 @@ accepts a number and returns the character at this position within the ascii cha
 
 check if a string matches a simple pattern
 
-[**hex$()**]()<sup>**?**</sup>
+[**hex$()**](./cmdfunc/hex.html)
 
 convert a number into hexadecimal
 

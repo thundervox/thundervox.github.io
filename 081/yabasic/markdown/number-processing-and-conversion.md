@@ -32,15 +32,15 @@ Return the cosine of its single argument
 
 Convert a base 2 or base 16 number into decimal form
 
-[**eor()**]()<sup>**?**</sup>
+[**eor()**](./cmdfunc/.html)<sup>**?**</sup>
 
 Compute the bitwise exclusive or of its two arguments
 
-[**euler**]()<sup>**?**</sup>
+[**euler**](./cmdfunc/euler.html)
 
 Another name for the constant ```2.71828182864```
 
-[**exp()**]()<sup>**?**</sup>
+[**exp()**](./cmdfunc/.html)<sup>**?**</sup>
 
 Compute the exponential function of its single argument
 
@@ -60,31 +60,31 @@ Compute the ceiling for its (float) argument
 
 Compute the floor for its (float) argument
 
-[**round()**]()<sup>**?**</sup>
+[**round()**](./cmdfunc/.html)<sup>**?**</sup>
 
 Round its argument to the nearest integer
 
-[**log()**]()<sup>**?**</sup>
+[**log()**](./cmdfunc/.html)<sup>**?**</sup>
 
 Compute the natural logarithm
 
-[**max()**]()<sup>**?**</sup>
+[**max()**](./cmdfunc/.html)<sup>**?**</sup>
 
 Return the larger of its two arguments
 
-[**min()**]()<sup>**?**</sup>
+[**min()**](./cmdfunc/.html)<sup>**?**</sup>
 
 Return the smaller of its two arguments
 
-[**mod**]()<sup>**?**</sup>
+[**mod**](./cmdfunc/.html)<sup>**?**</sup>
 
 compute the remainder of a division
 
-[**bitnot()**]()<sup>**?**</sup>
+[**bitnot()**](./cmdfunc/.html)<sup>**?**</sup>
 
 the bitwise arithmetic ```not```
 
-[**or()**]()<sup>**?**</sup>
+[**or()**](./cmdfunc/.html)<sup>**?**</sup>
 
 arithmetic ```or```, used for bit-operations
 
@@ -92,15 +92,15 @@ arithmetic ```or```, used for bit-operations
 
 a constant with the value ```3.14159```
 
-[**ran()**]()<sup>**?**</sup>
+[**ran()**](./cmdfunc/.html)<sup>**?**</sup>
 
 return a random number
 
-[**shl()**]()<sup>**?**</sup>
+[**shl()**](./cmdfunc/.html)<sup>**?**</sup>
 
 shift its argument bitwise to the left
 
-[**shr()**]()<sup>**?**</sup>
+[**shr()**](./cmdfunc/.html)<sup>**?**</sup>
 
 shift its argument bitwise to the right
 
@@ -108,30 +108,30 @@ shift its argument bitwise to the right
 
 Return the sign of its argument
 
-[**sin()**]()<sup>**?**</sup>
+[**sin()**](./cmdfunc/.html)<sup>**?**</sup>
 
 return the sine of its single argument
 
-[**sqr()**]()<sup>**?**</sup>
+[**sqr()**](./cmdfunc/.html)<sup>**?**</sup>
 
 compute the square of its argument
 
-[**sqrt()**]()<sup>**?**</sup>
+[**sqrt()**](./cmdfunc/.html)<sup>**?**</sup>
 
 compute the square root of its argument
 
-[**tan()**]()<sup>**?**</sup>
+[**tan()**](./cmdfunc/.html)<sup>**?**</sup>
 
 return the tangent of its argument
 
-[**xor()**]()<sup>**?**</sup>
+[**xor()**](./cmdfunc/.html)<sup>**?**</sup>
 
-compute the exclusive or
+compute the exclusive ```or```
 
-[**\** or \^**]()<sup>**?**</sup>
+[**\** or \^**](./cmdfunc/.html)<sup>**?**</sup>
 
 raise its first argument to the power of its second
 
-[**\< \<= \> \>= = == \<\> \!=**]()<sup>**?**</sup>
+[**\< \<= \> \>= = == \<\> \!=**](./cmdfunc/.html)<sup>**?**</sup>
 
 Compare numbers or strings

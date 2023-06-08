@@ -67,4 +67,4 @@ Ring ベースのオペレーティングシステム (Language based/hybrid ope
 
 ## Firefox OS (B2G)
 
-まだ探せば当時の開発資料は手に入るから、[ホビイスト向けオペレーティングシステム](https://en.m.wikipedia.org/wiki/Hobbyist_operating_system)としてプロジェクトをリブートして関わるのもいいんじゃないかと思う。それに Lineage OS の資産も使えるから、使わなくなった Android スマートフォンをハックして遊べるようにするのも面白そうではあるなあ。
+まだ探せば当時の開発資料は手に入るから、[ホビイスト向けオペレーティングシステム](https://en.m.wikipedia.org/wiki/Hobbyist_operating_system)としてプロジェクトをリブートして関わるのもいいんじゃないかと思う。それに LineageOS の資産も使えるから、使わなくなった Android スマートフォンをハックして遊べるようにするのも面白そうではあるなあ。

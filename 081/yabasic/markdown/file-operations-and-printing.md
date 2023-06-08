@@ -2,15 +2,15 @@
 
 [**at()**]()<sup>**?**</sup>
 
-can be used in the print-command to place the output at a specified position
+Can be used in the ```print```-command to place the output at a specified position.
 
-[**beep**]()<sup>**?**</sup>
+[**beep**](./cmdfunc/beep.html)
 
-ring the bell within your computer; a synonym for bell
+Ring the bell within your computer; a synonym for ```bell```.
 
-[**bell**]()<sup>**?**</sup>
+[**bell**](./cmdfunc/bell.html)
 
-ring the bell within your computer (just as beep)
+Ring the bell within your computer (just as ```beep```).
 
 [**clear screen**]()<sup>**?**</sup>
 

@@ -44,16 +44,16 @@
   - [Interaction with functions from a non-yabasic library or dll](interaction-with-functions-from-a-non-yabasic-library-or-dll.html)
 - 7\. All commands and functions of yabasic grouped alphabetically
   - A <sup>(10)</sup>
-    - [abs()](abs.html)
-    - [acos()](acos.html)
-    - [and](and.html)
-    - [and()](and2.html)
-    - [arraydim()](arraydim.html)
-    - [arraysize()](arraysize.html)
-    - [asc()](asc.html)
-    - [asin()](asin.html)
-    - [at()](at.html)
-    - [atan()](atan.html)
+    - [abs()](./cmdfunc/abs.html)
+    - [acos()](./cmdfunc/acos.html)
+    - [and](./cmdfunc/and.html)
+    - [and()](./cmdfunc/and2.html)
+    - [arraydim()](./cmdfunc/arraydim.html)
+    - [arraysize()](./cmdfunc/arraysize.html)
+    - [asc()](./cmdfunc/asc.html)
+    - [asin()](./cmdfunc/asin.html)
+    - [at()](./cmdfunc/at.html)
+    - [atan()](./cmdfunc/atan.html)
   - B <sup>(07)</sup>
     - backcolor
     - beep

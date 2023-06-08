@@ -207,4 +207,64 @@ instr() — searches its second argument within the first; returns its position 
 int() — return the integer part of its single numeric argument
 
 
+## J
 
+Nothing.
+
+
+## K
+
+Nothing.
+
+
+## L
+
+label — mark a specific location within your program for goto, gosub or restore
+
+left$() — return (or change) left end of a string
+
+len() — return the length of a string
+
+line — draw a line
+
+line input — read in a whole line of text and assign it to a variable
+
+local — mark a variable as local to a subroutine
+
+log() — compute the natural logarithm
+
+loop — marks the end of an infinite loop
+
+lower$() — convert a string to lower case
+
+ltrim$() — trim spaces at the left end of a string
+
+
+## M
+
+max() — return the larger of its two arguments
+
+mid$() — return (or change) characters from within a string
+
+min() — return the smaller of its two arguments
+
+mod — compute the remainder of a division
+
+mouseb — extract the state of the mousebuttons from a string returned by inkey$
+
+mousemod — return the state of the modifier keys during a mouseclick
+
+mousex — return the x-position of a mouseclick
+
+mousey — return the y-position of a mouseclick
+
+
+## N
+
+new curve — start a new curve, that will be drawn with the line-command
+
+next — mark the end of a for loop
+
+not — negate a logical expression; can be written as !
+
+numparams — return the number of parameters, that have been passed to a subroutine

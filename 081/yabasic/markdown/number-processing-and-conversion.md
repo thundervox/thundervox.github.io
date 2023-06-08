@@ -20,7 +20,7 @@ Returns the arcus sine of its numeric argument
 
 Returns the arctangent of its numeric argument
 
-[**bin$()**]()<sup>**?**</sup>
+[**bin$()**](bin.html)
 
 Converts a number into a sequence of binary digits
 
@@ -28,7 +28,7 @@ Converts a number into a sequence of binary digits
 
 Return the cosine of its single argument
 
-[**dec()**]()<sup>**?**</sup>
+[**dec()**](dec.html)
 
 Convert a base 2 or base 16 number into decimal form
 
@@ -52,7 +52,7 @@ Return the fractional part of its numeric argument
 
 Return the integer part of its single numeric argument
 
-[**ceil()**]()<sup>**?**</sup>
+[**ceil()**](ceil.html)
 
 Compute the ceiling for its (float) argument
 

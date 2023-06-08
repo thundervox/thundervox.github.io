@@ -44,7 +44,7 @@ this keyword appears as part of other statements
 
 pause, sleep, wait for the specified number of seconds
 
-[**\/\/**]()<sup>**?**</sup>
+[**//**]()<sup>**?**</sup>
 
 starts a comment
 

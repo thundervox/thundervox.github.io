@@ -28,4 +28,4 @@ This example prints the binary representation of all digits between 1 and 100.
 
  * [hex$](hex.html)
  * [dec](dec.html)
- * [numbers with base 2 or 16](numbers-with-base-2-or-16.html)
+ * [numbers with base 2 or 16](../numbers-with-base-2-or-16.html)

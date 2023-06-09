@@ -89,31 +89,31 @@
     - doc
     - docu$
     - dot
-  - E <sup>(00)</sup>
+  - E <sup>(16)</sup>
     - ?
-  - F <sup>(00)</sup>
+  - F <sup>(19)</sup>
     - ?
-  - G <sup>(00)</sup>
+  - G <sup>(05)</sup>
     - ?
-  - H <sup>(00)</sup>
+  - H <sup>(01)</sup>
     - ?
-  - I <sup>(00)</sup>
+  - I <sup>(06)</sup>
     - ?
-  - L <sup>(00)</sup>
+  - L <sup>(10)</sup>
     - ?
-  - M <sup>(00)</sup>
+  - M <sup>(08)</sup>
     - ?
-  - N <sup>(00)</sup>
+  - N <sup>(04)</sup>
     - ?
-  - O <sup>(00)</sup>
+  - O <sup>(08)</sup>
     - ?
-  - P <sup>(00)</sup>
+  - P <sup>(10)</sup>
     - ?
-  - R <sup>(00)</sup>
+  - R <sup>(13)</sup>
     - ?
-  - S <sup>(00)</sup>
+  - S <sup>(17)</sup>
     - ?
-  - T <sup>(00)</sup>
+  - T <sup>(10)</sup>
     - ?
   - U <sup>(03)</sup>
     - until
@@ -128,7 +128,7 @@
     - window origin
   - X <sup>(01)</sup>
     - xor()
-  - Symbols and Special characters
+  - Symbols and Special characters <sup>(07)</sup>
 - 8\. A few example programs
   - A very simple program
   - Graphics with bitmaps

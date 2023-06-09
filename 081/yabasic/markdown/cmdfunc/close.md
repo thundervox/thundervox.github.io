@@ -4,7 +4,7 @@ Close a file, which has been opened before.
 
 ## Synopsis
 
-```
+```basic
 close filenum
 close # filenum
 ```

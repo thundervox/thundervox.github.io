@@ -6,7 +6,7 @@ Close a file, which has been opened before.
 
 ```basic
 close filenum
-close # filenum
+close #filenum
 ```
 
 ## Description

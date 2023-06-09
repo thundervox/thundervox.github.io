@@ -42,7 +42,7 @@
   - [Adding code to a running program](adding-code-to-a-running-program.html)
   - [Creating a standalone program from your yabasic-program](creating-a-standalone-program-from-your-yabasic-program.html)
   - [Interaction with functions from a non-yabasic library or dll](interaction-with-functions-from-a-non-yabasic-library-or-dll.html)
-- 7\. All commands and functions of yabasic grouped alphabetically
+- 7\. All commands and functions of yabasic grouped alphabetically <sup>(185)</sup>
   - A <sup>(10)</sup>
     - [abs()](./cmdfunc/abs.html)
     - [acos()](./cmdfunc/acos.html)

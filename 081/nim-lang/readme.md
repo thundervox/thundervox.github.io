@@ -8,6 +8,6 @@
 
 * [ClariS『はいからさんが通る』Music Video - Youtube](http://youtube.com/watch?v=kCKEjcFMpYY)
 * [マハラージャン - 蝉ダンスフロア[Official Music Video]](http://youtube.com/watch?ｖ=unnhf7gnC1s)
-* [](http://youtube.com/watch?v=)
+* [C&K-青青青](http://youtube.com/watch?v=VcuD2IhyWCk)
 * [](http://youtube.com/watch?v=)
 * [](http://youtube.com/watch?v=)

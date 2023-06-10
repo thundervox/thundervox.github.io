@@ -59,10 +59,10 @@
     - [beep](./cmdfunc/beep.html)
     - [bell](./cmdfunc/bell.html)
     - [bin$()](./cmdfunc/bin.html)
-    - bind()
-    - bitnot()
-    - box
-    - break
+    - [bind()](./cmdfunc/bidn.html)
+    - [bitnot()](./cmdfunc/bitnot.html)
+    - [box](./cmdfunc/box.html)
+    - [break](./cmdfunc/break.html)
   - C <sup>(16)</sup>
     - case
     - [ceil()](./cmdfunc/ceil.html)
@@ -72,18 +72,18 @@
     - clear
     - clear screen
     - clear window
-    - close
+    - [close](./cmdfunc/close.html)
     - close curve
     - close printer
     - close window
     - color
     - compile
     - continue
-    - cos()
+    - [cos()](./cmdfunc/cos.html)
   - D <sup>(09)</sup>
     - data
     - date$
-    - dec()
+    - [dec()](./cmdfunc/dec.html)
     - default
     - dim
     - do

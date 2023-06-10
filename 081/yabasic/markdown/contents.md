@@ -59,7 +59,7 @@
     - [beep](./cmdfunc/beep.html)
     - [bell](./cmdfunc/bell.html)
     - [bin$()](./cmdfunc/bin.html)
-    - [bind()](./cmdfunc/bidn.html)
+    - [bind()](./cmdfunc/bind.html)
     - [bitnot()](./cmdfunc/bitnot.html)
     - [box](./cmdfunc/box.html)
     - [break](./cmdfunc/break.html)

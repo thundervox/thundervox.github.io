@@ -23,7 +23,7 @@ C/C++, Rust, Nim.などを取得するために BASIC インタプリタを書�
 ## TMBASIC
 
 つぎは、これか……な……。
-フローチャート(!?)などに SVG ファイルではなくアスキーアートを使っているせいかレイアウトが崩れてしまう問題あり。さらにマークアップ言語がわからないなあと思ったら独自システムかい ([buildDoc.cpp](https://github.com/search?q=repo%3Aelectroly%2Ftmbasic%20builddoc&type=code))。
+フローチャート(!?)などに SVG ファイルではなくアスキーアートを使っているせいかレイアウトが崩れてしまう問題あり。さらにマークアップ言語がわからないなあと思ったら独自システムかい ([buildDoc.cpp を参照](https://github.com/search?q=repo%3Aelectroly%2Ftmbasic%20builddoc&type=code))。
 
 今年の一月から開発が止まっているなあ。
 こういう状態なら、 BCX か BaCon に移植するか、そのまま C で使うなり各種バインディングのある言語を使えば労力が少なくて済むと言いたいのはわかる。ポメラ DM0250, Android や iOS スマホ単体でも開発したいわけでもないのでそうします。

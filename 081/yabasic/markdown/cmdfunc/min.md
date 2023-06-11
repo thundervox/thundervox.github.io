@@ -16,7 +16,6 @@ Return the *minimum* of its two argument.
 
 ```basic
 dim m(10)
-
 for a=1 to 1000
   m=min(ran(10),ran(10))
   m(m)=m(m)+1

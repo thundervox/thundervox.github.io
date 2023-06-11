@@ -2,6 +2,11 @@
 
 * 公式サイト: https://tmbasic.com/
 * 作業状況: TBA
+ 
+ ## 概要
+ * 構造化 BASIC による TUI アプリケーションの開発ができます (TurboVision)。
+ *　マルチプラットフォーム (Android, iOS, Linux, Windows)
+ * Unicode 対応 (UTF-16)
 
 ## 作業内容
 

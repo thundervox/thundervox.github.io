@@ -1,0 +1,20 @@
+= Gideros のクラス
+
+||	[class_in_gideros/intro はじめに]	|| [class_in_gideros/creating_instances Gideros のクラス]	||	[class_in_gideros/inheritance クラスの継承]	||
+
+== インスタンスの作成
+
+Gideros では '''new''' 関数によりインスタンスを作成します。例えば、 '''Sprite''', '''Texture''', '''Bitmap''' および '''Timer''' のインスタンスは:
+
+{{{ code lua
+local sprite = Sprite.new()
+local texture = Texture.new("image.png")
+local bitmap = Bitmap.new(texture)
+local timer = Timer.new(1000, 0)
+}}}
+
+----
+
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。

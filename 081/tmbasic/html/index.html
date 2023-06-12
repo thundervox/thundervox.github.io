@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TMBASICプログラム言語</title>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="apple-mobile-web-app-title" content="TMBASIC">
+<meta name="application-name" content="TMBASIC">
+<meta name="msapplication-TileColor" content="#da532c">
+<style>
+* { -webkit-text-size-adjust: none; text-size-adjust: none; }
+a, a > span.tt { color: #326ec8; text-decoration: none; }
+a:hover { text-decoration: underline; }
+body { font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif; font-size: 16px; color: #444444; margin: 1cm auto; margin-bottom: 5cm; padding-top: 1cm; max-width: 900px; line-height: 165%; overflow-y: scroll; }
+col { width: auto !important; }
+div.backlinks { font-size: 10pt; position: absolute; margin-top: -1cm; line-height: 100%; white-space: nowrap; }
+div.bar { font-size: 9pt; margin-top: 20px; }
+div.bar > span { background: #f8f8f8; padding: 5px 10px 5px 10px; font-weight: 500; }
+div.code div { text-indent: -2cm; padding-left: 2cm; }
+div.code { padding: 3mm; margin-bottom: 5mm; background: #f8f8f8; margin-top: 8px; white-space: pre; }
+div.indent { margin-left: 1cm; }
+div.paragraphBreak { height: 16px; }
+div#root { margin-left: 1cm; margin-right: 1cm; }
+div#compatibilityTable { line-height: 100%; }
+div#compatibilityTable > table > tbody > tr > td { vertical-align: middle; padding: 2mm; padding-right: 4mm; }
+h1 { font-size: 40px; color: #333333; }
+h1 > span.tt { letter-spacing: -2px; word-break: break-word; }
+h1#tmbasic { display: none; }
+h1, h2, h3, h4, h5 { font-weight: 400; letter-spacing: -0.38px; line-height: 100%; }
+h2 { font-size: 28px; color: #ba3925; margin-top: 50px; }
+h3 { color: #ba3925; font-size: 20px; }
+img.screenshot { margin-top: 2mm; height: 275px; width: 434px; float: right; margin-left: 1cm; margin-right: 1mm; background: #bbbbbb; image-rendering: -webkit-optimize-contrast; }
+nav { background: #353535; position: absolute; top: 0; left: 0; width: 100%; padding-top: 2mm; padding-bottom: 2mm; line-height: normal; font-size: 18px; }
+nav > div { max-width: 900px; margin: 0 auto; }
+nav > div > div { margin-left: 1cm; margin-right: 1cm; }
+nav > div > div > a { margin-left: 5mm; color: #afafaf; }
+nav > div > div > a:hover { color: #FFFFFF; border-radius: 0.5mm; text-decoration: none; }
+nav > div > div > a:first-child { margin-left: 0; padding-left: 0; color: #f7f7f7; }
+pre, code, div.code, span.tt { font-family: Consolas, monospace; letter-spacing: -0.5px; color: #19177c; }
+pre, div.code { line-height: 100%; overflow-x: auto; overflow-y: hidden; margin-top: 0; }
+pre.diagram { display: inline-block; color: #333333; line-height: 100%; overflow-x: auto; overflow-y: hidden; width: 100%; }
+span.comment, span.comment span.string { color: #26a135; }
+span.indent { white-space: pre; }
+span.operator { color: #666666; }
+span.string { color: #ba2121; }
+span.tt { line-height: 0; }
+span#docLabelShort { display: none; }
+strong, th { font-weight: 600; }
+table { border-collapse: collapse; }
+td, th { border: 1px solid #d5d5d5; padding: 1mm; padding-left: 3mm; padding-right: 4mm; vertical-align: top; }
+th { text-align: left; }
+ul { padding-left: 5mm; }
+@media only screen and (max-width: 900px) and (min-width: 750px) {
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 18px; }
+  img.screenshot { height: 233.75px; width: 368.9px; /* 85% */ }
+}
+@media only screen and (max-width: 750px) {
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 18px; }
+  div#root { margin-left: 5mm; margin-right: 5mm; }
+  nav > div > div { margin-left: 5mm; margin-right: 5mm; }
+  div.backlinks { left: 5mm; }
+  h1, h2 { margin-left: 0; }
+  img.screenshot { float: none; margin-left: 0; margin-top: 0; height: 206.25px; width: 325.5px; /* 75% */ }
+  span#docLabelShort { display: inline; }
+  span#docLabelLong { display: none; }
+}
+@media only screen and (max-width: 350px) {
+  img.screenshot { height: 103.125px; width: 162.75px; /* 37.5% */ }
+  nav { zoom: 0.80; }
+  div.indent { margin-left: 0; }
+  span#docLabelShort { display: inline; }
+  span#docLabelLong { display: none; }
+  nav > div > div > a:first-child { font-size: 25px; }
+}
+</style>
+</head>
+<body>
+<nav>
+<div><div>
+          <a href="/" style="font-weight: 600;">TMBASIC</a>
+          <a href="doc.html">
+            <span id="docLabelLong">マニュアル</span>
+            <span id="docLabelShort">ドキュメント</span>
+          </a>
+          <a href="https://github.com/electroly/tmbasic">ギットハブ</a>
+        </div></div>
+</nav>
+<div id="root">
+<h1 id="tmbasic">TMBASIC</h1>
+<!-- See DEVELOPERS.md for instructions on generating this screenshot. -->
+<p>
+          <a href="/screenshot.png">
+            <img src="/screenshot.png" alt="スクリーンショット" class="screenshot" width="500">
+          </a>
+        </p>
+<p><strong>TMBASICは<a href="https://en.wikipedia.org/wiki/Programming_language">プログラム言語</a>書き込み用<a href="https://en.wikipedia.org/wiki/Console_application">コンソールプログラム</a></strong>シンプルなコマンドラインツールから洗練されたマウス駆動のユーザーインターフェイスまで、BASIC言語は初心者にも使いやすく、経験豊富なプログラマーにとっては親しみやすく使いやすい言語です。</p>
+<p>
+          <strong>TMBASICは開発中です。お楽しみに!</strong>
+        </p>
+<p>
+          <a href="/doc.html">📄文書</a>
+          <br>
+          <a href="/cheat.html">経験豊富なプログラマのための📄カンニングペーパー</a>
+        </p>
+<h2 id="what-can-i-make-with-tmbasic">TMBASICで何が作れるんですか?</h2>
+<h3 id="command-line-interfaces-clis">コマンドラインインターフェイス(CLI)</h3>
+<div class="indent">
+<p>最も単純なタイプのプログラムです。キーボードからの読み取り入力または<a href="https://en.wikipedia.org/wiki/Command-line_interface#Arguments">シェル引数</a>テキストの行を出力として印刷します。例としては、次のような開発者ツールがあります。<a href="https://en.wikipedia.org/wiki/Git">ギット</a>および<a href="https://en.wikipedia.org/wiki/Interactive_fiction">インタラクティブフィクション</a>次のようなゲーム<a href="https://en.wikipedia.org/wiki/Zork">ゾーク</a>ボタンをクリックし</p>
+</div>
+<h3 id="text-based-user-interfaces-tuis">テキストベースのユーザーインターフェイス(TUI)</h3>
+<div class="indent">
+<p>ウィンドウ、ボタン、プルダウンメニュー、およびその他の最新のユーザインターフェイスコンセプトを備えた、リッチなマウス駆動プログラム。<a href="https://en.wikipedia.org/wiki/Midnight_Commander">ミッドナイトコマンダー</a>TMBASIC自体もTUIのプログラムです</p>
+</div>
+<h3 id="text-mode-games">テキストモードのゲーム</h3>
+<div class="indent">
+<p>空白の画面から始めて、独自のプログラム要素を最初から描画します。ボックス描画文字やその他のUnicode記号を使用して、基本的なグラフィックを作成します。<a href="https://en.wikipedia.org/wiki/NetHack">ネットハック</a>および<a href="https://en.wikipedia.org/wiki/ZZT">ザッ</a>テキストモードのゲームの例です</p>
+</div>
+<h2 id="its-easy">簡単!</h2>
+<h3 id="easy-to-get-started">導入が容易</h3>
+<div class="indent">
+<p>BASIC言語は、プログラミングの経験があれば誰にでもなじみがあります。新しいプログラマーは簡単に学ぶことができます。洗練されたアプリを開発し配布するために必要なものはすべてTMBASICに含まれています。</p>
+</div>
+<h3 id="easy-to-write">書きやすい</h3>
+<div class="indent">
+<p>高品質の最新GUIを開発するには、プロフェッショナルレベルの専門知識が必要です。テキストベースのアプリには視覚効果のオプションがほとんどなく、初心者でも質の高い結果を得ることができます。</p>
+</div>
+<h3 id="easy-to-share">共有が容易</h3>
+<div class="indent">
+<p>TMBASICアプリは、外部ライブラリファイルを必要としないスタンドアロンの実行可能ファイルです。インストールせずにコピーして開くことができます。TMBASIC缶<a href="https://en.wikipedia.org/wiki/Cross_compiler">クロスコンパイル</a>Windows、macOS、Linuxを対象としたネイティブ実行可能ファイル。</p>
+</div>
+<h2 id="compatibility">互換性</h2>
+<div id="compatibilityTable">
+<table>
+<tr>
+<td>
+          <strong>ウィンドウ(Windows)</strong>
+          <br>
+          <small>
+            <nobr>Vista以降</nobr>
+          </small>
+        </td>
+<td><nobr>64ビット</nobr>•<nobr>32ビット</nobr></td>
+</tr>
+<tr>
+<td>
+          <strong>macOS版</strong>
+          <br>
+          <small>
+            <nobr>10.13以降</nobr>
+          </small>
+        </td>
+<td>インテル•Apple Silicon</td>
+</tr>
+<tr>
+<td>
+          <strong>リナックス</strong>
+          <br>
+          <small>
+            <nobr>2.6.39以降</nobr>
+          </small>
+        </td>
+<td><nobr>64ビット</nobr>•<nobr>32ビット</nobr>・アーム64・アーム32</td>
+</tr>
+<tr>
+<td>
+          <strong>アイオーエス</strong>
+        </td>
+<td><a href="https://apps.apple.com/us/app/ish-shell/id1436902243">iSHシェル</a>(Linuxの場合)<nobr>32ビット</nobr>)をクリックし</td>
+</tr>
+<tr>
+<td>
+          <strong>アンドロイド</strong>
+        </td>
+<td><a href="https://termux.com/">Termux</a>(Linux ARM64の場合)</td>
+</tr>
+</table>
+</div>
+<h2 id="license">[ライセンス]</h2>
+<p>TMBASICは<a href="https://en.wikipedia.org/wiki/Open-source_software">オープンソースソフトウェア</a>コンパイルされたプログラムとTMBASIC自体は、多くのオープンソースコンポーネントを使用して構築されています。<a href="https://github.com/electroly/tmbasic/blob/master/doc/third-party-libraries.md">これらのコンポーネントのリストはここにあります</a>プログラムを共有するときは、これらのコンポーネントのライセンスに従う必要があります。ライセンスは寛容で、商用に適しています。プログラムをコンパイルすると、TMBASICは<code>ライセンス.txt</code>TMBASICアプリを共有する際には、このライセンスファイルを含めてください。</p>
+
+</div>
+</body>
+</html>

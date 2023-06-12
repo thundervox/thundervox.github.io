@@ -66,7 +66,7 @@
   - C <sup>(16)</sup>
     - case
     - [ceil()](./cmdfunc/ceil.html)
-    - chomp$()
+    - [chomp$()](./cmdfunc/chomp.html)
     - [chr$()](./cmdfunc/chr.html)
     - circle
     - clear
@@ -123,12 +123,12 @@
   - V <sup>(01)</sup>
     - val()
   - W <sup>(04)</sup>
-    - wait
-    - wend
-    - while
-    - window origin
+    - [wait](./cmdfunc/wait.html)
+    - [wend](./cmdfunc/wend.html)
+    - [while](./cmdfunc/while.html)
+    - [window origin](./cmdfunc/origin.html)
   - X <sup>(01)</sup>
-    - xor()
+    - [xor()](./cmdfunc/xor.html)
   - Symbols and Special characters <sup>(07)</sup>
 - 8\. A few example programs
   - A very simple program

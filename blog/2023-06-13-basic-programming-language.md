@@ -6,7 +6,7 @@ Javascript, Lua, Python のある時代に BASIC を選ぶ理由はない(B4X �
 
 ### そうなるよね。
 結局、ご近所さんの Lua (NeLua, LuaRT...Gideris, love2d) に戻るかな。
-ただね。 Unicode 文字列処理周りのクセがなければいいんだけど(以前は直に文字列渡して処理できなかったような)。
+ただね。 Unicode 文字列処理周りのクセがなければいいんだけど(以前は色々と面倒で処理できなかったような……いまの LuaRT は[大丈夫そう](https://www.luart.org/doc/tour2.html))。
 
 ## つまらなくなってきたので
 

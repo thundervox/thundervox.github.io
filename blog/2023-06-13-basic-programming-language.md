@@ -11,13 +11,24 @@ TMBASIC のドキュメントは未完成、 yabasic は変換作業に飽きた
 今迄できていたことができなくなることは生きているうちは頻繁に起きること。しかしまあ、いままで自らを苦しめて縛り付けていた存在しない世間や他人の目という幻覚や責任といった構造主義を気にしなくなると、変化は早くなるかもしれないね。
 その文、自律心が求められるのだけど。
 
+### Ci-en 使って
+
+四姉妹キマシタワー(物理)建てられるくらい気前よく、気持ちよくお金を頂ける原稿を書いたほうがいいよね。他所様ってさ。お金払ってと言われなければ払いたいと思うだけで忘れてしまうからね。
+
+### badnutam (バッドニュータウン)
+
+*B*litzPlus + *A*MOS + *D*arkBASIC + *nu*BASIC + ... *T*MBASIC *a*nd *m*ore
+
+……みたいな寄せ集めなんか作るわけがない。コードリーディングの題材として扱うならまだしも新規設計は割に合わない。もし、良さそうに思えるなら作ってみるといいかもしれないが、ほかの処理系との圧倒的劣勢を強いられてしまうかと(そもそもレッドオーシャン)。
+
 ## 一晩悩むこともある。
 
-> TMBASIC is a programming language for wfrom simple command line tools to sophisticated mouse-driven user interfaces.
+訳せぬ。
 
-TMBASIC のサイトから引用
+> TMBASIC is a programming language for from simple command line tools to sophisticated mouse-driven user interfaces.
+
+*TMBASIC のサイトから引用*
 
 なんてことはない from 〜 to なんだけど日本語に正しく、かつ自然に訳せないのだよね。コンソールプログラムの種類を指しているのはわかるが適切な訳語がない。
 
-from の前になにか省略している単語なんかないんだが。
-こういった場合は直訳で誤魔化してしまうか、console programs (simple command line tools and/or sophisticated mouse-driven user interfaces) のように書き換えて翻訳するとしか。
+from の前になにか省略している単語なんかないんだが。こういった場合は日本語の例文を探してくるなり、直訳で誤魔化してしまうか、console programs (simple command line tools and/or sophisticated mouse-driven user interfaces) のように書き換えて翻訳するとしか。

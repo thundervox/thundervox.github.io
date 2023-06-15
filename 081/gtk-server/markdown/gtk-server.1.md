@@ -66,11 +66,11 @@ Define a signal which must be sent to the clientprogram when the GTK-server exit
 
 Explain to the GTK-server where it can find the configfile if it cannot be found at a standard location.
 
-**-pre=<string>**
+**-pre=\<string\>**
 
 Put the specified string in front of the GTK-server returnstrings.
 
-**-post=<string>**
+**-post=\<string\>**
 
 Put the specified string behind the GTK-server returnstrings.
 

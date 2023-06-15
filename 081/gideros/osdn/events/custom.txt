@@ -1,0 +1,31 @@
+= イベント
+||	[events/intro はじめに]			||	[events/enterframe Frame イベント]	||	[events/mtkevents ユーザ入力イベント]	||	[events/stop イベントの停止]	||	[events/timer タイマーイベント]	||
+||	[events/stage Stage イベント]	||	'''カスタムイベント'''	||											||									||									||
+
+== カスタムイベント
+新しいカスタムの利用者により定義されたイベントを送信するには '''Event.new()''' 関数でイベントを作成してから '''!EventDispatcher:dispatchEvent()''' で作成したイベントを送信します。
+
+{{{ code lua
+ClassA = Core.class(EventDispatcher)
+ClassB = Core.class(EventDispatcher)
+
+function ClassA:funcA(event)
+    print("funcA", self, event:getType(), event:getTarget())
+end
+
+local a = ClassA.new()
+local b = ClassB.new()
+
+b:addEventListener("myevent", a.funcA, a)   -- b が "myevent" イベントを送信するとき、
+                                            -- a にて a.funcA は
+                                            -- 第一引数として呼び出されます。
+
+b:dispatchEvent(Event.new("myevent"))       -- "funcA" を表示します。
+}}}
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。
+
+

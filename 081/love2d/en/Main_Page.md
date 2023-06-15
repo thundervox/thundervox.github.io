@@ -38,6 +38,6 @@ end
 ```
 
 ----
-This page was last edited on [19 January 2022, at 23:12](https://love2d.org/w/index.php?title=Main_Page&oldid=27392).
+This page was last edited on [20 January 2022, at 23:12](https://love2d.org/w/index.php?title=Main_Page&oldid=27392).
 
 Content is available under [GNU Free Documentation License 1.3](http://www.gnu.org/copyleft/fdl.html) unless otherwise noted.

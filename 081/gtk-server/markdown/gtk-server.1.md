@@ -51,4 +51,72 @@ After the GTK-server has been started with a message queue, subsequent GTK reque
 Here a GTK function is sent to communication channel 1. Make sure there is no space between the number, the comma and the string, otherwise the GTK-server will regard these as separate arguments.
 Message queues also can be retrieved using the Unix command 'ipcs', and can be deleted using the Unix command 'ipcrm'.
 
+## OPTIONS
 
+The GTK-server accepts the following optional parameters:
+
+**-log=<filename>**
+
+Start the GTK-server in debug mode. A file with the name 'filename' will be created. This logfile contains the strings which were received by the GTK-server, and the responses of the GTK-server to those strings.
+
+**-signal=<number>**
+
+Define a signal which must be sent to the clientprogram when the GTK-server exits (UNIX only).
+
+**-cfg=<filename>**
+
+Explain to the GTK-server where it can find the configfile if it cannot be found at a standard location.
+
+**-pre=<string>**
+
+Put the specified string in front of the GTK-server returnstrings.
+
+**-post=<string>**
+
+Put the specified string behind the GTK-server returnstrings.
+
+**-nocreate**
+
+To be used in combination with the fifo option. When specified the pipefile will not be created by the GTK-server, but must be created by the client program.
+
+**-handle**
+
+This option can be used to synchronize communication. When specified the client script can send requests starting with a self-defined handle, for example a unique number. The GTK-server will ignore this handle when parsing the incoming request, but the returnstring for this request will start with the same handle.
+
+**-detach**
+
+When specified the GTK-server will try to spawn to the background.
+
+**-showconf**
+
+When the GTK-server starts, it will read information about GTK-calls from the configfile. This argument will dump the information to stdout. This is particularly usefull when debugging scripts.
+
+**-start=<macro>**
+
+When the GTK-server starts, first execute the specified macro before doing anything else.
+
+**-init=<handshake>**
+
+When running in socket mode, the GTK-server can send a string to handshake and identify itself with the other side.
+
+**-ssl[=cert.pem]**
+
+When running in socket mode, this option sets up an SSL connection. An optional certificatefile can be provided which is presented by the GTK-server to the remote host during the SSL negotiation.
+
+**-ca=cert.pem**
+
+When running in socket mode, this option sets up an SSL connection. A certificatefile must be provided to this option to verify the certificate presented by the remote host.
+
+**-password=string**
+
+To be used in combination with the ssl option. This option should provide a password to decrypt the SSL certificate's key if the key was encrypted.
+
+**-debug**
+
+The GTK-server will start a small graphical panel containing the output of the information exchange between client script and GTK-server. Four buttons are visible: (1) the "Step" button to execute the input from the client script line by line, (2) the "Run" button to let the client script execute its commands all at once, (3) the "Pause" button to pause such execution and (4) a "Quit" button to stop the GTK-server altogether.
+
+**-nonl**
+
+By default, the GTK-server adds a newline after each reply. This option will prevent this from happening.
+
+## SHEBANG

@@ -1,4 +1,4 @@
-# Main Page
+# Main Page (日本語)
 
 ## Welcome
 
@@ -30,6 +30,7 @@ Never used Lua before? It's a really cool language! This manual won't teach you 
 ## Hello World
 
 This is the full source for 'hello world' in LÖVE. Running this code will cause an 800 by 600 window to appear, and display white text on a black background.
+
 ```lua
 function love.draw()
     love.graphics.print('Hello World!', 400, 300)

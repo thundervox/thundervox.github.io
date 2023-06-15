@@ -1,0 +1,26 @@
+= デバイスへの展開
+||	[deployment/intro はじめに]								||	[deployment/player Gideros デバイスプレイヤー]				||	[deployment/devices デバイスへの展開]	||
+||	[deployment/plugins プラグイン搭載のデバイスプレイヤー]	||	[deployment/vendor_sdks 特定 OS 用 SDK のインストール方法]	||											||
+
+== はじめに
+前章では、 Lua で単純なアプリケーションを記述する方法、および PC または Mac のデスクトッププレイヤーでアプリケーションを実行する方法を見てきました。次の手順では''実際のモバイル機器''でアプリケーションを実行する方法を学びます。 Gideros ではモバイル機器用でアプリケーションを実行する方法は二種類あります。一つ目の方法はデバイス (iPhone/iPad, Android デバイスまたは Windows Phone) へ '''Gideros Player''' をインストールする方法です。これはデバイス側にロードを行う開発用アプリケーションです。このアプリケーションは PC または Mac で動作している Gideros Studio から制御できます (デバイスと PC / Mac は同一 LAN に所属している必要があります)。 Gideros Studio で !"Start" (開始) を押すと、 Gideros のプロジェクトはデバイス側で直接実行されます。 !WiFi 経由の即時デバイステストは Gideros 独自の機能です。これにより、機動性に優れたコード開発とテスト工程を可能にします。一般に Gideros Player のインストールは、バイナリと''デバイス側のロード方法''が提供されているため、単純明快です。詳細情報は [deployment/player Gideros デバイスプレイヤー] を参照してください。
+
+二つ目の方法は、'''独立型アプリケーション'''としてエクスポートすることです。これは第三者が Gideros をインストールせずにアプリケーションを受け取って実行できます。究極的には、アプリケーション販売サイト (iTunes, Google Play, Windows (Phone) ストアなど) へ登録・アップロードして、お金儲けができます。この方法によるアプリケーションのエクスポート手順は、アプリケーションのパッケージ作成、展開と各オペレーティングシステム専用の SDK によるコード署名が必要なため、かなり複雑です。このドキュメントでは、パッケージを処理するために必要となるサードパーティ製 SDK のインストール方法、アプリケーションの署名と展開、そして各種アプリケーション販売サイトへのアップロード方法について述べています。詳細情報は [deployment/devices デバイスへの展開] と [deployment/vendor_sdks 特定 OS 用 SDK のインストール方法] を参照してください。つまり、次のソフトウェアは独立型アプリケーションを作成するために必要なものです:
+
+ 1. iOS デバイスでは、 iOS 用の Apple 開発者登録が済んでおり、最新版の Xcode (原著執筆時点の最新版は Xcode 7) をインストールする必要があります。 Xcode を実行するための動作要件は Intel CPU を搭載しており、最低でも OS X 10.10 Yosemite が動作する Mac です。
+ 2. Android デバイスでは Android SDK + Eclipse、または Android Studio が必要です。 Gideros で Android パッケージを直接エクスポートできるようにするためには Android SDK と関連コンポーネントのインストールが必要です (詳細情報は [deployment/vendor_sdks 特定 OS 用 SDK のインストール方法]  を参照してください)。なお、 Android アプリケーションの準備には PC または Mac を使用できます。
+ 3. UWP (Windows Phone と Windows ストア)  では、最低でも Visual Studio 2013 for Windows (および Windows/phone 8.1 SDK) のインストールが必要です。最新版である Visual Studio 2015 のインストールを推奨します。 Gideros では Windows 10  および Windows Phone 10 で正常に実行できる UWP アプリケーションをエクスポートします。 UWP アプリケーションのコンパイルには Windows 8.1 または Windows 10 が動作する PC が必要です。
+
+デスクトップアプリケーション (Windows デスクトップ、または Mac OS X デスクトップ) のエクスポートに関して、特別な要求事項はありません。Gideros は実行可能ファイル、ライブラリとアセットがあるディレクトリを出力します。アプリケーションは実行可能ファイルをダブルクリックするだけで起動できます。第三者へ送信するには、このディレクトリを zip 形式で圧縮して電子メールで送るだけで十分です。エンドユーザーのコンピュータへアプリケーションを自動的にインストールして、スタートメニューからアクセス可能にするために、 [http://nsis.sourceforge.net/Main_Page NSIS] などのプログラムを使用して専用のインストーラを作成することもできます。
+
+モバイル機器で Gideros Player を実行すると、即座にデバイスの参照とアプリケーションのテストができるようになります。デバイスへ Gideros Player を展開して起動すると、デバイスの IP アドレスが表示されます。この IP アドレスは “Player → Player Settings” メニューから入力します:
+
+[[Embed(player_settings.png,float=checked,caption=プレイヤーの設定)]]
+
+開始ボタンを押すと、  !WiFi 経由でモバイル機器へコードとアセットファイルの転送を行い、アプリケーションを開始します。
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。
+

@@ -1,0 +1,41 @@
+= イベント
+||	[events/intro はじめに]			||	[events/enterframe Frame イベント]	||	'''ユーザ入力イベント'''	||	[events/stop イベントの停止]	||	[events/timer タイマーイベント]	||
+||	[events/stage Stage イベント]	||	[events/custom カスタムイベント]	||											||									||									||
+
+== マウス、タッチおよびキーイベント
+Gideros ランタイムは利用者の指が画面に接触したときマウスおよびタッチイベントを送信します。主にマウスイベントはシングルタッチで使われるのに対してタッチイベントはマルチタッチアプリケーションで使用されます。利用者がキーボードの物理キーを押し下げてから、押し上げるとキーイベントが送信されます。
+
+マウス、タッチ、キーイベントはシーンツリーにある '''Sprite''' のインスタンスへ送信されます。シーンツリーに '''Sprite''' がないならば、このインスタンスはマウス、タッチおよびキーイベントを受信しません。
+
+'''注意:''' たとえマウス、あるいはマウスが '''Sprite''' のインスタンスを受信しなくても、インスタンスはマウス／タッチイベントを受信します。
+
+送信順序はシーンツリー階層により決定されます。最後に描画されるスプライトのインスタンス（最上位スプライト）は最初のイベントを受信します。送信順序はシーンツーリー階層により決定されます。最後に描画されるスプライトのインスタンス（最上位スプライト）は最初のイベントを受信します。最上位スプライトの次にあるスプライト最後尾となり、次に来るイベントなどを受信します。
+
+例えば、このようにスプライト階層を扱うと想定します:
+
+[[Embed(sprite_hierachy.png, float=checked, caption=スプライトの階層)]]
+
+それは下記のコードにより構築されます:
+
+{{{ code lua
+local A = Sprite.new()
+local B = Sprite.new()
+local C = Sprite.new()
+local D = Sprite.new()
+local E = Sprite.new()
+local F = Sprite.new()
+
+A:addChild(B)
+A:addChild(C)
+B:addChild(D)
+B:addChild(E)
+C:addChild(F)
+}}}
+
+この階層では、描画順は  A, B, C, D, E, F となりますが、マウス／タッチイベントを受信している間は  F, E, D, C, B, A の順となります。
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。
+

@@ -1,0 +1,29 @@
+= イベント
+||	[events/intro はじめに]			||	[events/enterframe Frame イベント]	||	[events/mtkevents ユーザ入力イベント]	||	'''イベントの停止'''	||	[events/timer タイマーイベント]	||
+||	[events/stage Stage イベント]	||	[events/custom カスタムイベント]	||											||									||									||
+
+== イベント送信の停止
+マウス、タッチおよびキー入力イベントの伝搬を停止することができます。マウス、タッチおよびキー入力イベントの伝搬を停止することができます。イベントの送信を停止するには、'''Event:stopPropagation()''' を起動してリスナー関数へ '''Event''' オブジェクトを渡します。下記の用例において '''MOUSE_DOWN''' イベントは F, E, D および C のときだけ送信されます:
+
+{{{ code lua
+local A = Sprite.new()
+local B = Sprite.new()
+local C = Sprite.new()
+local D = Sprite.new()
+local E = Sprite.new()
+local F = Sprite.new()
+
+-- スプライト C の伝搬を停止します。
+C:addEventListener(Event.MOUSE_DOWN, function(event) event:stopPropagation() end)
+
+A:addChild(B)
+A:addChild(C)
+B:addChild(D)
+B:addChild(E)
+C:addChild(F)
+}}}
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。

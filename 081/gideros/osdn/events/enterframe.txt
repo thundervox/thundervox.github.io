@@ -1,0 +1,56 @@
+= イベント
+||	[events/intro はじめに]			||	'''Frame イベント'''	||	[events/mtkevents ユーザ入力イベント]	||	[events/stop イベントの停止]	||	[events/timer タイマーイベント]	||
+||	[events/stage Stage イベント]	||	[events/custom カスタムイベント]	||											||									||									||
+
+== ENTER_FRAME イベント
+Gideros ランタイムは画面の描画処理前に '''Sprite''' インスタンスに内蔵されている '''Event.ENTER_FRAM'''E イベントを送信します。 視覚的変更は、すべての '''Event.ENTER_FRAME''' リスナー関数により行われて次のフレームで可視状態となります。
+
+最初の基本として、各フレームのスプライトを１ピクセル右側へ移動する用例を示します。この用例では '''onEnterFrame''' 関数がフレームごとにスプライトオブジェクトのＸ座標を増やします:
+
+{{{ code lua
+local sprite = Sprite.new()
+
+local function onEnterFrame(event)
+    sprite:setX(sprite:getX() + 1)
+end
+
+sprite:addEventListener(Event.ENTER_FRAME, onEnterFrame)
+}}}
+
+次の用例では３つの独立したスプライトが各フレームのスプライトを１ピクセル右側へ移動する用例を示します。この用例では、オプション扱いの data 引数を共通のリスナー関数で独立したスプライトを移動させるために使用します:
+
+{{{ code lua
+local sprite1 = Sprite.new()
+local sprite2 = Sprite.new()
+local sprite3 = Sprite.new()
+
+local function onEnterFrame(self, event)
+    self:setX(self:getX() + 1)
+end
+
+sprite1:addEventListener(Event.ENTER_FRAME, onEnterFrame, sprite1)
+sprite2:addEventListener(Event.ENTER_FRAME, onEnterFrame, sprite2)
+sprite3:addEventListener(Event.ENTER_FRAME, onEnterFrame, sprite3)
+}}}
+
+最後に '''Sprite''' クラスを下位クラスにすることで '''Event.ENTER_FRAME''' を登録する用例を示します:
+
+{{{ code lua
+MySprite = Core.class(Sprite)
+
+function MySprite:init()
+    self:addEventListener(Event.ENTER_FRAME, self.onEnterFrame, self)
+end
+
+function MySprite:onEnterFrame(event)
+    self:setX(self:getX() + 1)
+end
+}}}
+
+'''注意:''' '''Event.ENTER_FRAME''' イベントはインスタンスがシーンツリーに存在するかしないかに関わらず、スプライトのインスタンスに送信されます。
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。
+

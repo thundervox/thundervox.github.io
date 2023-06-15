@@ -1,0 +1,14 @@
+= Gideros のクラス
+||	[class_in_gideros/intro はじめに]	|| [class_in_gideros/creating_instances Gideros のクラス]	||	[class_in_gideros/inheritance クラスの継承]	||
+
+== はじめに
+C++, Java および !ActionScript などのプログラミング言語とは違い、クラスには対応していません。けれども Lua はマルチパラダイム言語であり、プロトタイプベースの言語をルーツを持ちます。 Lua では、オブジェクトごとにメタテーブルを使用することで独自の動作を定義することができます。従って、 Lua でオブジェクト指向プログラミングを模倣することができます。
+
+''(Lua におけるオブジェクト指向プログラミングの詳細な議論に関しては、 [http://www.lua.org/pil/16.html] を参照してください)''
+
+Gideros の API デザインは同じパラダイムに従います。 Gideros の API により作成された各インスタンスはメタテーブルが Lua のテーブルとして所属しています。
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。

@@ -3,7 +3,7 @@
 日本語版と英語版のみ MediaWiki → Markdown へ変換しながら作業します。
 
 * [English](./en/Main_Page)
-* [Japanese (日本語)](./ja/)
+* [Japanese (日本語)](./ja/Main_Page)
 
 ## ライセンス
 

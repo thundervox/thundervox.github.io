@@ -1,0 +1,33 @@
+= イベント
+||	[events/intro はじめに]			||	[events/enterframe Frame イベント]	||	[events/mtkevents ユーザ入力イベント]	||	[events/stop イベントの停止]	||	[events/timer タイマーイベント]	||
+||	'''Stage イベント'''	||	[events/custom カスタムイベント]	||											||									||									||
+
+== ADDED_TO_STAGE および REMOVED_FROM_STAGE イベント
+スプライトがシーンツリーへ追加されたならば、スプライトのインスタンスおよび全ての子孫は '''Event.ADDED_TO_STAGE''' イベントを受信します。同様に、スプライトがシーンツリーから削除されたならば、スプライトのインスタンスおよび全ての子孫は '''Event.REMOVED_FROM_STAGE''' イベントを受信します。これらのイベントは '''Sprite''' インスタンスがシーンツリーへ追加または削除されるときに検出を行うために使用されます。例えば、これらのイベントのおかげで、シーンツリーにあるスプライトのみ '''Event.ENTER_FRAME''' イベントへ登録することが可能となります:
+
+{{{ code lua
+MySprite = Core.class(Sprite)
+
+function MySprite:init()
+    self:addEventListener(Event.ADDED_TO_STAGE, self.onAddedToStage, self)
+    self:addEventListener(Event.REMOVED_FROM_STAGE, self.onRemovedFromStage, self)
+end
+
+function MySprite:onAddedToStage(event)
+    self:addEventListener(Event.ENTER_FRAME, self.onEnterFrame, self)
+end
+
+function MySprite:onRemovedFromStage(event)
+    self:removeEventListener(Event.ENTER_FRAME, self.onEnterFrame, self)
+end
+
+function MySprite:onEnterFrame(event)
+    -- フレームのロジックを記述します。
+end
+}}}
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。
+

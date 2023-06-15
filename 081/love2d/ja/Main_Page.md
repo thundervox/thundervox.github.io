@@ -6,16 +6,16 @@
 
 こちらからご興味のある記事を読み進められます。
 
-* [Getting Started]()
-* [Building LÖVE]()
+* [Getting Started](Getting_Started)
+* [Building LÖVE](Building_LOVE)
 * [Category:Tutorials](Tutorials)
-* [love]() (The module)
+* [love](love) (モジュール)
 * [Game Distribution]()
 * [Config Files]()
-* [License]() (Free!)
-* [Category:Games](Games)
-* [Category:Libraries](Libraries)
-* [Category:Software](Software)
+* [Licenseライセンス](License) (フリー！)
+* [ゲーム](Category_Games)
+* [ライブラリ](Category_Libraries)
+* [ソフトウェア](Category_Software)
 * [スニペット](Category_Snippets)
 * [改訂履歴](Version_History)
 
@@ -29,7 +29,7 @@ Lua は未経験ですか？  本当にクールなプログラミング言語�
 
 ## Hello World
 
-これは LÖVE で動く 'Hello World' のれっきとしたソースコードです。実行すると、縦 800, 横 600 のウィンドウで黒色の背景色に白色のテキストを表示します。
+このソースコードは LÖVE で実行すると、縦 800, 横 600 のウィンドウで黒色の背景色に白色の 'Hello World' テキストを表示します。
 
 ```lua
 function love.draw()

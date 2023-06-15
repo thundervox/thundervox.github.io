@@ -1,0 +1,53 @@
+= イベント
+||	[events/intro はじめに]			||	[events/enterframe Frame イベント]	||	[events/mtkevents ユーザ入力イベント]	||	[events/stop イベントの停止]	||	'''タイマーイベント''' 	||
+||	[events/stage Stage イベント]	||	[events/custom カスタムイベント]	||											||									||									||
+
+== タイマーイベント
+'''Timer''' クラスは指定された時間間隔でコードを実行するために使用されます。 '''Timer''' オブジェクトごとに指定された頻度で '''Event.TIMER''' イベントを送信します。
+
+'''Timer''' クラスを使用するための手順は次の通りです:
+
+1. 頻度および '''Event.TIMER''' イベントの合計起動回数を指定して新しい '''Timer''' オブジェクトを作成します。例えば、次のコードは頻度を 1000 に、回数を 5 に設定しています。
+{{{ code lua
+local timer = Timer.new(1000, 5)
+}}}
+
+2. リスナー関数へ '''Event.TIMER''' イベントを登録します。:
+{{{ code lua
+local function onTimer(event)
+	-- 1000 ミリ秒間隔で５回実行します。
+end
+
+timer:addEventListener(Event.TIMER, onTimer)
+}}}
+
+3. タイマーの開始。
+{{{ code lua
+timer:start()
+}}}
+
+4. タイマーを停止するには、 '''Timer:stop()''' 関数を使用できます:
+{{{ code lua
+timer:stop()
+}}}
+
+5. '''Event.TIMER_COMPLETE''' イベントはタイマーイベントが指定された回数完了した後に起動します。
+{{{ code lua
+local function onTimerComplete(event)
+	-- 実行後はタイマーイベント送信回数を５回に指定して実行しました。
+end
+
+timer:addEventListener(Event.TIMER_COMPLETE, onTimerComplete)
+}}}
+
+また、アプリケーションですべてのタイマーを一時停止してから、再開することもできます。これはゲームの一時停止・再開機能を実装するときには非常に有用です:
+{{{ code lua
+Timer.pauseAllTimers()      -- すべてのタイマーを一時停止します。既にタイマーが一時停止しているならば、何も行いません。
+Timer.resumeAllTimers()     -- すべてのタイマーを再開します。既にタイマーが実行中ならば、何も行いません。
+}}}
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。
+

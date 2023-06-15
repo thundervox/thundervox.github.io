@@ -467,7 +467,7 @@ fflush("")
 }
 ```
 
-As you can see the commands ```gtk_widget_set_name``` and ``gtk_rc_parse``` are used. The first command sets the name, the second reads the colordefinitions. Of course these commands should be available in the configfile as well:
+As you can see the commands ```gtk_widget_set_name``` and ```gtk_rc_parse``` are used. The first command sets the name, the second reads the colordefinitions. Of course these commands should be available in the configfile as well:
 
 ```bash
 #

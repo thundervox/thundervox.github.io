@@ -1,5 +1,7 @@
 # LÖVE Wiki
 
+作業状況: 検証段階
+
 日本語版と英語版のみ MediaWiki → Markdown へ変換しながら作業します。
 
 * [English](./en/Main_Page)

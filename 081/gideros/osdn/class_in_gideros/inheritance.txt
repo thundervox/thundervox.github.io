@@ -1,0 +1,56 @@
+= Gideros のクラス
+||	[class_in_gideros/intro はじめに]	|| [class_in_gideros/creating_instances Gideros のクラス]	||	[class_in_gideros/inheritance クラスの継承]	||
+
+== クラスの継承 (インヘリタンス)
+'''Core.class''' は継承により独自クラスを作成するために使用されます。このようにすると自作クラスを作成できます:
+
+{{{ code lua
+MyClass = Core.class()
+}}}
+
+または Gideros API のクラス ('''!EventDispatcher''', '''Sprite''', など) から継承します。例えば、独自の '''!EventDispatcher''' クラスを作成するには:
+
+{{{ code lua
+MyEventDispatcher = Core.class(EventDispatcher)
+}}}
+
+
+継承を使用すると、ゲームの視覚要素と設計を分離して実装することができます。
+{{{ code lua
+StartButton = Core.class(Sprite)     -- スタートボタンクラスの作成。
+Menu = Core.class(Sprite)            -- Menu クラスの作成です。
+
+Player = Core.class(Sprite)          -- Player クラスの作成です。
+
+function Player:walk()
+    -- 歩行のロジック
+end
+
+function Player:jump()
+    -- 跳躍のロジック
+end
+
+stage:addChild(Player.new())     -- Player インスタンスをステージへ作成・追加します。
+}}}
+
+インスタンス作成時に初期化を行うため '''init''' 関数が呼び出されます。
+
+{{{ code lua
+Player = Core.class(Sprite)
+
+function Player:init()
+    -- Player インスタンスの初期化
+    self.health = 100
+    self.speed = 3
+end
+
+local player = Player.new()     -- Player インスタンス作成後に、 init 関数が呼び出されます。
+}}}
+
+継承を使用するかどうかはプログラマの好みと関係あります。カスタムクラスを作成せずにゲーム全体を実行することは可能です。用例の “Jumping Ball”  および “Jumping Balls” に言及すると、クラスを使用したコード、またはそうではないコードにおける設計の違いを確認することができます。
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。
+

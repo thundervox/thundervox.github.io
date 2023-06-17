@@ -13,6 +13,8 @@
 
 ## love.data
 
+* love.data.newDataView
+
 ## love.event
 
 ## love.filesystem
@@ -36,6 +38,8 @@
 ## love.sound
 
 ## love.system
+
+* love.system.getPreferredLocales
 
 ## love.thread
 

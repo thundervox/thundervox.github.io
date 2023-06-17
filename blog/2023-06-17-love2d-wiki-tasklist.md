@@ -5,6 +5,9 @@
 2023年6月17日現在の情報です。
 
 ## love
+* [love.mousemoved](https://love2d.org/wiki/love.mousemoved)
+* [love.mousepressed](https://love2d.org/wiki/love.mousepressed)
+* [love.mousereleased](https://love2d.org/wiki/love.mousereleased)
 
 ## love.audio
 

@@ -55,8 +55,8 @@
 
 * [love.window.getDPIScale](https://love2d.org/wiki/love.window.getDPIScale)
 * [love.window.getDesktopDimensions](https://love2d.org/wiki/love.window.getDesktopDimensions)
-* []()
-* []()
+* [love.window.getMode](https://love2d.org/wiki/love.window.getMode)
+* [love.window.getPosition](https://love2d.org/wiki/love.window.getPosition)
 * []()
 
 ## lua-enet

@@ -57,7 +57,7 @@
 * [love.window.getDesktopDimensions](https://love2d.org/wiki/love.window.getDesktopDimensions)
 * [love.window.getMode](https://love2d.org/wiki/love.window.getMode)
 * [love.window.getPosition](https://love2d.org/wiki/love.window.getPosition)
-* [love.window.getSafeArea](https://love2d.org/wiki/love.window.getSafeArea)
+* ✅[love.window.getSafeArea](https://love2d.org/wiki/love.window.getSafeArea) - 2023年6月17日 (土) 15時11分
 * []()
 * []()
 * []()

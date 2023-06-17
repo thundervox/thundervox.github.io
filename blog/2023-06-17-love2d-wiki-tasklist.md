@@ -1,4 +1,4 @@
-#2023年6月17日 
+# 2023年6月17日 
 
 作業対象の調査用に使う記事です(未完成)。
 
@@ -57,6 +57,10 @@
 * [love.window.getDesktopDimensions](https://love2d.org/wiki/love.window.getDesktopDimensions)
 * [love.window.getMode](https://love2d.org/wiki/love.window.getMode)
 * [love.window.getPosition](https://love2d.org/wiki/love.window.getPosition)
+* [love.window.getSafeArea](https://love2d.org/wiki/love.window.getSafeArea)
+* []()
+* []()
+* []()
 * []()
 
 ## lua-enet

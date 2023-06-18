@@ -33,6 +33,13 @@
 
 ## love.font
 
+* love.font
+* love.font.newBMFontRasterizer
+* love.font.newImageRasterizer
+* love.font.newRasterizer
+* love.font.newTrueTypeRasterizer
+* PixelFormat
+
 ## love.graphics
 
 ## love.image

@@ -58,6 +58,7 @@
 
 ## love.system
 
+* love.system
 * love.system.getPreferredLocales
 
 ## love.thread

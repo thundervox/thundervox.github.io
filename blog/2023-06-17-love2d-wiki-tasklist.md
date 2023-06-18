@@ -43,6 +43,9 @@
 
 ## love.thread
 
+* love.thread
+* Channel:demand
+
 ## love.timer
 
 ## love.touch

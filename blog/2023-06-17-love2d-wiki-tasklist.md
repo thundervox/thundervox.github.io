@@ -19,6 +19,9 @@
 
 ## love.filesystem
 
+* love.filesystem
+* love.filesystem.getDirectoryItems
+
 ## love.font
 
 ## love.graphics
@@ -45,6 +48,7 @@
 
 * love.thread
 * Channel:demand
+* Channel:supply
 
 ## love.timer
 

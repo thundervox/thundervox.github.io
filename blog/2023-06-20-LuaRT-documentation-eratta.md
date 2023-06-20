@@ -35,3 +35,16 @@ https://luart.org/doc/File.html は存在しない。正しくは https://luart.
 <td><span><a href="../sys/File.html">
 ```
 
+## string/index.html
+
+String  functions: 余計な閉括弧が付いている (衍字)。
+
+```
+string.upper()	Convert a string to uppercase    string>
+```
+
+UTF8 functions: UFT8 ではなく UTF8 です (誤字)
+
+```
+string.ufind()	Search for the first pattern in an UFT8 string	number
+```

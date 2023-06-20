@@ -4,10 +4,9 @@
 
 引用の範囲内であると判断していますが、ドキュメントのライセンスが明示されていないため権利等で問題がありましたら Issue にてお知らせください。削除対応させていただきます。
 
-筆者は活動休止中ですが、見つけたら追記します。
+筆者は活動休止中ですが、見つけたら追記します。次回クロール予定は八月以降です。ドキュメントのライセンスが公表された場合はこの限りではありません。
 
 スペルチェックには[WebSpell（オンライン・スペルチェック）](https://lsd-project.jp/ja/service/webspell/index.html)を使用しています。
-
 
 ## canvas/Canvas-show.html
 
@@ -21,3 +20,18 @@ HTTrack でクロールすると canavs/Canvas-show.html が生成されてし�
 ```html
   <link href="../canvas/Canvas-show.html" rel="canonical" />
 ```
+
+## compression/index.html
+
+https://luart.org/doc/File.html は存在しない。正しくは https://luart.org/doc/sys/File.html です。
+
+誤:
+```html
+<td><span><a href="../File.html">
+```
+
+正:
+```html
+<td><span><a href="../sys/File.html">
+```
+

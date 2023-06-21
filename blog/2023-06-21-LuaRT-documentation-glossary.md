@@ -6,6 +6,9 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 * A
 * Access
+* Align
+* All
+* And
 * Any
 * Available
 
@@ -32,18 +35,26 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 * Canvas
 * Color (-ed, -ing)
+* Create
 
 ## D
 
 * Depend
 * Desktop
+* Direction
 * Draw (-ing)
 * Dynamic
 
 ## E
+
+* End
+
+
 ## F
 
+* Fix (-ed)
 * Framework
+* From
 * Function
 
 ## G
@@ -53,19 +64,22 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 ## H
 
+* Height
 
 ## I
 
 * Image
+* Interface
 * Interpreter
 
 ## J
 ## K
 
-
 ## L
 
+* Left
 * Linear
+* Local
 * Lua
 
 ## M
@@ -82,23 +96,31 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * Object
 * Of
 * On
+* Only
 
 ## P
 
+* Paint
 * Picture
 * Program (-med, -mer, -ming)
 * Property (-ies)
 
 ## Q
+
 ## R
 
 * Radial
+* Read
+* Right
 * Representation
 
 ## S
 
 * **Samir Tine**: サミル・タイン - LuaRT の原作者
-
+* Sample
+* Self
+* Simple
+* Start (-s)
 * String
 * Surface
 
@@ -108,10 +130,21 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * To
 
 ## U
+
+* **UI**: ユーアイ - **U**ser **I**nterface の略称
+* Update
+* User
+* Until
+
 ## V
+
+* Visible
+
 ## W
 
-* Windows
+* Width
+* **Win**: ウィン - **Win**dow の略称
+* Window (-ing, -s)
 
 ## X
 ## Y

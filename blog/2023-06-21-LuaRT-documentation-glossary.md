@@ -5,6 +5,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 ## A
 
 * A
+* Access
 * Any
 * Available
 
@@ -47,6 +48,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 ## G
 
+* Get
 * Gradient
 
 ## H
@@ -73,6 +75,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 ## N
 
 * Not
+* Number
 
 ## O
 
@@ -96,11 +99,12 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 * **Samir Tine**: サミル・タイン - LuaRT の原作者
 
+* String
 * Surface
-
 
 ## T
 
+* The
 * To
 
 ## U

@@ -2,7 +2,7 @@
 
 現在、判明している LuaRT のドキュメント([モジュール・リファレンス](https://luart.org/doc/modules.html))に関する問題をまとめたものです。引用の範囲内であると判断していますが、ドキュメントのライセンスが明示されていないため権利等で問題がありましたら Issue にてお知らせください。削除対応させていただきます。
 
-筆者は活動休止中ですが、見つけたら追記します。次回のクロール予定は八月以降です。ドキュメントのライセンスが公表された場合はこの限りではありません。翻訳準備は進めていますが……。
+筆者は活動休止中ですが、あまりにも誤字脱字など散見されるため見つけたら追記します。次回のクロール予定は八月以降です。ドキュメントのライセンスが公表された場合はこの限りではありません。翻訳準備は進めていますが……。
 
 スペルチェックには[WebSpell（オンライン・スペルチェック）](https://lsd-project.jp/ja/service/webspell/index.html)を使用しています。
 
@@ -53,14 +53,22 @@ string.ufind()	Search for the first pattern in an UFT8 string	number
 
 > To get the length in characters for UTF8 strings, do not use the # operator, use string.wlen() instead.
 
-加えてサンプルソースに文字化けがあります。
+加えてサンプルソースに文字化けとwlenがあります。このままでは正常に動作しません。
 
 誤:
 ```lua
 local summer_in_french = "�t�"
+
+...
+
+print( summer_in_french:wlen() )
 ```
 
 正:
 ```lua
 local summer_in_french = "été"
+
+...
+
+print( summer_in_french:ulen() )
 ```

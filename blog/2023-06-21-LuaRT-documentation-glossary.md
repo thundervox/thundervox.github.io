@@ -28,17 +28,20 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 * Binary
 * Be
+* Bottom
 
 * **BULMA**: ブルマ - LuaRT 公式サイトで採用されているオープンソースの CSS フレームワーク
 
 ## C
 
 * Canvas
+* Clear
 * Color (-ed, -ing)
 * Create
 
 ## D
 
+* Description
 * Depend
 * Desktop
 * Direction
@@ -48,7 +51,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 ## E
 
 * End
-
+* Event
 
 ## F
 
@@ -111,7 +114,9 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 * Radial
 * Read
+* Return
 * Right
+* Repeat
 * Representation
 
 ## S
@@ -119,7 +124,9 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * **Samir Tine**: サミル・タイン - LuaRT の原作者
 * Sample
 * Self
+* Side
 * Simple
+* Show
 * Start (-s)
 * String
 * Surface
@@ -128,6 +135,8 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 * The
 * To
+* Top
+* Type
 
 ## U
 

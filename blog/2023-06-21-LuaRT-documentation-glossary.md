@@ -6,10 +6,13 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 * A
 * Access
+* Algorithm
 * Align
 * All
 * And
 * Any
+* Are
+* At
 * Available
 
 * **english**: japanese - description
@@ -27,13 +30,17 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 ## B
 
 * Binary
+* Bird
 * Be
+* Between
 * Bottom
+* Bread
 
 * **BULMA**: ブルマ - LuaRT 公式サイトで採用されているオープンソースの CSS フレームワーク
 
 ## C
 
+* Calculate
 * Canvas
 * Clear
 * Color (-ed, -ing)
@@ -45,12 +52,14 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * Depend
 * Desktop
 * Direction
+* Distance
 * Draw (-ing)
 * Dynamic
 
 ## E
 
 * End
+* Evaluate (-d)
 * Event
 
 ## F
@@ -81,6 +90,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 ## L
 
 * Left
+* Levenshtein
 * Linear
 * Local
 * Lua
@@ -100,13 +110,16 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * Of
 * On
 * Only
+* Output
 
 ## P
 
 * Paint
+* Parameter
 * Picture
 * Program (-med, -mer, -ming)
 * Property (-ies)
+* Print
 
 ## Q
 
@@ -118,13 +131,16 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * Right
 * Repeat
 * Representation
+* Return
 
 ## S
 
 * **Samir Tine**: サミル・タイン - LuaRT の原作者
+* Same
 * Sample
 * Self
 * Side
+* Similarity
 * Simple
 * Show
 * Start (-s)
@@ -147,6 +163,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 ## V
 
+* Value
 * Visible
 
 ## W
@@ -154,6 +171,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * Width
 * **Win**: ウィン - **Win**dow の略称
 * Window (-ing, -s)
+* Word
 
 ## X
 ## Y

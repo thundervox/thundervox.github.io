@@ -74,9 +74,11 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 ## F
 
+* Fast (-er)
 * Fix (-ed)
 * Framework
 * French
+* First
 * From
 * Function
 
@@ -122,6 +124,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 ## O
 
 * Object
+* Occurence
 * Of
 * On
 * Only
@@ -134,6 +137,8 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * Paint
 * Parameter
 * Picture
+* Plain
+* Produce
 * Program (-med, -mer, -ming)
 * Property (-ies)
 * Print
@@ -156,17 +161,21 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * Same
 * Sample
 * Self
+* Search
 * Side
 * Similarity
 * Simple
 * Show
 * Start (-s)
 * String
+* Substring
 * Summer
 * Surface
 
 ## T
 
+* Text
+* Than
 * The
 * To
 * Top

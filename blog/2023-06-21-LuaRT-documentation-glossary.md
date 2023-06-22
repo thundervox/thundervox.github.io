@@ -35,16 +35,20 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * Between
 * Bottom
 * Bread
+* But
 
 * **BULMA**: ブルマ - LuaRT 公式サイトで採用されているオープンソースの CSS フレームワーク
 
 ## C
 
-* Calculate
+* Calculate (-ed, -ing, -s)
 * Canvas
+* Character　(-s)
 * Clear
-* Color (-ed, -ing)
-* Create
+* Color (-ed, -ing, -s)
+* Content
+* Convert (-ed, -ing, -s)
+* Create (-ed, -ing, -s)
 
 ## D
 
@@ -59,7 +63,9 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 ## E
 
 * End
+* Enter
 * Evaluate (-d)
+* Even
 * Event
 
 ## F
@@ -93,6 +99,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 * Levenshtein
 * Linear
 * Local
+* Lowercase
 * Lua
 
 ## M
@@ -101,6 +108,7 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 ## N
 
+* New
 * Not
 * Number
 
@@ -158,7 +166,8 @@ LuaRT の公式ドキュメントを読むために必要とされる単語を�
 
 * **UI**: ユーアイ - **U**ser **I**nterface の略称
 * Update
-* User
+* Uppercase
+* Use (-d, -ing, -r)
 * Until
 
 ## V

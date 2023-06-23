@@ -104,6 +104,12 @@
 
 ## lua-enet
 
+* lua-enet
+* host:broadcast
+* enet.peer:send
+* enet.event
+
+
 ## luasocket
 
 ## utf8

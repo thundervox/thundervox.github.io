@@ -2,7 +2,7 @@
 
 作業対象の更新と調査用に使う記事です(未完成)。
 
-2023年6月17日現在の情報です。
+2023年6月17日現在の情報であり未完成です。
 
 ## love
 * [love.mousemoved](https://love2d.org/wiki/love.mousemoved)
@@ -70,6 +70,10 @@
 * Channel:supply
 
 ## love.timer
+
+* love.timer.getFPS
+* love.timer.getTime
+* love.timer.sleep
 
 ## love.touch
 

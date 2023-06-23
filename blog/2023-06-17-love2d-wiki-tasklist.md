@@ -54,6 +54,11 @@
 
 ## love.mouse
 
+* love.mouse.getCursor
+* love.mouse.isCursorSupported
+* love.mouse.isDown
+* love.mouse.newCursor
+
 ## love.physics
 
 ## love.sound

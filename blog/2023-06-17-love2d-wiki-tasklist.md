@@ -13,6 +13,8 @@
 
 ## love.data
 
+* Data:getFFIPointer
+* Data:getString
 * love.data.newDataView
 
 ## love.event

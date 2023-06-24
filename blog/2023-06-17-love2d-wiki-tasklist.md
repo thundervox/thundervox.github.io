@@ -11,6 +11,19 @@
 
 ## love.audio
 
+* love.audio.newQueueableSource
+* love.audio.newSource
+* love.audio.play
+* love.audio.setEffect
+* EffectType
+* Source
+* Source:getFreeBufferCount
+* Source:isPaused
+* Source:queue
+* Source:setEffect
+* Source:setFilter
+* Source:setRelative
+
 ## love.data
 
 * Data:getFFIPointer

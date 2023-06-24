@@ -44,6 +44,10 @@
 
 ## love.graphics
 
+* love.graphics
+* love.graphics.draw
+* 
+
 ## love.image
 
 ## love.joystick

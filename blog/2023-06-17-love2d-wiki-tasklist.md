@@ -48,9 +48,12 @@
 
 ## love.joystick
 
-## love.keyboard
+## love.keyboard - 更新完了 (最終確認日: 2023年6月24日)
 
+* ✅[love.keyboard.isDown](https://love2d.org/wiki/love.keyboard.isDown) - 2023年6月16日 (金) 12:13 
 * ✅[love.keyboard.isScancodeDown](https://love2d.org/wiki/love.keyboard.isScancodeDown) - 2023年6月24日 (土) 09:56
+* ✅[KeyConstant](https://love2d.org/wiki/KeyConstant) - 2023年6月16日 (金) 11:59
+* ✅[Scancode](https://love2d.org/wiki/Scancode) - 2023年6月16日 (金) 12:03
 
 ## love.math
 
@@ -104,10 +107,10 @@
 * [love.window.getMode](https://love2d.org/wiki/love.window.getMode)
 * [love.window.getPosition](https://love2d.org/wiki/love.window.getPosition)
 * ✅[love.window.getSafeArea](https://love2d.org/wiki/love.window.getSafeArea) - 2023年6月17日 (土) 15時11分
-* []()
-* []()
-* []()
-* []()
+* [](https://love2d.org/wiki/)
+* [](https://love2d.org/wiki/)
+* [](https://love2d.org/wiki/)
+* [](https://love2d.org/wiki/)
 
 ## lua-enet
 

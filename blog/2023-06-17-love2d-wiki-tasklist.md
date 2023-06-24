@@ -50,6 +50,8 @@
 
 ## love.keyboard
 
+* ✅[love.keyboard.isScancodeDown](https://love2d.org/wiki/love.keyboard.isScancodeDown) - 2023年6月24日 (土) 09:56
+
 ## love.math
 
 ## love.mouse

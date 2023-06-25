@@ -16,4 +16,4 @@
 * [やなぎなぎ×THE SIXTH LIE - LEVEL（Audio）](http://youtube.com/watch?v=xFHDC2E4t-M)
 * [TRI4TH - 光 feat.TOSHI-LOW](http://youtube.com/watch?v=HzCV3FJHy5k)
 * [Qisano「キーマ」 Official Music Video](https://youtu.be/K1NfIhchpNw)
-* [打首獄門同好会「はたらきたくない」](https://youtu.be/GR-mLGV0X1l)
+* [打首獄門同好会「はたらきたくない」](https://youtu.be/GR-mLGV0X1I)

@@ -128,6 +128,12 @@
 * [](https://love2d.org/wiki/)
 * [](https://love2d.org/wiki/)
 * [](https://love2d.org/wiki/)
+* [](https://love2d.org/wiki/)
+* [](https://love2d.org/wiki/)
+* [](https://love2d.org/wiki/)
+* [love.window.setPosition](https://love2d.org/wiki/love.window.setPosition)
+* [love.window.setVSync](https://love2d.org/wiki/love.window.setVSync)
+* [love.window.updateMode](https://love2d.org/wiki/love.window.updateMode)
 
 ## lua-enet
 

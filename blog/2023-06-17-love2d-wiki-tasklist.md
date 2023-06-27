@@ -89,11 +89,11 @@
 * love.math.newBezierCurve
 * love.math.randomNormal
 
-## love.mouse - 残り01
+## love.mouse更新完了 (最終確認日: 2023年6月27日)
 
 * ✅love.mouse.getCursor - 2023年2月24日 (金) 02:07 
 * ✅love.mouse.isCursorSupported - 2023年6月16日 (金) 12:29
-* love.mouse.isDown
+* ✅love.mouse.isDown - 2023年6月27日 (火) 15:29
 * ✅love.mouse.newCursor - 2023年6月16日 (金) 12:36
 
 ## love.physics

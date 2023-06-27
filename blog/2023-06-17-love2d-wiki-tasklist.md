@@ -1,4 +1,4 @@
-# 2023年6月17日 
+# 2023年6月17日 - LÖVE modules
 
 作業対象の更新と調査用に使う記事です(未完成)。2023年6月17日現在の情報であり未完成です。
 
@@ -89,7 +89,7 @@
 * love.math.newBezierCurve
 * love.math.randomNormal
 
-## love.mouse更新完了 (最終確認日: 2023年6月27日)
+## love.mouse 更新完了 (最終確認日: 2023年6月27日)
 
 * ✅love.mouse.getCursor - 2023年2月24日 (金) 02:07 
 * ✅love.mouse.isCursorSupported - 2023年6月16日 (金) 12:29
@@ -100,10 +100,10 @@
 
 ## love.sound
 
-## love.system
+## love.system 更新完了 (最終確認日: 2023年6月27日)
 
-* love.system
-* love.system.getPreferredLocales
+* ✅love.system - 2023年6月27日 (火) 15:42
+* love.system.getPreferredLocales (TBA - v12.0 で実装予定)
 
 ## love.thread
 
@@ -157,7 +157,8 @@
 * enet.peer:send
 * enet.event
 
-
 ## luasocket
 
-## utf8
+## utf8 更新完了 (最終確認日: 2023年6月27日)
+
+* ✅utf8 - 2023年6月16日 (金) 12:47

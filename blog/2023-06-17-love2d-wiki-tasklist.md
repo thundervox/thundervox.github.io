@@ -74,6 +74,21 @@
 
 ## love.math
 
+* BezierCurve
+* love.math.newBezierCurve
+* BezierCurve:evaluate
+* BezierCurve:getControlPoint
+* BezierCurve:getDerivative
+* BezierCurve:render
+* BezierCurve:renderSegment
+* love.math.newRandomGenerator
+* RandomGenerator:randomNormal
+* RandomGenerator:random
+* RandomGenerator
+* love.math.newTransform
+* love.math.newBezierCurve
+* love.math.randomNormal
+
 ## love.mouse
 
 * love.mouse.getCursor

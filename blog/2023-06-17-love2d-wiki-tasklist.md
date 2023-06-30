@@ -32,7 +32,8 @@
 
 ## love.event
 
-* love.event.push
+* ✅love.event.pump
+* ✅love.event.push
 * love.event.quit
 * love.event.wait
 

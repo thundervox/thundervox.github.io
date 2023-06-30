@@ -34,17 +34,18 @@
 
 ## love.filesystem
 
-* love.filesystem
+* ✅love.filesystem
+* ✅(File):seek
 * love.filesystem.getDirectoryItems
-* love.filesystem.getIdentity
+* ✅love.filesystem.getIdentity
 * love.filesystem.lines
 * love.filesystem.load
 * love.filesystem.mount
 * love.filesystem.newFileData
-* love.filesystem.read
+* ✅love.filesystem.read
 * love.filesystem.remove
 * love.filesystem.setIdentity
-* love.filesystem.write
+* ✅love.filesystem.write
 
 ## love.font
 

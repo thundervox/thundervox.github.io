@@ -1,5 +1,7 @@
 # RCBASIC
 
+[公式サイト](http://rcbasic.com/)
+
 翻訳状況: TBA
 
 ## 最新版への対応について

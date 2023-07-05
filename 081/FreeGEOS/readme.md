@@ -3,8 +3,8 @@
 * 公式リポジトリ: https://github.com/bluewaysw/pcgeos
 * Wikipedia: https://ja.wikipedia.org/wiki/GEOS_(%E3%82%AA%E3%83%9A%E3%83%AC%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0)
 
-ライセンス: Apache
-作業対象: [2023年03月27日 開発版](https://github.com/bluewaysw/pcgeos/tree/9672d033f192a4fd5103103bf385cc8cd58c48b7)
+* ライセンス: Apache
+* 作業対象: [2023年03月27日 開発版](https://github.com/bluewaysw/pcgeos/tree/9672d033f192a4fd5103103bf385cc8cd58c48b7)
 
 作業検討中(2023年09月〜2024年以降)
 

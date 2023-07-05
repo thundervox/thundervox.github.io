@@ -3,13 +3,13 @@
 * 公式リポジトリ: https://github.com/bluewaysw/pcgeos
 * Wikipedia: https://ja.wikipedia.org/wiki/GEOS_(%E3%82%AA%E3%83%9A%E3%83%AC%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0)
 
-* ライセンス: Apache
+* ライセンス: Apache 2.0 [英語](https://www.apache.org/licenses/LICENSE-2.0) / [日本語](https://licenses.opensource.jp/Apache-2.0/Apache-2.0.html)
 * 作業対象: [2023年03月27日 開発版](https://github.com/bluewaysw/pcgeos/tree/9672d033f192a4fd5103103bf385cc8cd58c48b7)
 
 作業検討中(2023年09月〜2024年以降)
 
 ## なん？
-かつてブラザーやキャノン製の英文ワープロ専用機、ノキアの携帯電話販売店などに採用されていた 16-bit [オペレーティングシステム](http://toastytech.com/guis/bbe.html)ですね(Windows Me 以前と似たようなDOS に GUI OS と各種アプリケーションやオフィススゥイートが乗っている構造)。現在、その大部分は Apache ライセンス下でオープンソース化されています。
+かつてブラザーやキャノン製の英文ワープロ専用機、ノキアの携帯電話販売店などに採用されていた 16-bit [オペレーティングシステム](http://toastytech.com/guis/bbe.html)ですね(Windows Me 以前と似たようなDOS に GUI OS と各種アプリケーションやオフィス・スゥイートが乗っている構造)。現在、その大部分は Apache ライセンス下でオープンソース化されています。
 
 [DOSbian](https://github.com/appnjoy/dosbian) と、この PC/GEOS のローカライズなどすれば当時の技術で日本語ワープロ専用機の復刻(＋レロトフィットキット)やらレトロコンピューティングは可能かと思います……。その先は
 FDD や ISA カードつけたり、

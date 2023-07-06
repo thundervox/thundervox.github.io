@@ -38,11 +38,26 @@ cd pcgeos/Tools/build/product/bbxensem/Scripts
 perl -I. buildbbx.pl
 ```
 
+  - the answers to the questions from the above perl-script are:
+    - nt (プラットフォーム)
+    - y (EC バージョン)
+    - n (DBCS)
+    - y (geodes)
+    - n (VM ファイル)
+    - and then you'll have to enter the path to a "gbuild"-folder in your LOCAL_ROOT-folder.
+  - BTW: It's expected that the current version of the perl-script creates several "Could not find file _name_ in any of the source trees."-messages.
+
 ### ターゲット環境の起動 (DOSBox)
 
 
 
 ## ターゲット環境のカスタマイズ
+
+ターゲット環境を自分用にカスタマイズするときは、 %ROOT_DIR%/bin/basbox.conf ファイルは変更しないでください。
+
+- %LOCAL_ROOT% フォルダにbasebox_user.conf ファイルを作成します。
+
+- Enter the new settings here. These settings overwrite those from basebox.conf. 例えば、
 
 ```toml
 [cpu]

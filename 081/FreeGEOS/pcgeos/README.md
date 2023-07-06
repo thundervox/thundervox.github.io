@@ -39,11 +39,11 @@ perl -I. buildbbx.pl
 ```
 
   - the answers to the questions from the above perl-script are:
-    - nt (プラットフォーム)
-    - y (EC バージョン)
-    - n (DBCS)
-    - y (geodes)
-    - n (VM ファイル)
+    - nt (プラットフォーム 向け)
+    - y (EC バージョン 向け)
+    - n (DBCS 向け)
+    - y (geodes 向け)
+    - n (VM ファイル 向け)
     - and then you'll have to enter the path to a "gbuild"-folder in your LOCAL_ROOT-folder.
   - BTW: It's expected that the current version of the perl-script creates several "Could not find file _name_ in any of the source trees."-messages.
 
@@ -57,7 +57,7 @@ perl -I. buildbbx.pl
 
 - %LOCAL_ROOT% フォルダにbasebox_user.conf ファイルを作成します。
 
-- Enter the new settings here. These settings overwrite those from basebox.conf. 例えば、
+- ここで新しい設定項目を入力します。 These settings overwrite those from basebox.conf. 例えば、
 
 ```toml
 [cpu]

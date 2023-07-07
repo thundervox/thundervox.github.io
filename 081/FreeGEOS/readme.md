@@ -32,3 +32,4 @@ Vircon32 ですね。
 ## 関連情報
 
 * [Marcus Gröber's Homepage](http://mgroeber.de/)
+* [How PC/GEOS found a 5th life as an open source DOS shell | TechRepublic](https://www.techrepublic.com/article/how-pcgeos-found-a-5th-life-as-an-open-source-dos-shell/)

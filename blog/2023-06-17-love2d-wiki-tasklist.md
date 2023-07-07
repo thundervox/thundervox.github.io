@@ -3,6 +3,33 @@
 作業対象の更新と調査用に使う記事です(未完成)。2023年6月17日現在の情報であり未完成です。
 
 ## love
+
+### Functions
+
+* ✅love.getVersion
+* love.hasDeprecationOutput
+* love.isVersionCompatible
+* ✅love.setDeprecationOutput
+
+
+### Callbacks　
+#### General
+
+* ✅[Config Files](https://love2d.org/wiki/Config_Files)
+* ✅love.draw
+* ✅love.errhand
+* love.errorhandler
+* ✅love.load
+* ✅love.lowmemory
+* ✅love.quit
+* ✅love.run
+* ✅love.threaderror
+* ✅[love.update](https://love2d.org/wiki/)
+
+## Window
+
+## Mouse
+
 * [love.mousemoved](https://love2d.org/wiki/love.mousemoved)
 * [love.mousepressed](https://love2d.org/wiki/love.mousepressed)
 * [love.mousereleased](https://love2d.org/wiki/love.mousereleased)

@@ -7,7 +7,7 @@
 ### Functions
 
 * ✅love.getVersion
-* love.hasDeprecationOutput
+* ✅love.hasDeprecationOutput
 * love.isVersionCompatible
 * ✅love.setDeprecationOutput
 

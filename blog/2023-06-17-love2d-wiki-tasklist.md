@@ -12,7 +12,7 @@
 * ✅love.setDeprecationOutput
 
 ### Callbacks　
-#### General
+#### General 更新完了 (最終確認日: 2023年7月8日)
 
 * ✅[Config Files](https://love2d.org/wiki/Config_Files)
 * ✅love.draw
@@ -25,10 +25,10 @@
 * ✅love.threaderror
 * ✅[love.update](https://love2d.org/wiki/)
 
-#### Window
+#### Window 更新完了 (最終確認日: 2023年7月8日)
 
 * ✅love.directorydropped
-* love.displayrotatededed
+* ✅love.displayrotatededed
 * ✅love.filedropped
 * ✅love.focus
 * ✅love.mousefocus

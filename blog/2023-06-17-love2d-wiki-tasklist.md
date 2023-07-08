@@ -43,14 +43,30 @@
 * ✅love.textedited
 * ✅love.textinput
 
-
-## Mouse
+#### Mouse
 
 * [love.mousemoved](https://love2d.org/wiki/love.mousemoved)
 * ✅[love.mousepressed](https://love2d.org/wiki/love.mousepressed)
 * ✅[love.mousereleased](https://love2d.org/wiki/love.mousereleased)
 * ✅love.wheelmoved
 
+#### Joystick
+
+* ✅love.gamepadaxis
+* love.gamepadpressed
+* ✅love.gamepadreleased
+* love.joystickadded
+* ✅love.joystickaxis
+* ✅love.joystickhat
+* ✅love.joystickpressed
+* ✅love.joystickreleased
+* ✅love.joystickremoved
+
+#### Touch
+
+* ✅love.touchmoved
+* ✅love.touchpressed
+* ✅love.touchreleased
 
 ## love.audio
 

@@ -11,7 +11,6 @@
 * love.isVersionCompatible
 * ✅love.setDeprecationOutput
 
-
 ### Callbacks　
 #### General
 
@@ -36,16 +35,16 @@
 * ✅love.resize
 * ✅love.visible
 
-#### Keyboard
+#### Keyboard 更新完了 (最終確認日: 2023年7月8日)
 
 * ✅love.keypressed
 * ✅love.keyreleased
 * ✅love.textedited
 * ✅love.textinput
 
-#### Mouse
+#### Mouse 更新完了 (最終確認日: 2023年7月8日)
 
-* [love.mousemoved](https://love2d.org/wiki/love.mousemoved)
+* ✅[love.mousemoved](https://love2d.org/wiki/love.mousemoved)
 * ✅[love.mousepressed](https://love2d.org/wiki/love.mousepressed)
 * ✅[love.mousereleased](https://love2d.org/wiki/love.mousereleased)
 * ✅love.wheelmoved
@@ -62,7 +61,7 @@
 * ✅love.joystickreleased
 * ✅love.joystickremoved
 
-#### Touch
+#### Touch 更新完了 (最終確認日: 2023年7月8日)
 
 * ✅love.touchmoved
 * ✅love.touchpressed

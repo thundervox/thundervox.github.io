@@ -36,14 +36,21 @@
 * ✅love.resize
 * ✅love.visible
 
+#### Keyboard
+
+* ✅love.keypressed
+* ✅love.keyreleased
+* ✅love.textedited
+* ✅love.textinput
+
 
 ## Mouse
 
 * [love.mousemoved](https://love2d.org/wiki/love.mousemoved)
-* [love.mousepressed](https://love2d.org/wiki/love.mousepressed)
-* [love.mousereleased](https://love2d.org/wiki/love.mousereleased)
-* love.displayrotated
-* love.filedropped
+* ✅[love.mousepressed](https://love2d.org/wiki/love.mousepressed)
+* ✅[love.mousereleased](https://love2d.org/wiki/love.mousereleased)
+* ✅love.wheelmoved
+
 
 ## love.audio
 

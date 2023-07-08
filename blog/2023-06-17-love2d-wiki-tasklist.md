@@ -17,7 +17,7 @@
 * ✅[Config Files](https://love2d.org/wiki/Config_Files)
 * ✅love.draw
 * ✅love.errhand
-* love.errorhandler
+* ✅love.errorhandler
 * ✅love.load
 * ✅love.lowmemory
 * ✅love.quit

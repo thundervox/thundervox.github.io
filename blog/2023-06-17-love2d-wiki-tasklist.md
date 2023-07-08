@@ -54,7 +54,7 @@
 * ✅love.gamepadaxis
 * love.gamepadpressed
 * ✅love.gamepadreleased
-* love.joystickadded
+* ✅love.joystickadded
 * ✅love.joystickaxis
 * ✅love.joystickhat
 * ✅love.joystickpressed

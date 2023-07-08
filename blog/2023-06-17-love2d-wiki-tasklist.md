@@ -26,7 +26,16 @@
 * ✅love.threaderror
 * ✅[love.update](https://love2d.org/wiki/)
 
-## Window
+#### Window
+
+* ✅love.directorydropped
+* love.displayrotatededed
+* ✅love.filedropped
+* ✅love.focus
+* ✅love.mousefocus
+* ✅love.resize
+* ✅love.visible
+
 
 ## Mouse
 
@@ -195,3 +204,12 @@
 ## utf8 更新完了 (最終確認日: 2023年6月27日)
 
 * ✅utf8 - 2023年6月16日 (金) 12:47
+
+## その他
+
+* 0.5.0
+* 11.4
+* 12.0
+* arcLine
+* Code Style
+* Game Distribution

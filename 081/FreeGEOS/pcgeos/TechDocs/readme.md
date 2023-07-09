@@ -1,3 +1,5 @@
+# GEOS SDK Documentation 非公式日本語版
+
 TBA (準備中)
 
 ## 備考
@@ -6,12 +8,15 @@ TBA (準備中)
 
 Nokia 9000/9000i Communicator と Tandy Zoomer 関連資料は実機と当時の開発機材がないため、翻訳対象外とする予定です。
 
-
 ## ディレクトリ構成
-
 
 ### ASCII 形式
 
+* **AsmRef**
+* **Concepts**
+* **Esp**
+* **Objects**
+* **QuickRef**
 * **Routines** : 
 * **Tools** : ツールガイド
 * **Tutorial** : チュートリアル
@@ -19,25 +24,28 @@ Nokia 9000/9000i Communicator と Tandy Zoomer 関連資料は実機と当時の
 
 ## HTML 形式 (Markdown 変換版) 
 
-* **Communication**
-* **CRef**
-* **DataMgmt**
-* **docHelpers**
-* **docImages**
-* **docIndexes**
-* **Files**
-* **Graphics**
-* **Intro**
-* **Kernel**
-* **Libraries**
-* **LRef**
-* **Memory**
+* **Communication** : 通信
+* **CRef** : C 言語 API リファレンス
+* **DataMgmt** : データ管理トピックス
+* **docHelpers** : ドキュメントの補助ページ
+* **docImages** : ナビゲーションバーのアセット (Unicode シンボルへ置換のため廃止予定)
+* **docIndexes** : 索引
+* **Files** : ファイル
+* **Graphics** : グラフィックス
+* **Intro** : ようこそ GEOS プログラミングへ
+* **Kernel** : カーネル関数
+* **Libraries** : ライブラリ
+* **LRef** : 言語リファレンス
+* **Memory** : メモリ管理
 * **Nokia9000** : Nokia 9000/9000i Communicator プログラマーズ・ガイド (廃止予定)
-* **^Programming**
-* **SysObjects**
-* **Tools**
-* **UI**
+* **Programming** : プログラミングトピックス
+* **SysObjects** : システムオブジェクトクラス
+* **Tools** : ツール
+* **UI** : ユーザインタフェース
 
 ## Markdown 形式
 
+## PostScript 形式
+
+## Adobe Acrobat 形式
 

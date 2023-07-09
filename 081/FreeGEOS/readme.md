@@ -33,4 +33,5 @@ Vircon32 ですね。
 
 * [blueway.Softworks (公式サイト)](https://blog.bluewaysw.de/)
 * [Marcus Gröber's Homepage](http://mgroeber.de/)
+* [GEOS-InfoBase / Startseite](https://www.geos-infobase.de/)
 * [How PC/GEOS found a 5th life as an open source DOS shell | TechRepublic](https://www.techrepublic.com/article/how-pcgeos-found-a-5th-life-as-an-open-source-dos-shell/)

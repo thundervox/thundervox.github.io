@@ -53,13 +53,13 @@ cd pcgeos/Tools/build/product/bbxensem/Scripts
 perl -I. buildbbx.pl
 ```
 
-  - の Perl スクリプト (``buildbbx.pl``) の質問に関する回答は以下のとおりです。
+  - 上述の Perl スクリプト (``buildbbx.pl``) の質問に関する回答は以下のとおりです。
     - nt (プラットフォーム用)
     - y (EC バージョン用)
     - n (DBCS 用)
     - y (geodes 用)
     - n (VM ファイル用)
-    - and then you'll have to enter the path to a "gbuild"-folder in your LOCAL_ROOT-folder.
+    - 続けて ``gbuild`` フォルダにある LOCAL_ROOT (ローカルのルート) フォルダのパスを入力してください。
   - BTW: It's expected that the current version of the perl-script creates several "Could not find file _name_ in any of the source trees."-messages.
 
 ### ターゲット環境の起動 (DOSBox)

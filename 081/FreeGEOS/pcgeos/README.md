@@ -10,7 +10,7 @@
 [**sed**](https://ja.wikipedia.org/wiki/Sed_(%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF)) と [**Perl**](https://ja.wikipedia.org/wiki/Perl) のインストールを済ませてあることです。
 ほとんどの Linux ディストリビューションにおいて sed と Perl は標準でインストールされています。 Windows ユーザは[公式 Git ディストリビューション](https://git-scm.com) (または Cygwin) のダウンロードとインストールしてから ``sed`` の存在する ``usr/bin`` にパスを通します。なお、 Perl については派生版である [**Strawberry Perl**](http://strawberryperl.com/) を使用してください。
 
-On Linux if you want to use swat for debugging with good system integration is required to install xdotools package. It ensures swat receives the keyboard focus once needed. 
+Linux において正確なシステム統合によるデバッグ作業で swat を使う場合は、 xdotools パッケージのインストールが必要です。このパッケージをインストールすることで必要なときに swat でキーボードフォーカスを必ず受け取ることができるようなります。
 
 ## WATCOM のインストールと環境変数の設定
 

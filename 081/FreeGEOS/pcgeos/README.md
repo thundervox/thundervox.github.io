@@ -7,8 +7,8 @@
 ## ビルド要件
 
 この SDK を使うのに必要なことは
-[**sed**](https://ja.wikipedia.org/wiki/Sed) と [**perl**](https://ja.wikipedia.org/wiki/Perl) のインストールを済ませてあることです。
-ほとんどの Linux ディストリビューションにおいて Sed と Perl は標準でインストールされています。
+[**sed**](https://ja.wikipedia.org/wiki/Sed_(%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF)) と [**Perl**](https://ja.wikipedia.org/wiki/Perl) のインストールを済ませてあることです。
+ほとんどの Linux ディストリビューションにおいて sed と Perl は標準でインストールされています。
 Windows-users should install "sed" by adding the usr/bin of the official git distribution (https://git-scm.com) to the path (or Cygwin), and should use the perl-variant "Strawberry Perl" (http://strawberryperl.com/).
 
 On Linux if you want to use swat for debugging with good system integration is is required to install xdotools package. It ensures swat receives the keyboard focus once needed. 
@@ -53,7 +53,7 @@ cd pcgeos/Tools/build/product/bbxensem/Scripts
 perl -I. buildbbx.pl
 ```
 
-  - the answers to the questions from the above perl-script are:
+  - の Perl スクリプト (``buildbbx.pl``) の質問に関する回答は以下のとおりです。
     - nt (プラットフォーム用)
     - y (EC バージョン用)
     - n (DBCS 用)

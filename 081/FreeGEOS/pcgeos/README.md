@@ -8,9 +8,9 @@
 
 この SDK を使うのに必要なことは
 [**sed**](https://ja.wikipedia.org/wiki/Sed_(%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF)) と [**Perl**](https://ja.wikipedia.org/wiki/Perl) のインストールを済ませてあることです。
-ほとんどの Linux ディストリビューションにおいて sed と Perl は標準でインストールされています。 Windows ユーザは[公式 Git ディストリビューション](https://git-scm.com) (または Cygwin) のダウンロードとインストールしてから ``sed`` の存在する usr/bin にパスを通します。なお、 Perl については派生版である [Strawberry Perl](http://strawberryperl.com/) を使用してください。
+ほとんどの Linux ディストリビューションにおいて sed と Perl は標準でインストールされています。 Windows ユーザは[公式 Git ディストリビューション](https://git-scm.com) (または Cygwin) のダウンロードとインストールしてから ``sed`` の存在する ``usr/bin`` にパスを通します。なお、 Perl については派生版である [**Strawberry Perl**](http://strawberryperl.com/) を使用してください。
 
-On Linux if you want to use swat for debugging with good system integration is is required to install xdotools package. It ensures swat receives the keyboard focus once needed. 
+On Linux if you want to use swat for debugging with good system integration is required to install xdotools package. It ensures swat receives the keyboard focus once needed. 
 
 ## WATCOM のインストールと環境変数の設定
 
@@ -58,12 +58,17 @@ perl -I. buildbbx.pl
     - n (DBCS 用)
     - y (geodes 用)
     - n (VM ファイル用)
-    - 続けて ``gbuild`` フォルダにある LOCAL_ROOT (ローカルのルート) フォルダのパスを入力してください。
+    - 続けて ``gbuild`` フォルダにある ``LOCAL_ROOT`` で指定したフォルダのパスを入力してください。
   - BTW: It's expected that the current version of the perl-script creates several "Could not find file _name_ in any of the source trees."-messages.
 
 ### ターゲット環境の起動 (DOSBox)
 
-
+- make sure dosbox is added to your path variable, or [pcgeos-basebox](https://github.com/bluewaysw/pcgeos-basebox/tags) is installed and configured using BASEBOX environmental variable
+- `cd pcgeos`
+- `bin/target`
+  - the "swat" debugger stops immediately after the first stage of the boot process
+  - enter `quit` at the "=>" prompt to detach the debugger and launch PC/GEOS stand-alone
+    - or: enter `c` to launch with the debugger running in the background (slower)
 
 ## ターゲット環境のカスタマイズ
 
@@ -96,3 +101,6 @@ PC/GEOS comes with extensive technical documentation that describes tools, progr
   - [ドライバ開発キット](TechDocs/Markdown/ddk.md)
 
 # 開発参加
+
+We are on https://bluewaysw.slack.com/ for more efficient collaboration. Please register at https://blog.bluewaysw.de/ for MyGEOS and use the Slack section and receive access to our developer community. Welcome!
+

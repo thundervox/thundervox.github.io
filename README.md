@@ -7,6 +7,8 @@ Blog for experimental purpose.
  - Candy Apple の執筆再開
  - OSDN の退会準備
  - ELENA, Gravity 言語関連の邦訳サイト公開
+ - PC/GEOS 関連
+ - オープンソース翻訳入門講座(短期集中連載)
  - 過去の翻訳物の再公開 (081ディレクトリ)
  - Ring 関連のサイト移行
  - 活動内容の棚卸し

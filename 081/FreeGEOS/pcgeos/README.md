@@ -8,8 +8,7 @@
 
 この SDK を使うのに必要なことは
 [**sed**](https://ja.wikipedia.org/wiki/Sed_(%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF)) と [**Perl**](https://ja.wikipedia.org/wiki/Perl) のインストールを済ませてあることです。
-ほとんどの Linux ディストリビューションにおいて sed と Perl は標準でインストールされています。
-Windows-users should install "sed" by adding the usr/bin of the official git distribution (https://git-scm.com) to the path (or Cygwin), and should use the perl-variant "Strawberry Perl" (http://strawberryperl.com/).
+ほとんどの Linux ディストリビューションにおいて sed と Perl は標準でインストールされています。 Windows ユーザは[公式 Git ディストリビューション](https://git-scm.com) (または Cygwin) のダウンロードとインストールしてから ``sed`` の存在する usr/bin にパスを通します。なお、 Perl については派生版である [Strawberry Perl](http://strawberryperl.com/) を使用してください。
 
 On Linux if you want to use swat for debugging with good system integration is is required to install xdotools package. It ensures swat receives the keyboard focus once needed. 
 

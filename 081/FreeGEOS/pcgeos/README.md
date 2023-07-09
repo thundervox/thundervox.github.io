@@ -1,16 +1,27 @@
 # PC/GEOS
 
-> この記事は [README.md](https://github.com/bluewaysw/pcgeos/blob/f088abcfe1600f00f103c80ce90427ad647bf91c/README.md) (Dec 31, 2022 版) の非公式翻訳です。まだまだ未完成ですが、順次作業を進めていきます。
+> この記事は [README.md](https://github.com/bluewaysw/pcgeos/blob/f088abcfe1600f00f103c80ce90427ad647bf91c/README.md) (2022年12月31日版) の非公式翻訳です。まだまだ未完成ですが、順次作業を進めていきます。
 
 # ビルド方法
 
 ## ビルド要件
 
-The SDK requires "sed" (https://en.wikipedia.org/wiki/Sed) and "perl" (https://en.wikipedia.org/wiki/Perl) to be installed. Both are pre-installed in most Linux-distributions. Windows-users should install "sed" by adding the usr/bin of the official git distribution (https://git-scm.com) to the path (or Cygwin), and should use the perl-variant "Strawberry Perl" (http://strawberryperl.com/).
+この SDK を使うのに必要なことは
+[**sed**](https://ja.wikipedia.org/wiki/Sed) と [**perl**](https://ja.wikipedia.org/wiki/Perl) のインストールを済ませてあることです。
+ほとんどの Linux ディストリビューションにおいて Sed と Perl は標準でインストールされています。
+Windows-users should install "sed" by adding the usr/bin of the official git distribution (https://git-scm.com) to the path (or Cygwin), and should use the perl-variant "Strawberry Perl" (http://strawberryperl.com/).
 
 On Linux if you want to use swat for debugging with good system integration is is required to install xdotools package. It ensures swat receives the keyboard focus once needed. 
 
 ## WATCOM のインストールと環境変数の設定
+
+```batch
+set WATCOM=c:\WATCOM-V2
+set ROOT_DIR=C:\Geos\pcgeos
+set LOCAL_ROOT=c:\Geos\pcgeos\Local
+set BASEBOX=basebox
+PATH %WATCOM%\binnt;%ROOT_DIR%\bin;C:\Geos\pcgeos-basebox\binnt;%PATH%;c:\Program Files\Git\usr\bin
+```
 
 ## PC/GEOS SDK のビルド
 
@@ -43,11 +54,11 @@ perl -I. buildbbx.pl
 ```
 
   - the answers to the questions from the above perl-script are:
-    - nt (プラットフォーム 向け)
-    - y (EC バージョン 向け)
-    - n (DBCS 向け)
-    - y (geodes 向け)
-    - n (VM ファイル 向け)
+    - nt (プラットフォーム用)
+    - y (EC バージョン用)
+    - n (DBCS 用)
+    - y (geodes 用)
+    - n (VM ファイル用)
     - and then you'll have to enter the path to a "gbuild"-folder in your LOCAL_ROOT-folder.
   - BTW: It's expected that the current version of the perl-script creates several "Could not find file _name_ in any of the source trees."-messages.
 
@@ -61,7 +72,7 @@ perl -I. buildbbx.pl
 
 - %LOCAL_ROOT% フォルダにbasebox_user.conf ファイルを作成します。
 
-- ここで新しい設定項目を入力します。 These settings overwrite those from basebox.conf. 例えば、
+- ここで新しい設定項目を入力します。ここで記述した内容は basebox.conf の設定項目を上書きします。例えば、
 
 ```toml
 [cpu]

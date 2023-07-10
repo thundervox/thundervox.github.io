@@ -2,6 +2,8 @@
 
 作業対象の更新と調査用に使う記事です(未完成)。2023年6月17日現在の情報であり未完成です。
 
+version.12.0 移行については別の機会とします。
+
 ## love
 
 ### Functions
@@ -155,13 +157,33 @@
 * ✅Joystick:isVibrationSupported
 * Joystick:setPlayerIndex
 * Joystick:setVibration
-* GamepadAxis
+* ✅love.joystick.close
+* ✅love.joystick.getAxes
+* ✅love.joystick
+* love.joystick.getAxis
+* love.joystick.getBall
+* love.joystick.getGamepadMappingString
+* love.joystick.getHat
+* ✅love.joystick.getJoystickCount
+* ✅love.joystick.getJoysticks
+* love.joystick.getName
+* love.joystick.getNumAxes
+* love.joystick.getNumBalls
+* love.joystick.getNumButtons
+* love.joystick.getNumHats
+* love.joystick.getNumJoysticks
+* ✅love.joystick.isDown
+* ✅love.joystick.isOpen
+* ✅love.joystick.loadGamepadMappings
+* ✅love.joystick.open
+* ✅love.joystick.saveGamepadMappings
+* ✅love.joystick.setGamepadMapping
+* ✅GamepadAxis
 * ✅GamepadButton
 * GamepadType
 * ✅JoystickHat
 * ✅JoystickInputType
 * JoystickType
-* 
 
 
 ## love.keyboard - 更新完了 (最終確認日: 2023年6月24日)

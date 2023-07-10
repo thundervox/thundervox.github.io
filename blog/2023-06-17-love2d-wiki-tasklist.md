@@ -51,10 +51,10 @@ version.12.0 以降については別の機会とします。
 * ✅[love.mousereleased](https://love2d.org/wiki/love.mousereleased)
 * ✅love.wheelmoved
 
-#### Joystick
+#### Joystick 更新完了 (最終確認日: 2023年7月10日)
 
 * ✅love.gamepadaxis
-* love.gamepadpressed
+* ✅love.gamepadpressed
 * ✅love.gamepadreleased
 * ✅love.joystickadded
 * ✅love.joystickaxis

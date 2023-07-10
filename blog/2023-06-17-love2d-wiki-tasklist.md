@@ -129,6 +129,41 @@
 
 ## love.joystick
 
+* Joystick
+* ✅love.joystick.getJoysticks
+* ✅Joystick:getAxes
+* ✅Joystick:getAxis
+* ✅Joystick:getAxisCount
+* ✅Joystick:getButtonCount
+* ✅Joystick:getDeviceInfo
+* ✅Joystick:getGUID
+* Joystick:getGamepadAxis
+* Joystick:getGamepadMapping
+* ✅Joystick:getGamepadMappingString
+* Joystick:getGamepadType
+* ✅Joystick:getHat
+* Joystick:getHatCount
+* ✅Joystick:getID
+* Joystick:getJoystickType
+* ✅Joystick:getName
+* Joystick:getPlayerIndex
+* ✅Joystick:getVibration
+* ✅Joystick:isConnected
+* Joystick:isDown
+* Joystick:isGamepad
+* Joystick:isGamepadDown
+* ✅Joystick:isVibrationSupported
+* Joystick:setPlayerIndex
+* Joystick:setVibration
+* GamepadAxis
+* ✅GamepadButton
+* GamepadType
+* ✅JoystickHat
+* ✅JoystickInputType
+* JoystickType
+* 
+
+
 ## love.keyboard - 更新完了 (最終確認日: 2023年6月24日)
 
 * ✅[love.keyboard.isDown](https://love2d.org/wiki/love.keyboard.isDown) - 2023年6月16日 (金) 12:13 

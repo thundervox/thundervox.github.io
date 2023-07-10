@@ -221,6 +221,10 @@ version.12.0 移行については別の機会とします。
 
 ## love.sound
 
+* SoundData:setSample
+* love.sound.newDecoder
+* love.sound.newSoundData
+
 ## love.system 更新完了 (最終確認日: 2023年6月27日)
 
 * ✅love.system - 2023年6月27日 (火) 15:42

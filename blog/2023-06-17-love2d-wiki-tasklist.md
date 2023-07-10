@@ -2,7 +2,7 @@
 
 作業対象の更新と調査用に使う記事です(未完成)。2023年6月17日現在の情報であり未完成です。
 
-version.12.0 移行については別の機会とします。
+version.12.0 以降については別の機会とします。
 
 ## love
 
@@ -10,7 +10,7 @@ version.12.0 移行については別の機会とします。
 
 * ✅love.getVersion
 * ✅love.hasDeprecationOutput
-* love.isVersionCompatible
+* ✅love.isVersionCompatible
 * ✅love.setDeprecationOutput
 
 ### Callbacks　

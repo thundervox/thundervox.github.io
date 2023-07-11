@@ -10,7 +10,7 @@ The following documents cover some of the ins and outs of GEOS programming.
 
 The Tutorial introduces some important programming topics.
 
-[GEOS プログラミング](./GOCLanguage/index.md)
+[GEOS プログラミング](./GOCLanguage/index_jp.md)
 
 GEOS オブジェクトモデル、 Goc キーワード
 

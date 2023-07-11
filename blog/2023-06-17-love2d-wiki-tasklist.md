@@ -129,6 +129,32 @@ version.12.0 以降については別の機会とします。
 
 ## love.image
 
+* ✅CompressedImageData
+* ✅CompressedImageData:getDimensions
+* ✅CompressedImageData:getFormat
+* ✅CompressedImageData:getHeight
+* ✅CompressedImageData:getMipmapCount
+* ✅CompressedImageData:getWidth
+* ImageData
+* ImageData:encode
+* ✅ImageData:getDimensions
+* ✅ImageData:getFormat
+* ✅ImageData:getHeight
+* ✅ImageData:getPixel
+* ✅ImageData:getString
+* ✅ImageData:getWidth
+* ImageData:mapPixel
+* ImageData:paste
+* ✅ImageData:setPixel
+* ✅love.image
+* ✅love.image.isCompressed
+* ✅love.image.newCompressedData
+* ✅love.image.newEncodedImageData
+* CompressedImageFormat
+* ImageEncodeFormat
+* PixelFormat
+* Image Formats
+
 ## love.joystick
 
 * Joystick

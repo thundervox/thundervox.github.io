@@ -1,6 +1,6 @@
 # GEOS SDK Documentation 非公式日本語版
 
-TBA (準備中)
+TBA (準備中...しばらく html 版)
 
 ## 備考
 

@@ -1,12 +1,10 @@
-# Welcome to GEOS Programming
+# ようこそ GEOS プログラミングへ
 
-## GEOS SDK 技術資料: Programming Topics
-
-|🔼 Up: GEOS SDK 技術資料
+## GEOS SDK 技術資料: プログラミング関連
 
 The following documents cover some of the ins and outs of GEOS programming.
 
-[Tutorial](../Intro/Tutorial/)
+[チュートリアル](../Intro/Tutorial/)
 
 The Tutorial introduces some important programming topics.
 
@@ -22,8 +20,6 @@ Alphabetic listing of Goc keywords, with syntax and descriptions.
 
 GEOS-specific string functions; Goc keywords to make your program more easily localizable.
 
-[Swat Introduction](../Tools/Swat/)
+[Swat 入門](../Tools/Swat/)
 
-Using Swat, the GEOS debugger.
-
-| 🔼 Up: GEOS SDK 技術資料
+GEOS デバッガ Swat の使いかた

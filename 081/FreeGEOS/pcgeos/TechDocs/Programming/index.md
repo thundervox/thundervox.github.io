@@ -2,8 +2,6 @@
 
 ## GEOS SDK Documentation: Programming Topics
 
-|🔼 Up: GEOS SDK TechDocs
-
 The following documents cover some of the ins and outs of GEOS programming.
 
 [Tutorial](../Intro/Tutorial/)
@@ -25,5 +23,3 @@ GEOS-specific string functions; Goc keywords to make your program more easily lo
 [Swat Introduction](../Tools/Swat/)
 
 Using Swat, the GEOS debugger.
-
-| 🔼 Up: GEOS SDK TechDocs

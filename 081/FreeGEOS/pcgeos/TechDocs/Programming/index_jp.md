@@ -1,8 +1,8 @@
 # Welcome to GEOS Programming
 
-## GEOS SDK Documentation: Programming Topics
+## GEOS SDK 技術資料: Programming Topics
 
-|🔼 Up: GEOS SDK TechDocs
+|🔼 Up: GEOS SDK 技術資料
 
 The following documents cover some of the ins and outs of GEOS programming.
 
@@ -10,7 +10,7 @@ The following documents cover some of the ins and outs of GEOS programming.
 
 The Tutorial introduces some important programming topics.
 
-[GEOS プログラミング](./GOCLanguage/)
+[GEOS プログラミング](./GOCLanguage/index.md)
 
 GEOS オブジェクトモデル、 Goc キーワード
 
@@ -18,7 +18,7 @@ GEOS オブジェクトモデル、 Goc キーワード
 
 Alphabetic listing of Goc keywords, with syntax and descriptions.
 
-[Localization](./Localization/)
+[ローカライゼーション](./Localization/)
 
 GEOS-specific string functions; Goc keywords to make your program more easily localizable.
 
@@ -26,4 +26,4 @@ GEOS-specific string functions; Goc keywords to make your program more easily lo
 
 Using Swat, the GEOS debugger.
 
-| 🔼 Up: GEOS SDK TechDocs
+| 🔼 Up: GEOS SDK 技術資料

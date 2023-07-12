@@ -17,10 +17,10 @@ Because GEOS implements its own messaging and object system, standard C programm
   * 3.2 [オブジェクトの構造](GOCLanguage_d_jp.md)
   * 3.3 [GEOS メッセージシステム](GOCLanguage_e_jp.md)
 * 4\. [Using Classes and Objects](GOCLanguage_f_jp.md)
-  * 4.1 [Defining a New Class or Subclass](GOCLanguage_10_jp.md)
+  * 4.1 [クラスやサブクラスの新規定義](GOCLanguage_10_jp.md)
   * 4.2 [Non-relocatable Data](GOCLanguage_11_jp.md)
   * 4.3 [メソッドの定義](GOCLanguage_12_jp.md)
   * 4.4 [オブジェクトの宣言](GOCLanguage_13_jp.md)
   * 4.5 [メッセージの送信](GOCLanguage_14_jp.md)
   * 4.6 [オブジェクトの管理](GOCLanguage_15_jp.md)
-  * 
+

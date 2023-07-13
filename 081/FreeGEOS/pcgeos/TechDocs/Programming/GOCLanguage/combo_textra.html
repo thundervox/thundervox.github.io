@@ -1,0 +1,1581 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<!-- This page was automatically generated from a bunch of smaller pages. -->
+<META NAME="copyright" CONTENT="Copyright GEOWORKS">
+<LINK REL="STYLESHEET" HREF="../../docHelpers/style.css">
+<LINK REV="MADE" HREF="mailto:doc-feedback@geoworks.com">
+<TITLE>GEOSプログラミング</TITLE>
+</HEAD>
+<BODY BGCOLOR="#ffffdf">このドキュメントは<A HREF="index.htm">複数ページのドキュメント</A>簡単な印刷に適しています。<A NAME="index.htm"></A><H1 CLASS="chapterTitle"><A NAME="index.htm_97933"></A>GEOSプログラミング</H1>
+<P FIXME_Bodyvi><A NAME="index.htm_41590"></A>GEOSは独自のメッセージングおよびオブジェクト・システムを実装しているため、標準CプログラミングはGEOS固有のプログラミングで補足する必要があります。 この章では、GocプリプロセッサでGEOSプログラマが使用できる構文とコマンドについて説明します。</P>
+<P></P>
+<P CLASS="sectionlinks">
+          <STRONG>
+            <A HREF="#GOCLanguage_1.htm">1 基本的なデータ型と構造</A>
+            <BR>
+            <A HREF="#GOCLanguage_2.htm">1.1 レコードと列挙型</A>
+            <BR>
+            <A HREF="#GOCLanguage_3.htm">1.2 ハンドルとポインタ</A>
+            <BR>
+            <A HREF="#GOCLanguage_4.htm">1.3固定小数点構造</A>
+            <BR>
+            <A HREF="#GOCLanguage_5.htm">2 GocおよびC</A>
+            <BR>
+            <A HREF="#GOCLanguage_6.htm">2.1 Gocファイルの種類</A>
+            <BR>
+            <A HREF="#GOCLanguage_7.htm">2.2 Gocの条件付きコード</A>
+            <BR>
+            <A HREF="#GOCLanguage_8.htm">2.3 Gocのマクロ</A>
+            <BR>
+            <A HREF="#GOCLanguage_9.htm">2.4 Gocでのルーチン・ポインタの使用</A>
+            <BR>
+            <A HREF="#GOCLanguage_a.htm">2.5 難解なソースコード管理</A>
+            <BR>
+            <A HREF="#GOCLanguage_b.htm">3 GEOSオブジェクトシステム</A>
+            <BR>
+            <A HREF="#GOCLanguage_c.htm">3.1 GEOSの用語</A>
+            <BR>
+            <A HREF="#GOCLanguage_d.htm">3.2 オブジェクト構造</A>
+            <BR>
+            <A HREF="#GOCLanguage_e.htm">3.3 GEOSメッセージ・システム</A>
+            <BR>
+            <A HREF="#GOCLanguage_f.htm">4 クラスとオブジェクトの使用</A>
+            <BR>
+            <A HREF="#GOCLanguage_10.htm">4.1 新しいクラスまたはサブクラスの定義</A>
+            <BR>
+            <A HREF="#GOCLanguage_11.htm">4.2 再配置不可能なデータ</A>
+            <BR>
+            <A HREF="#GOCLanguage_12.htm">4.3 メソッドの定義</A>
+            <BR>
+            <A HREF="#GOCLanguage_13.htm">4.4 オブジェクトの宣言</A>
+            <BR>
+            <A HREF="#GOCLanguage_14.htm">4.5 メッセージの送信</A>
+            <BR>
+            <A HREF="#GOCLanguage_15.htm">4.6 オブジェクトの管理</A>
+            <BR>
+          </STRONG>
+        </P> <!-- end of sectionlinks blob -->
+
+<HR>
+          <A NAME="GOCLanguage_1.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:1個<A NAME="GOCLanguage_1.htm_64924"></A>基本的なデータ型と構造</H2>
+<P>Gocプリプロセッサは、Cで使用可能な標準データ型の他にも、GEOSに固有の型をいくつか処理します。 これらはすべてファイルに定義されています。<STRONG CLASS="fileName">geos.hを入力します。</STRONG>以下に示すこれらの型のいくつかは、アセンブリ言語の世界から引き継がれたものです。<IMG SRC="GOCLanguage_1_simpleTypes.gif"></P>
+<P><A NAME="GOCLanguage_1.htm_IX_Boolean"></A>Boolean型はほとんどのBoolean型と同じように動作します。<CODE>真</CODE>状態を表し、0は<CODE>偽の</CODE>状態。 マニュアル全体を通して<CODE>真</CODE>および<CODE>偽の</CODE>これらの意味と解釈されます 定数TRUEに注意してください。<A NAME="GOCLanguage_1.htm_IX_TRUE"></A>およびFALSE<A NAME="GOCLanguage_1.htm_IX_FALSE"></A>は定義されており、関数やメソッドからの戻り値として使用できます。 ただし、ブール変数をこれらの定数と比較しないでください。 ブール値は次のようになります。<CODE>真</CODE>実際にはTRUE値と等しくなりません。</P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_2.htm">レコードと列挙型</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_3.htm">ハンドルとポインタ</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_4.htm">固定小数点構造</A>
+        </P>
+<HR>
+          <A NAME="GOCLanguage_2.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:1.1 <A HREF="#GOCLanguage_1.htm">基本的なデータ型と構造</A>:レコードと列挙型</H3>
+<P>ジオス<A NAME="GOCLanguage_2.htm_IX_Enumerated types"></A><A NAME="GOCLanguage_2.htm_IX_Flag records"></A>オブジェクトとルーチンは、フラグレコードと列挙型を幅広く利用します。 フラグレコードは、各ビットが特定の属性または機能の状態(オンまたはオフ)を表すバイト、ワード、またはdワードです。 列挙型は、各列挙が一意の定数値を持つバイトまたはワードです。</P>
+<P><A NAME="GOCLanguage_2.htm_IX_|"></A>フラグレコードを定義するには、これらのタイプのいずれかを使用してから、レコード内のビットとしてフラグを定義する必要があります。 フラグを設定するには、レコードとOR(ビット単位のOR)を行います。フラグをクリアするには、レコードとAND(ビット単位のAND)を行います。 フラグレコードの作成と操作については、を参照してください。<A HREF="#GOCLanguage_2.htm_74482">フラッグ・レコーズとByteEnums</A>ボタンをクリックし</P>
+<P>2つの基本的な列挙型があります。 Cコンパイラでサポートされている標準の列挙型は、ワードサイズの値を使用します。 GEOSでは、バイトサイズの列挙型を<CODE>ByteEnum</CODE>見出しページを開きます。 このタイプの使用方法をに示します。<A HREF="#GOCLanguage_2.htm_74482">フラッグ・レコーズとByteEnums</A>ボタンをクリックし<IMG SRC="GOCLanguage_2_flagTypes.gif"></P>
+<P CLASS="figTitle">コード表示5-1<A NAME="GOCLanguage_2.htm_74482"></A>フラッグ・レコーズとByteEnums</P>
+<PRE>/*フラグレコードを、フラグの数に対して最適化された長さになるように定義します。 たとえば*、サンプルタイプMyFlagには6つのフラグがあるため、1バイトである必要があります。 *フラグの値は、*フラグレコードに1ビットを設定するのと同じ定数である必要があります。*/</PRE>
+<PRE>typedef ByteFlags MyFlag;#define MF_FIRST_FLAG 0x01#define MF_SECOND_FLAG 0x02#define MF_THIRD_FLAG 0x04#define MF_FOURTH_FLAG 0x08#define MF_FIFTH_FLAG 0x10#define MF_SIXTH_FLAG 0x20</PRE>
+<PRE>/*コードのセクションで、フラグを設定するには、それをレコードとビット単位でORします。 *フラグをクリアするには、その逆をレコードとビット単位でAND演算します。 次の例に示すように、一度に任意の数のフラグ*を設定できます。 (注)</PRE>
+<PRE>MyFlag myFlagsRecord/*フラグレコードタイプの変数を設定する*/</PRE>
+<PRE>/*2番目と4番目のフラグを設定します。 */myFlagsRecord=MF_SECOND_FLAG MF_FOURTH_FLAG;</PRE>
+<PRE>/*最初のフラグを設定してから、5番目と6番目のフラグをクリアします。 */myFlagsRecord=(myFlagsRecord MF_FIRST_FLAG)&amp;~(MF_FIFTH_FLAG MF_SIXTH_FLAG);</PRE>
+<PRE>/*ByteEnum型は、標準の列挙型の代わりに使用できます。*これは、ほとんどのコンパイラでワード型として実装されています。 ByteEnumを定義するには、*次の例のように、タイプを定義してから、各列挙に一意の定数値を定義します。 (注)</PRE>
+<PRE>typedef ByteEnum USCity;#define USC_HARTFORD 0x00#define USC_CHARLOTTE 0x01#define USC_WICHITA 0x02#define USC_PIERRE 0x03#define USC_ORLANDO 0x04</PRE>
+<HR>
+          <A NAME="GOCLanguage_3.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:1.2 <A HREF="#GOCLanguage_1.htm">基本的なデータ型と構造</A>:ハンドルとポインタ</H3>
+<P>ハンドルとポインターはGE OSのいたるところに存在し、動的リンクと効率的なメモリー管理を可能にするために不可欠な要素です。</P>
+<P>ジオス<A NAME="GOCLanguage_3.htm_IX_Pointers"></A>ポインタはすべてfarポインタです。つまり、メモリ内の特定の場所を参照する32ビットアドレスです。 これらは通常のCポインタであり、そのまま使用できます。 GEOSでは、オブジェクトポインタ(optrs)とセグメントポインタの2種類のポインタも使用されます。 オブジェクトポインタについては以下で説明します。セグメントポインタは16ビットアドレスです(を参照)。<A HREF="../../Memory/Heap/index.htm">「メモリー管理」の章</A>ボタンをクリックし</P>
+<H4 CLASS="HeadingC">ハンドル</H4>
+<P><A NAME="GOCLanguage_3.htm_IX_Handles"></A>ハンドルは、いくつかの目的で使用される16ビットの符号なしの値です。 データ構造やその他の項目の正確なアドレスが不明である場合や、状態が一貫していない場合に、抽象化を提供する。 カーネルはハンドルテーブルを保持して、システム内の多くのハンドルを追跡します。 ハンドルテーブルの各エントリは、ハンドルによって参照される項目に関する情報を含む16バイトです。これらの16バイトはアプリケーションやライブラリに対して不透明であり、カーネル以外からアクセスしたり変更したりすることはできません。 その他のハンドルタイプは、カーネルによって別のテーブルで管理されます。</P>
+<P>ハンドルは、主に次の目的で使用されます。 ハンドルの使用方法の詳細については<A HREF="../../Memory/Handles/index.htm">Handlesチャプタ</A>ボタンをクリックし<IMG SRC="GOCLanguage_3_handleTypes.gif"></P>
+<UL>
+<LI>メモリ参照<BR><A NAME="GOCLanguage_3.htm_IX_Memory:handles"></A>メモリハンドルのエントリには、メモリブロックへのポインタが含まれています。ブロックが移動すると、ポインタが更新されます。 ただし、ハンドルの整合性は維持され、アプリケーションはハンドル値だけを追跡します。</LI>
+<LI>仮想メモリのリファレンス<BR><A NAME="GOCLanguage_3.htm_IX_Virtual memory:handles"></A>VMハンドルのエントリは、メモリがメモリのブロックを参照するのと同じように、VMブロックを間接的に参照します。 VMハンドルは、VMブロックがメモリに常駐しているかどうかにかかわらず使用できます。</LI>
+<LI>ファイルとディスクの参照<BR><A NAME="GOCLanguage_3.htm_IX_Disks:handles"></A><A NAME="GOCLanguage_3.htm_IX_Files:handles"></A>ファイルハンドルとディスクハンドルのエントリには、参照されるファイル/ディスクの場所とステータスに関する情報が含まれます。 メモリハンドルと同様の方法で、ファイルやディスクへの間接的なアクセスを提供します。</LI>
+<LI>データ構造の実装<BR><A NAME="GOCLanguage_3.htm_IX_GStates:handles"></A><A NAME="GOCLanguage_3.htm_IX_Windows:handles"></A><A NAME="GOCLanguage_3.htm_IX_Threads:handles"></A><A NAME="GOCLanguage_3.htm_IX_Queues, event:handles"></A><A NAME="GOCLanguage_3.htm_IX_Threads:lock handles"></A><A NAME="GOCLanguage_3.htm_IX_Messages:handles"></A><A NAME="GOCLanguage_3.htm_IX_Semaphores:handles"></A><A NAME="GOCLanguage_3.htm_IX_Geodes:handles"></A><A NAME="GOCLanguage_3.htm_IX_Timers:handles"></A>頻繁に使用される特定のシステム・データ構造には、常に迅速かつ便利なアクセスを提供するストレージ・フォーマットが必要です。 これらのデータ構造(例えば、スレッド、イベント・キュー、メッセージ、タイマー、およびセマフォー)は、ハンドル・テーブル項目に保管されます。</LI>
+<LI>最適化(Optimization)<BR>カーネルは、領域に余裕があれば、最適化された一時記憶領域のためにハンドルテーブルエントリを使用することがあります。 (例えば、スタック上のパラメータをメッセージと共に渡す場合、カーネルはパラメータを格納するためにハンドルを使用することがあります。</LI>
+</UL>
+<P><A NAME="GOCLanguage_3.htm_IX_NullHandle"></A><A NAME="GOCLanguage_3.htm_IX_NULL"></A>の<CODE>NullHandle</CODE>value(ゼロ)は、ヌルハンドルを示すために使用されます。</P>
+<P>さまざまな種類のハンドルがあり、あらゆる種類のジオードで使用できます。 これらは、にリストされています。<A HREF="../../Programming/GOCLanguage/GOCLanguage_3.htm">GEOSプログラミングの章</A>すべて16ビットの符号なし整数です。</P>
+
+<H4 CLASS="HeadingC">チャンクハンドルとオブジェクトポインタ</H4>
+<P><A NAME="GOCLanguage_3.htm_IX_optr"></A><A NAME="GOCLanguage_3.htm_IX_Chunk handles"></A><A NAME="GOCLanguage_3.htm_IX_ChunkHandle"></A>オブジェクトと小さなデータ構造は、チャンクと呼ばれる小さなメモリ部分に格納されます。 チャンクはローカルメモリヒープと呼ばれるメモリブロックに格納され、各ローカルメモリヒープには複数のチャンクを含めることができる。 各チャンクは、2つのハンドルの組み合わせによって参照されます。 MemHandleハンドルはローカルメモリヒープを検出し、ChunkHandleはブロック内のチャンクを検出します。 NULLのチャンクハンドル値は<CODE>NullChunk</CODE>ボタンをクリックし</P>
+<P>オブジェクトはチャンクと同じ方法で参照されますが、ハンドルとチャンクハンドルは、オブジェクトポインタ(optr)と呼ばれる1つの構造に結合されます。 各optrは、システム内の特定のオブジェクトを一意に識別します。 optrsは、オブジェクト以外のチャンクやデータ構造を参照するためによく使用されることに注意してください。 NULL値を指定するには<CODE>NullOptr</CODE>ボタンをクリックし</P>
+<P>GEOSには、いくつかのマクロが用意されています。これらのマクロはすべて<STRONG CLASS="fileName">geos.hを入力します。</STRONG>これは、optrsの作成と構文解析に使用します。</P>
+<UL>
+<LI><CODE>ConstructOptr()<BR></CODE><A NAME="GOCLanguage_3.htm_IX_ConstructOptr() macro"></A>このマクロは、MemHandleとChunkHandleからoptrを構築します。</LI>
+<LI><CODE>OptrToHandle()<BR></CODE><A NAME="GOCLanguage_3.htm_IX_OptrToHandle() macro"></A>このマクロは、指定されたoptrのMemHandle部分を抽出します。</LI>
+<LI><CODE>OptrToChunk()<BR></CODE><A NAME="GOCLanguage_3.htm_IX_OptrToChunk() macro"></A>このマクロは、指定されたoptrのチャンク・ハンドル部分を抽出します。</LI>
+</UL>
+
+
+<H4 CLASS="HeadingC">ポインタ</H4>
+<P>Gocで生成されたポインタはすべてfarポインタです。つまり、長さは32ビットで、16ビットのセグメントと16ビットのオフセットで構成されています。</P>
+<P>GEOSには、ポインタのセグメントとハンドル部分を抽出するマクロが用意されています。</P>
+<UL>
+<LI><CODE>PtrToSegment()<BR></CODE><A NAME="GOCLanguage_3.htm_IX_PtrToSegment()"></A>このマクロは、指定されたポインタのセグメント部分を返します(&quot;word&quot;型として返されます)。</LI>
+<LI><CODE>PtrToOffset()<BR></CODE><A NAME="GOCLanguage_3.htm_IX_PtrToOffset()"></A>このマクロは、指定されたポインタのオフセット部分を返します(「word」型として返されます)。</LI>
+</UL>
+<P>GEOSは、必要に応じて自動的にコードリソースをロードします。 ただし、ポインタを使用してルーチンを呼び出す場合は、ルーチンがメモリに適切にロードされるように特別な手段を講じる必要があります。 これについては、で説明します。<A HREF="#GOCLanguage_9.htm_67927">Gocでのルーチン・ポインタの使用</A>ボタンをクリックし</P>
+
+<HR>
+          <A NAME="GOCLanguage_4.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:1.3 <A HREF="#GOCLanguage_1.htm">基本的なデータ型と構造</A>:固定小数点構造</H3>
+<P>非整数(つまり、実数)を表現したい場合は、標準のC浮動小数点形式か、固定小数点演算用のGEOSの次の特殊構造のいずれかを使用できます。 固定小数点演算は、対応する浮動小数点演算よりも高速であるため、コードを最適化する場合は、GEOS数学ルーチンでGEOS固定小数点構造を使用する必要があります。</P>
+<P CLASS="figTitle">コード表示5-2 GEOSデータ構造</P>
+<PRE><A NAME="GOCLanguage_4.htm_IX_Fixed point numbers"></A>/*固定小数点構造*次の構造は、固定小数点数を表すために使用されます:*分数部分と整数部分を持つ数。 固定小数点数にはいくつかの形式があることに注意してください。それぞれが数の部分に異なるビット数を使用します。 (最適化のために)最も*適切なものを選択します。 (注)</PRE>
+<PRE><A NAME="GOCLanguage_4.htm_IX_BBFixed"></A>/*BBFixed*1バイト整数、1バイト小数*/typedef struct{byte BBF_frac;/*小数部*/byte BBF_int;/*整数部*/}BBFixed;</PRE>
+<PRE>/*BBFixedAsWord*BBFixedの値をタイプワードとして参照すると便利な場合があります。 ※BBFixedAsWord式が使用される。 (注)<A NAME="GOCLanguage_4.htm_IX_BBFixedAsWord"></A>typedef word BBFixedAsWord;</PRE>
+<PRE>/*WBFixed*1ワード整数、1バイト分数*/<A NAME="GOCLanguage_4.htm_IX_WBFixed"></A>typedef struct{byte WBF_frac;/*小数部*/word WBF_int;/*整数部*/}WBFixed;</PRE>
+<PRE>/*WWFixed*1ワード整数、1ワード分数*/<A NAME="GOCLanguage_4.htm_IX_WWFixed"></A>typedef struct{word WWF_frac;/*小数部*/word WWF_int;/*整数部*/}WWFixed;</PRE>
+<PRE>/*WWFixedAsDWord*WWFixedの値をdword型として参照すると便利な場合があります。 ※WWFixedAsDWord式が使用される。 (注)<A NAME="GOCLanguage_4.htm_IX_WWFixedAsDWord"></A>typedef dword WWFixedAsDWord;</PRE>
+<PRE>/*DWFixed*2ワード(1 dword)整数、1ワード分数*/typedef struct{word DWF_frac;/*小数部*/sdword DWF_int;/*整数部*/<A NAME="GOCLanguage_4.htm_IX_DWFixed"></A>}DWFixed;</PRE>
+<PRE>/*3バイト構造*WordAndAHalf構造は、24ビット値が必要で、*32ビット値の使用を避けて最適化したい場合に使用されます。*/</PRE>
+<PRE>typedef struct{word WAAH_low;/*下位16ビット*/byte WAAH_high;/*上位8ビット*/}WordAndAHalf;</PRE>
+<P><A NAME="GOCLanguage_4.htm_IX_WWFixed"></A>3つの特別なマクロも<CODE>WWFixed</CODE>見出しページを開きます。 これらを次に示します。</P>
+<UL>
+<LI><CODE>MakeWWFixed<BR></CODE><A NAME="GOCLanguage_4.htm_IX_MakeWWFixed() macro"></A>このマクロは<CODE>WWFixed</CODE>構造体を、与えられた浮動小数点数またはdword数から変換する。</LI>
+<LI><CODE>WWFixedToFrac<BR></CODE><A NAME="GOCLanguage_4.htm_IX_WWFixedToFrac() macro"></A>このマクロは<CODE>WWFixed</CODE>構造。</LI>
+<LI><CODE>WWFixedToInt<BR></CODE><A NAME="GOCLanguage_4.htm_IX_WWFixedToInt() macro"></A>このマクロは<CODE>WWFixed</CODE>構造。</LI>
+</UL>
+<P>他の2つのマクロは<CODE>WWFixedAsDword</CODE>構造:</P>
+<UL>
+<LI><CODE>IntegerOf()<BR></CODE>このマクロは<CODE>WWFixedAsDword</CODE>構造。</LI>
+<LI><CODE>FractionOf()[分数(F)]<BR></CODE>このマクロは、整数部の小数部を返します。<CODE>WWFixedAsDword</CODE>構造。</LI>
+</UL>
+<HR>
+          <A NAME="GOCLanguage_5.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:2 GocおよびC</H2>
+<P><A NAME="GOCLanguage_5.htm_IX_Goc:syntax"></A>Gocは、標準Cプログラミング言語のスーパーセットです。 Gocは実際には、コードが標準Cコンパイラーを介して実行される前に、一種のプリプロセッサとして機能します。 ただし、いくつかの違いに注意する必要があります。 これらの相違点については、以降のセクションで説明するとともに、マニュアル全体を通して説明します。</P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_6.htm">Gocファイルの種類</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_7.htm">Gocの条件付きコード</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_8.htm">Gocのマクロ</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_9.htm">Gocでのルーチン・ポインタの使用</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_a.htm">難解なソースコード管理</A>
+        </P>
+<HR>
+          <A NAME="GOCLanguage_6.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:2.1人<A HREF="#GOCLanguage_5.htm">GocおよびC</A>:Gocファイルの種類</H3>
+<PRE>@include、@optimize</PRE>
+<P>Gocでプログラミングするときは、いくつかの異なるタイプのコード・ファイルを使用します。 で終わるファイル<STRONG CLASS="fileName">ゴー</STRONG>はCに相当するGoc<STRONG CLASS="fileName">hと入力します</STRONG>これらのファイルには、ルーチン・ヘッダー、定数、およびプログラムに必要なその他の組み込みデータと構造が含まれています。 で終わるファイル<STRONG CLASS="fileName">gocと入力します。</STRONG>はCに相当するGoc<STRONG CLASS="fileName">です。</STRONG>ファイルには、プログラムのコードとデータが含まれています。 Goc固有のコードやヘッダー情報はすべてGocファイルに厳密に保持し、標準CコードはCファイルに保持する必要があります。 Cコードも挿入可能<STRONG CLASS="fileName">gocと入力します。</STRONG>および<STRONG CLASS="fileName">ゴー</STRONG>しかし、一貫性を保つためには、ファイルを別にしておく必要があります。</P>
+<P>プログラムのヘッダーファイルの中には<STRONG CLASS="fileName">ゴー</STRONG>ファイル--ヘッダーファイルにCの構文(構造、ルーチン定義など)しか含まれていない場合は、標準のC構文として残しておくことができます。<STRONG CLASS="fileName">hと入力します</STRONG>このファイルは#includeディレクティブによってインクルードされます。</P>
+<P>経験則では、ヘッダーファイルにGocコードが含まれているか<STRONG CLASS="fileName">ゴー</STRONG>ファイルの場合は<STRONG CLASS="fileName">ゴー</STRONG>ファイルを開きます。 また、次の点にも注意してください<STRONG CLASS="fileName">ゴー</STRONG>ファイルには単純な標準Cコードを含めることができます。<STRONG CLASS="fileName">ゴー</STRONG>ボタンをクリックし</P>
+<P>標準Cプログラムでは<CODE>#include(インクルード)</CODE>ヘッダーを含めるディレクティブ(<STRONG CLASS="fileName">hと入力します</STRONG>)ファイルを開きます。 Gocを使用している場合、このディレクティブは標準で使用できます。<STRONG CLASS="fileName">です。</STRONG>および<STRONG CLASS="fileName">hと入力します</STRONG>ファイル;含める場合<STRONG CLASS="fileName">ゴー</STRONG>ファイル#ファイル#<STRONG CLASS="fileName">gocと入力します。</STRONG>ファイルを開くには<CODE>@インクルード</CODE>これはGoc固有のディレクティブです。 構文は以下と同じです。<CODE>#include(インクルード)</CODE>ボタンをクリックし</P>
+<P><A NAME="GOCLanguage_6.htm_IX_@include[;include]"></A>使用例<CODE>@インクルード</CODE>は、Hello Worldアプリケーションから取得されます。<STRONG CLASS="fileName">stdapp・ゴー</STRONG>ファイルを開きます。 (すべてのGEOSアプリケーションを正しくコンパイルするには、このファイルをインクルードする必要があります。<CODE>@インクルード</CODE>標準Cヘッダーの前のdは<CODE>#include(インクルード)</CODE>d.)を参照してください。 Hello Worldからの行は</P>
+<PRE>@include&lt;stdapp.goh></PRE>
+<P>前述したように、このディレクティブの構文はCディレクティブの構文と同じです。<CODE>#include(インクルード)</CODE>1つの例外は<CODE>@インクルード</CODE>ディレクティブは、インクルードファイルによってインクルードされている場合でも、ファイルを一度だけインクルードします。条件付きでファイルをインクルードする必要はありません(最初にファイルがまだインクルードされていないことを確認します)。</P>
+<P>Gocファイルをさまざまなアプリケーションにインクルードする場合や、Gocファイルが非常に長くて複雑な場合は、キーワード<CODE>@最適化</CODE>と入力します。 これは、Gocプリプロセッサに対して<CODE>ポー</CODE>接尾辞。 これにより、コンパイラは自動的に<CODE>ポー</CODE>ファイルを最新の状態に更新し、コンパイル時に<CODE>ゴー</CODE>ファイルを開きます。 の<CODE>ポー</CODE>ファイルには<CODE>ゴー</CODE>ファイルを使用しますが、アプリケーションへのコンパイルは多少速くなります。<CODE>@最適化</CODE>キーワードに変更を加えると、コンパイル時間が長くなります<CODE>ゴー</CODE>ファイルのコンパイル時間は短くなりますが<CODE>ゴー</CODE>ファイルは前回のコンパイル時から変更されていない。 を終了することもできます。<CODE>@最適化</CODE>ヘッダーの作成中にディレクティブを出力し、ヘッダーがかなり安定したときにディレクティブを入力します。</P>
+<HR>
+          <A NAME="GOCLanguage_7.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:2.2人<A HREF="#GOCLanguage_5.htm">GocおよびC</A>キーを押します<A NAME="GOCLanguage_7.htm_IX_code:conditional"></A>Gocの条件付きコード</H3>
+<PRE>@if���@ifdef���@ifndef���@endif</PRE>
+<P><A NAME="GOCLanguage_7.htm_IX_@endif[;endif]"></A><A NAME="GOCLanguage_7.htm_IX_@ifndef[;ifndef]"></A><A NAME="GOCLanguage_7.htm_IX_@ifdef[;ifdef]"></A><A NAME="GOCLanguage_7.htm_IX_@if[;if]"></A>多くのCプログラムでは<CODE>#の場合</CODE><CODE>#ifdef(英語の可能性あり</CODE><CODE>#ifndef(英語の可能性あり</CODE>、および<CODE>#endif(終了)</CODE>条件付きコード(特定の条件が満たされた場合にのみプログラムにコンパイルされるコード)を定義します。 GEOSアプリケーションで標準Cコードを使用する場合は、これらのディレクティブを使用する必要があります。ただし、Gocコードを使用する場合は(<STRONG CLASS="fileName">ゴー</STRONG>および<STRONG CLASS="fileName">gocと入力します。</STRONG>Gocディレクティブを使用する必要があります。<CODE>@の場合</CODE><CODE>@ifdef(英語の可能性あり</CODE><CODE>@ifndef(英語の可能性あり</CODE>、および<CODE>@endif(英語の可能性あり</CODE>ボタンをクリックし</P>
+<P>Goc条件文は、C条件文よりも制限があります。 条件式は、数値、マクロ名、およびブール演算子OR(<CODE></CODE>)とAND(<CODE>および</CODE>)をクリックします。 Goc条件式の例を次に示します。</P>
+<PRE>@ifdef(MyMacro)/*MyMacroが定義されている場合にコンパイルされるコード*/@endif</PRE>
+<PRE>@if 0/*まったくコンパイルされないコード*/@endif</PRE>
+<PRE>@if defined(MyMacro)MY_CONSTANT/*MyMacroが*定義されているか、MY_CONSTANTがゼロでない場合にコンパイルされたコード*/@endif</PRE>
+<PRE>@ifndef 0/*コードは常にコンパイルされる*/@endif</PRE>
+<HR>
+          <A NAME="GOCLanguage_8.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:2.3人<A HREF="#GOCLanguage_5.htm">GocおよびC</A>キーを押します<A NAME="GOCLanguage_8.htm_IX_macros"></A>Gocのマクロ</H3>
+<PRE>@定義</PRE>
+<P>Cプログラミング言語ではマクロの定義と使用が可能であり、ほとんどのプログラマーはマクロを広く使用しています。 次のように<CODE>#定義</CODE>ディレクティブを使用して、標準Cコードのみを使用するマクロを定義します。</P>
+<P>同様に<CODE>@定義</CODE>Gocディレクティブ:Gocでマクロを作成します。 (マクロは<CODE>@定義</CODE>そうでない場合、Gocプロセッサは<CODE>#定義</CODE>ディレクティブを使用して、通常どおりに処理される標準コードであるかのようにマクロを処理します)。</P>
+<P><A NAME="GOCLanguage_8.htm_IX_@define[;define]"></A>Gocのマクロは、標準のCマクロとは構文が多少異なりますが、非常によく似ています。 簡単なGocマクロの例を以下に示します。</P>
+<PRE>@define mlply(val1,val2)val1*val2@define defChunk(a)@chunk char a[]=&quot;text&quot;</PRE>
+<P>コードでGocマクロを使用する場合は、マクロの前に&quot;<CODE>@(英語の</CODE>&quot;Gocマーカー。これがマクロであることをプロセッサに示します。 マクロの前に&quot;<CODE>@(英語の</CODE>」と入力すると、Gocはそれを無視して処理を行わず、Cコンパイラに任せます。 たとえば、上記で定義した2番目のマクロ(defChunk)を使用すると、いくつかのチャンクを簡単に作成できます。</P>
+<PRE>@defChunk(firstText)@defChunk(secondText)@defChunk(thirdText)</PRE>
+<P>上記は、次のようになります。</P>
+<PRE>@chunk char[]firstText=&quot;text&quot;;@chunk char[]secondText=&quot;text&quot;;@chunk char[]thirdText=&quot;text&quot;;</PRE>
+<P>「なしで「defChunk」を使用する<CODE>@(英語の</CODE>&quot;markerを使用すると、Cコンパイラでコンパイルエラーが発生する可能性が高くなります。</P>
+<HR>
+          <A NAME="GOCLanguage_9.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:2.4人<A HREF="#GOCLanguage_5.htm">GocおよびC</A>キーを押します<A NAME="GOCLanguage_9.htm_67927"></A>Gocでのルーチン・ポインタの使用</H3>
+<PRE>ProcCallFixedOrMovable_cdecl(),ProcCallFixedOrMovable_pascal()</PRE>
+<P>ほとんどのGEOSコードは、移動可能なリソースに保持されます。 ソース・コードからルーチンを明示的に呼び出すと、Gocプリプロセッサは適切なディレクティブを生成し、呼び出されたときにリソースがメモリーにロードされるようにします。 ただし、ルーチン・ポインターを使用してルーチンを呼び出す場合、GEOSはこれらの予防措置を取ることができません。 したがって、ポインタを使用してルーチンを呼び出す場合は、リソースがロードされていることを確認するか、2つのうちの1つを使用する必要があります。<CODE>ProcCallFixedOrMovable</CODE>ルーチンを使用して、適切なリソースをロックするようカーネルに指示します。</P>
+<P>ルーチンがメモリ内でロックまたは固定されているリソース内にあることがわかっている場合は、標準Cとまったく同じ方法でルーチンポインタを使用できます。これは通常、呼び出し元のルーチンが、呼び出される可能性のあるルーチンと同じリソース内にあるためです。</P>
+<P><A NAME="GOCLanguage_9.htm_IX_ProcCallFixedOrMovable_cdecl()"></A><A NAME="GOCLanguage_9.htm_IX_ProcCallFixedOrMovable_pascal()"></A>リソースがロードされているかどうかがわからない場合は、次のいずれかを使用してルーチンを呼び出します。<CODE>ProcCallFixedOrMovable_cdecl()</CODE>または<CODE>ProcCallFixedOrMovable_pascal()も参照下さい。</CODE>これらの各ルーチンには、次の引数が渡されます。</P>
+<UL>
+<LI>呼び出されるルーチンへのポインタ</LI>
+<LI>ルーチンに渡されたすべての引数は、ルーチンが期待する順序で渡されます。</LI>
+</UL>
+<P>どちらのルーチンも、呼び出されたルーチンが返すものを返します。</P>
+<P>呼び出されるルーチンが標準のC呼び出し規約(デフォルト)で定義されている場合は<CODE>ProcCallFixedOrMovable_cdecl()</CODE>ルーチンがキーワード<CODE>パスカル(_P)</CODE>Pascalの呼び出し規約を使用しているので、次のルーチンを使用する必要があります。<CODE>ProcCallFixedOrMovable_pascal()も参照下さい。</CODE>ほとんどのカーネルおよびシステムライブラリルーチンは、Pascalの呼び出し規約で宣言されています。</P>
+<P CLASS="figTitle">コード表示5-3 ProcCallFixedOrMovable_cdecl()の使用</P>
+<PRE>extern int SomeRoutineCalledViaAPointer(int anArg, int anotherArg, const char*someText);</PRE>
+<PRE>int(*funcPtr)(int, int, const char*);/*関数ポインタ*/</PRE>
+<PRE>funcPtr=SomeRoutineCalledViaAPointer;</PRE>
+<PRE>/**SomeRoutineCalledViaAPointer(1, 2, &quot;Franklin T. Poomm&quot;);*を実行したいのですが、別の*リソース内にあっても、ポインタを介して呼び出したいのです:*/</PRE>
+<PRE>ProcCallFixedOrMovable_cdecl(funcPtr, /*ルーチンへのポインタ*/1, 2, &quot;Franklin T. Poomm&quot;);</PRE>
+<HR>
+          <A NAME="GOCLanguage_a.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:2.5人<A HREF="#GOCLanguage_5.htm">GocおよびC</A>:難解なソースコード管理</H3>
+<PRE>@optimize, @protominor</PRE>
+<P>頻繁に使用され、共有されるヘッダーファイルのメンテナンスの負担を軽減するためだけに使用されるGocキーワードがいくつかあります。</P>
+<P><A NAME="GOCLanguage_a.htm_IX_@optimize[;optimize]"></A>の<CODE>@最適化</CODE>キーワードは、Gocヘッダーファイルのコンパイルを高速化するために使用されます。 これは<STRONG CLASS="fileName">ゴー</STRONG>ファイルを開きます。 ディレクティブは、Gocに対して、特別に処理された<STRONG CLASS="fileName">ポー</STRONG>のすべての情報を含むファイル<STRONG CLASS="fileName">ゴー</STRONG>しかし、コンパイルには多少時間がかかります。 この<STRONG CLASS="fileName">ポー</STRONG>ファイルが自動的に再生成されます。<STRONG CLASS="fileName">ゴー</STRONG>ファイルは前回のコンパイル以降に変更されています。 構文は単純です。</P>
+<PRE>@最適化</PRE>
+<P><A NAME="GOCLanguage_a.htm_IX_@protominor[;protominor]"></A>の<CODE>@protominor</CODE>キーワードは、1つのGocヘッダー・ファイルが複数のバージョンのGocライブラリーを処理できるようにするために使用されます。 既存のライブラリの新しいバージョンを作成する場合は<CODE>@protominor</CODE>キーワードを使用して、クラスの新しいメッセージと可変データフィールドを宣言します。 元のクラス宣言が次のようになっているとします。</P>
+<PRE>@class MyClass, SuperClass;@message void MSG_M_DO_THIS(void);@vardata void TEMP_M_DONE_FLAG;@endc</PRE>
+<P>クラスのこのバージョンをリリースしたので、このクラスが別のメッセージを処理する別のバージョンをリリースしたいと考えました。 この新しいメッセージが、この新しいバージョンのライブラリでのみ機能するように指定します。 これは次のように設定されます。</P>
+<PRE>@class MyClass, SuperClass;@message void MSG_M_DO_THIS(void);@vardata void TEMP_M_DONE_FLAG;@protominor MyVersion20@message void MSG_M_DO_THAt(void);@endc</PRE>
+<P>このキーワードの構文は、次のとおりです。</P>
+<PRE>@protominor&lt;名前></PRE>
+<DL>
+<DT>
+          <STRONG>name</STRONG>
+        </DT><DD>マイナープロトコルの名前。 この名前は<CODE>incminor</CODE>geodeの.gpファイルのエントリ</DD>
+</DL>
+<P>ルーチンで同等のバージョン管理を行うには<CODE>incminor</CODE>gpファイルディレクティブ。</P>
+<HR>
+          <A NAME="GOCLanguage_b.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:3 <A NAME="GOCLanguage_b.htm_27754"></A>GEOSオブジェクトシステム</H2>
+<P>ジオス<A NAME="GOCLanguage_b.htm_IX_Classes"></A>はほぼ完全にオブジェクト指向です。 そのオブジェクト・システムは、カプセル化、継承、カーネルを介したメッセージ・ディスパッチなど、真のオブジェクト指向の原則をサポートします。</P>
+<P>次のセクションでは、GEOSのクラスとオブジェクトの構造、クラスとオブジェクトの宣言方法と定義方法、メッセージング・システムとカーネルのメッセージ・ディスパッチャーの動作方法について説明します。</P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_c.htm">GEOSの用語</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_d.htm">オブジェクト構造</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_e.htm">GEOSメッセージシステム</A>
+        </P>
+<HR>
+          <A NAME="GOCLanguage_c.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:3.1人<A HREF="#GOCLanguage_b.htm">GEOSオブジェクトシステム</A>:GEOSの用語</H3>
+<P>一般的なオブジェクト指向プログラミングの用語に精通している必要がありますが、GEOSではその意味がわずかに異なるものもあれば、GEOSにとってまったく新しいものもあります。 このセクションは、General Terms、Class Terms、Object Terms、およびMessaging Termsの4つのカテゴリーに分かれています。</P>
+
+<H4 CLASS="HeadingC">一般条件</H4>
+<DL>
+<DT>
+          <STRONG>チャンク</STRONG>
+        </DT><DD>チャンクは、ローカルメモリヒープ内にあるメモリの小さなセクションです。 オブジェクトインスタンスデータは、1つのチャンク(オブジェクトごとに1チャンク)に格納されます。 ローカルメモリとチャンクの詳細については、を参照してください。<A HREF="../../Memory/LMem/index.htm">「ローカルメモリー」の章</A>ボタンをクリックし</DT><P CLASS="WorList"><STRONG>バッテリ</STRONG><A NAME="GOCLanguage_c.htm_IX_Pointers:far pointers"></A><A NAME="GOCLanguage_c.htm_IX_fptr"></A>fptrは「farポインタ」、つまりメモリの特定の場所を指す32ビットのポインタです。 これは標準のCポインタです。</P>
+<DT><STRONG>取手</STRONG>ハンドルはハンドルテーブルへの16ビットインデックスであり、メモリブロックを参照するために使用されます。 詳細については、を参照してください。<A HREF="../../Memory/Handles/index.htm">Handlesチャプタ</A>ボタンをクリックし</DT><P CLASS="WorList"><STRONG>オブジェクトブロック<BR></STRONG>オブジェクトブロックは、オブジェクトチャンクを含む特定のタイプのローカルメモリブロックです。</P>
+<DT><STRONG>オプション</STRONG>optrはオブジェクトの一意の識別子であるため、「オブジェクトポインタ」とも呼ばれます。 optrは、システム内の任意のオブジェクトを見つけてアクセスするために使用されます。optrはハンドルとチャンクハンドルで構成されているため、オブジェクトがメモリ内で移動しても常に同じ状態を維持します。</DD>
+<DT>
+          <STRONG>糸</STRONG>
+        </DT><DD><A NAME="GOCLanguage_c.htm_IX_Threads"></A>スレッドは、手続き型コードまたは1つ以上のオブジェクトを実行する単一の実行可能エンティティです。 スレッドが「イベント駆動型」の場合、指定されたオブジェクトのセットに対してコードを実行し、メッセージを受信して適切なオブジェクトにディスパッチします。</DD>
+
+
+</DL>
+<H4 CLASS="HeadingC">クラスの用語</H4>
+<DL>
+<DT>
+          <STRONG>階級</STRONG>
+        </DT><DD>クラスは、一連のインスタンス・データ構造と、それらの構造で動作するメソッドの定義です。 オブジェクトは、そのクラスの「インスタンス」と呼ばれます。</DD>
+<DT>
+          <STRONG>クラスツリー</STRONG>
+        </DT><DD>クラスツリーは、スーパークラスからサブクラスへの継承の階層を表します。 メッセージが特定のクラスで処理されない場合、処理されるか、ツリーのルートに到達するまで、メッセージは自動的にクラスツリーに渡され、その後、メッセージは破棄されます。</DD>
+<DT>
+          <STRONG>相続</STRONG>
+        </DT><DD>継承とは、特定のクラスのオブジェクトが、オブジェクトのスーパークラスのインスタンスと同じインスタンス変数とメソッドをすべて持つ方法を指す用語です。</DD>
+<DT>
+          <STRONG>初期化する</STRONG>
+        </DT><DD>オブジェクトの初期化とは、オブジェクトのインスタンス・データのマスター部分(またはマスター・グループ)が入力されたときのことです。 これは、オブジェクト内でまだ初期化されていないマスター・グループ内のクラスが最初のメッセージを受信したときに発生します。</DD>
+<DT>
+          <STRONG>主人</STRONG>
+        </DT><DD>「マスター」という用語はいくつかの場合に使用されますが、すべて関連しています。 マスタークラスは、一般に、単一のクラスツリー内の最上位クラスと見なされます。 マスタークラスはスーパークラスを持つことができますが、概念的なブレークと新しいサブツリーの作成を提供します。</DD>
+<DT><STRONG>マスターグループ</DT><DD></STRONG>特定のマスタークラスとそのすべてのサブクラスに属するオブジェクトのインスタンスデータのセクションは、マスターグループと呼ばれます。 マスターグループは、マスタークラス(またはそのサブクラスの1つ)が最初のメッセージを受信したときに初期化されます。</DD>
+<DT>
+          <STRONG>解決する</STRONG>
+        </DT><DD><A NAME="GOCLanguage_c.htm_IX_Variant classes:resolving"></A>バリアントクラスの解決は、バリアントのスーパークラスが決定されたときに行われます。 バリアントクラスの各インスタンスは、個別に解決する必要があります。</DD>
+<DT>
+          <STRONG>サブクラス</STRONG>
+        </DT><DD>「サブクラス」という用語は、クラス間の関係を示すために使用されます。 サブクラスは別のクラスで定義され、そこからインスタンスデータとメソッドを継承します。 この別のクラスは、以下では「スーパークラス」として知られています。</DD>
+<DT>
+          <STRONG>スーパークラス</STRONG>
+        </DT><DD>「スーパークラス」という用語は、クラス間の関係を示すために使用されます。 スーパークラスは、そのインスタンスデータとメソッドを、そのサブクラスとして定義されたすべてのクラスに渡します。</DD>
+<DT>
+          <STRONG>変種</STRONG>
+        </DT><DD><A NAME="GOCLanguage_c.htm_IX_Variant classes"></A>バリアントクラスは、異なるスーパークラスを持つことができます。 ただし、バリアントクラスのインスタンスは、常に1つのスーパークラスしか持つことができません。 バリアントクラスを使用すると、他のオブジェクトシステムに見られる多重継承とほぼ同じ機能を提供できます。</DD>
+
+
+</DL>
+<H4 CLASS="HeadingC">オブジェクトの用語</H4>
+<DL>
+<DT>
+          <STRONG>子供</STRONG>
+        </DT><DD><A NAME="GOCLanguage_c.htm_IX_Objects:child objects"></A>子オブジェクトとは、オブジェクトツリー内の別のオブジェクトの下にあるオブジェクトです。 子、親、および兄弟という用語は、オブジェクト間の関係を示すためにのみ使用されます。</DD>
+<DT>
+          <STRONG>コンポジット</STRONG>
+        </DT><DD><A NAME="GOCLanguage_c.htm_IX_Composite objects"></A>複合オブジェクトは、子を持つことができるオブジェクトです。 コンポジットには、最初の子への「コンポジットリンク」(optr)と、次の兄弟への「兄弟リンク」があります。 次の兄弟がない場合、兄弟リンクはオブジェクトの親オブジェクトをポイントします。</DD>
+<DT>
+          <STRONG>インスタンス</STRONG>
+        </DT><DD>インスタンスは、クラスの特定の実体です。 この用語は、ほとんどの場合「オブジェクト」と同じですが、オブジェクト全体ではなく、オブジェクトのインスタンスデータを含むチャンクを指す場合もあります。</DD>
+<DT>
+          <STRONG>リンク(link)</STRONG>
+        </DT><DD>リンクは通常、オブジェクトツリー内のオブジェクトの次の兄弟を指すoptrです。 より一般的には、オブジェクトツリー内の2つのオブジェクト(親と子、または最後の兄弟と親)をリンクする任意のoptrを指すためにも使用されます。</DD>
+<DT>
+          <STRONG>オブジェクト(object)</STRONG>
+        </DT><DD>オブジェクトは、クラスの特定の実体です。 通常、この用語は「インスタンス」と互換性がありますが、「オブジェクト」という用語がオブジェクトのメソッドとインスタンスデータの組み合わせを指す場合もあれば、「インスタンス」という用語がオブジェクトのインスタンスデータチャンクのみを指す場合もあります。</DD>
+<DT>
+          <STRONG>オブジェクトツリー</STRONG>
+        </DT><DD>オブジェクトツリーは、表示または編成の目的でオブジェクトを階層に編成する手段です。 これを、クラス関係を表す構造である「クラスツリー」と混同しないでください。 オブジェクトツリーは複合オブジェクトで構成され、各オブジェクトは子を持つことも、別のオブジェクトの子になることもできます。 ツリーの一番上のオブジェクトは「ルート」と呼ばれ、一番下のオブジェクトは「リーフ」または「ノード」と呼ばれます。 非コンポジットオブジェクトは、リーフとしてツリーに配置できますが、子を持つことはできません。</DD>
+<DT>
+          <STRONG>親</STRONG>
+        </DT><DD>親オブジェクトは、オブジェクトツリー内に子を持つオブジェクトです。 親には最初の子への複合リンク(optr)が含まれ、最後の子によってポイントされます。</DD>
+<DT>
+          <STRONG>状態ファイル</STRONG>
+        </DT><DD><A NAME="GOCLanguage_c.htm_IX_State files"></A>状態ファイルは、オブジェクトの状態を格納するために使用される仮想メモリファイルです。 通常、オブジェクトブロックは状態ファイルに書き込まれるか、状態ファイルから抽出されます。 一般的なUIオブジェクトには、この機能が自動的に組み込まれています。他のオブジェクトは、状態ファイルを管理することによって、独自の状態保存を管理できます。</DD>
+
+
+</DL>
+<H4 CLASS="HeadingC">メッセージの用語</H4>
+<DL>
+<DT>
+          <STRONG>ブロッキング</STRONG>
+        </DT><DD><A NAME="GOCLanguage_c.htm_IX_Threads:blocking"></A>スレッドは、別のスレッドのオブジェクトに送信されたメッセージからのリソースまたは戻り値を待機する必要がある場合に「ブロック」します。 具体的には、スレッドは、そのオブジェクトの1つが「call」コマンドを使用して別のスレッドにメッセージを送信するとブロックされます。「send」コマンドが使用された場合、スレッドは通常の実行を継続します。</DD>
+<DT>
+          <STRONG>呼び声</STRONG>
+        </DT><DD><A NAME="GOCLanguage_c.htm_IX_Messages:calling"></A><A NAME="GOCLanguage_c.htm_IX_@call[;call]"></A>callコマンドでメッセージが送信されると、呼び出しスレッドは、メッセージが受信者によって処理されるまでブロックします。 受信者が呼び出しスレッドにいる場合、コードはすぐに実行されます。</DD>
+<DT>
+          <STRONG>ディスパッチャー</STRONG>
+        </DT><DD><A NAME="GOCLanguage_c.htm_IX_Messages:dispatcher"></A>GEOSディスパッチャはカーネル内部にあり、メッセージを適切な受信者に渡します。 ディスパッチャーは適切なオブジェクトとメソッドを動的に見つけて、そのメソッドを呼び出します。</DD>
+<DT>
+          <STRONG>メッセージめっせ</STRONG>
+        </DT><DD>メッセージは、あるオブジェクトから別のオブジェクトに送信されるディレクティブ、クエリ、またはその他の命令です。 メッセージはパラメータを受け取り、情報を返すことがあります。</DD>
+<DT>
+          <STRONG>方法</STRONG>
+        </DT><DD>「メッセージハンドラ」とも呼ばれるメソッドは、メッセージによって呼び出されるコードです。 メソッドは、インスタンスデータの変更を含め、通常の関数またはプロシージャが行うことができるすべてのことを行うことができます。 あるオブジェクトのメソッドが別のオブジェクトのインスタンスデータを直接変更するのは、スタイルが悪く、非常にお勧めできません。</DD>
+<DT>
+          <STRONG>送る</STRONG>
+        </DT><DD>sendコマンドで送信されたメッセージは、受信者のイベントキューに配置され、送信者がブロックすることはありません。 情報やパスポインタを返すメッセージは、sendコマンドでディスパッチしないでください。このような場合は、callコマンドを使用します。</DD>
+
+</DL>
+<HR>
+          <A NAME="GOCLanguage_d.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:3.2人<A HREF="#GOCLanguage_b.htm">GEOSオブジェクトシステム</A>キーを押します<A NAME="GOCLanguage_d.htm_41493"></A>オブジェクト構造</H3>
+<P><A NAME="GOCLanguage_d.htm_IX_Objects"></A>オブジェクトやクラスを格納するためにどのデータ構造が使用されているかを知る必要はありませんが、それらを理解することで、GEOSのプログラミングがはるかに容易になります。</P>
+<P>各オブジェクトは、インスタンス・データ・チャンクとクラス定義の2つの部分で実装されます。 どちらもオブジェクトの不可欠な部分であり、相互接続されていますが、異なる場所に保存されています。</P>
+<P>オブジェクトのインスタンスデータは、インスタンスチャンクに格納されます。 このインスタンス・チャンクはオブジェクトそのものと呼ばれることもありますが、これはあまり正確ではありません。 インスタンスチャンクの構造を以下に示す。<A HREF="#GOCLanguage_d.htm_97259">インスタンス・チャンク構造</A>ボタンをクリックし</P>
+<P>オブジェクトのクラス構造には、そのクラスのすべてのコードが含まれています。 クラスコードは多くのオブジェクトによってアクセスされる可能性があるため、クラス定義はgeodeの固定メモリリソースに存在します。 すべてのクラス(ルートを除く<CODE>メタクラス</CODE>)にはスーパークラスへのポインタがあるので、そのクラスのメソッドと構造を継承することができます。</P>
+<P>特定のクラスのすべてのオブジェクトは、その関数に同じコード(クラスのコード)を使用します。 彼らはこのコードに動的にアクセスするので、コードブロックをアクティブに使用しているオブジェクトの数に関係なく、コードブロックがメモリ内に存在する必要があるのは1回だけです。 さらに、各クラスはそのスーパークラスのコードに動的にアクセスするため、どのクラスもサブクラスのすべてのオブジェクトからアクセスされる可能性があります。 クラス構造をに示します。<A HREF="#GOCLanguage_d.htm_58645">クラス構造とクラスツリー</A>ボタンをクリックし</P>
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_d.htm_97259"></A>インスタンス・チャンク構造</H4>
+<P><A NAME="GOCLanguage_d.htm_IX_Local memory:storing instance data"></A><A NAME="GOCLanguage_d.htm_IX_Instance data:structure"></A><A NAME="GOCLanguage_d.htm_IX_Chunks:instance chunk structure"></A>各オブジェクトのインスタンスデータは、ローカルメモリチャンクに格納されます。 いくつかのチャンクは、ローカルメモリヒープと呼ばれる1つのメモリブロックに格納される。 (詳細については<A HREF="../../Memory/LMem/index.htm">「ローカルメモリー」の章</A>」を参照してください。 オブジェクトを含むこのローカルメモリヒープは<EM>オブジェクトブロック</EM>ボタンをクリックし</P>
+<P>各オブジェクトブロックには、通常のローカルメモリヒープと区別する特別なヘッダータイプがあります。 ブロックのヘッダーの後には、チャンクハンドルテーブル(ブロック内の各オブジェクトへのオフセットを含むテーブル)があります。 チャンク・ハンドル・テーブルの後にオブジェクトが続きます。</P>
+<P><A NAME="GOCLanguage_d.htm_IX_optr"></A>各オブジェクトは、オブジェクト・ポインター(optr)によって参照されます。 optrには、オブジェクト・ブロックのグローバル・メモリー・ハンドルとオブジェクトのチャンク・ハンドルの2つの項目が含まれます。 optrはハンドルで構成されているため、オブジェクトのインスタンス・データにアクセスするには、オブジェクトをロックする必要があります。 GEOSカーネルは、メソッドを実行するときに自動的にこれを処理します。<IMG SRC="GOCLanguage_d_optr.gif"></P>
+<P>optrが指すチャンクには、オブジェクトのインスタンス・データのみが格納されます。オブジェクトが使用するメソッド・テーブルとコードは、オブジェクトのデータ構造ではなく、クラスのデータ構造に格納されます。 このコードとデータの分離を調整するために、すべてのオブジェクトのインスタンス・データの最初の4バイトは、オブジェクトのクラス定義へのポインターになります。 このポインタはカーネルによって自動的にトラバースされ、アプリケーションによって変更されたりアクセスされたりしてはなりません。</P>
+<P>オブジェクトのインスタンス・チャンクには、Gocまたはカーネルによって生成され、入力される特定のフィールドが含まれます。 これらのフィールドに続いて、オブジェクトのインスタンスデータがマスターパーツ別にグループ化されます。 カーネルは個々のインスタンス・データ・フィールドへの適切なオフセットを自動的に計算するため、インスタンス・チャンクで使用される実際の構造を知る必要はありません。 しかし、基礎となる構造を理解することは、GEOSのオブジェクトシステムがどのように機能するかを理解するのに役立つ可能性がある。</P>
+<P><A NAME="GOCLanguage_d.htm_IX_Master groups"></A>インスタンス・チャンク内のインスタンス・データは、「マスター・パーツ」または「マスター・グループ」に格納されます。 マスター・グループは、適切なマスター・クラス・レベルに従ってグループ化された多数のインスタンス・データ・フィールドです。 マスタークラスについては、を参照してください。<A HREF="#GOCLanguage_d.htm_63826">マスタークラス</A>ボタンをクリックし<IMG SRC="GOCLanguage_d_objectAndClass.gif"></P>
+<P>マスタークラスとして指定されたクラスは、すべての点で通常のクラスに似ていますが、インスタンスデータがチャンク内でどのようにグループ化されるかを決定します。 各マスタークラスは、クラスサブツリーのヘッドです。クラスツリーでその下にあるすべてのクラス(次のマスタークラスまで)は、そのマスタークラスのグループ内にあると見なされます。 マスター・グループ内のすべてのクラスのインスタンス・データは、インスタンス・チャンクにまとめられます。チャンク内の各マスター・グループのインスタンス・データは、チャンク内に格納されている特別なオフセットを介してアクセスされます。</P>
+<P>オブジェクトのチャンクの最初の4バイトには、オブジェクトのクラス構造体へのポインタが含まれます。 クラス構造(で説明)<A HREF="#GOCLanguage_d.htm_58645">クラス構造とクラスツリー</A>)は固定メモリに存在します。 (バリアントクラスオブジェクトの構造は少し異なります。これについては<A HREF="#GOCLanguage_d.htm_43589">バリアントクラス</A>」を参照してください。</P>
+<P>クラスの祖先にマスタークラスを持たないオブジェクト(異常)は、クラスポインタの直後にインスタンスデータを持ちます。 ただし、マスタークラスまたはそのサブクラスに属するオブジェクトは、やや複雑です。 アプリケーション・プログラマーやライブラリー・プログラマーは、この区別をほとんど無視することができます(ただし、どのクラスをマスター・クラスにし、どのクラスをマスター・クラスにしないかを決定することは例外です)。<IMG SRC="GOCLanguage_d_objectStructures.gif"></P>
+<P>チャンクの各マスター部分は、チャンク内のオブジェクトのクラスポインタの直後に挿入されたオフセットによって配置されます。 このオフセットを含む単語の位置は、マスタークラス構造に格納されるため、クラスは後でそのインスタンスデータを見つけることができます。 クラスポインタとさまざまなマスターオフセットの組み合わせによって、オブジェクトの「基本構造」が構成されます。 一般的なオブジェクトがインスタンス化されると、基本構造だけが作成されます。</P>
+<P>各マスター・パートは、マスター・グループ内のクラスに送信されるメッセージを介して最初にアクセスされるまで、(効率のために)割り当てられないままになります。 マスターグループ内のクラスが最初のメッセージを受信すると、チャンクのマスター部分全体が割り当てられ、初期化されます。 つまり、オブジェクトのチャンクは、絶対に大きくならない限り、できるだけ小さく保たれます。 一部のクラスでは、オブジェクトのマスター部分が不要になったことを検出し、不要なインスタンスデータをチャンクから実際に削除(ゼロに縮小)することさえあります(<CODE>生成クラス</CODE>これは、ガジェットが画面から削除されたときに、Visマスターパーツをゼロサイズに縮小することによって行われます)。</P>
+<P>どのオブジェクトも「可変データ」インスタンスデータフィールドを持つことができます。これらのフィールドは、インスタンスチャンク内に未使用の領域がないようにするために動的に追加または削除される可能性があります。 一般的なUIヒントは「可変データ」(<EM>変数データ</EM>)--オブジェクトにヒントがある場合、そのオブジェクトはインスタンスチャンクに表示されます。オブジェクトにヒントがない場合、チャンクには未使用の領域がありません。</P>
+<P>Vardataエントリーは、マスター・グループに関係なく、インスタンス・チャンクの最後にまとめて保存されます。 たとえば、2つのマスター・グループと3つの可変データ・フィールドを持つオブジェクトは、次の図のようになります。 変数データとその使用方法の詳細については<A HREF="#GOCLanguage_10.htm_54822">可変データフィールドの定義と操作</A>ボタンをクリックし<IMG SRC="GOCLanguage_d_masterGroups.gif"></P>
+
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_d.htm_63826"></A>マスタークラス</H4>
+<P><A NAME="GOCLanguage_d.htm_IX_Master classes"></A>マスタークラスは、クラスツリー内のレベル間の概念的な区切りを提供します。 各マスタークラスはクラスサブツリーの先頭であり、そのすべてのサブクラスはその「マスターグループ」にあると見なされます。<IMG SRC="GOCLanguage_d_vardata.gif"><IMG SRC="GOCLanguage_d_sampleInstance.gif"></P>
+<P>クラスをマスタークラスにする目的は、そのインスタンスデータをそのスーパークラスのインスタンスデータから分離することです。 各マスター・グループのインスタンス・データは、オブジェクトのインスタンス・チャンクの1つのセクションにまとめられ、マスター・グループ内のクラスがアクセスされるまで初期化されません。 初期化(インスタンスチャンク内の追加メモリの割り当て)は自動的に行われます。</P>
+<P>次の図に示すように<CODE>RookClass</CODE>2つのマスター・グループを持つインスタンス・チャンクがあり、1つは<CODE>PieceClass</CODE>マスタークラスと<CODE>GamePcClass</CODE>マスタークラス。 2つのマスタパーツの最初のパーツは<CODE>PieceClass</CODE>2番目のマスタ部分は、すべての<CODE>GamePcClass</CODE><CODE>ChessClass</CODE>、および<CODE>RookClass</CODE>ボタンをクリックし</P>
+<P>マスタークラスの機能は、GEOSバリアントクラスを実装するために必要です(「<A HREF="#GOCLanguage_d.htm_43589">バリアントクラス</A>バリアントクラスは、システムコンテキストに応じて異なるスーパークラスを持つことができるという点で、単一のクラスが「多重継承」のバージョンを持つことを可能にします。</P>
+
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_d.htm_58645"></A>クラス構造とクラスツリー</H4>
+<P><A NAME="GOCLanguage_d.htm_IX_Class_&ldots;"></A>ほとんどの場合、メモリーに実装されているクラスの内部構造を知る必要はありませんし、知りたくもありません。 クラス構造が作成され、GocプリプロセッサとGlueリンカーによって部分的に入力されます。残りは、クラスがロードされたときにカーネルによって入力されます。 実際のクラス構造を知る必要はほとんどありません。プログラムが動的にクラスを作成しない限り(一般的なアプリケーションでは一般的な手順ではありません)、クラスを手動で構築する必要はありません。<IMG SRC="GOCLanguage_d_classTree.gif"></P>
+<P>このセクションでは、クラスの実装方法と、クラス・ツリーの構造と管理方法について説明します。 ただし、実行中に新しいクラスを作成する方法については説明しません。</P>
+<P>クラスは、特殊なデータ構造とコードブロックを使用して実装されます。 各クラスは、特定のジオード内で定義され、ジオードによってエクスポートされます。ジオードがロードされると、クラス定義とそのコードがジオードの固定メモリにロードされます。 クラスへのすべての参照は、カーネルによってポインタに再配置されます。 たとえば、クラスがライブラリによって定義されている場合、そのライブラリの「コアブロック」(カーネルによって保持される特別な情報)には、ライブラリが所有する固定メモリリソース内のクラス定義への絶対ポインタが含まれます。 そのクラスを使用するすべてのアプリケーションは、ライブラリをロードします。 カーネルはライブラリのコアブロックを調べて適切なポインタを探し、アプリケーションがそのクラスを参照するたびにそのポインタを使用します。</P>
+<P>このため、各クラスはメモリに一度だけロードされます。そのクラスを使用するすべてのオブジェクトは、同じクラス構造とコードを使用します。 各オブジェクトは、そのインスタンスチャンク内にクラス構造への直接ポインタを持ちます。各クラスには、そのスーパークラスのクラス構造へのポインタが含まれます。 これらのポインタを使用して、カーネルはオブジェクトのクラスツリーを上に移動し、適切なコードにアクセスできます。</P>
+<P><A NAME="GOCLanguage_d.htm_IX_ClassStruct"></A>クラスは、データ構造とコードの組み合わせです。 データ構造(<CODE>ClassStruct</CODE>)には、クラス、スーパークラス、メソッド、およびインスタンス・データの構造とサイズに関する情報が含まれています。 コードはメソッド(メッセージハンドラ)で構成されています。 データ構造図を以下に示す。<IMG SRC="GOCLanguage_d_ClassStruct.gif"></P>
+
+<H5 CLASS="HeadingD">クラス_superClass</H5>
+<P>すべてのクラスは、その最初の4バイトとしてスーパークラスへのポインタを持っています。 これはスーパークラス&#39;<CODE>ClassStruct</CODE>クラス・ツリーのルートにはヌルのスーパークラス・ポインターがあり、ルートにスーパークラスがないことを示します。<A NAME="GOCLanguage_d.htm_IX_Variant classes:detecting"></A>バリアントクラスは常に整数1(one)を持ち、スーパークラスが特別な方法で決定されることを示します。 バリアントクラスの詳細については、を参照してください。<A HREF="#GOCLanguage_d.htm_43589">バリアントクラス</A>ボタンをクリックし</P>
+<P>クラスツリーは、クラスが定義されたときに構築されます。新しいクラスは、既存のクラスのサブクラスとして作成され<CODE>クラス_superClass</CODE>ポインタは自動的にスーパークラスを指すように設定されます。 ツリーを下に向ける必要はありません。メッセージは常にスーパークラスに渡され、サブクラスには渡されません。</P>
+
+
+<H5 CLASS="HeadingD">クラス_masterOffset</H5>
+<P><CODE>クラス_masterOffset</CODE><A NAME="GOCLanguage_d.htm_IX_Instance data:master offsets"></A><A NAME="GOCLanguage_d.htm_IX_Master classes:offset"></A>このクラスのマスタパーツに対するオブジェクトのオフセットが、インスタンスチャンク内でどの程度離れているかを示すオフセットを格納します。 このオフセットの使用は完全に内部的であることに注意してください。個々のクラスは、そのインスタンスデータがチャンク内のどこにあるかを知る必要はありません(ただし、各クラスがどのマスターレベルであるかを知る必要がある場合もあります)。</P>
+<P>マスターオフセットが使用される主な理由は、オブジェクトには初期化されたマスターパーツと初期化されていないマスターパーツがあるためです。 オブジェクトの1つのマスター・パーツのみが初期化されている場合、チャンク内のインスタンス・データの場所は、すべてのマスター・パーツが初期化されている場合とは異なる場合があります。</P>
+
+
+<H5 CLASS="HeadingD">クラス_methodCount</H5>
+<P><CODE>クラス_methodCount</CODE>には、クラスのメソッドテーブルで参照されているメソッドの総数が格納されます。 これは、このクラスに対してのみ定義されたメソッドの合計数です。他のクラスで定義された他のメソッドは(同じマスターグループ内であっても)、それらのクラスのメソッドテーブルに格納されます。</P>
+
+
+<H5 CLASS="HeadingD">クラスインスタンスサイズ<IMG SRC="GOCLanguage_d__masterOffset.gif"></H5>
+<P><CODE>クラスインスタンスサイズ</CODE><A NAME="GOCLanguage_d.htm_IX_Instance data:structure"></A>は、このクラスのオブジェクトがインスタンス化されるたびに割り当てられるバイト数を保持する。 クラスがマスタークラスまたはマスタークラスのサブクラスである場合、これはマスターパートのサイズです。 クラスの上にマスタークラスがない場合、これはオブジェクト全体(スーパークラスポインタを含む)に割り当てるバイト数です。</P>
+
+
+<H5 CLASS="HeadingD">クラス_vdRelocTable</H5>
+<P><CODE>クラス_vdRelocTable</CODE><A NAME="GOCLanguage_d.htm_IX_Relocatable data:information in ClassStruct"></A>は可変データ再配置情報へのニアポインタ(16ビットオフセット)である。 再配置情報には、各データタイプに対して実行される再配置のタイプが含まれます。 変数データ再配置テーブルには、特定の変数データ型の再配置可能フィールドごとに1つのエントリがあります。 変数データ(<EM>変数データ</EM>)の詳細については<A HREF="#GOCLanguage_10.htm_54822">可変データフィールドの定義と操作</A>ボタンをクリックし</P>
+
+
+<H5 CLASS="HeadingD">クラス_relocTable</H5>
+<P><CODE>クラス_relocTable</CODE>は、クラスの非可変データインスタンスフィールドの再配置情報へのニアポインタ(16ビットオフセット)です。 再配置情報には、各再配置可能インスタンスフィールド(変数データエントリ以外)に対して実行される再配置のタイプが含まれます。 再配置可能インスタンスフィールドは、オブジェクトがロードされたときに更新する必要があるフィールドです(ポインタ、オフセットなど)。再配置テーブル内のエントリは<CODE>@再配置</CODE>キーワード、説明<A HREF="#GOCLanguage_10.htm_52446">@reloc&lt;iname>,[(&lt;count>,&lt;struct>)]&lt;ptrType>;&lt;数値></A>ボタンをクリックし</P>
+
+
+<H5 CLASS="HeadingD"><A NAME="GOCLanguage_d.htm_11068"></A>クラスフラグ</H5>
+<P><CODE>クラスフラグ</CODE><A NAME="GOCLanguage_d.htm_IX_CLASSF_&ldots;"></A>には、クラスの特性を決定する7つのフラグ(下記参照)が含まれています。 これらのフラグの宣言子は<CODE>@classdecl</CODE>宣言(<A HREF="#GOCLanguage_10.htm_18289">新しいクラスまたはサブクラスの定義</A>)をクリックします。</P>
+<DL>
+<DT>クラスF_HAS_DEFAULT</DT><DD>このフラグは、クラスに認識されないメッセージを処理する特別なデフォルトメソッドがあることを示します(通常、このハンドラは単に認識されないメッセージをスーパークラスに渡します)。 このフラグはCでは実装されていません。このフラグを設定するには、クラスを次のように宣言します。<CODE>hasDefault(既定値)</CODE>ボタンをクリックし</DD>
+<DT>クラスF_MASTER_CLASS</DT><DD><A NAME="GOCLanguage_d.htm_IX_Master classes:class flag"></A>このフラグは、クラスがマスタークラスの場合に設定されます。 このフラグは、クラスを次のように宣言することで設定されます。<CODE>主人</CODE>ボタンをクリックし</DD>
+<DT>クラスF_VARIANT_CLASS</DT><DD><A NAME="GOCLanguage_d.htm_IX_Variant classes:class flag"></A>このフラグは、クラスがバリアントクラスの場合に設定されます。 このフラグは、クラスを次のように宣言することで設定されます。<CODE>変種</CODE>(すべてのバリアントもマスターとして宣言する必要があります)。</DD>
+<DT>CLASSF_DISCARD_ON_SAVE[クラスF破棄オン保存]</DT><DD><A NAME="GOCLanguage_d.htm_IX_Instance data:discardable"></A>このフラグは、オブジェクトの保存時にクラスのインスタンスデータを破棄できることを示します。 このフラグはマスタークラスにのみ適用され、マスターグループがバリアントマスターグループのすぐ上にある場合にのみ考慮されます。 このフラグを設定するには、クラス<CODE>discardOnSave</CODE>ボタンをクリックし</DD>
+<DT>CLASSF_NEVER_SAVED[クラスF保存され</DT><DD>このフラグは、このクラスのオブジェクトが状態ファイルに保存されたり、リソースからロードされたりしないことを示します。 Gocは、このフラグが設定されているクラスの再配置テーブルを構築しません。 このフラグを設定するには、クラス<CODE>neverSaved</CODE>ボタンをクリックし</DD>
+<DT>クラスF_HAS_RELOC</DT><DD><A NAME="GOCLanguage_d.htm_IX_Objects:relocating"></A>このフラグは、クラスのオブジェクトがディスクからロードされるとき、またはディスクに書き込まれるときに、そのオブジェクトを再配置および再配置解除するための特別なルーチンがクラスにあることを示します。 このフラグを設定するには、クラス<CODE>hasReloc</CODE>ボタンをクリックし</DD>
+<DT>クラスF_C_HANDLERS</DT><DD>このフラグは、クラスのメソッドがアセンブリではなくCで記述されていることを示します。 このフラグはコンパイラによって設定され、アプリケーションによって設定されるべきではありません。</DD>
+
+
+</DL>
+<H5 CLASS="HeadingD">クラス_masterMessages</H5>
+<P><CODE>クラス_masterMessages</CODE>には、このクラスに特定のマスターレベル内で定義されたメッセージ用のメソッドがあるかどうかを示す、Gocによって設定されたいくつかのフラグが含まれています。 これは、メッセージを処理するメソッドの検索を最適化するために使用されます。 これらのフラグは内部的なものであり、プログラマは使用しないでください。</P>
+
+
+<H5 CLASS="HeadingD">メソッドテーブル</H5>
+<P><A NAME="GOCLanguage_d.htm_IX_Methods:storage"></A>すべてのクラスには、特定のメッセージを受信したときに実行されるコードの場所を示すメソッドテーブルがあります。 メソッドテーブルは3つの部分で構成され、次のバイトで始まります。<CODE>クラス_メソッドテーブル</CODE>(これは単なるラベルであり、特定のデータフィールドではありません)。</P>
+<P>メソッドテーブルの最初の部分は、クラスが処理できるメッセージのリストです。 このリストの各エントリは2バイトで、クラスによって処理されるメッセージのメッセージ番号が含まれます。</P>
+<P>メソッドテーブルの2番目の部分は、メソッドへのポインタのリストです。 このリストの各エントリは、コードブロック内の特定のルーチンを指すポインタ(4バイト)です。 コードが固定ブロック内にある場合、ポインタはfarポインタになります。コードが移動可能または破棄可能なブロック内にある場合、ポインタはfarポインタになります。<EM>仮想セグメント</EM>(仮想セグメントは、知っておく必要のないものですが、上位4ビットが設定された右4ビットにシフトされたハンドルです。 これは不正なセグメントアドレスを表しているため、GEOSはそれを仮想セグメントとして認識し、アクセス前にブロックをメモリにロックし、アクセス後にロックを解除するために必要なアクションを実行します。 仮想セグメント内のビットの操作は、完全にGEOSの内部で行われます)。</P>
+<P>カーネルは、適切なメッセージ番号が見つかるまでメッセージリストを検索し、テーブル内のメッセージの位置を記録します。 次に、ポインタリスト内の対応する位置を参照します。 ポインタに仮想セグメントとオフセットがある場合は、適切なコードブロックをロードしてロックし、コードを実行します。 ポインタが固定メモリを指している場合、コードはすぐに実行されます。 (メッセージ番号がテーブルに見つからない場合、カーネルはクラスのデフォルトハンドラを実行するか、クラスのスーパークラスにメッセージを渡します)。</P>
+
+
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_d.htm_43589"></A>バリアントクラス</H4>
+<P><A NAME="GOCLanguage_d.htm_IX_Variant classes"></A>バリアントクラスとは、スーパークラスが設定されていないクラスです。 バリアントのスーパークラスは、コンテキストやその他の基準に基づいて実行時に決定されます。 次の点に注意してください。<EM>オブジェクトおぶじぇく</EM>はバリアントにはできません--バリアントにできるのはクラスだけです。 オブジェクトには常に、それが属する特定のクラスと、そのクラスポインタがあります。<EM>いつも</EM>はそのクラスを指しています。<CODE>ClassStruct</CODE>構造。 さらに、すべてのバリアントクラスは<EM>しなければならない</EM>マスタークラスにもなります。</P>
+<P>ただし、バリアントクラスは、異なる時間に異なるスーパークラスを持つことができます。 この機能は、「多重継承」の形式を提供します。クラスは、その属性と必要な機能に応じて、異なるクラスのインスタンスデータと関数を継承できます。 ただし、バリアントクラスは、常に1つのスーパークラスしか持つことができないことに注意してください。</P>
+<P><A NAME="GOCLanguage_d.htm_IX_Specific user interface:variant classes"></A>バリアントクラスの最も目に見える例は、次のとおりです。<CODE>生成クラス</CODE>また、汎用オブジェクトを特定のUIの適切な表現に解決する方法についても説明します。 各ジェネリックオブジェクト(GenTriggerなど)は、マスタークラスのサブクラスです。<CODE>生成クラス</CODE>に属するすべてのインスタンスデータ<CODE>GenTriggerClass</CODE>および<CODE>生成クラス</CODE>したがって、はインスタンスチャンクのGenマスタ部分に格納されます。</P>
+<P><CODE>生成クラス</CODE><A NAME="GOCLanguage_d.htm_IX_GenClass:variant behavior"></A>ただし、はバリアントクラスであり、オブジェクトがインスタンス化されたときにそのスーパークラスを認識しません。 各汎用オブジェクトのクラスは、使用中の特定のUIによって提供される別のクラスに直接リンクされます。特定のUIのクラスは視覚的な表現を提供し、汎用UIクラスはオブジェクトの機能を提供します。 このようにして、オブジェクトは、視覚的表現を持たずに、その一般的な機能の多くを実際に実行することができる。</P>
+<P>スーパークラスの解決は、汎用オブジェクトが画面に表示されたときに行われます。カーネルは、オブジェクトにスーパークラスがないことを確認し、そのインスタンスデータとクラス構造を調べます。 次にカーネルは、オブジェクトのクラスに適した特定のUIクラスを決定し、必要なスーパークラス・リンクを提供します。 次に、オブジェクトのスーパークラスのマスタ部分を初期化します(この場合<CODE>VisClass</CODE>)、インスタンスチャンクのマスターオフセットフィールド内のすべてのマスターパーツオフセットを更新します。</P>
+<P>上記の説明から、次のことがわかります。<CODE>生成クラス</CODE>その潜在的なスーパークラスについて少なくとも何か知っている必要があります。 実際、すべてのバリアントクラスは、少なくともそのすべての潜在的なスーパークラスの最上位クラスを知っている必要があります。 の定義<CODE>生成クラス</CODE>である</P>
+<PRE>@class GenClass, VisClass, マスタ,バリアント;</PRE>
+<P>の<CODE>@クラス</CODE>キーワードは新しいクラスを宣言します。<CODE>生成クラス</CODE>ボタンをクリックし<CODE>生成クラス</CODE>はバリアントクラスであるため、マスタークラスでもある必要があります。 のすべてのスーパークラス<CODE>生成クラス</CODE>に関連する<CODE>VisClass</CODE>これはつまり、Genのスーパークラスとして動作するすべての特定のUIクラスは<CODE>VisClass</CODE>(定義の別の見方をすると<CODE>生成クラス</CODE>は<EM>最終的な</EM>サブクラス<CODE>VisClass</CODE>ただし、この2つの間にクラス・レイヤーがいくつあるかを事前に知る方法はありません)。</P>
+<P>バリアントは、最終的なスーパークラスを指定する必要があります。これにより、カーネルは、バリアントのインスタンスが作成されたときに割り当てる必要があるマスターオフセットフィールドの数を知ることができます。 たとえば、あるGenTriggerに2つのマスター・グループがあるとします。<CODE>生成クラス</CODE>、および<CODE>VisClass</CODE>なぜなら<CODE>生成クラス</CODE>マスター・グループは、必ず<CODE>VisClass</CODE>クラス階層内のマスター・グループ(スーパークラス・リンクが解決された後)<CODE>生成クラス</CODE>インスタンスチャンク内のマスターオフセットは<CODE>VisClass</CODE>マスターオフセット。 定義で指定されていない場合<CODE>VisClass</CODE>を最終的なスーパークラスとして使用すると、マスターオフセットフィールドは割り当てられず<CODE>クラス_masterOffset</CODE>フィールド<CODE>生成クラス</CODE>&#39;クラス構造は、特定の値を保持できません。</P>
+<P>このセクションの冒頭で説明したように、「バリアントオブジェクト」はありません。 すべてのオブジェクトは特定のクラスに属し、オブジェクトのクラスは決して変更できません。 ただし、バリアントクラスのすべてのインスタンスは、各バリアントのスーパークラスが解決される方法により、異なるスーパークラスに解決できます。 この一例が、GenInteractionオブジェクトのジェネリックから特定のマッピングです。</P>
+<P><A NAME="GOCLanguage_d.htm_IX_GenInteractionClass:variant behavior"></A>すべてのGenInteractionsは一流である<CODE>GenInteractionClass</CODE>;これは変更されません。<CODE>GenInteractionClass</CODE>ただし、はのサブクラスです。<CODE>生成クラス</CODE>、バリアントクラス。 これは、GenInteractionオブジェクトのクラスツリーが部分的にしか完成していないことを意味します。GenInteractionが解決される前は、次の単純化された図のようになります。<IMG SRC="GOCLanguage_d_variantObject.gif"></P>
+<P>GenInteractionオブジェクトは、いくつかの異なる特定のUIクラスの1つに解決することができます。 たとえば<STRONG CLASS="fileName">モチーフ.geo</STRONG>ライブラリにはGenInteractions用のクラスがいくつかあります。その中には、メニュー、ダイアログボックス、およびグループ化の相互作用を実装するクラスがあります。 これらのクラスはすべて<CODE>VisClass</CODE>、の最終的なスーパークラス<CODE>生成クラス</CODE>ボタンをクリックし<IMG SRC="GOCLanguage_d_variantResolved.gif"></P>
+<P>GenInteractionのクラスツリーは完全ではありません。 クラスツリーには、に戻るリンクが必要です<CODE>メタクラス</CODE>これは<CODE>生成クラス</CODE>ボタンをクリックし<CODE>生成クラス</CODE>には特別な値があります。<CODE>クラス_superClass</CODE>フィールド、0001h:0000h。 これは、そのクラスがマスタークラスであることをカーネルに示す予約された「ポインタ」を表します。</P>
+<P>スーパークラスポインタは実際にはクラスではなくオブジェクトのインスタンスチャンクに格納されるため、バリアントのスーパークラスはインスタンスごとに異なる場合があります。<CODE>ClassStruct</CODE>構造。 これにより、クラスツリーは階層内に複数のバリアントクラスを持つことができます。たとえば、あるバリアントが別のバリアントのサブクラスになるように解決できます。 ツリーの先頭には、常に<CODE>メタクラス</CODE>ボタンをクリックし</P>
+<P>バリアントのスーパークラスポインタは、バリアントのマスターグループインスタンスデータに格納されます。 すべてのマスターグループがスーパークラスポインタを持っているわけではありません。バリアントクラスのスーパークラスポインタだけです。 GenInteractionが解決された後、ポインタ(Genマスター部分の最初の4バイト)は、このオブジェクトの適切なスーパークラスを指します(この場合<CODE>OLMenuWinClass</CODE>)をクリックします。 上の図は、完全なクラス・ツリーを持つオブジェクトを示しています。</P>
+
+
+<H4 CLASS="HeadingC">詳細な例</H4>
+<P><A NAME="GOCLanguage_d.htm_IX_GenTriggerClass:variant behavior"></A><A NAME="GOCLanguage_d.htm_IX_Master classes:in example"></A>このセクションでは、バリアント部品が解決された後のGenTriggerオブジェクトの例を示します。 この例では、クラスとインスタンスの構造を理解したいプログラマのために、それらの詳細な図を提供します。 ただし、クラス構造やインスタンス構造の内部にアクセスする必要はほとんどありません。</P>
+<P>例として取り上げたGenTriggerは、TicTacサンプル・アプリケーションの「New Game」トリガーです。 このトリガは、ゲームメニューGenInteractionの唯一の子です。以下に示します。 トリガを定義するコードを以下に示します。<A HREF="#GOCLanguage_d.htm_87649">TicTacの新しいゲームトリガー</A>ボタンをクリックし<IMG SRC="GOCLanguage_d_newgameTrigger.gif"></P>
+<P CLASS="figTitle">コード表示5-4<A NAME="GOCLanguage_d.htm_87649"></A>TicTacの新しいゲームトリガー</P>
+<PRE>/*TicTacNewTriggerにはニックネームと出力があります。 その他すべてのインスタンスデータ*は、GenClassの既定値に設定されます。 ただし、この例では、これらのフィールドの内容は重要ではありません*。 (注)</PRE>
+<PRE>@object GenTriggerClass TicTacNewTrigger={GI_visMoniker=&quot;新しいゲーム&quot;;GTI_destination=TicTacBoard;/*アクションメッセージを*TicTacゲームボードオブジェクトに送信します。 */GTI_actionMsg=MSG_TICTAC_NEW_GAME;/*アクションメッセージ。 */}と入力します。</PRE>
+          <IMG SRC="GOCLanguage_d_newgameInstance.gif">
+        <H5 CLASS="HeadingD">GenTriggerのインスタンスチャンク</H5>
+<P>GenTriggerオブジェクトには、に示すGenInteractionオブジェクトと同様に、2つのマスタパーツがあります。<A HREF="#GOCLanguage_d.htm_43589">バリアントクラス</A>:Genマスタパーツには<CODE>生成クラス</CODE>および<CODE>GenTriggerClass</CODE>Visマスタパーツには<CODE>VisClass</CODE>および<A NAME="GOCLanguage_d.htm_IX_OLButtonClass"></A><CODE>OLButtonClass</CODE>である。<CODE>メタクラス</CODE>インスタンス・データはオブジェクトのクラス・ポインターのみで構成され、マスター部分はありません。</P>
+<P>トリガーのインスタンス・チャンクの基本構造は、クラス・ポインター(4バイト)と、それに続くチャンクへの2ワードのオフセットで構成されます。 最初のオフセットはVisマスタパーツの位置を示し、2番目のオフセットはGenマスタパーツの位置を示します。 オフセットがマスター・パート自体になった後、トリガーに変数データがある場合は、チャンクの最後に表示されます。<IMG SRC="GOCLanguage_d_newgameClassTree.gif"></P>
+<P>各マスターパートには、最初にマスタークラスのインスタンスフィールドがあり、その後にサブクラスのインスタンスフィールドが続きます。 に属するすべてのフィールド<CODE>VisClass</CODE>begin VI_.に属するすべての<CODE>OLButtonClass</CODE>begin OLBI_.,など</P>
+<P>また、Genマスタ部分の最初の4バイトにも注目してください。これらのバイトには<CODE>生成クラス</CODE>設定します。 トリガーは通常、(GenInteractionのように)特定のUIで異なる形式を持つことはありませんが、遭遇する特定のUIごとに異なるクラスを持ちます。 たとえば、OSF/Motifクラスは次のようになります。<CODE>OLButtonClass</CODE>別の特定のUIは、GenTriggersに対して異なるクラスを使用します。</P>
+
+
+<H5 CLASS="HeadingD">GenTriggerの完全なクラスツリー</H5>
+<P>以降<CODE>生成クラス</CODE>はバリアント型で、スーパークラスポインタは0001h:0000hです。 この特別な値(不正なセグメントアドレスを持つ)は、カーネルに対して、このオブジェクトの<CODE>生成クラス</CODE>スーパークラスはインスタンス・チャンク自体に格納されます。 前のセクションで示したように、スーパークラスはGenマスター部分の最初の4バイトに格納されます。</P>
+
+
+<H5 CLASS="HeadingD">GenTriggerClassのClassStruct構造<IMG SRC="GOCLanguage_d_newgameSubClass.gif"></H5>
+<P>すべてのクラスは同じクラス構造を持っているため<CODE>GenTriggerClass</CODE>ここで検討する。 クラス構造とインスタンス・チャンク構造は、いくつかの点で密接に関連しています。</P>
+<P>図に示すように、インスタンス・チャンクはクラスを直接ポイントします。 クラスはそのスーパークラスを指します。これにより、次のようなクラスツリー内の上位クラスのすべてのメソッドと構造を継承します。<CODE>生成クラス</CODE>ボタンをクリックし</P>
+<P>クラス構造には、インスタンスチャンクのフォーマットに関する情報が含まれています。<CODE>クラス_masterOffset</CODE>および<CODE>クラスインスタンスサイズ</CODE>ボタンをクリックし<CODE>クラス_masterOffset</CODE>マスター部品へのオフセットが保存されているインスタンスチャンクにオフセットを渡します。<CODE>クラスインスタンスサイズ</CODE>にはマスタパートのサイズが格納されているため、カーネルはマスタパートの初期化時に必要な領域をすばやく割り当てることができます。</P>
+<P>メソッドテーブルはクラスの最後にあり、クラスによって処理される各メッセージのエントリを持っています。<CODE>GenTriggerClass</CODE>は、7つのメッセージ(<CODE>クラス_methodCount</CODE>);このトリガーによって受信され、で認識されないメッセージ<CODE>GenTriggerClass</CODE>は、処理のためにクラスツリーに渡されます。 したがって、トリガーに送信されたMSG_GEN_SET_NOT_ENABLEDは<CODE>生成クラス</CODE>そこで処理されます。</P>
+<P><A NAME="GOCLanguage_d.htm_IX_Method table"></A>メソッドテーブルは、次の2つの部分で構成されています。 最初の部分はメッセージ番号のリストで、2番目の部分はメソッド・コードへのポインタのリストです。 オブジェクトがメッセージを受信すると、カーネルは最初の部分をスキャンして、クラスがメッセージを処理しているかどうかを確認します。 そうであれば、カーネルはテーブルの2番目の部分をスキャンして、コードへのポインタを取得します。 次に、そのコードがオブジェクトのコードによって呼び出される関数であるかのように、そこでコードを実行します。</P>
+
+
+<H5 CLASS="HeadingD">メッセージの処理方法</H5>
+<P><A NAME="GOCLanguage_d.htm_IX_Messages:handling with variant classes"></A>次のセクションでは、メッセージとメッセージングのほとんどの側面について説明します。 ただし、このセクションでは、メッセージがGenTriggerに送信されたときに、カーネルがどのようにコードを見つけて実行するかについて説明します。 メッセージは<CODE>MSG_GEN_SET_USABLE(使用可能)</CODE>(によって処理されます<CODE>生成クラス</CODE>)をクリックします。</P>
+<P>メッセージはoptrを使用してオブジェクトに直接送信されます。 つまり、この特定のGenTriggerにメッセージを送信する場合、アプリケーションによって実行されるモノリシックな「case」文ではなく、TicTacNewTriggerに直接送信します。 オブジェクトのoptrは、メモリー内のオブジェクトのインスタンス・チャンクの場所を一意に識別するため、カーネルはハンドラーのコードにすばやくアクセスできます。</P>
+<P>次の場合<CODE>MSG_GEN_SET_USABLE(使用可能)</CODE>がTicTacNewTriggerに送られると、例えばカーネルはオブジェクトのインスタンス・チャンク内でクラス・ポインターを探します。 このポインタを追跡し<CODE>GenTriggerClass</CODE>」の<CODE>ClassStruct</CODE>構造。 クラスのメソッドテーブルの最初の部分をスキャンして<CODE>MSG_GEN_SET_USABLE(使用可能)</CODE>メッセージが存在しない場合(そして存在しない場合)、カーネルはクラス&#39;<CODE>クラス_superClass</CODE>ポインタとルックイン<CODE>生成クラス</CODE>」の<CODE>ClassStruct</CODE>構造。 次に最初の部分をスキャンします<CODE>生成クラス</CODE>&#39;メッセージのメソッドテーブル。<CODE>生成クラス</CODE>には次のエントリがあります:<CODE>MSG_GEN_SET_USABLE(使用可能)</CODE>そのため、カーネルはメソッドテーブルの2番目の部分でコードポインタをチェックします。 このポインターに従ってメソッドのエントリー・ポイントに移動し、そこでコードの実行を開始します。</P>
+
+
+<HR>
+          <A NAME="GOCLanguage_e.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:3.3人<A HREF="#GOCLanguage_b.htm">GEOSオブジェクトシステム</A>キーを押します<A NAME="GOCLanguage_e.htm_57260"></A>GEOSメッセージシステム</H3>
+<P><A NAME="GOCLanguage_e.htm_IX_Messages"></A>オブジェクトは独立したエンティティであるため、システム内の他のオブジェクトと通信する手段を持っている必要があります。 の計算機オブジェクトと要求側オブジェクトの例に示すように<A HREF="../../Intro/Overview/index.htm">「概要」の章</A>、コミュニケーションはメッセージとメソッドを使用して実装されます。</P>
+<H4 CLASS="HeadingC">メッセージング・プロセス</H4>
+<P>オブジェクトが別のオブジェクトに何らかのイベントを通知したり、別のオブジェクトからデータを取得したり、別のオブジェクトにデータを送信したりする必要がある場合、オブジェクトはそのオブジェクトにメッセージを送信します。 メッセージを送信することは、メッセージがパラメータ(ポインタを含む)を取り、戻り値を与えることができるという点で、Cの関数を呼び出すことに似ています。 しかし、GEOSのマルチスレッド環境では、メッセージは関数呼び出しとはまったく異なります。</P>
+<P><A NAME="GOCLanguage_e.htm_IX_Threads:event queues"></A>システム内の各オブジェクトブロックは、1つの実行スレッドに関連付けられています。 オブジェクトを実行する各スレッド(一部のスレッドは手続き型コードのみを実行)には<EM>イベントキュー</EM>、メッセージが処理可能になるまで保存されるキュー。 別のスレッドからオブジェクトに送信されたすべてのメッセージは、オブジェクトのスレッドのイベントキューに入れられます。 (同じスレッド内のオブジェクト間で送信されるメッセージは、強制されない限り、キューを介して処理されません。) したがって、1つのスレッドのイベント・キューには、多くの異なるオブジェクトのメッセージを入れることができます。 ほとんどのシングル・スレッド・アプリケーションでは、プログラマーは同期の問題を心配する必要はありません。</P>
+<P><A NAME="GOCLanguage_e.htm_IX_Messages:calling"></A>メッセージの送信者は、システムに複数のスレッドがあることによって発生する同期の問題を認識する必要があります。 基本的に、メッセージは次の2つの方法で送信できます。 1つ目は、メッセージを「呼び出す」ことで、戻り値を使用でき、Cの関数呼び出しとほぼ同じように動作します。これにより、メッセージが受信者のイベントキューに配置され、戻り値が受信されるまで送信者が停止します。 送信者はメッセージが処理されるまで「スリープ状態に入り」、その後カーネルによって起こされるため、送信者が別のコード行を実行する前にメッセージが処理されることが保証されます。 callオプションは、ポインタを渡すときにも使用する必要があります。そうしないと、メッセージが処理される前にポイントされた項目が移動し、ポインタが無効になる可能性があります。</P>
+<P><A NAME="GOCLanguage_e.htm_IX_Messages:sending"></A>2番目のメッセージの「送信」は、主に同期が問題でない場合に使用されます。 たとえば、メッセージが受信者に何らかの条件やイベントを通知するだけの場合や、戻り値を期待せずにデータを送信する場合は、sendオプションを使用できます。 基本的に、送信者はメッセージを送信した後、そのことを忘れて、自分の仕事を続けます。 (例外は、オブジェクトが同じスレッド内の別のオブジェクトにメッセージを送信する場合です。その後、メッセージは呼び出されたかのように即座に処理されます)。</P>
+<P>オブジェクトがメッセージを送信すると、実際には最初にメッセージがカーネルに渡されます(これはすべて自動です)。 カーネルはメッセージを適切なスレッドのイベントキューに入れ、必要に応じて送信側のスレッドを一時的にスリープ状態にします。 受信側のスレッドがメッセージを処理する準備ができると、カーネルはメッセージをイベント・キューから引き出します。</P>
+<P>次にカーネルは、(必要に応じて)受信側オブジェクトを見つけてメモリーにロードします。 受信者のオブジェクトブロックはロードされてロックされ、オブジェクトはイベントの処理中にロックされます。 (ただし、受信者がに電話をかけると、オブジェクトが移動する可能性があることに注意してください。<CODE>LMemAlloc()</CODE>または、オブジェクトチャンクのシャッフルを引き起こす可能性のある他の処理を実行します)。 カーネルは、オブジェクトのクラス・ポインターをそのクラスまで追跡し、メソッド・テーブルをスキャンします。 クラスがメッセージを処理できる場合は、適切なメソッドコードが実行されます。 クラスがメッセージを処理できない場合、カーネルはスーパークラスポインタを追跡し、そこでメソッドテーブルをチェックします。 メッセージは、処理されるか、ルートに到達して未処理のまま返されるまで、このようにクラスツリーを上に進みます。</P>
+<P>メソッド・コードが実行された後、カーネルは戻り値を収集し、必要に応じて呼び出し側スレッドを再び起動します。 発信者にとっては、メッセージが(callオプションで)瞬時に処理されたようなものです。 送信者がブロックされることはありません。発信者のスレッドをブロックできるのは、(callオプションで)呼び出されたメッセージだけです。 ただし、メッセージが同じスレッド内のオブジェクトに送信された場合、送信者がメッセージキューを通過するように明示的に指定しない限り、メッセージは呼び出しとして実行され、すぐに処理されます。</P>
+<P><A NAME="GOCLanguage_e.htm_IX_Deadlock"></A>ただし、複数のスレッドでコードを作成する場合(たとえば、UIオブジェクトをサブクラス化して、そのための新しいメソッド・コードを作成する場合)には注意が必要です。 2つのスレッドがお互いを呼び出さないようにする必要があります。呼び出しが重なった場合、デッドロックが発生する可能性があります。 これに対処する最も簡単な方法は、1つのスレッドが常に、必要な戻り値を含む戻りメッセージを要求するメッセージを送信するようにすることです。 その後、もう一方のスレッドは、データとともにリターンメッセージを送信します。 たとえば、UIオブジェクトはアプリケーションのオブジェクトからの情報を必要とする場合があります。 UIオブジェクトが送信する<CODE>MSG_REQUEST_INFORMATION(メッセージ要求情報)</CODE>(またはそれに似たもの)。 アプリケーションのオブジェクトはそのメッセージを受信し<CODE>MSG_RETURNING_REQUESTED_INFORMATION(要求された情報を返す)</CODE>(またはそれに似たもの)。 このスキームでは、アプリケーションのオブジェクトは必要なときにいつでも自由にcallを使用できますが、UIオブジェクトは常にsendを使用する必要があります。</P>
+
+
+<H4 CLASS="HeadingC">メッセージの構造と表記規則</H4>
+<P>メッセージは、コンパイル時に決定される単純な16ビットの数値です。 具体的には、列挙型です。これにより、同じクラス内の2つのメッセージが同じ番号を持つことがなくなります。</P>
+<P>イベントは、メッセージ番号と、受信者、送信者、パラメータ、および戻り値に関する情報を含む不透明な構造です。 オブジェクトがメッセージを送信すると、カーネルは自動的にイベント構造を構築します(通常、速度と効率のためにハンドル・テーブルに格納されます)。 イベントの構造を知る必要はありません。</P>
+
+<HR>
+          <A NAME="GOCLanguage_f.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:4個<A NAME="GOCLanguage_f.htm_64505"></A>クラスとオブジェクトの使用</H2>
+<P>これまでのセクションでは、GEOSオブジェクト・システムの内部について説明しました。 このセクションでは、Gocキーワードとカーネルルーチンを使用して、クラスとオブジェクトを作成し、実行中に管理する方法について説明します。 ほとんどすべてのGocキーワードは&quot;<CODE>@(英語の</CODE>「(1つの注目すべき例外は<CODE>gcnList</CODE>)をクリックします。</P>
+<P>Gocで利用できる最も便利なキーワードをすべて以下に示します。<A HREF="#GOCLanguage_f.htm_29101">Gocキーワード</A>この表示は最初の参照用です。すべてのキーワードの詳細については、この章の以降のセクションおよび『Routines Book』を参照してください。</P>
+<P CLASS="figTitle">コード表示5-5<A NAME="GOCLanguage_f.htm_29101"></A>Gocキーワード</P>
+<PRE>/*.gohファイルを含む*/@include&lt;fname>;</PRE>
+<PRE>/*新しいクラスとサブクラスの定義*/@class&lt;cname>,&lt;super>[,master[,variant]];@endc</PRE>
+<PRE>/*クラスの宣言*/@classdecl&lt;cname>[,&lt;cflags>];</PRE>
+<PRE>/*クラスのメッセージの定義*/@message&lt;retType>&lt;mname>([@stack]&lt;param>*);@reserveMessages&lt;num>;@exportMessages&lt;expName>,&lt;num>;@importMessage&lt;expName>,&lt;messageDef>;@alias(&lt;protoMsg>)&lt;messageDef>;@prototype&lt;messageDef>;</PRE>
+<PRE>/*クラスのインスタンスデータフィールドの定義*/@instance&lt;insType>&lt;iname>[=&lt;default>];gcnList(&lt;manufID>,&lt;ltype>)=&lt;oname>[,&lt;oname>]*;@instance@composite&lt;iname>[=&lt;linkName>];@instance@link&lt;iname>[=&lt;default>];@instance@visMoniker&lt;iname>[=&lt;default>];@instance@kbdAccelerator&lt;iname>[=&lt;default>];@reloc&lt;iname>,[(&lt;count>,&lt;struct>),]&lt;ptrType>;@noreloc&lt;iname>;@default&lt;iname>=&lt;default>;</PRE>
+<PRE>/*クラスのvardataフィールドの定義*/@vardata&lt;type>&lt;vname>;@vardataAlias(&lt;origName>)&lt;newType>&lt;newName>;@reloc&lt;vname>,&lt;fn>,[(&lt;count>,&lt;struct>),]&lt;ptrType>;</PRE>
+<PRE>/*メソッド(メッセージハンドラ)の定義*/@method[&lt;hname>,]&lt;cname>[,&lt;mname>+];@method[&lt;hname>,]&lt;cname>,_reloc;</PRE>
+<PRE>/*ライブラリコードの定義*/@optimize@deflib&lt;libname>@endlib</PRE>
+<PRE>/*リソースの定義*/@start&lt;segname>[,&lt;flags>];@header&lt;type>[=&lt;init>];@end&lt;segname>@chunk&lt;type>&lt;name>[=&lt;init>];@localize&lt;string>;@localize{&lt;string>&lt;length>};@localize{&lt;string>&lt;minLength>-&lt;maxLength>};@localize not;@chunkArray&lt;stype>&lt;aname>[={&lt;init>}];@elementArray&lt;stype>&lt;aname>[={&lt;init>}];@extern&lt;type>&lt;name>;@gstring&lt;name>={[&lt;command>[,&lt;command>]+]};</PRE>
+<PRE>/*オブジェクトの宣言*/@object&lt;class>&lt;name>&lt;flags>*={[&lt;fieldName>=&lt;init>];*[&lt;varName>[=&lt;init>]]*;}</PRE>
+<PRE>/*メソッドの1つからオブジェクトのインスタンスデータにアクセスする*/@self->&lt;iname></PRE>
+<PRE>/*メッセージの送信と呼び出し*/@send[&lt;flags>,+]&lt;obj>::[{&lt;cast>}]&lt;msg>(&lt;params>*);&lt;ret>=@call[&lt;flags>,+][{&lt;cast>}]&lt;obj>::[{&lt;cast2>}]&lt;msg>(&lt;params>*);@callsuper();@callsuper&lt;obj>::&lt;class>::&lt;msg>(&lt;params>*)[&lt;flags>,];&lt;event>=@record&lt;obj>::&lt;msg>(&lt;params>*);@dispatch[noFree]&lt;nObj>::&lt;nMsg>::&lt;event>;&lt;ret>=@dispatchcall[noFree][{&lt;cast>}]&lt;nObj>::&lt;nMsg>::&lt;event>;</PRE>
+<PRE>/*条件コードの使用*/@if&lt;cond>@if defined(&lt;item>)@ifdef&lt;cond>@ifndef&lt;cond></PRE>
+<PRE>/*Gocマクロの作成*/@define&lt;mname>&lt;macro></PRE>
+<PRE>/*難解なソースコード管理*/@optimize@protominor&lt;name></PRE>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_10.htm">新しいクラスまたはサブクラスの定義</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_11.htm">再配置不可能なデータ</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_12.htm">メソッドの定義</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_13.htm">オブジェクトの宣言</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_14.htm">メッセージの送信</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GOCLanguage_15.htm">オブジェクトの管理</A>
+        </P>
+<HR>
+          <A NAME="GOCLanguage_10.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:4.1人<A HREF="#GOCLanguage_f.htm">クラスとオブジェクトの使用</A>キーを押します<A NAME="GOCLanguage_10.htm_18289"></A>新しいクラスまたはサブクラスの定義</H3>
+<PRE>@class, @classdecl, @endc, @default, @uses</PRE>
+<P><A NAME="GOCLanguage_10.htm_IX_@endc[;endc]"></A><A NAME="GOCLanguage_10.htm_IX_@class[;class]"></A>GEOSで新しいクラスを作成するには、Gocキーワードを使用します。<CODE>@クラス</CODE>および<CODE>@エンド</CODE>に示すように、これらはクラス定義を構成します。<A HREF="#GOCLanguage_10.htm_73551">クラスの定義</A>;をクリックします。<CODE>@エンド</CODE>キーワードはパラメータを取りませんが<CODE>@クラス</CODE>は、次のパラメータを取ります。</P>
+<PRE>@クラス&lt;cname>,&lt;super>[,マスタ[,バリアント]];</PRE>
+<DL>
+<DT>
+          <STRONG>名前</STRONG>
+        </DT><DD>これが新しいクラスの名前です。</DD>
+<DT>
+          <STRONG>スーパー</STRONG>
+        </DT><DD>これはスーパークラスのクラス名です。</DD>
+<DT>
+          <STRONG>主人</STRONG>
+        </DT><DD><A NAME="GOCLanguage_10.htm_IX_Master classes:class flag"></A><A NAME="GOCLanguage_10.htm_IX_master (class flag)"></A>この単語を含めると、新しいクラスがマスタークラスになります。</DD>
+<DT>
+          <STRONG>変種</STRONG>
+        </DT><DD><A NAME="GOCLanguage_10.htm_IX_Variant classes:class flag"></A><A NAME="GOCLanguage_10.htm_IX_variant (class flag)"></A>この単語を含めると、新しいクラスがバリアントクラスになります。 すべてのバリアントクラスもマスタークラスとして宣言する必要があります。</DD>
+</DL>
+<P><A NAME="GOCLanguage_10.htm_IX_@classdecl[;classdecl]"></A>すべてのクラスにはクラス構造(<CODE>ClassStruct</CODE>)をメモリに保存します。 これはGocとカーネルによって自動的に作成され、入力されます。<CODE>@classdecl</CODE>キーワードを使用して、構造が確実に構築されるようにします。 1つだけ<CODE>@classdecl</CODE>ステートメントは各クラスに対して使用できますが、--クラスが2回宣言されるとGocはエラーを返します。 これは、にも示されています。<A HREF="#GOCLanguage_10.htm_73551">クラスの定義</A>パラメータは次のとおりです。</P>
+<PRE>@classdecl&lt;cname>[,&lt;cflags>];</PRE>
+<DL>
+<DT>
+          <STRONG>名前</STRONG>
+        </DT><DD>これは、宣言されるクラスの名前です。</DD>
+<DT>
+          <STRONG>フラグ</STRONG>
+        </DT><DD>これらはオプションのフラグで、以下で説明します。</DD>
+</DL>
+<P>クラス宣言で使用できるオプションのフラグは、クラスのオブジェクトがシャットダウンされる方法を決定します(<A HREF="#GOCLanguage_d.htm_11068">クラスフラグ</A>)をクリックします。 で使用できるフラグ<CODE>@classdecl</CODE>である</P>
+<DL>
+<DT>
+          <CODE>neverSaved</CODE>
+          <A NAME="GOCLanguage_10.htm_IX_neverSaved (class flag)"></A>
+        </DT><DD>このフラグは、このクラスのオブジェクトが状態ファイルに書き込まれたり、リソースからロードされたりしないことを示します。 このフラグは、オブジェクトが実行時にのみ作成されるクラス(<STRONG CLASS="fileName">gocと入力します。</STRONG>ファイル)、およびプロセスクラス用です。</DD>
+<DT><CODE>discardOnSave</DT><DD></CODE><A NAME="GOCLanguage_10.htm_IX_discardOnSave (class flag)"></A>このフラグはマスタークラスにのみ適用されます。 このクラスのオブジェクトは状態ファイルに保存されず、ロードされるたびに再初期化する必要があります。 オブジェクトをロードするたびにデフォルト設定に戻したい場合は<CODE>ignoreDirty</CODE>オブジェクトの宣言(<CODE>@オブジェクト</CODE>、インチ<A HREF="#GOCLanguage_13.htm_72656">オブジェクトの宣言</A>)をクリックします。</DD>
+</DL>
+<P>さらに、どのバリアントクラスもデフォルトのスーパークラスを持つことができます。 バリアントはコンパイル時に解決され、デフォルトのスーパークラスがスーパークラスとして設定されます。 バリアントクラスにデフォルトのスーパークラスを設定するには、クラス定義に次の構造を持つ行を追加します。</P>
+<PRE>@default&lt;varRoot>=&lt;スーパー>;</PRE>
+<DL>
+<DT>
+          <STRONG>varRoot</STRONG>
+        </DT><DD>「Class」が削除されたバリアントクラスの名前。 (たとえば、GenClassは&quot;Gen&quot;と指定されます)。</DD>
+<DT>
+          <STRONG>スーパー</STRONG>
+        </DT><DD>デフォルトとして設定するスーパークラスの名前。</DD>
+</DL>
+<P><A NAME="GOCLanguage_10.htm_IX_@uses[;uses]"></A>バリアント・クラスは、それが特定のクラスのサブクラスであることを知っている場合もありますが、その祖先がどのようにトレースされるかは(コンパイル時には)わかりません。 次のように<CODE>@使用</CODE>これにより、バリアントクラスは&quot;used&quot;クラスのハンドラを定義できます。 たとえば、そのバリアントクラスが<CODE>MyVariantClass</CODE>は常にの子孫として解決されます。<CODE>MyAncestorClass</CODE>を選択した場合は<IMG SRC="GOCLanguage_10_usesSidebar.gif"></P>
+<PRE>@はMyAncestorClassを使用します。</PRE>
+<P>の定義において<CODE>MyVariantClass</CODE>一般的な形式は次のとおりです。</P>
+<PRE>@uses&lt;クラス>;</PRE>
+<DL>
+<DT>
+          <STRONG>階級</STRONG>
+        </DT><DD>常にこのクラスの祖先となるクラス。</DD>
+</DL>
+<P CLASS="figTitle">コード表示5-6<A NAME="GOCLanguage_10.htm_73551"></A>クラスの定義</P>
+<PRE>/*@classキーワードは、新しいクラスまたはサブクラスを定義します。 @endcはクラス*の定義を終了し、Glue*がクラス構造をコンパイルされたgeodeにリンクすることを確実にするために、@classdeclをコードのどこかに置く必要があります。*/</PRE>
+<PRE>@class MyNewClass, VisClass;/*メッセージ宣言はここに置かれます。@messageを参照してください。 *インスタンスデータフィールドの宣言はここで行います。@instance*および@vardataを参照してください。 */@endc@classdecl MyNewClass, neverSaved;</PRE>
+<PRE>@class MyTriggerClass, GenTriggerClass;/*このサブクラスの新しいメッセージはここで定義されます。 *//*このサブクラスの新しいインスタンスデータフィールドはここで定義されます。 */@endc@classdecl MyTriggerClass;</PRE>
+<PRE>/*バリアントクラス(マスタークラスでもある必要があります)を定義する場合、*@defaultを使用してコンパイル時にバリアントのスーパークラスを設定できます。*/</PRE>
+<PRE>@class MyNewVariantClass, MetaClass, master, variant;@default MyNewVariant=VisClass;@endc MyNewVariantClass@classdecl MyNewVariantClass;</PRE>
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_10.htm_26398"></A>クラスの新規メッセージの定義</H4>
+<PRE>@message、@stack、@reserveMessages、@exportMessages、@importMessage、@alias、@prototype</PRE>
+<P>で説明したように<A HREF="#GOCLanguage_e.htm_57260">GEOSメッセージシステム</A>では、メッセージは列挙型として割り当てられた単純な16ビット数です。 新しいクラスが定義されると、そのクラスの最初のメッセージ番号を表す定数が自動的に作成されます。 この定数は、メッセージの列挙の最初の番号として使用されます。</P>
+<P><A NAME="GOCLanguage_10.htm_IX_Messages:ranges"></A>定数は、クラスのスーパークラスから作成されます。<CODE>メタクラス</CODE>には、その使用のために予約された最初の16384個のメッセージがあります。 各マスターレベルには8192が割り当てられ、レベルの最初のマスタークラスには2048が割り当てられます。 他のすべてのクラスには、512個のメッセージスポットが割り当てられます。 そのため、マスター・クラスは<CODE>メタクラス</CODE>は、番号#16384で始まる2048個のメッセージを持つことになります(番号は0から始まるため)。 このサブクラスには、番号#18432で始まる512個のメッセージがあります。</P>
+<P>この番号付け方式により、クラス階層内の異なるレベルにある2つのクラスが同じメッセージ番号を持つことがなくなります。 特に、クラスは、そのサブクラスまたはスーパークラスの1つと同じメッセージ番号を持つことはありません。</P>
+<P>新しいメッセージは、クラス定義の<CODE>@クラス</CODE>および<CODE>@エンド</CODE>キーワード(上記参照)。 これらは通常の関数呼び出しとほぼ同じように定義されており、通常のCの呼び出し規則に従っています(<A HREF="#GOCLanguage_10.htm_43720">メッセージの定義</A>など)。 クラスがそのスーパークラスからのメッセージを使用する場合は<EM>しない</EM>クラス定義でこれらのメッセージを宣言する必要があります。これらのメッセージは自動的に継承されます。 これは、機能を変更するためにメソッドをサブクラス化している場合にも当てはまります。</P>
+<P><A NAME="GOCLanguage_10.htm_IX_@message[;message]"></A>新しいメッセージを定義するには<CODE>@メッセージ@めっせ</CODE>キーワード。 このキーワードは、次のパラメータを取ります。</P>
+<PRE>@message&lt;retType>&lt;mname>(&lt;param>*);と入力します。</PRE>
+<DL>
+<DT>
+          <STRONG>戻り値のタイプ</STRONG>
+        </DT><DD>これはメッセージの戻り値のデータ型です。 任意の標準CまたはGEOSデータ型(構造体を除く)、または構造体へのポインタを指定できます。 このメッセージに複数の戻り値がある場合は、C関数呼び出しと同じようにして、戻り情報用のバッファーにポインターを渡す必要があります。</DD>
+<DT>
+          <STRONG>名前(M)</STRONG>
+        </DT><DD>メッセージの名前です。 慣例により、次のようになります。<CODE>メッセージ_</CODE>その後にクラス名の短縮版が続き、その後に何らかの有用な名前(例えば<CODE>MSG_META_INITIALIZE(メタ初期化)</CODE>)をクリックします。</DD>
+<DT>
+          <STRONG>パラメータ</STRONG>
+        </DT><DD>これは、1つ以上のパラメータを表します。 メッセージには、パラメータを指定しないことも、1つだけ指定することも、複数のパラメータを指定することもできます パラメータ定義は、基本的に関数パラメータの定義と同じです。<A HREF="#GOCLanguage_10.htm_43720">メッセージの定義</A>など)。</DD>
+</DL>
+<P>注:パラメータを指定せずに関数を定義する場合は、括弧内に&quot;void&quot;を指定して宣言することをお勧めします。 これにより、関数が引数付きで呼び出された場合にGocがエラーを返すようにします。</P>
+
+<H5 CLASS="HeadingD">アセンブリコードで使用するメッセージ</H5>
+<P><A NAME="GOCLanguage_10.htm_IX_@stack[;stack]"></A>の<CODE>@スタック</CODE>キーワードは、パラメータがスタックに渡されることを示します。呼び出し規則のために、スタックに渡されるパラメータはメッセージ定義にリストされなければならないことに注意してください。<EM>逆順で</EM>ハンドラがスタックからそれらをポップする方法とは異なります。 このキーワードは、メッセージがアセンブリ言語メソッドによって処理される場合にのみ使用されます。その形式を次に示します。</P>
+<PRE>@message&lt;retType>&lt;mname>(@stack&lt;param>*);と入力します。</PRE>
+<P>フォーマットに表示されるすべてのパラメータは、通常の<CODE>@メッセージ@めっせ</CODE>見出しページを開きます。</P>
+<P CLASS="figTitle">コード表示5-7<A NAME="GOCLanguage_10.htm_43720"></A>メッセージの定義</P>
+<PRE>/*各メッセージは、クラス定義内のクラスに対して定義されます。 */@class MyTriggerClass, GenTriggerClass;/*MyTriggerClassが処理できるすべての新しいメッセージは、ここで定義されます。 */@message void MSG_MYTRIG_SET_COLOR(colorIndex);@message optr MSG_MYTRIG_RETURN_OPTR(void);@message void MSG_MYTRIG_COLLECT_PARAMS(byte bParam, word wParam, char*string);/*インスタンスデータフィールドはここで定義されます。*/</PRE>
+<PRE>@endc@classdecl MyTriggerClass;</PRE>
+
+
+<H5 CLASS="HeadingD">メッセージ範囲のエクスポート、インポート、および予約</H5>
+<P><A NAME="GOCLanguage_10.htm_IX_Messages:importing"></A><A NAME="GOCLanguage_10.htm_IX_Messages:exporting"></A>前述したように、メッセージ番号はクラスツリー内のクラスの位置に基づいて割り当てられます。 クラスのスーパークラスで定義されたメッセージとメッセージ番号が競合することはありません。 しかし、この割り当て方式では、以下に示すように、クラスツリー内の同じレベルのクラスが競合するメッセージ番号を持つ可能性があります。<IMG SRC="GOCLanguage_10_messageNumbers.gif"></P>
+<P>通常、これは問題ではありません。 サブクラスが同じメッセージを受信し、それを異なる方法で処理する場合、メッセージは通常、スーパークラスで定義され、単にサブクラスによってインターセプトされます。 しかし、同じメッセージに対して、異なるサブクラスが異なる定義を持つ必要がある場合もあります。 たとえば、ライブラリによって提供されるクラスは、いくつかのアプリケーションによって使用される場合があります。アプリケーションがそれぞれサブクラスを作成する場合、これらのサブクラスは、すべてのアプリケーションのすべてのサブクラスで同じになる特定のメッセージをインポートできます。</P>
+<P>したがって、Gocを使用すると、サブクラスが特定の定義をインポートおよび作成できるメッセージ番号の範囲をクラスがエクスポートできます。 これにより、クラスのどの側面を定義できるかをより細かく制御することができます。</P>
+<P><A NAME="GOCLanguage_10.htm_IX_@importMessage[;importMessage]"></A><A NAME="GOCLanguage_10.htm_IX_@exportMessages[;exportMessages]"></A>メッセージの範囲をエクスポートするには<CODE>@exportMessages</CODE>キーワード。 これにより、いくつかのメッセージ番号が確保され<CODE>@importMessage</CODE>キーワード。<A NAME="GOCLanguage_10.htm_IX_Messages:reserving ranges"></A></P>
+<P><A NAME="GOCLanguage_10.htm_IX_@reserveMessages[;reserveMessages]"></A>もう1つの潜在的な問題は、プログラムをリリースからリリースにアップグレードすることです。 将来拡張される可能性のあるクラスを作成する場合は、メッセージ・スポットをいくつか予約して、それらのスポットが後で確実に埋められるようにすることができます。 スポットには何も行われません。スポットは将来のアップグレードのためのプレースホルダーにすぎません。 次のように<CODE>@reserveMessages</CODE>キーワードを使用して、任意のサイズの範囲を予約します。 これら3つのキーワードのパラメータを次に示します。</P>
+<PRE>@reserveMessages&lt;num>;@exportMessages&lt;expName>,&lt;num>;@importMessage&lt;expName>,&lt;messageDef>;</PRE>
+<DL>
+<DT>
+          <STRONG>数</STRONG>
+        </DT><DD>これは、エクスポートされた範囲内のメッセージ数です。</DD>
+<DT>
+          <STRONG>拡張名</STRONG>
+        </DT><DD>これは、エクスポートされた範囲の名前です。 これは、メッセージをインポートするときに、正しい番号が使用されていることを確認するために使用されます。</DD>
+<DT><STRONG>messageDef</DT><DD></STRONG>これは標準のメッセージ定義行であり<CODE>@メッセージ@めっせ</CODE>キーワード(ただし<CODE>@メッセージ@めっせ</CODE>が省略されている)。</DD>
+</DL>
+<P>注意:<EM>必要</EM>アップグレード用にメッセージを予約します。どのクラスでも、クラス定義の最後にメッセージを追加できます。 ただし、メッセージを論理的にグループ化したい場合は、追加が行われると予想される範囲を予約する必要があります。</P>
+
+
+<H5 CLASS="HeadingD">メッセージのエイリアス</H5>
+<P><A NAME="GOCLanguage_10.htm_IX_@alias[;alias]"></A>の<CODE>@エイリアス</CODE>キーワードを使用すると、1つのメッセージに複数のpass/return形式を指定できます。<A NAME="GOCLanguage_10.htm_IX_@prototype[;prototype]"></A>の<CODE>@プロトタイプ</CODE>キーワードを使用すると、多くの異なるメッセージに対して1つのフォーマットをすばやく、クリーンで、便利に繰り返すことができます。また、クラスでプロトタイプを作成して、メッセージのユーザが同じフォーマットで独自のメッセージを持つこともできます。</P>
+<P><CODE>@エイリアス</CODE>は、1つのメソッドが条件パラメータを取る場合に使用されます。 例えば、あるメソッドはある場合にはword値を取り、別の場合にはdword値を取ります(渡されたフラグに依存します)。 各条件は、独自のメッセージ形式で説明する必要があります。 ケースごとにメッセージとメソッドを作成するのではなく、すべての異なるパス/リターン形式に対して単一のアセンブリ言語メソッドを作成することができます。<CODE>@エイリアス</CODE>複数のメッセージが同じメソッドを参照し、それぞれ異なる形式を使用するようにします。</P>
+<PRE>@alias(&lt;protoMsg>)&lt;msgDef>;</PRE>
+<DL>
+<DT>
+          <STRONG>protoMsg</STRONG>
+        </DT><DD>元のメッセージの名前。 新しいメッセージは異なるpass/return値を持つことができますが、同じメソッドコードを呼び出し、同じメッセージ番号を持ちます。</DD>
+<DT>
+          <STRONG>msgDef</STRONG>
+        </DT><DD>新しいメッセージ定義。 これは<CODE>@メッセージ@めっせ</CODE>キーワード(<CODE>@メッセージ@めっせ</CODE>省略)。</DD>
+</DL>
+<P>また、多数のメッセージに対して単一のパス/リターン形式を使用する場合は<CODE>@プロトタイプ</CODE>キーワードをコーディングの省略形として使用します。 たとえば、オブジェクトに10個のメッセージがあり、そのすべてが2つのパラメータを取り、1つの値を返す場合<CODE>@プロトタイプ</CODE>キーワードを使用し、メッセージの定義にはより単純な形式を使用します。 に例を示します。<A HREF="#GOCLanguage_10.htm_26009">メッセージのエイリアス</A>、およびこのキーワードのパラメータを次に示します。</P>
+<PRE>@prototype&lt;msgDef>;</PRE>
+<DL>
+<DT>
+          <STRONG>msgDef</STRONG>
+        </DT><DD>これが標準のメッセージ定義です。 メッセージ名には、&quot;<CODE>MY_プロトタイプ</CODE>後で実際のメッセージの定義に挿入できます。 メッセージ定義の他のすべての部分は、以下で宣言されるものと同じです。<CODE>@メッセージ@めっせ</CODE>(と<CODE>@メッセージ@めっせ</CODE>省略)。</DD>
+</DL>
+<P CLASS="figTitle">コード表示5-8<A NAME="GOCLanguage_10.htm_26009"></A>メッセージのエイリアス</P>
+<PRE>この例の/*MyClassは、prototypeメッセージとaliasedメッセージの両方を使用します。 */@class MyClass, MetaClass;/*以下は、通常のメッセージ宣言です。 この*パラメータが使用するレジスタは、ハンドラ(メソッド)が*アセンブリ言語で記述されているために指定されます。 */@message void MSG_MESSAGE_WITH_WORD(byte flag=cl, word value=dx);</PRE>
+<PRE>/*次のメッセージは、上記のエイリアスと同じメソッドを呼び出します。 *同じメッセージ番号を持ちますが、異なるレジスタに異なるサイズのパラメータ*を渡します。 */@alias(MSG_MESSAGE_WITH_WORD)void MSG_MESSAGE_WITH_DWORD(byte flag=cl, dword value=dx:bp);</PRE>
+<PRE>/*次のメッセージは使用されません。 ただし、このメッセージ・タイプのすべてのハンドラーに同じフォーマットが与えられるようにするために、そのパス値と戻り値を他の場所で*使用することができます。 */@prototype int MSG_MYCLASS_PROTO(int a, int b);と入力します。</PRE>
+<PRE>/*以下は、上記のプロトタイプと同じ戻り値とパラメータ*を持っています。 */@メッセージ(MSG_MYCLASS_PROTO) MSG_MY_CLASS_ADD;@メッセージ(MSG_MYCLASS_PROTO) MSG_MY_CLASS_SUBTRACT;@メッセージ(MSG_MYCLASS_PROTO) MSG_MY_CLASS_MULTIPLY;を入力します。</PRE>
+<PRE>@endc@classdecl MyClass;</PRE>
+
+
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_10.htm_87922"></A>インスタンス・データ・フィールドの定義</H4>
+<PRE>@instance, @composite, @link, @visMoniker, @kbdAccelerator</PRE>
+<P><A NAME="GOCLanguage_10.htm_IX_@instance[;instance]"></A><A NAME="GOCLanguage_10.htm_IX_Instance data:Goc syntax"></A>インスタンスデータフィールドはすべて<CODE>@インスタンス</CODE>キーワード。 その他のキーワードを<CODE>@インスタンス</CODE>特殊なデータ型の宣言。 すべてのインスタンスデータ定義は、クラス&#39;<CODE>@クラス</CODE>および<CODE>@エンド</CODE>キーワード(上記のクラス定義を参照)。</P>
+<P>の<CODE>@インスタンス</CODE>キーワードは、通常のインスタンスデータを定義するために使用されます。 動的に追加または削除する必要があるデータ(ヒントなど)がある場合は<CODE>@vardata(英語の可能性あり</CODE>キーワード、説明<A HREF="#GOCLanguage_10.htm_54822">可変データフィールドの定義と操作</A>また、オブジェクトのロード時に再配置が必要なデータ(固定データへのポインタなど)がある場合は<CODE>@再配置</CODE>キーワード。</P>
+<P>の形式<CODE>@インスタンス</CODE>キーワードは次のとおりです。</P>
+<PRE>@instance&lt;insType>&lt;iname>=&lt;default>;</PRE>
+<DL>
+<DT>
+          <STRONG>insType</STRONG>
+        </DT><DD>インスタンスフィールドのデータ型を表す標準のC/GEOSデータまたは構造体の型。</DD>
+<DT>
+          <STRONG>アイネーム</STRONG>
+        </DT><DD>インスタンスフィールドの名前。</DD>
+<DT>
+          <STRONG>デフォルト(default)</STRONG>
+        </DT><DD>このクラスのオブジェクトがインスタンス化されるときに入力されない場合の、インスタンスフィールドのデフォルト値。 もちろん、この値はデータ型に適したものでなければなりません。</DD>
+</DL>
+<P>Gocには、いくつかの特殊なタイプのインスタンスデータフィールドがあり<CODE>@インスタンス</CODE>オブジェクトの定義を簡単にします。 特殊タイプのいずれかを使用するためのフォーマットを以下に示します(例は<A HREF="#GOCLanguage_10.htm_99888">インスタンスデータフィールドの宣言</A>)をクリックします。 それぞれのタイプについても以下に説明します。</P>
+<PRE>@instance&lt;specType>&lt;iname>;</PRE>
+<DL>
+<DT>
+          <STRONG>specType</STRONG>
+        </DT><DD>これは、このフィールドの特殊なタイプを定義するキーワード(次のリストに示すものの1つ)です。</DD>
+<DT>
+          <STRONG>アイネーム</STRONG>
+        </DT><DD>これはインスタンスフィールドの名前です。</DD>
+</DL>
+<P>特殊なタイプは次のとおりです。</P>
+<DL>
+<DT>
+          <CODE>@コンポジット</CODE>
+          <A NAME="GOCLanguage_10.htm_IX_@composite[;composite]"></A>
+        </DT><DD>このフィールドは、定義されるクラスのオブジェクトが子を持つことを許可されている場合に使用されます。 の<CODE>@コンポジット</CODE>フィールドには、実際にはオブジェクトツリーの最初の子オブジェクトへのoptrが含まれます。 オブジェクトツリー内のほとんどのオブジェクトは<CODE>VisClass</CODE>または<CODE>生成クラス</CODE>ほとんどの場合<CODE>@コンポジット</CODE>キーワード。 両方(Both)<CODE>VisCompClass</CODE>および<CODE>生成クラス</CODE>持っている<CODE>@コンポジット</CODE>定義済みのフィールド の<CODE>@コンポジット</CODE>typeには、次に示す特殊な形式があります。</DD>
+<PRE>@instance@composite&lt;iname>=&lt;linkName>;&lt;リンク名></PRE>
+<DT></DT><DD>ここで<CODE>アイネーム</CODE>はインスタンスフィールドの名前で<CODE>リンク名</CODE>は指定されたフィールドの名前<CODE>@リンク</CODE>(下記)。 ただし<CODE>@リンク</CODE>を持つすべてのクラスのフィールド<CODE>@コンポジット</CODE>見出しページを開きます。 詳細については<A HREF="#GOCLanguage_15.htm_95668">オブジェクト・ツリーの管理</A>オブジェクトツリー、複合フィールド、リンクフィールドの詳細については、を参照してください。</DD>
+<DT>
+          <CODE>@リンク</CODE>
+          <A NAME="GOCLanguage_10.htm_IX_@link[;link]"></A>
+        </DT><DD>このフィールドは、オブジェクトツリー内で子になることができるオブジェクトによって使用されます。 ここで<CODE>@コンポジット</CODE>フィールドは最初の子を指し<CODE>@リンク</CODE>フィールドは次の兄弟を指します。 次の兄弟がない場合、このフィールドは親オブジェクトをポイントします。 オブジェクトツリー内のほとんどのオブジェクトは<CODE>VisClass</CODE>または<CODE>生成クラス</CODE>ほとんどの場合<CODE>@リンク</CODE>キーワード。 両方(Both)<CODE>VisClass</CODE>および<CODE>生成クラス</CODE>持っている<CODE>@リンク</CODE>定義済みのフィールド</DD>
+<DT><CODE>@visMoniker</DT><DD></CODE><A NAME="GOCLanguage_10.htm_IX_Chunks:declaring with @visMoniker"></A>このフィールドは、オブジェクトのビジュアル・モニカ・チャンクへのポインタを保持するように指定されます。 これは<CODE>生成クラス</CODE>--を参照してください。<A HREF="../../SysObjects/Gen/index.htm">GenClassの章</A>の<CODE>GI_visMoniker</CODE>見出しページを開きます。 チャンクのハンドルのみが格納されるため、モニカまたはモニカリストは、そのモニカを使用する汎用オブジェクトと同じリソースにある必要があります。 モニカリストは、そのモニカへの完全なオブジェクトポインタを格納できます。したがって、リストによって参照されるモニカは、そのリストと同じリソースにある必要はありません。したがって、オブジェクトのモニカがリストを介して指定されている場合、リストはオブジェクトと同じリソースにある必要がありますが、モニカ自体は同じリソースにある必要はありません。</DD>
+<DT><CODE>@kbdAccelerator</DT><DD></CODE>このフィールドには、ユーザーが入力したときにオブジェクトにデフォルトの操作を実行させる文字シーケンスが含まれます。 たとえば、キーボードアクセラレータは、メニュー項目として実装されたトリガを呼び出すことができます。 これは<CODE>生成クラス</CODE>のみ。</DD>
+</DL>
+<P CLASS="figTitle">コード表示5-9<A NAME="GOCLanguage_10.htm_99888"></A>インスタンスデータフィールドの宣言</P>
+<PRE>/*GenClassは、さまざまなタイプのフィールドの良い例です。*/</PRE>
+<PRE>@class GenClass, VisClass, マスタ,バリアント;</PRE>
+<PRE>/*GenClassメッセージはここで定義されます。*/</PRE>
+<PRE>@instance@link GI_link;@instance@composite GI_comp=GI_link;@instance@visMoniker GI_visMoniker;@instance@kbdAccelerator GI_kbdAccelerator;@instance byte GI_attrs=0;@instance byte GI_states=(GS_USABLE GS_ENABLED);</PRE>
+<PRE>/*ヒントやその他の変数データフィールドは@vardataで定義されます。 (注)</PRE>
+<PRE>@エンド</PRE>
+
+
+<H4 CLASS="HeadingC">サブクラス化されたインスタンスデータフィールドの新しいデフォルト</H4>
+<PRE>@デフォルト</PRE>
+<P>インスタンスデータフィールドを定義するときに、そのフィールドのデフォルト値を設定できることを思い出してください。 サブクラスを作成するときに、サブクラスが特定のフィールドに対してスーパークラスとは異なるデフォルト値を持つように指定することができます。 次を使用します。<CODE>@デフォルト</CODE>キーワードを使用します。</P>
+<PRE>@default&lt;iname>=&lt;default>;と入力します。</PRE>
+<DL>
+<DT>
+          <STRONG>アイネーム</STRONG>
+        </DT><DD>インスタンスフィールドの名前。</DD>
+<DT>
+          <STRONG>デフォルト(default)</STRONG>
+        </DT><DD>インスタンスフィールドの新しいデフォルト値(このクラスのオブジェクトがインスタンス化されるときに入力されていない場合)。 もちろん、この値はデータ型に適したものでなければなりません。 以下を使用することができます。<CODE>@デフォルト</CODE>この@defaultはスーパークラスの値として扱われます。 (これがわかりにくい場合は、例を参照してください)。</DD>
+</DL>
+<P>例えば、GenInteractionのサブクラスは、GenInteractionインスタンスフィールドのデフォルト値としてGIV_DIALOGを設定することができます。<CODE>GII_可視性</CODE>キーを押します</P>
+<PRE>@default GII_visibility=GIV_DIALOG;と入力します。</PRE>
+<P>ジェネリッククラスは、同じ値を<CODE>GI状態</CODE>フィールドをスーパークラスとして使用します。ただし、GS_USABLEフラグはオフにします。</P>
+<PRE>@default GI_states=@default&amp;~GS_USABLE;となります。</PRE>
+
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_10.htm_54822"></A>可変データフィールドの定義と操作</H4>
+<PRE>@vardata, @vardataAlias, ObjVarAddData(),ObjVarDeleteData(),ObjVarDeleteDataAt(),ObjVarScanData(),ObjVarFindData(),ObjVarDerefData(),ObjVarDeleteDataRange(),ObjVarCopyDataRange(),MSG_META_ADD_VAR_DATA, MSG_META_DELETE_VAR_DATA, MSG_META_INITIALIZE_VAR_DATA, MSG_META_GET_VAR_DATA</PRE>
+<P><A NAME="GOCLanguage_10.htm_IX_Variable data:Goc syntax"></A>ほとんどのクラスには、明確に定義されたインスタンス・データ・フィールドがあります。クラス内の各オブジェクトは同じデータ構造を持ち、すべてのインスタンス・チャンクは比較的類似しており、同じサイズになります。</P>
+<P>しかし、多くのクラスは、「変数データ」、つまり動的に追加または削除できるインスタンス・フィールドも使用します。 これにより、同じクラス内のオブジェクトは、クラス内の他のオブジェクトよりも多くのまたは少ないインスタンスデータを持つことができます。 変数データの1つの例は、汎用UIオブジェクトでのヒントの使用です。 特定のクラスの各オブジェクトにはヒントがある場合とない場合があるため、オブジェクトは実際には異なるインスタンスサイズを持つことができます。 変数データインスタンスフィールドは<CODE>@vardata(英語の可能性あり</CODE>キーワード。</P>
+<P>ただし、変数データの使用は、標準インスタンス・データの使用よりも多少複雑です。 データへのポインタを取得するには、特別なカーネルルーチンまたはメッセージを使用する必要があります。そうすれば、ポインタを使用してフィールドにアクセスできます。</P>
+<P>変数データは、「データ・エントリー」のインスタンス・チャンクの最後に一緒に保管されます。 各エントリは、プライマリワードとオプションの追加データで構成されます。 プライマリワードは、キーワードで定義されたデータ型を表します。<CODE>@vardata(英語の可能性あり</CODE>この型は、Gocが<CODE>@vardata(英語の可能性あり</CODE>キーワードが使用されます。<IMG SRC="GOCLanguage_10_messageNumbers.gif"></P>
+<P>各データ・エントリーはマスター・クラス・レベルに関連付けられ、(インスタンス・チャンクの最後に保管されているにもかかわらず)そのマスター・レベルのインスタンス・データの一部と見なされます。 したがって、オブジェクトのマスター部分が破棄されると、そのマスタークラスに関連付けられた変数データエントリも破棄されます。 たとえば、UIオブジェクトが使用不可に設定されている(画面から削除されている)場合、そのVisマスタパーツはインスタンスチャンクから削除されます。<CODE>VisClass</CODE>破壊されます</P>
+<P>変数データには、状態ファイルに保存するためのタグを付けることもできます。 つまり、個々のデータエントリを状態ファイルに保存し、オブジェクトが状態ファイルからロードされたときに復元するように設定できます。 状態の保存の詳細については<A HREF="#GOCLanguage_15.htm_73804">オブジェクトの状態を保存する</A>ボタンをクリックし</P>
+<P>変数データはオブジェクトの宣言で定義できます。<STRONG CLASS="fileName">gocと入力します。</STRONG>ファイルに追加したり、実行中に削除することができます。 これにより、オブジェクトのインスタンスチャンク内の一時的なストレージとして可変データを使用できる可能性があります。ただし、この方法で使用される一時データは、システムの速度低下を避けるために小さく保つ必要があります。vardataフィールドを追加および削除するためにインスタンスチャンクのサイズを絶えず変更すると、メモリマネージャの作業が増加します。</P>
+<P><A NAME="GOCLanguage_10.htm_IX_@vardata[;vardata]"></A>特定のクラスで変数データ型を定義するには<CODE>@vardata(英語の可能性あり</CODE>次のようなキーワード(例は<A HREF="#GOCLanguage_10.htm_61839">変数データの定義</A>)をクリックします。</P>
+<PRE>@vardata&lt;タイプ>&lt;vname>;</PRE>
+<DL>
+<DT>
+          <STRONG>種類</STRONG>
+        </DT><DD>これは、変数データに関連付けられた追加データのデータ型です。 標準のCまたはGEOSデータ型である必要があります。 タイプ<CODE>空虚</CODE>が指定されている場合、データ・エントリーの作成時に追加データは追加されません。 (インスタンス・データ・フィールドは、標準Cの場合と同様に配列として宣言できます。</DD>
+<DT>
+          <STRONG>仮想名</STRONG>
+        </DT><DD>これは変数データ型の名前です。 この名前は、vardataエントリを参照するときに使用されます。 2つの変数データ型が異なるクラスにある場合でも、同じ名前を持つことはできないことに注意してください。 これによりコンパイルエラーが発生します。 データ型名の中にクラス名を入れることをお勧めします。</DD>
+</DL>
+<P CLASS="figTitle">コード表示5-10インスタンス・データ宣言の例</P>
+<PRE>/*これらはMyDataClassのデータフィールドです。 (注)</PRE>
+<PRE>@instance ChunkHandle MDI_aChunk;@instance HelloInfoFlags MDI_flags;@instanceバイトMDI_lotsOfNumbers[32];</PRE>
+<P><A NAME="GOCLanguage_10.htm_IX_@vardataAlias[;vardataAlias]"></A>vardata型の中には、さまざまな量の余分なデータを持つものがあります。 たとえば、1つのタイプには、余分なデータのワードまたはdワードが含まれている場合があります。 これを可能にするには、キーワードを使用して新しいタイプが付加されたエイリアスを設定します。<CODE>@vardataAlias</CODE>キーを押します</P>
+<PRE>@vardataAlias(&lt;origName>)&lt;newType>&lt;newName>;</PRE>
+<DL>
+<DT>
+          <STRONG>origName</STRONG>
+        </DT><DD>これは、で定義されている元の変数データフィールドの名前です。<CODE>@vardata(英語の可能性あり</CODE>ボタンをクリックし</DD>
+<DT>
+          <STRONG>新しいタイプ</STRONG>
+        </DT><DD>これは新しい変数データフィールドのデータ型で、標準のCまたはGEOSデータ型です。</DD>
+<DT>
+          <STRONG>新しい名前</STRONG>
+        </DT><DD>これは新しい変数データフィールドの名前です。 基本的に、元のフィールドと新しいフィールドは同じデータ型ワードを持ちますが、余分なデータサイズは異なります。</DD>
+</DL>
+<P><A NAME="GOCLanguage_10.htm_IX_VarDataFlags"></A>前述したように、データ・エントリーのデータ型フィールドには2つのフラグが関連付けられています。 これらのフラグはそれぞれ1ビットです。</P>
+<DL>
+<DT>VDF_EXTRA_DATA(VDF追加データ)</DT><DD><A NAME="GOCLanguage_10.htm_IX_VDF_EXTRA_DATA"></A>このフラグは、このデータ型が余分なデータを保持することを示します。</DD>
+<DT>VDF_SAVE_TO_STATE(状態に保存)</DT><DD><A NAME="GOCLanguage_10.htm_IX_VDF_SAVE_TO_STATE"></A>このフラグは、状態が保存されるときに、この特定のデータエントリを他のすべてのオブジェクトのインスタンスデータとともに保存する必要があることを示します。 オブジェクトが状態ファイルからリストアされるときにも、同様にリストアする必要があります。 設定されていない場合<CODE>オフ</CODE>で定義されたすべてのデータ型に対して設定されます。<STRONG CLASS="fileName">gocと入力します。</STRONG>または<STRONG CLASS="fileName">ゴー</STRONG>ファイルを開きます。</DD>
+</DL>
+<P>ビットマスクVDF_TYPEは、VDF_EXTRA_DATAとVDF_SAVE_TO_STATEのビット単位のORです。 これを使用して、これらのビット以外のすべてをマスクアウトできます。</P>
+<P CLASS="figTitle">コード表示5-11<A NAME="GOCLanguage_10.htm_61839"></A>変数データの定義</P>
+<PRE>/*ヒントは、GenClassに示されているように���@vardataコマンドで定義されます。 ここでは、GenClassのヒントのほんの一部を示します。 構造体*またはデータ型(「void」ではない)を持つものには、追加のデータフィールドが関連付けられています。 (注)</PRE>
+<PRE>@class GenClass, VisClass, master, variant;/*メッセージはここで定義されます。 *//*後に@instanceで定義されたインスタンスデータが続きます。 */@vardata void HINT_CENTER_MONIKER;@vardata SpecSizeSpec HINT_CUSTOM_CHILD_SPACING;@vardata char[]ATTR_GEN_INIT_FILE_KEY;</PRE>
+<PRE>/*再配置可能インスタンスフィールド(次のセクションを参照)は、*@relocで定義されます。 このフィールドには、GenClassオブジェクトがロードされるときに解決する必要があるオブジェクトポインタが含まれます。 */@instance@link GI_link;@reloc GI_link, optr;@vardata DestinationClassArgs ATTR_GEN_DESTINATION_CLASS;@reloc ATTR_GEN_DESTINATION_CLASS, 0, optr;@endc</PRE>
+<P>カーネルは、オブジェクトが自身のvardataエントリを追加、削除、変更するために使用できるいくつかのルーチンを提供します。 変数データはインスタンス・データであるため、あるオブジェクトが別のオブジェクトの変数データを直接変更することは、OOPの原則に反します。</P>
+<P>代わりに<CODE>メタクラス</CODE>には、別のオブジェクトのvardataエントリを追加、削除、変更、または取得するために、あるオブジェクトから別のオブジェクトに送信できるvardataメッセージが用意されています。 カーネルルーチンと<CODE>メタクラス</CODE>メッセージの概要は次のとおりです。</P>
+<UL>
+<LI><CODE>ObjVarAddData()<BR></CODE><A NAME="GOCLanguage_10.htm_IX_ObjVarAddData()"></A>このルーチンは、渡されたデータ型に新しいエントリを追加するか、特定のデータ型エントリに関連付けられた余分なデータを置き換えます。</LI>
+<LI><CODE>ObjVarDeleteData()<BR></CODE><A NAME="GOCLanguage_10.htm_IX_ObjVarDeleteData()"></A>このルーチンは、特定のデータ型が渡されたときに、そのデータ型のエントリを削除します。</LI>
+<LI><CODE>ObjVarDeleteDataAt()<BR></CODE><A NAME="GOCLanguage_10.htm_IX_ObjVarDeleteDataAt()"></A>このルーチンは、によって返されたエントリのポインタを渡すと、特定のデータエントリを削除します。<CODE>ObjVarAddData()</CODE><CODE>ObjVarFindData()</CODE>、または<CODE>ObjVarDerefData()</CODE>ボタンをクリックし</LI>
+<LI><CODE>ObjVarScanData()<BR></CODE><A NAME="GOCLanguage_10.htm_IX_ObjVarScanData()"></A>このルーチンにより、カーネルはオブジェクトの変数データ内のすべてのデータエントリをスキャンし、それらに対してリストされている「ハンドラルーチン」を呼び出します。 このプロセスを以下に説明します。</LI>
+<LI><CODE>ObjVarFindData()<BR></CODE><A NAME="GOCLanguage_10.htm_IX_ObjVarFindData()"></A>このルーチンは、渡されたデータ型のデータエントリを検索し、ポインタを返します(可能な場合)。</LI>
+<LI><CODE>ObjVarDerefData()<BR></CODE><A NAME="GOCLanguage_10.htm_IX_ObjVarDerefData()"></A>このルーチンは、オブジェクトのoptrとデータ型を渡すと、データエントリへのポインタを返します。 エントリが存在しない場合、このルーチンはオブジェクトを呼び出してエントリを作成し、初期化します。 このような変数データは、インスタンスデータと同じように動作します。 vardataを含むオブジェクトは、エントリを作成し<CODE>MSG_META_INITIALIZE_VAR_DATA(変数データの初期化)</CODE>」を参照してください。</LI>
+<LI><CODE>ObjVarDeleteDataRange()<BR></CODE><A NAME="GOCLanguage_10.htm_IX_ObjVarDeleteDataRange()"></A>このルーチンは、渡された範囲内の型を持つすべてのデータ・エントリを削除します。</LI>
+<LI><CODE>ObjVarCopyDataRange()<BR></CODE><A NAME="GOCLanguage_10.htm_IX_ObjVarCopyDataRange()"></A>このルーチンは、渡された範囲内のすべてのデータ・エントリーを、あるオブジェクトのインスタンス・チャンクから別のオブジェクトのにコピーします。 エントリがコピーされた場合、コピー先のオブジェクトは保存用にダーティとマークされます。 このルーチンは、宛先オブジェクトによって呼び出される必要があります。あるオブジェクトが別のオブジェクトのインスタンスデータを変更することは、不適切なポリシーです。 このルーチンは主に、あるUIオブジェクトから別のUIオブジェクトにヒントをコピーするためのもので、通常はアプリケーションでは使用されません。</LI>
+</UL>
+<P>4つのメッセージ(<CODE>メタクラス</CODE>)を使用して、変数データエントリをリモートで追加、削除、および変更する方法を以下に示します。 適切な機能が実装されているため、クラスはこれらのメッセージをインターセプトしてサブクラス化する必要はありません。<CODE>メタクラス</CODE>ボタンをクリックし</P>
+<DL>
+<DT><CODE>MSG_META_ADD_VAR_DATA(変数データの追加)</DT><DD></CODE><A NAME="GOCLanguage_10.htm_IX_MSG_META_ADD_VAR_DATA"></A>新しいvardata型を受信側オブジェクトに追加します。 型がすでに存在する場合は、渡された型で古い型が置き換えられます。</DD>
+<DT><CODE>MSG_META_DELETE_VAR_DATA(変数データの削除)</DT><DD></CODE><A NAME="GOCLanguage_10.htm_IX_MSG_META_DELETE_VAR_DATA"></A>受信側のインスタンスデータからvardata型を削除します。 タイプが存在しない場合は、何も行われません。</DD>
+<DT><CODE>MSG_META_INITIALIZE_VAR_DATA(変数データの初期化)</DT><DD></CODE><A NAME="GOCLanguage_10.htm_IX_MSG_META_INITIALIZE_VAR_DATA"></A>何かがオブジェクトのvardataフィールドにリモートでアクセスしようとしているが、フィールドがまだオブジェクトに追加されていないか、初期化されていない場合に使用されます。 オブジェクトは、この時点でvardataフィールドを作成または初期化する必要があります。</DD>
+<DT><CODE>MSG_META_GET_VAR_DATA■サービス名の場合■</DT><DD></CODE><A NAME="GOCLanguage_10.htm_IX_MSG_META_GET_VAR_DATA"></A>渡されたデータ型の追加データセットを返します。</DD>
+</DL>
+<P>GEOSでは、変数データ構造をサポートするだけでなく、さまざまな変数データ型の「ハンドラ」を設定できます。 ハンドラは、特定のデータ入力を処理するルーチンです。たとえば、各汎用UIオブジェクトにはいくつかのヒントが格納されます。 特定のUIクラスは、汎用オブジェクトに付加されると、サポートされる各ヒントを処理するための特定のルーチンを持ちます。 特定のUIの中には、特定のヒントに対して何もしないものがあります。これらの特定のUIには、これらのヒントのハンドラがありません。</P>
+<P><A NAME="GOCLanguage_10.htm_IX_VarDataCHandler tables"></A>ハンドラをデータ型に関連付けるには<CODE>VarDataCHandler</CODE>タブで行います。 これは<STRONG CLASS="fileName">gocと入力します。</STRONG>ルーチン名のペアを含むファイル<CODE>@vardata(英語の可能性あり</CODE>フィールド名。 の例<CODE>VarDataCHandler</CODE>表をに示します。<A HREF="#GOCLanguage_10.htm_98877">変数データハンドラ</A>ボタンをクリックし</P>
+<P>ハンドラは単に通常のCルーチンまたは関数であり、そのように定義されます。 ハンドラは<CODE>パスカル(_P)</CODE>このテーブルは、ハンドラと<CODE>@vardata(英語の可能性あり</CODE>データ型、および<CODE>ObjVarScanData()</CODE>が呼び出されると、すべてのデータ型のすべてのハンドラが順番に呼び出されます。 変数データは通常のインスタンスデータと同じように継承されるため、これはオブジェクトのクラスとそのすべてのスーパークラスに当てはまります。 ハンドラは、オブジェクトの破棄、オブジェクトに対する変数データの追加または削除を除いて、ほとんどすべての適切な操作を実行できます。</P>
+<P CLASS="figTitle">コード表示5-12<A NAME="GOCLanguage_10.htm_98877"></A>変数データハンドラ</P>
+<PRE>/*この例は、C VarDataサンプルアプリケーションから引用したものです。 (注)</PRE>
+<PRE>/*これはVarDataCHandlerです。 これは、*ObjVarScanDataのこのルーチンに対応するデータ型*が検出されたときに、VarDataCHandlerTable()ルーチンによって呼び出されます。 指定されたパラメータが渡されます。 **この特定のハンドラは、実際にはいくつかの異なるデータ型に使用されます*(下記のVarDataCHandlerTableを参照)。 データ型は`dataType&#39;パラメータで区別できます。 **注:VarDataInteractionHintHandlerは、*VarDataCHandler構造体で使用される他のハンドラと同様に、_pascalと宣言する必要があります。 (注)</PRE>
+<PRE>void_pascal VarDataInteractionHintHandler(MemHandle mh, ChunkHandle chnk, void*data, word dataType, handlerData*handlerData){</PRE>
+<PRE>if(dataType==HINT_ORIENT_CHILDREN_HORIZONTAL){handlerData->HD_flags.has_horiz=1;}else if(dataType==HINT_ORIENT_CHILDREN_VERTICALLY){handlerData->HD_flags.has_vert=1;}else if(dataType==HINT_ALLOW_CHILDREN_TO_WRAP){handlerData->HD_flags.has_allow_wrap=1;}else if((dataType==HINT_WRAP_AFTER_CHILD_COUNT)&amp;&amp;(((WrapAfterChildCountData*)data)->WACHE_childCount==2)){handlerData->HD_flags.has_wrap_after=1;}}</PRE>
+<PRE>/*これはVarDataCHandlerテーブルです。 データ型/VarDataCHandler*のペアで構成されています。 VarDataCHandlersは日常茶飯事だ。 (注)</PRE>
+<PRE>静的VarDataCHandler varDataInteractionHandlerTable[]={{HINT_ORIENT_CHILDREN_HORIZONTAL,VarDataInteractionHintHandler},{HINT_ORIENT_CHILDREN_VERTICALLY, VarDataInteractionHintHandler},{HINT_ALLOW_CHILDREN_TO_WRAP, VarDataInteractionHintHandler},{HINT_WRAP_AFTER_CHILD_COUNT, VarDataInteractionHintHandler}};</PRE>
+
+
+<H4 CLASS="HeadingC">再配置可能データの定義</H4>
+<PRE>@再配置</PRE>
+<P><A NAME="GOCLanguage_10.htm_IX_Relocatable data:goc syntax"></A>オブジェクトやクラスの中には、実行時にオブジェクトをロードしてリンクするときに解決する必要があるインスタンスデータフィールドを持つものがあります。 たとえば、オブジェクトに別のオブジェクトへのoptrが含まれている場合、コンパイル時にグローバル・メモリー・ハンドルを認識できないため、オブジェクトがロードされて解決されるときに、そのoptrを更新する必要があります。</P>
+<P><A NAME="GOCLanguage_10.htm_IX_@reloc[;reloc]"></A>一部の特殊なインスタンスフィールドでは、これは自動的に行われます。 たとえば<CODE>@コンポジット</CODE>および<CODE>@リンク</CODE>フィールドとオプションは自動的に解決されます。 ただし、再配置が必要な独自のインスタンスフィールドを追加する場合は<CODE>@再配置</CODE>キーワード。 これは、静的データと可変データの両方に当てはまります。</P>
+<P>このキーワードは、2つの形式を使用します。 ここにリストされている最初のものは通常の静的インスタンス・データ用で、2番目のものは可変データ用です。</P>
+<PRE><A NAME="GOCLanguage_10.htm_52446"></A>@reloc&lt;iname>,[(&lt;count>,&lt;struct>)]&lt;ptrType>;&lt;数値></PRE>
+<DL>
+<DT>
+          <STRONG>アイネーム</STRONG>
+        </DT><DD>これは再配置可能インスタンスフィールドの名前です。</DD>
+<DT>
+          <STRONG>数える</STRONG>
+        </DT><DD>インスタンス変数が、再配置可能フィールドを含む再配置可能データまたは構造体の配列である場合、これは配列内の要素の数です。</DD>
+<DT>
+          <STRONG>構造体</STRONG>
+        </DT><DD>再配置可能データが構造体の配列である場合、これは再配置を必要とする各構造体内のフィールドの名前を表します。</DD>
+<DT>
+          <STRONG>パターンタイプ</STRONG>
+        </DT><DD>これは、フィールドに含まれる再配置可能データのタイプです。 次のいずれかになります。<CODE>オプション</CODE><CODE>ポインタ</CODE>、または<CODE>取手</CODE>ボタンをクリックし</DD>
+<PRE>@reloc&lt;vname>,&lt;fn>,[(&lt;count>,&lt;struct>)]ptrType;を参照してください。</PRE>
+<DT>
+          <STRONG>仮想名</STRONG>
+        </DT><DD>これは変数データ型の名前です。</DD>
+<DT>
+          <STRONG>fn(英語の</STRONG>
+        </DT><DD>これは、変数データの追加データ内のフィールドの名前です。 このデータ型の余分なデータがない場合は、名前ではなく0を入力します。</DD>
+<DT>
+          <STRONG>数える</STRONG>
+        </DT><DD>インスタンス変数が、再配置可能フィールドを含む再配置可能データまたは構造体の配列である場合、これは配列内の要素の数です。</DD>
+<DT>
+          <STRONG>構造体</STRONG>
+        </DT><DD>再配置可能データが構造体の配列である場合、これは再配置を必要とする各構造体内のフィールドの名前を表します。</DD>
+<DT>
+          <STRONG>パターンタイプ</STRONG>
+        </DT><DD>これは、フィールドに含まれる再配置可能データのタイプです。 次のいずれかになります。<CODE>オプション</CODE><CODE>ポインタ</CODE>、または<CODE>取手</CODE>ボタンをクリックし</DD>
+
+</DL>
+<HR>
+          <A NAME="GOCLanguage_11.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:4.2人<A HREF="#GOCLanguage_f.htm">クラスとオブジェクトの使用</A>:再配置できないデータ</H3>
+<PRE><A NAME="GOCLanguage_11.htm_IX_@noreloc[;noreloc]"></A>@noreloc</PRE>
+<P>通常は再配置可能なインスタンス・データ・フィールド(optrなど)を強制的に再配置不可にするには<CODE>@noreloc</CODE>キーワード。 このキーワードは、に示すように、インスタンスフィールド自体を定義した直後に、再配置不可能とマークされるフィールドの名前とともに使用します。<A HREF="#GOCLanguage_11.htm_83062">@norelocキーワードの使用</A>ボタンをクリックし</P>
+<P CLASS="figTitle">コード表示5-13<A NAME="GOCLanguage_11.htm_83062"></A>@norelocキーワードの使用</P>
+<PRE>@instance optr MCI_ruler;/*通常、MCI_rulerはreloc.*/@noreloc MCI_ruler;/*.ですが、現在はそうではありません。*/</PRE>
+<HR>
+          <A NAME="GOCLanguage_12.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:4.3人<A HREF="#GOCLanguage_f.htm">クラスとオブジェクトの使用</A>:メソッドの定義</H3>
+<PRE>@メソッド���@extern</PRE>
+<P><A NAME="GOCLanguage_12.htm_IX_Methods:goc syntax"></A>メソッドは、オブジェクトがメッセージを受信したときに実行されるルーチンです。 各クラスは特定のメッセージセットを理解します。これらのメッセージはそれぞれクラスのメソッドテーブルに配置され、1つのメソッドに対応します。</P>
+<P><A NAME="GOCLanguage_12.htm_IX_@method[;method]"></A>メソッドはクラス固有ですが<CODE>@クラス</CODE>および<CODE>@エンド</CODE>クラス定義の 代わりに、それらの宣言行は、それらを単一のクラスと特定のメッセージにリンクします。 Goc、Glue、およびGEOSは、各クラスのメソッド・テーブルを自動的に構築するため、ユーザーがテーブルを作成する必要はありません。</P>
+<P><A NAME="GOCLanguage_12.htm_28438"></A>メソッドを定義するには<CODE>@メソッド</CODE>キーワード。 これには、次の構造があります。</P>
+<PRE>@メソッド[&lt;hname>,]&lt;cname>[,&lt;mname>]+;</PRE>
+<DL>
+<DT>
+          <STRONG>名前</STRONG>
+        </DT><DD>ハンドラ名(存在する場合)。 メソッドを関数として使用する場合は、ハンドラ名が必要です。 ハンドラ名を指定しない場合は、Gocによって作成されます。 この名前は、デバッグ時にブレークポイントを設定する場合に便利です。 名前を指定しない場合、Gocはクラス名(-Classサフィックスがある場合は削除されたもの)とメッセージ名(MSG_-プレフィックスがある場合は削除されたもの)を連結して名前を構成します。 たとえば、Gocは次のように呼び出します。<CODE>マイクラス</CODE>&#39;ハンドラ<CODE>MSG_DO_SOMETHING(何かをする)</CODE>&quot;MyDO_SOMETHING&quot;です。</DD>
+<DT>
+          <STRONG>名前</STRONG>
+        </DT><DD>このメソッドが属するクラスの名前。 各メソッドは1つのクラスにのみ属することができます。</DD>
+<DT>
+          <STRONG>名前(M)</STRONG>
+        </DT><DD>このメソッドを呼び出すメッセージの名前。 プラス記号は、1つのメソッドが複数のメッセージによって呼び出される可能性があることを示します。ただし、すべてのメッセージに<EM>同じ</EM>パラメータと戻り値。 少なくとも1つのメッセージを指定する必要があります。</DD>
+<DT></DT><DD><A NAME="GOCLanguage_12.htm_IX__reloc[;reloc]"></A>特別なGocキーワードがあります<CODE>再配置(_R)</CODE>のメソッドを作成するときに、メッセージ名の代わりに使用されます。<CODE>MSG_META_RELOC(メタ再配置)</CODE>および<CODE>MSG_META_UNRELOC[メタ再ロック解除]</CODE>メソッド処理<CODE>再配置(_R)</CODE>両方を処理する<CODE>MSG_META_RELOC(メタ再配置)</CODE>および<CODE>MSG_META_UNRELOC[メタ再ロック解除]</CODE>;メソッドコードは、message引数の値をチェックして、処理されているメッセージを見つけることができます。</DD>
+</DL>
+<P>メソッドの名前(ハンドラ名)はオプションであることに注意してください。 パラメータと戻り値はメソッド宣言には含まれません。<CODE>@メッセージ@めっせ</CODE>で説明されているように<A HREF="#GOCLanguage_e.htm_57260">GEOSメッセージシステム</A>ボタンをクリックし</P>
+<P>このメソッドをルーチンとして呼び出したい場合、コンパイラはおそらくルーチンのプロトタイプを提供する必要があります。 お客様の<CODE>@メッセージ@めっせ</CODE>宣言は次のようになります。</P>
+<PRE>@メッセージワードMSG_MC_DO_SOMEThing(ワードシング);</PRE>
+<P>および<CODE>@メソッド</CODE>宣言は次のようになります。</P>
+<PRE>@method DoSomething, MyClass, MSG_MC_DO_SOMEThing{/*ここにコードを入力*/}</PRE>
+<P>プロトタイプは次のようになります。</P>
+<PRE>extern word_pascal DoSomething(optr oself, MyMessages message, word thing);という文字列を返します。</PRE>
+<P>タイプの名前<CODE>マイメッセージ</CODE>は、クラスの名前を取得し、「Class」サフィックスを削除し、このサフィックスを「Messages」に置き換えることによって自動的に構築されます。</P>
+<P><A NAME="GOCLanguage_12.htm_IX_@extern:with methods[;extern:with methods]"></A>通常、クラスのすべてのメソッドは、クラスが宣言されているのと同じコードファイルに記述されます。<CODE>@classdecl</CODE>ただし、クラスのメソッドを別のファイルで宣言する必要がある場合は<CODE>@外部</CODE>メソッドが別のオブジェクト・ファイルで定義または使用されていることを示すキーワード。 Gocは以下の場合にエラーを発生しません。<CODE>@外部</CODE>が使用され、メソッドがどこにも存在しない場合、Glueはこのような場合にリンクエラーを返します。 ただし、クラス定義(クラス定義とクラス定義の間の定義)のみを配置する場合は、このような要件はありません。<CODE>@クラス</CODE>および<CODE>@エンド</CODE>)を別のファイルに保存します。 この場合、クラス定義を<STRONG CLASS="fileName">ゴー</STRONG>ヘッダー・ファイルとメソッド・コード<STRONG CLASS="fileName">gocと入力します。</STRONG>ファイルを<CODE>@classdecl</CODE>文を使用します。<CODE>@インクルード</CODE>の<STRONG CLASS="fileName">ゴー</STRONG>ファイルを使用する必要はありませんが<CODE>@外部</CODE>ディレクティブ(メソッドコードが<CODE>@classdecl</CODE>指令)。</P>
+<P>使用する形式<CODE>@外部</CODE>は次のとおりです。</P>
+<PRE>/*クラスが*@classdecl:*/@externメソッド&lt;cname>,&lt;mname>+;で宣言されているファイル内</PRE>
+<PRE>/*メソッドコードを含むファイル内:*/@extern method&lt;cname>,&lt;mname>+{.method code goes here. }をクリックし</PRE>
+<DL>
+<DT>
+          <STRONG>名前</STRONG>
+        </DT><DD>メソッドが定義されているクラスの名前。</DD>
+<DT>
+          <STRONG>名前(M)</STRONG>
+        </DT><DD>メソッドを呼び出すメッセージの名前。 外部メソッド定義は、通常のメソッド定義と同様に、複数のメッセージを処理できることに注意してください。</DD>
+</DL>
+<P>3つのパラメータはメッセージとともに自動的に渡され<CODE>@メッセージ@めっせ</CODE>定義。 ただし、これらはコードを大幅に単純化できるため、メソッドを作成するときに知っておくことが重要です。 これらのパラメータは<CODE>プロセスクラス</CODE>および以下のサブクラス:</P>
+<DL>
+<DT>
+          <STRONG>自分自身</STRONG>
+        </DT><DD><A NAME="GOCLanguage_12.htm_IX_ObjDerefGen():with pself"></A><A NAME="GOCLanguage_12.htm_IX_ObjDerefVis():with pself"></A><A NAME="GOCLanguage_12.htm_IX_pself"></A>オブジェクトのインスタンスデータへのファーポインタ。<EM>自分自身</EM>ハンドラが定義されているクラスのマスター・グループを指します。 このポインタはメッセージ呼び出しによって無効になる可能性があるため、GOCディレクティブを使用することをお勧めします。<CODE>@自己</CODE>」ボックスで選択します。 とは異なり<EM>自分自身</EM><CODE>@自己</CODE>は常に有効です。</DD>
+<DT>
+          <STRONG>オーセルフ</STRONG>
+        </DT><DD><A NAME="GOCLanguage_12.htm_IX_oself"></A>オブジェクトのインスタンス・データに対するoptr。 インスタンス・チャンクのグローバル・メモリー・ハンドルとチャンク・ハンドルが含まれます。 これは、オブジェクトのインスタンスデータに作用するルーチンに使用できます。</DD>
+<DT>
+          <STRONG>メッセージめっせ</STRONG>
+        </DT><DD><A NAME="GOCLanguage_12.htm_IX_message (method parameter)"></A>処理されるメッセージのメッセージ番号。</DD>
+</DL>
+<P><A NAME="GOCLanguage_12.htm_IX_ProcessClass:oself and pself"></A>前述したように<CODE>プロセスクラス</CODE>は特殊なタイプのクラスです。 アプリケーションの標準PC構造(idata、udataなど)を使用するため、真のインスタンス・データはありません。 各メソッドには、送信されたメッセージという1つの標準パラメータしかありません。 これは<CODE>プロセスクラス</CODE>には、プログラムのすべてのグローバル変数が含まれています。 これらは自動的にアクセスされます。<EM>オーセルフ</EM>または<CODE>@自己</CODE>が必要です。</P>
+<P CLASS="figTitle">コード表示5-14<A NAME="GOCLanguage_12.htm_36801"></A>クラス定義</P>
+<PRE>/*クラスValClassは、4つの異なるメソッドを呼び出す4つのメッセージを定義します。 この例では*クラス全体が示されています。この*方法でコーディングすると、適切に機能します。 メソッドの宣言行*にはクラス名があるため、クラス定義内には表示されないことに注意してください。 (注)</PRE>
+<PRE>@class ValClass, MetaClass;と入力します。</PRE>
+<PRE>@instance int value;/*インスタンスデータ値:初期化されていない整数*/</PRE>
+<PRE>/*メッセージ宣言*4つのメッセージすべてがこのクラスによって処理されます。 これらは、表示された型を*返し、定義されたパラメータを取ります。 */@message int MSG_VAL_GET_VALUE();@message void MSG_VAL_SET_VALUE(int newValue);@message void MSG_VAL_NEGATE_VALUE();@message Boolean MSG_VAL_IS_VALUE_BIGUDER_THAN(int newValue);</PRE>
+<PRE>@endc@classdecl ValClass;/*クラス構造をメモリに配置する必要があります*/</PRE>
+<PRE>/*メソッドの宣言*4つのメソッドはそれぞれ1行のコードです。 *パラメータはメッセージ定義で自動的に定義され、*メソッド定義で再定義する必要がないことに注意してください。 同じことが*戻り型にも当てはまります。 また、クラス名とメッセージ名が*@メソッド行*/に表示されることにも注意してください。</PRE>
+<PRE>@method ValGetValue, MyClass, MSG_VAL_GET_VALUE{return(@self->value);}と入力します。</PRE>
+<PRE>@method ValSetValue, MyClass, MSG_VAL_SET_VALUE{@self->value=newValue;}と入力します。</PRE>
+<PRE>@method ValNegateVal, MyClass, MSG_VAL_NEGATE_VALUE{@self->value*=-1;}です。</PRE>
+<PRE>@method ValClass, MSG_VAL_IS_VALUE_BIGGER_THAN{/*このハンドラの名前は自動的に*ValVAL_IS_VALUE_BIGGER_THANとして作成されます。 この名前は、同じスレッド内から*C関数呼び出しとして使用できます。 */return(@self->value>newValue);}を返します。</PRE>
+<P>メッセージを送信するのではなく、通常のCのcall-and-return規則でメソッドを呼び出したい場合があります。 これを行うには、メソッドをメソッドとしてだけでなくルーチンとしても宣言する必要があります。 宣言の形式は、次のとおりです。</P>
+<PRE>extern&lt;type>_pascal&lt;MethodName>(optr oself, &lt;TruncatedClassName>Messages message, &lt;type1>&lt;arg1>,&lt;type2>&lt;arg2>)</PRE>
+<DL>
+<DT>
+          <STRONG>種類</STRONG>
+        </DT><DD>メソッドによって返されるタイプです。 任意のデータ型を指定できます。</DD>
+<DT><STRONG>メソッド名</DT><DD></STRONG>メソッドの名前です。 メソッドをルーチンとして呼び出す場合は、メソッドを宣言するときにメソッドに名前を付ける必要があります(<A HREF="#GOCLanguage_12.htm_28438">メソッドを定義するには���@methodキーワードを使用します。 これには、次の構造があります。</A>)をクリックします。 ここでも同じ名前を使用します。</DD>
+<DT><STRONG>TruncatedClassName</DT><DD></STRONG>これは、「Class」という語を除いたクラスの名前です。 この引数の型は、省略されたクラス名の後に(スペースなしで)「Messages」という単語が続くものです。 したがって、「HelloCounterClass」の場合、切り捨てられたクラス名は「HelloCounter」になり、このフィールドのタイプは「HelloCounterMessages」になります。</DD>
+<DT>
+          <STRONG>種類</STRONG>
+          <EM>ん</EM>
+          <STRONG>,引数</STRONG>
+          <EM>ん</EM>
+        </DT><DD>これらのフィールドを使用して、メッセージに渡される各引数を宣言します。 メッセージ宣言とまったく同じ引数を、同じ順序で使用してください。</DD>
+</DL>
+<P CLASS="figTitle">コード表示5-15メソッドをルーチンとして宣言する</P>
+<PRE>@message int MSG_HELLO_COUNTER_RECALCULATE_VALUE(\HelloPriority priority, \word randomDatum, \char aLetter);</PRE>
+<PRE>extern int_pascal HelloCounterRecalculateValue(optr oself, HelloCounterMessagesメッセージ,HelloPriorityプライオリティ,word randomDatum, char aLetter);</PRE>
+<PRE>@method HelloCounterRecalculate, HelloCounterClass, \MSG_HELLO_COUNTER_RECALCULATE_VALUE{</PRE>
+<PRE>/*メソッドコードはここに.*/</PRE>
+<PRE>}をクリックし</PRE>
+<HR>
+          <A NAME="GOCLanguage_13.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:4.4人<A HREF="#GOCLanguage_f.htm">クラスとオブジェクトの使用</A>キーを押します<A NAME="GOCLanguage_13.htm_87013"></A>オブジェクトの宣言</H3>
+<P><A NAME="GOCLanguage_13.htm_IX_Objects:goc syntax"></A>GEOSプログラムでは、次の2つの方法でオブジェクトをインスタンス化できます。 ソースコードでこれらを宣言するには<CODE>@オブジェクト</CODE>キーワードを使用するか、インスタンスを作成して実行中にインスタンスデータを入力することができます。 ほとんどの場合、特に一般的なUIオブジェクトでは、前者を行うことになるでしょう。</P>
+<P>さらに、リソースとチャンクは<CODE>@開始、@終了</CODE><CODE>@ヘッダー</CODE>、および<CODE>@チャンク</CODE>キーワード。 GEOSライブラリの定義には、追加の宣言セットも必要です(<STRONG CLASS="fileName">ゴー</STRONG>これらの宣言(<CODE>@deflib</CODE>および<CODE>@endlib</CODE>)は、それらの間に含まれるコードが指定されたライブラリの一部であることを示します。</P>
+
+<H4 CLASS="HeadingC">ライブラリ・コードの定義</H4>
+<PRE>@deflib@endlib</PRE>
+<P><A NAME="GOCLanguage_13.htm_IX_Libraries:@deflib in library header files"></A><A NAME="GOCLanguage_13.htm_IX_Header files:goc library files"></A><A NAME="GOCLanguage_13.htm_IX_@endlib[;endlib]"></A><A NAME="GOCLanguage_13.htm_IX_@deflib[;deflib]"></A>もしあなたのgeodeがライブラリであれば、おそらくたくさんの<STRONG CLASS="fileName">ゴー</STRONG>ファイル。 これらの各ファイルには、ライブラリのコードの一部が含まれており、ライブラリを使用するアプリケーションに含まれています。 ライブラリコードは、2つのキーワードで区切る必要があります。<CODE>@deflib</CODE>および<CODE>@endlib</CODE>には、次の形式があります。</P>
+<PRE>@deflib&lt;libname>@endlib</PRE>
+<DL>
+<DT>
+          <STRONG>ライブラリ名</STRONG>
+        </DT><DD>エクステンダーが除去されたライブラリの永続的な名前。 たとえば、UIライブラリの名前はui.libで、フォーマットは次のようになります。</DD>
+<PRE>@deflib ui/*ライブラリコードはこちら*/@endlib</PRE>
+</DL>
+<P>これらの2つのキーワードは、ライブラリ内のクラスを定義するファイルでのみ必要であることに注意してください。 ライブラリで使用されるコードまたはデータのみを持つファイルは、それらを必要としません(ただし、許可されています)。</P>
+
+
+<H4 CLASS="HeadingC">セグメント・リソースおよびチャンクの宣言</H4>
+<PRE>@start, @end, @header, @chunk, @gstring, @chunkArray, @elementArray, @extern</PRE>
+<P><A NAME="GOCLanguage_13.htm_IX_Resources:goc syntax"></A>GEOSには基本的に3つのタイプのリソースがあります。ルーチンとメソッドを含むコード・リソース、オブジェクト・インスタンス・チャンク(多くの場合はデータ・チャンク)を含むオブジェクト・ブロック、データ・チャンクのみを含むデータ・リソースです。 コードリソースは自動的に作成され、宣言は必要ありません(特別なセグメントが必要な場合を除きます。<EM>プラグマ</EM>使用しているCコンパイラに適しています)。</P>
+<P><A NAME="GOCLanguage_13.htm_IX_@header[;header]"></A><A NAME="GOCLanguage_13.htm_IX_@end[;end]"></A><A NAME="GOCLanguage_13.htm_IX_@start[;start]"></A>オブジェクトブロックや他のLMemリソースは以下のように宣言されます。<CODE>@開始</CODE>および<CODE>@終了</CODE>ローカルメモリリソースに特別なヘッダを設定するには<CODE>@ヘッダー</CODE>キーワード。 これらについては以下で説明します。また、リソースブロックの宣言の例を以下に示します。<A HREF="#GOCLanguage_13.htm_91725">データ・リソースの宣言</A>に注意してください。<CODE>@ヘッダー</CODE>キーワードは<CODE>@開始</CODE>および<CODE>@終了</CODE>区切り文字。</P>
+<PRE>@start&lt;segname>[,&lt;flags>];@header&lt;type>[=&lt;init>];@end&lt;segname></PRE>
+<DL>
+<DT>
+          <STRONG>segname</STRONG>
+        </DT><DD>これはリソース・セグメントの名前です。</DD>
+<DT>
+          <STRONG>フラグふらぐ</STRONG>
+        </DT><DD>これらは、リソースの2つの特性を決定するオプションのフラグです。 フラグが<A NAME="GOCLanguage_13.htm_IX_data (@start flag)"></A><CODE>データ#データ#</CODE>が設定されている場合、ブロックはデータリソースに設定されます。デフォルトはオブジェクトブロックです。 フラグが<CODE>notDetachable</CODE><A NAME="GOCLanguage_13.htm_IX_notDetachable (@start flag)"></A>が設定されている場合、リソースブロックは状態ファイルに保存されません。</DD>
+<DT>
+          <STRONG>種類</STRONG>
+        </DT><DD>これは、リソースブロックのヘッダー構造として機能する構造タイプの名前です。 次のいずれかの順列である必要があります。<CODE>LMemBlockHeader</CODE>(非オブジェクトブロックの場合)または<CODE>ObjLMemBlockHeader</CODE>(オブジェクトブロックの場合)。</DD>
+<DT>
+          <STRONG>初期化</STRONG>
+        </DT><DD>これは、新しいヘッダータイプの初期化子です。 通常、いくつかのデータフィールドは、標準のLMemブロックヘッダーの最後に追加されます。 これらのフィールドには、このオプションの引数で初期化子のデータを入力できます。</DD>
+</DL>
+<P>リソース要素(オブジェクトやチャンクなど)も宣言されます。<A NAME="GOCLanguage_13.htm_IX_Chunks:declaring with @chunk"></A><A NAME="GOCLanguage_13.htm_IX_@chunk[;chunk]"></A>の<CODE>@開始</CODE>および<CODE>@終了</CODE>区切り文字。 の<CODE>@チャンク</CODE>keywordはデータチャンクを宣言します。次に例を示します。 の場合<CODE>@オブジェクト</CODE>キーワードについては、次のセクションを参照してください。</P>
+<PRE>@chunk&lt;タイプ>&lt;名前>[=&lt;初期化>];</PRE>
+<DL>
+<DT>
+          <STRONG>種類</STRONG>
+        </DT><DD>これは、チャンクに保持されるデータ型です。</DD>
+<DT>
+          <STRONG>人名</STRONG>
+        </DT><DD>これはチャンクの名前です。 この名前は、チャンクを参照する変数名として使用できます。</DD>
+<DT>
+          <STRONG>初期化</STRONG>
+        </DT><DD>これは、標準Cフォーマットの初期化データです。 構造体を初期化する場合は、必ずデータを中括弧で囲んでください。</DD>
+</DL>
+<P><A NAME="GOCLanguage_13.htm_Chunks"></A><A NAME="GOCLanguage_13.htm_GStrings"></A><A NAME="GOCLanguage_13.htm_@gstring[;gstring]"></A>GStringデータを含むチャンクの宣言には、特別な場合の構文があります。 GStringは、保存された一連のグラフィックコマンドです。詳細については<A HREF="../../Graphics/Environment/Environment_15.htm">「グラフィック環境」の章</A>その構文は以下のように要約することができる:</P><PRE>@gstring&lt;name>={&lt;init>};と入力します。</PRE>
+<DL>
+<DT>
+          <STRONG>人名</STRONG>
+        </DT><DD>これはチャンクの名前です。 この名前は、チャンクを参照する変数名として使用できます。</DD>
+<DT>
+          <STRONG>初期化</STRONG>
+        </DT><DD>はイニシャライザデータです。 一連のバイトです。 通常、GStringのデータは<CODE>@gstring(文字列)</CODE>チャンクは<CODE>GS.()社</CODE>マクロ</DD>
+</DL>
+          <A NAME="GOCLanguage_13.htm_IX_Chunks:declaring with @chunkArray"></A>
+          <A NAME="GOCLanguage_13.htm_IX_@chunkArray[;chunkArray]"></A>
+          <A NAME="GOCLanguage_13.htm_IX_Chunks:declaring with @elementArray"></A>
+          <A NAME="GOCLanguage_13.htm_IX_@elementArray[;elementArray]"></A>
+        <P>他に2つのタイプのリソース要素を定義することもできますが、どちらも配列タイプです。 の<CODE>@chunkArray</CODE>キーワードはチャンク配列構造体を宣言し<CODE>@elementArray(配列)</CODE>keywordは、要素配列構造体を宣言します。 詳細については<A HREF="../../Memory/LMem/index.htm">「ローカルメモリー」の章</A>チャンク配列と要素配列の構造と使用方法については、を参照してください。 これらの静的配列は<EM>しない</EM>マークされたリソースに表示する<CODE>データ#データ#</CODE>;リソースにマークを付けることができます<CODE>notDetachable</CODE>マークしなくてもよい。 の<CODE>gpファイル</CODE>リソースにマークを付ける必要があります。<CODE>メモリ</CODE>(オプション)<CODE>読み取り専用</CODE>キーワードのフォーマットは、次のとおりです。</P>
+
+<PRE>@chunkArray&lt;stype>&lt;aname>={&lt;init>};</PRE>
+<PRE>@elementArray&lt;stype>&lt;aname>[={&lt;init>}];</PRE>
+<DL>
+<DT>
+          <STRONG>sタイプ</STRONG>
+        </DT><DD>配列に格納されている構造体のタイプです。</DD>
+<DT>
+          <STRONG>名前</STRONG>
+        </DT><DD>これはアレイの名前です。</DD>
+<DT>
+          <STRONG>初期化</STRONG>
+        </DT><DD>これは任意のイニシャライザデータです。 初期化データがない場合(つまり、空のチャンク配列を宣言したい場合)は、次のようなコードスニペットが必要になります。</DD>
+<PRE>@チャンクChunkArrayHeader&lt;aname>={0, sizeof(&lt;stype>),0, sizeof(ChunkArrayHeader)};</PRE>
+</DL>
+
+<P>次の例は、2つの静的に宣言されたチャンク配列を示しています。</P>
+<PRE>#define CELL_DATA_LENGTH 15 typedef char CellDataStruct[CELL_DATA_LENGTH];@chunkArray CellDataStruct headerDataArray={&quot;no&quot;,&quot;Description&quot;,&quot;type&quot;,&quot;$/lb&quot;};@chunkArray CellDataStruct coffeeDataArray={&quot;0&quot;,&quot;House Blend&quot;,&quot;PEET&quot;,&quot;$6.95&quot;,&quot;1&quot;,&quot;Mocha-Java&quot;,&quot;PEET&quot;,&quot;$10.75&quot;,&quot;2&quot;,&quot;Garuda Blend&quot;,&quot;PEET&quot;,&quot;$9.25&quot;,&quot;3&quot;,&quot;Italian Dark&quot;,&quot;DARK&quot;,&quot;$8.75&quot;,&quot;4&quot;,&quot;French Roast&quot;,&quot;DARK&quot;,&quot;$8.75&quot;,&quot;5&quot;,&quot;Sumatra&quot;,&quot;PACF&quot;,&quot;$8.95&quot;,&quot;6&quot;,&quot;Sulawesi-Kal&quot;,&quot;PACF&quot;,&quot;$11.55&quot;,&quot;7&quot;,&quot;Java&quot;,&quot;PACF&quot;,&quot;$8.75&quot;,&quot;8&quot;,&quot;Aged Java&quot;,&quot;PACF&quot;,&quot;$9.75&quot;,&quot;9&quot;,&quot;Mexican&quot;,&quot;AMER&quot;,&quot;$7.55&quot;};</PRE>
+
+<P>もう一つのキーワードは<A NAME="GOCLanguage_13.htm_IX_@extern[;extern]"></A><A NAME="GOCLanguage_13.htm_IX_Glue:externally declared chunks"></A><CODE>@外部</CODE>では、異なるコンパイルセッションのチャンクを使用できます。 の<CODE>@外部</CODE>キーワードを使用して、リモート(外部)チャンク、オブジェクト、およびビジュアル・モニカを参照できます。 アイテムが<CODE>@外部</CODE>が実際にはどこにも定義されていない場合、Glueはアイテムをリンクしようとするとエラーを返します。 (Glueは外部アイテムを介してリンクできないことにも注意してください。外部リンクの1つのレイヤーのみが許可されます。 したがって、1つのオブジェクトが<CODE>@外部</CODE>を持つチャンクに<CODE>@外部</CODE>visMonikerへ。) オブジェクトツリー内の子は<CODE>@外部</CODE>この場合、Gocはエラーを生成します。 このキーワードの形式は次のとおりです。</P>
+<PRE>@externチャンク&lt;cname>;@externオブジェクト&lt;oname>;@extern visMoniker&lt;vmname>;</PRE>
+<DL>
+<DT>
+          <STRONG>名前</STRONG>
+        </DT><DD>これはチャンクの名前です。</DD>
+<DT>
+          <STRONG>オオナメ</STRONG>
+        </DT><DD>これはオブジェクトの名前です。</DD>
+<DT>
+          <STRONG>仮想マシン名</STRONG>
+        </DT><DD>これはvisMonikerチャンクの名前です。</DD>
+</DL>
+<P CLASS="figTitle">コード表示5-16<A NAME="GOCLanguage_13.htm_91725"></A>データ・リソースの宣言</P>
+<PRE>/*この例では、3つの異なるチャンクを含むデータブロックを宣言し、*独自のヘッダータイプを宣言します。*/</PRE>
+<PRE>typedef struct{LMemBlockHeader MLMBH_meta;/*基本ヘッダ構造体*/int MLMBH_numEntries;/*ブロック内のエントリ数*/}StudentBlockHeader;</PRE>
+<PRE>@start StudentBlock, data;/*dataフラグはLMemブロックを示す*/@header StudentBlockHeader=1;/*新しいヘッダーフィールドを初期化する*/</PRE>
+<PRE>/*3つのチャンクは次のように定義されます。 それぞれが、*1人の生徒に関連付けられた1つのフィールドを表します。そのため、ヘッダーのMLMBH_numEntriesフィールドには*1(3ではなく)が含まれています。 (注)</PRE>
+<PRE>@chunk char firstName[]=&quot;John&quot;;@chunk char lastName[]=&quot;Student&quot;;@chunk int grade=6;</PRE>
+<PRE>@StudentBlockの終了/*リソースブロックの終了*/</PRE>
+
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_13.htm_72656"></A>オブジェクトの宣言</H4>
+<PRE>@object, @default, @specificUI, gcnList</PRE>
+<P><A NAME="GOCLanguage_13.htm_IX_Chunks:declaring with @object"></A>の<A NAME="GOCLanguage_13.htm_IX_@object[;object]"></A><CODE>@オブジェクト</CODE>キーワードは<CODE>@チャンク</CODE>キーワードを使用します。 このコマンドは、リソース・セグメントにチャンクを割り当て、そのチャンクに初期化子データを設定します。 ただし、指定されたクラスのオブジェクトを作成し、初期化子データが指定されていない場合はデフォルトのデータを入力するという点で、さらに多くのことを行います。</P>
+<P>の<CODE>@オブジェクト</CODE>キーワード、例えば<CODE>@チャンク</CODE>、区切り文字の間に使用する必要があります。<CODE>@開始</CODE>および<CODE>@終了</CODE>(上記参照)。 ただし、オブジェクトブロック内で使用する必要があります(データリソースセグメント内では使用できません)。 フォーマットを以下に示します。いくつかの例をに示します。<A HREF="#GOCLanguage_13.htm_99194">@objectを使用したオブジェクトの宣言</A>ボタンをクリックし</P>
+<PRE>@object&lt;class>&lt;name>=&lt;flags>*{&lt;fieldName>=&lt;init>;*&lt;varName>[=&lt;init>];*};</PRE>
+<DL>
+<DT>
+          <STRONG>階級</STRONG>
+        </DT><DD>オブジェクトのクラス。 GEOSまたは独自のコードで定義された有効なクラスである必要があります。</DD>
+<DT>
+          <STRONG>人名</STRONG>
+        </DT><DD>オブジェクトの名前。 オブジェクトの名前は、メッセージを送信するときに使用されます。</DD>
+<DT>
+          <STRONG>フラグふらぐ</STRONG>
+        </DT><DD>現在、オブジェクトに許可されているフラグは1つだけです。<A NAME="GOCLanguage_13.htm_IX_ignoreDirty:object flag"></A><CODE>ignoreDirty</CODE>これを設定すると、インスタンスデータに変更が加えられたときにオブジェクトが無視します。つまり、コードファイルで定義されているのと同じ方法で、常に状態ファイルから復元されます。 このフラグは<EM>しない</EM>任意の汎用オブジェクトに対して設定されます。</DD>
+<DT>
+          <STRONG>フィールド名</STRONG>
+        </DT><DD>クラスに定義されたインスタンスデータフィールドの名前。</DD>
+<DT>
+          <STRONG>変数名</STRONG>
+        </DT><DD>変数データインスタンスフィールドの名前。 変数データフィールドに余分なデータがある場合は、オプションの引数を使用して初期化できます。</DD>
+<DT>
+          <STRONG>初期化</STRONG>
+        </DT><DD>これはインスタンス・データ・フィールドの初期化データです。 フィールドにデフォルト値を入力する場合は<CODE>@オブジェクト</CODE>宣言またはキーワードの使用<CODE>@デフォルト</CODE>初期化子用。 ただし、変数データを宣言するときは、余分なデータが構造体である場合、初期化子を中括弧で囲む必要があることに注意してください。</DD>
+</DL>
+<P>GEOSは、で説明されている特殊なインスタンスデータフィールドをサポートしています。<A HREF="#GOCLanguage_10.htm_87922">インスタンス・データ・フィールドの定義</A>これらは通常のフィールドとして宣言され、以下で説明されます。 また、汎用ヒントは変数データとして実装されるため、他の変数データ型と同じ方法でオブジェクトに追加されます。</P>
+
+<H5 CLASS="HeadingD">オブジェクトツリー</H5>
+<P>静的ツリー(たとえば、アプリケーションの汎用ツリー)で宣言されたすべてのオブジェクトは、同じソースファイルにある必要があります。 それらが異なるファイルにある場合、一方のファイルから他方のファイルのオブジェクトに子としてオブジェクトを動的に追加することによってのみ、それらを単一のツリーに結合できます。</P>
+<P>1つのファイルにオブジェクトのツリーが含まれている場合は、ファイル内の一番上のオブジェクトをメインツリーに動的に追加するだけで、ツリー全体を組み込むことができます。 各オブジェクトを個別に追加する必要はありません。</P>
+<P>あるソースファイルで宣言されたオブジェクトが別のソースファイルのオブジェクトにメッセージを送信する場合は<CODE>@外部</CODE>送信オブジェクトを含むソースファイルの行:</P>
+<PRE>@externオブジェクトReceivingObjectName;</PRE>
+<P>メッセージ自体は、次の方法で送信する必要があります(<CODE>@呼び出し</CODE>、引き数の受け渡し、その他):</P>
+<PRE>optr ROOptr;ROOptr=GeodeGetOptrNS(@ReceivingObjectName);@send ROOptr::MSG_DO_SOMETHING(0, 0);</PRE>
+<P><CODE>GeodeGetOptrNS()</CODE><A NAME="GOCLanguage_13.htm_IX_Multi-launchability:optrs and"></A><A NAME="GOCLanguage_13.htm_IX_optr:and multiply launchable geodes"></A><A NAME="GOCLanguage_13.htm_IX_GeodeGetOptrNS()"></A>は、オブジェクトのオブジェクトポインタを返す。 複数起動可能なプログラムの場合、Gocにはどのプログラムの@ReceivingObjectNameがメッセージを受信すべきかを知る方法がありません。<CODE>GeodeGetOptrNS()</CODE>を使用すると、メッセージを受け取るオブジェクトがルーチンを呼び出すオブジェクトと同じジオードに配置されます。</P>
+
+
+<H5 CLASS="HeadingD"><A NAME="GOCLanguage_13.htm_92931"></A>子の宣言</H5>
+<P>オブジェクトがオブジェクトツリーの一部である場合、そのクラス(またはそのスーパークラスの1つ)<EM>しなければならない</EM>少なくとも1つの<CODE>@リンク</CODE>インスタンスデータフィールド<CODE>生成クラス</CODE>オブジェクトが子を持つことを許可される場合は、タイプのフィールドも持つ必要があります。<CODE>@コンポジット</CODE>これらにより、Gocはツリーを自動的かつ正確にリンクすることができる。</P>
+<P>で説明されているように<A HREF="#GOCLanguage_10.htm_87922">インスタンス・データ・フィールドの定義</A><CODE>@コンポジット</CODE>フィールドはオブジェクトの最初の子を指し<CODE>@リンク</CODE>フィールドは、オブジェクトの次の兄弟を指すか、次の兄弟が存在しない場合は親を指します。 ただし、を使用する場合、すべての子宣言は完全に複合フィールドで行われます。<CODE>@オブジェクト</CODE>形式は次のとおりです。</P>
+<PRE>&lt;fname>=&lt;childName>[,&lt;childName>]*;となります。</PRE>
+<DL>
+<DT>
+          <STRONG>ファイル名</STRONG>
+        </DT><DD>定義されたフィールドの名前です。<CODE>@コンポジット</CODE>と入力します。</DD>
+<DT><STRONG>子の名前</DT><DD></STRONG>これは、このオブジェクトの子になるオブジェクトの名前です。 星印は、宣言行に1つ以上の子を含めることができることを示します。子はカンマで区切る必要があります。また、各子は<CODE>@オブジェクト</CODE>宣言。</DD>
+</DL>
+<P>サンプル・アプリケーションには、この例が多数あります。 以下に簡単な例を示します。</P>
+<PRE>GI_comp=@TicTacPrimary;</PRE>
+<PRE>GI_comp=@TicTacView, @TicTacGameMenu;</PRE>
+<PRE>VCI_comp=@TTX1, @TTX2, @TTX3, @TTX4, @TTX5, @TTO1, @TTO2, @TTO3, @TTO4, @TTO5;となります。</PRE>
+
+
+<H5 CLASS="HeadingD">Visual Monikersの宣言</H5>
+<P><A NAME="GOCLanguage_13.htm_IX_@visMoniker[;visMoniker]"></A>オブジェクトに視覚的な名前を付けるには、タイプのインスタンスデータフィールドが必要です。<CODE>@visMoniker</CODE>として<CODE>生成クラス</CODE>する(参照)<A HREF="#GOCLanguage_10.htm_87922">インスタンス・データ・フィールドの定義</A>)をクリックします。 実際にGenClassのGI_visMonikerフィールドを使用している場合は<A HREF="../../SysObjects/Gen/index.htm">GenClassの章</A>ボタンをクリックし</P><P><A NAME="GOCLanguage_13.htm_IX_Visual monikers:goc syntax"></A>ビジュアル・モニカには多くの形式があり、宣言行は使用している形式によって異なります。 その形式は、単純なテキストフィールドから、ビデオ解像度に基づいた可能なモニカの複雑なリストまで多岐にわたります。 これらの各フォームとその宣言行を以下に示します。</P>
+<P>次の形式は、単純なテキスト文字列に使用されます(例を参照)。</P>
+<PRE>&lt;fname>=&lt;string>;GI_visMoniker=&quot;One&quot;;</PRE>
+<DL>
+<DT>
+          <STRONG>ファイル名</STRONG>
+        </DT><DD>モニカのインスタンスデータフィールドの名前。</DD>
+<DT>
+          <STRONG>ストリング</STRONG>
+        </DT><DD>引用符で囲まれた文字列。 この文字列は、オブジェクトの視覚的な名前です。</DD>
+</DL>
+<P>次の形式は、キーボードナビゲーション文字を含むテキスト文字列に使用されます。 キーボードナビゲーション文字には、一重引用符で囲まれた文字、数値定数、または<CODE>#定義</CODE>テキスト・ストリングの場合、そのストリングはCコンパイラーが構文解析するために渡されます。 フォームと例を次に示します。</P>
+<PRE>&lt;fname>=&lt;nav>,&lt;string>;GI_visMoniker=&#39;V&#39;,&quot;ビュー&quot;;</PRE>
+<DL>
+<DT>
+          <STRONG>ファイル名</STRONG>
+        </DT><DD>モニカのインスタンスデータフィールドの名前。</DD>
+<DT>
+          <STRONG>ナビゲーション</STRONG>
+        </DT><DD>上記のように表されるキーボード・ナビゲーション文字。</DD>
+<DT>
+          <STRONG>ストリング</STRONG>
+        </DT><DD>引用符で囲まれたテキスト文字列。</DD>
+</DL>
+<P>モニカのリストが必要な場合は、次の形式を使用します。 ほとんどの場合、このフォームはアプリケーションのアイコンを定義するときに使用されます。可能な画面解像度ごとに1つのモニカがリストに含まれます。 フォームと例を次に示します。</P>
+<PRE>&lt;fname>=list{&lt;nameList>};GI_visMoniker=list{@DocDirButtonSCMoniker, @DocDirButtonSMMoniker, @DocDirButtonSCGAMoniker}</PRE>
+<DL>
+<DT>
+          <STRONG>ファイル名</STRONG>
+        </DT><DD>これは、モニカのインスタンスデータフィールドの名前です。</DD>
+<DT>
+          <STRONG>名前リスト</STRONG>
+        </DT><DD>これは、コンマで区切られたリソースデータチャンク名のリストです。 各チャンクは<CODE>@チャンク</CODE>または<CODE>@visMoniker</CODE>キーワード。</DD>
+</DL>
+<P>ビジュアルモニカのリストを宣言するときに、チャンク内に各モニカを持つことも<CODE>@visMoniker</CODE>キーワード。 独自の行で使用する場合、このキーワードは次の形式になります。</P>
+<PRE>@visMoniker&lt;fname>=&lt;init>;</PRE>
+<P><A NAME="GOCLanguage_13.htm_IX_@localize[;localize]"></A>フィールドは、モニカの名前(モニカリストで指定されている名前と同じ)とモニカデータです。 ビジュアル・モニカは、あたかもそのモニカが<CODE>@チャンク</CODE>キーワード、ただし使用<CODE>@visMoniker</CODE>より明確で簡単になります</P>
+<P>プログラムのUIによって表示される視覚的な名称や文字列には、ローカライゼーション情報が付随することがよくある。 を配置して<CODE>@ローカライズ</CODE>の後のキーワード<CODE>@visMoniker</CODE>または<CODE>@チャンク</CODE>ResEditプログラムを使ってプログラムをローカライズする(つまり、その文字列を外国語に翻訳する)人に指示を与えることができます。 このキーワードでは、次のリストの任意の構文を使用できます。</P>
+<PRE>@localize{&lt;string>&lt;min>-&lt;max>};@localize{&lt;string>&lt;length>};@localize{&lt;string>};@localize&lt;string>;@localize not;</PRE>
+<DL>
+<DT>
+          <STRONG>ストリング</STRONG>
+        </DT><DD>説明テキストの文字列。 名前またはチャンクの内容を記述する必要があります。</DD>
+<DT>
+          <STRONG>最小</STRONG>
+        </DT><DD>モニカテキストまたは文字列の最小長。</DD>
+<DT>
+          <STRONG>最大</STRONG>
+        </DT><DD>モニカテキストまたは文字列の最大長。</DD>
+<DT>
+          <STRONG>長さ</STRONG>
+        </DT><DD>モニカテキストまたは文字列の長さ。</DD>
+<DT>
+          <STRONG>しない</STRONG>
+        </DT><DD>モニカまたはチャンクがローカライズできないことを指定するキーワード。</DD>
+
+
+</DL>
+<H5 CLASS="HeadingD">GCNリスト割り当ての宣言</H5>
+<P>ジオス<A NAME="GOCLanguage_13.htm_IX_General change notification:goc syntax"></A>では、「一般変更通知」(GCN)システムを採用しています。このシステムを使用すると、オブジェクトを登録して特定のタイプのイベントを通知できます。 たとえば、アプリケーションによっては、ファイル・システムの変更(ファイルの削除、移動、コピーなど)を通知する必要がある場合があります。オブジェクトによっては、選択内容が変更されるたびに通知が必要になる場合があります(たとえば、PointSizeControlオブジェクトは、ユーザーがテキスト選択内容を変更したことを認識する必要があります)。 詳細については、を参照してください。<A HREF="../../Kernel/GCN/index.htm">「一般変更通知」の章</A>ボタンをクリックし</P><P><A NAME="GOCLanguage_13.htm_IX_gcnList() keyword"></A>多くのオブジェクトは、動的にGCNリストに自分自身を追加したり、GCNリストから自分自身を削除したりしますが、他のオブジェクトは、その定義内の特定のGCNリストに配置する必要があります。 このために<CODE>gcnList</CODE>キーワード(マーカーの前にない唯一のキーワード)<CODE>@(英語の</CODE>)が使用されます。 フォーマットは次のとおりです。</P>
+<PRE>gcnList(&lt;manufID>,&lt;ltype>)=&lt;おなめ>,+;</PRE>
+<DL>
+<DT>
+          <STRONG>manufID</STRONG>
+        </DT><DD>特定のリストタイプの作成を担当する製造元の製造元IDです。 これは、同じリストタイプ列挙子を使用する可能性のある異なるメーカーを区別するために使用されます。 多くの場合、これはタイプMANUFACTURER_ID_GEOWORKSになります。</DD>
+<DT>
+          <STRONG>線種</STRONG>
+        </DT><DD>GCNリストの名前です。 使用するほとんどのリストは、GenApplicationによって定義され、GAGCNLT_.を開始します。すべてのリスト・タイプは、『オブジェクト』マニュアルのGenApplicationの章で定義されています。</DD>
+<DT>
+          <STRONG>オオナメ</STRONG>
+        </DT><DD>これは、GCNリストに含める必要があるオブジェクトのリストです。 オブジェクトはカンマで区切られます。</DD>
+
+
+</DL>
+<H5 CLASS="HeadingD">キーボードアクセラレータを宣言する</H5>
+<P><A NAME="GOCLanguage_13.htm_IX_Keyboard accelerators:goc syntax"></A>キーボードアクセラレータは「ホットキー」として機能し、押したときにオブジェクトのデフォルトアクションを呼び出します。<A NAME="GOCLanguage_13.htm_IX_@kbdAccelerator[kbdAccelerator]"></A>アクセラレータ文字は、次のように宣言されたインスタンスフィールドで定義されます。<CODE>@kbdAccelerator</CODE>に示すように<A HREF="#GOCLanguage_10.htm_87922">インスタンス・データ・フィールドの定義</A>宣言の形式は次のとおりです。</P>
+<PRE>&lt;fname>=[@specificUI]&lt;mod>*&lt;key>;</PRE>
+<DL>
+<DT>
+          <STRONG>ファイル名</STRONG>
+        </DT><DD>これは<CODE>@kbdAccelerator</CODE>インスタンスデータフィールド。</DD>
+<DT>
+          <CODE>@specificUI</CODE>
+          <A NAME="GOCLanguage_13.htm_IX_@specificUI[;specificUI]"></A>
+        </DT><DD>これはGocキーワードであり、この宣言で使用すると、プログラムは特定のUI用に予約されたキーの組み合わせを使用できます。 これは定義されていない結果をもたらす可能性があり、強く推奨されません。</DD>
+<DT>
+          <STRONG>モジュール</STRONG>
+        </DT><DD>これは修飾キーです。 ここには、任意またはすべての修飾子をスペースで区切って指定できます。 次の4つの修飾子があります。<A NAME="GOCLanguage_13.htm_IX_alt (keyboard accelerator modifier)"></A><CODE>代替</CODE><A NAME="GOCLanguage_13.htm_IX_control (keyboard accelerator modifier)"></A><CODE>制御</CODE><CODE>コントロール</CODE><A NAME="GOCLanguage_13.htm_IX_ctrl (keyboard accelerator modifier)"></A>、および<A NAME="GOCLanguage_13.htm_IX_shift (keyboard accelerator modifier)"></A><CODE>シフト</CODE>ボタンをクリックし</DD>
+<DT>
+          <STRONG>カギ</STRONG>
+        </DT><DD>これは、一重引用符で囲まれた文字(例:`k&#39;)または数値キー定数(例:C_CTRL_Aまたは0x57)のいずれかです。<A NAME="GOCLanguage_13.htm_IX_Keyboard accelerators:goc syntax"></A></DD>
+
+
+</DL>
+<H5 CLASS="HeadingD">デフォルト値の使用</H5>
+<P>多くの場合、オブジェクトはインスタンスデータフィールドのデフォルト値で宣言されます。 また、特に一般的なUIオブジェクトアトリビュートでは、1つまたは2つの変更を加えたデフォルト値をオブジェクトが持つ場合もあります。 最初のケースでは、インスタンスデータフィールドを指定する必要はまったくありません。宣言が行われない場合は、デフォルト値が使用されます。</P>
+<P><A NAME="GOCLanguage_13.htm_IX_@default[;default]"></A>ただし、2番目の場合は<CODE>@デフォルト</CODE>キーワードを使用してデフォルト値を取得します。 変更が行われ<CODE>@デフォルト</CODE>が使用されていない場合、すべてのデフォルト値が失われます。 これは通常、ビットフィールドタイプの属性でのみ使用され、変更はビット単位の演算子で行われます。 の使用<CODE>@デフォルト</CODE>を以下に示します。</P>
+<PRE>&lt;fname>=@default[&lt;op>[~]&lt;attr>]*;と入力します。</PRE>
+<DL>
+<DT>
+          <STRONG>ファイル名</STRONG>
+        </DT><DD>これはインスタンスデータフィールドの名前です。</DD>
+<DT>
+          <STRONG>動作</STRONG>
+        </DT><DD>これはビット単位の演算子です。 デフォルトに属性を追加する場合は、ビット単位のOR演算子()を使用します。属性を削除する場合は、属性の逆数を指定したビット単位のAND演算子(&amp;)を使用します(以下を参照)。 追加または削除される属性ごとに1つの演算子が必要です。 演算子の優先順位は、標準Cプログラミング言語と同じです。</DD>
+<DT>
+          <STRONG>～する</STRONG>
+        </DT><DD>これはビット演算子NOTです。 ビット単位のAND演算子を使用して属性を削除する場合は、属性の前にNOT記号を含める必要があります。</DD>
+<DT>
+          <STRONG>属性</STRONG>
+        </DT><DD>追加または削除する属性の名前です。</DD>
+</DL>
+<P CLASS="figTitle">コード表示5-17<A NAME="GOCLanguage_13.htm_99194"></A>@objectを使用したオブジェクトの宣言</P>
+<PRE>/*この例では���@start���@object���@visMoniker���@endを使用しています。 *これは、TicTacサンプルアプリケーションから取得されます。 (注)</PRE>
+<PRE>@start AppResource;/*AppResource・リソース・ブロックには、TicTacApp*オブジェクトとそのビジュアル・モニカ・チャンクが含まれます。 (注)</PRE>
+<PRE>@object GenApplicationClass TicTacApp={GI_visMoniker=list{@TicTacTextMoniker};GI_comp=@TicTacPrimary;gcnList(MANUFACTURER_ID_GEOWORKS,GAGCNLT_WINDOWS)=@TicTacPrimary;}</PRE>
+<PRE>@visMoniker TicTacTextMoniker=&quot;TicTacToe&quot;;@AppResource終了</PRE>
+<PRE>@start Interface;/*Interfaceリソースは、TicTacのプライマリウィンドウとその他のUI*ガジェットを宣言します。 このアプリからのGenViewだけが表示されています。 */@object GenViewClass TicTacView={GVI_content=@TicTacBoard;/*再配置可能なoptrフィールド*/GVI_docBounds={0, 0, BOARD_WIDTH, BOARD_HEIGHT};/*長方形構造*/GVI_color={C_BLUE, 0, 0, 0};/*ColorQuad構造*/GVI_horizAttrs=@default GVDA_NO_LARGER_THAN_CONTENT GVDA_NO_SMALLER_THAN_CONTENT&amp;~GVDA_SCROLLABLE;/*NO_LARGERおよびNO_SMALLER属性が*フィールドに設定され、SCROLLABLEがクリアされます。 SCROLLABLE属性*は、GenViewに対してデフォルトでは設定されていません。説明のために*ここに示します。 */GVI_vertAttrs=@default GVDA_NO_LARGER_THAN_CONTENT GVDA_NO_SMALLER_THAN_CONTENT;}と入力します。</PRE>
+<PRE>@endインタフェース</PRE>
+
+
+<HR>
+          <A NAME="GOCLanguage_14.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:4.5人<A HREF="#GOCLanguage_f.htm">クラスとオブジェクトの使用</A>:メッセージの送信</H3>
+<PRE>@send, @call, @callsuper, @record, @dispatch, @dispatchcall, TravelOption, ObjDuplicateMessage(),ObjFreeMessage(),ObjGetMessageInfo()</PRE>
+<P>多くの場合、システム全体のオブジェクトにメッセージを送信する必要があります。 メッセージはいくつかの方法で送信できますが、最も基本的で最も頻繁に使用される2つの方法には、次のキーワードが含まれます。<CODE>@呼び出し</CODE>および<CODE>@送信</CODE>ボタンをクリックし</P>
+<P>メッセージがスレッド間で送信されている場合は、同期の問題に注意する必要があります。 メッセージがスレッドの境界を越えない場合、カーネルは関数呼び出しのようにコードを直接リンクします。 (これは実装上の違いに過ぎず、コード内で別のものを指定する必要はありません。</P>
+<P><A NAME="GOCLanguage_14.htm_IX_@send[;send]"></A>の<CODE>@送信</CODE>キーワードを指定すると、カーネルは指定されたメッセージを受信側のイベントキューに入れます。 で送信されたメッセージ<CODE>@送信</CODE>は戻り値を返すことができず、ロックされたメモリへのポインタを引数として取ることもできません。 送信者は、メッセージが適切に処理されたかどうかを知ることなく、実行を継続します。</P>
+<P><A NAME="GOCLanguage_14.htm_IX_@call[;call]"></A>の<CODE>@呼び出し</CODE>キーワードは、送信されるメッセージが送信者に情報を返す必要がある場合に使用されます。 また、送信者が実行を続行する前に、メッセージをすぐに処理する必要がある場合にも使用されます。 基本的に、送信者はメッセージが処理されるまで「スリープ状態に置かれ」、その時点で送信者は起こされ、実行を継続することができる。 メッセージが<CODE>@呼び出し</CODE>が処理されなかった場合(受信者のクラスツリーに渡されたが、まだ処理されていない)、処理されたものとして返され、エラーメッセージは返されない。</P>
+<P>のフォーマット<CODE>@送信</CODE>および<CODE>@呼び出し</CODE>似ています 関数呼び出しのように使用します。 フォーマットは次のとおりです。</P>
+<PRE>@send[,&lt;flags>]+\&lt;obj>::[{&lt;cast2>}]&lt;msg>(&lt;params>*);</PRE>
+<PRE>&lt;ret>=@call[,&lt;flags>]+[{&lt;cast>}]&lt;obj>::\[{&lt;cast2>}]&lt;msg>(&lt;params>*);</PRE>
+<DL>
+<DT>
+          <STRONG>フラグふらぐ</STRONG>
+        </DT><DD>これは、カンマで区切られたフラグのリストです。 使用可能なフラグを以下に示します。</DD>
+<DT>
+          <STRONG>オブジェクト</STRONG>
+        </DT><DD>メッセージの送信先となるオブジェクトの名前です。 optr変数にすることもできます。</DD>
+<DT>
+          <STRONG>メッセージ</STRONG>
+        </DT><DD>送信されるメッセージの名前です。</DD>
+<DT>
+          <STRONG>パラメータぱらめー</STRONG>
+        </DT><DD>これは、標準のC関数呼び出しの場合とまったく同じように作成されたパラメータのリストです。</DD>
+<DT>
+          <STRONG>戻る</STRONG>
+        </DT><DD>これは、戻り値(存在する場合)を保持する変数です。 これは<CODE>@呼び出し</CODE>なぜなら<CODE>@送信</CODE>は何も返しません。</DD>
+<DT>
+          <STRONG>キャスト</STRONG>
+        </DT><DD>ここにメッセージ名を指定すると、Gocは自動的に戻り値の型を<CODE>キャスト</CODE>ボタンをクリックし</DD>
+<DT>
+          <STRONG>キャスト2</STRONG>
+        </DT><DD>ここにメッセージ名が指定された場合、Gocはメッセージがmessageと同じ引数で渡されると想定します。<CODE>キャスト2</CODE>ボタンをクリックし</DD>
+</DL>
+<P>これらのキーワードで使用できるフラグを次に示します。 これらはほとんど使用されませんが、入手可能です。</P>
+<DL>
+<DT>
+          <CODE>forceQueue</CODE>
+          <A NAME="GOCLanguage_14.htm_IX_forceQueue message flag"></A>
+        </DT><DD><A NAME="GOCLanguage_14.htm_IX_Event queues:@call and @send flags"></A>このフラグを指定すると、直接呼び出しで処理できた場合でも、メッセージが受信者のイベントキューに置かれます。 このフラグは<CODE>@呼び出し</CODE>ボタンをクリックし</DD>
+<DT><CODE>checkDuplicate</DT><DD></CODE><A NAME="GOCLanguage_14.htm_IX_checkDuplicate message flag"></A>このフラグは、同じ名前のメッセージが受信者のイベントキューに既にあるかどうかをカーネルにチェックさせます。このフラグが動作するためには<CODE>forceQueue</CODE>も渡す必要があります。 イベントは、最初(次に処理される)から最後までチェックされます。 メッセージが重複している場合、メッセージはドロップされます。<EM>置き換える</EM>フラグを使用すると、この動作を変更できます。</DD>
+<DT><CODE>checkLastOnly</DT><DD></CODE><A NAME="GOCLanguage_14.htm_IX_checkLastOnly message flag"></A>このフラグは<CODE>checkDuplicate</CODE>これにより、イベントキュー内の最後のメッセージだけがチェックされます。</DD>
+<DT>
+          <CODE>置き換える</CODE>
+          <A NAME="GOCLanguage_14.htm_IX_replace message flag"></A>
+        </DT><DD>このフラグは<CODE>checkDuplicate</CODE>および<CODE>checkLastOnly</CODE>重複する(古い)イベントを新しいイベントで置き換えます。 新しいイベントは、イベントキュー内の複製の位置に配置されます。<CODE>置き換える</CODE>フラグが渡されない場合、複製は削除されます。</DD>
+<DT><CODE>insertAtFront</DT><DD></CODE><A NAME="GOCLanguage_14.htm_IX_insertAtFront message flag"></A>これにより、メッセージは受信者のイベント・キューの先頭に置かれます。</DD>
+<DT><CODE>canDiscardIfDesperate</DT><DD></CODE><A NAME="GOCLanguage_14.htm_IX_canDiscardIfDesperate message flag"></A>このフラグは、システムのハンドル数が極端に少なくなり、より多くの領域がすぐに必要になった場合に、このイベントを破棄できることを示します。</DD>
+</DL>
+<P>の<CODE>@呼び出し</CODE>コマンドは、関数呼び出しと同じように式の中で使用することもできます。 たとえば、次の条件式は有効です。</P>
+<PRE>if(@call MyObj::MSG_MYOBJ_TEST()){/*条件コード*/}</PRE>
+<P>メッセージ呼び出しの結果は、ifステートメントで評価されます。 これは<CODE>@送信</CODE>何も返さないからです。</P>
+
+<H4 CLASS="HeadingC">ネストされたメッセージコール</H4>
+<P>Gocがメッセージ呼び出しを処理する方法のため、メッセージを1行にネストすることは不可能です。 たとえば、次の呼び出しは不正です。</P>
+<PRE>@send Obj1::MSG_THATS_PASSED_AN_INT(\@call Obj2::MSG_THS_RETURNS_INT());</PRE>
+<P>このような呼び出しを行うと、コンパイル時エラーが発生します。 代わりに、一時変数を使用して、これを複数の行に分割する必要があります。たとえば、次のようにします。</P>
+<PRE>int i</PRE>
+<PRE>i=@call Obj2::MSG_THAt_RETURNS_INT();と入力します。</PRE>
+<PRE>@send Obj2::MSG_THATS_PASSED_AN_INT(i);と入力します。</PRE>
+
+
+<H4 CLASS="HeadingC">オブジェクトのスーパークラスへのメッセージの送信</H4>
+<P><A NAME="GOCLanguage_14.htm_IX_@callsuper[;callsuper]"></A><A NAME="GOCLanguage_14.htm_IX_Superclass:sending messages to"></A>オブジェクトのスーパークラスにメッセージを直接送信して、デフォルトの動作が実装されていることを確認したい場合がよくあります。 次を使用します。<CODE>@callsuper</CODE>キーワードを次の形式で指定します。</P>
+<PRE>@callsuper&lt;obj>::&lt;class>::&lt;msg>(&lt;pars>*)[&lt;flgs>+];</PRE>
+<DL>
+<DT>
+          <STRONG>オブジェクト</STRONG>
+        </DT><DD>これは、次のようにメッセージを送信するオブジェクトです。<CODE>@呼び出し</CODE>および<CODE>@送信</CODE>オブジェクトブロックはすでにロックされている必要があり、現在の実行スレッドによって実行される必要があります。 (通常、オブジェクトは<CODE>@callsuper()</CODE>自分自身にメッセージを送信します)。</DD>
+<DT>
+          <STRONG>階級</STRONG>
+        </DT><DD>これは、そのスーパークラスがメッセージを受け取るクラスです。</DD>
+<DT>
+          <STRONG>メッセージ</STRONG>
+        </DT><DD>これがメッセージ名です。</DD>
+<DT>
+          <STRONG>部分</STRONG>
+        </DT><DD>これはパラメータリストです。<CODE>@呼び出し</CODE>および<CODE>@送信</CODE>ボタンをクリックし</DD>
+<DT>
+          <STRONG>フロッピー</STRONG>
+        </DT><DD>これはフラグリストです。<CODE>@呼び出し</CODE>および<CODE>@送信</CODE>ボタンをクリックし</DD>
+</DL>
+<P>単独で(パラメータや戻り値を指定せずに)行で使用すると<CODE>@callsuper()</CODE>は受信したメッセージをスーパークラスに渡す。 これは、サブクラスが既存の動作を置き換えるのではなく変更したい場合によく使用されます。</P>
+
+
+<H4 CLASS="HeadingC">メッセージのカプセル化</H4>
+<P>メッセージをカプセル化することで、後で送信するイベントを設定できます。 カプセル化されたメッセージには、送信されるメッセージ、送信先のオブジェクト、および渡されるパラメータを含めることができます。 カプセル化されたメッセージを使用すると、コーディングが簡単になる場合があります。</P>
+<P><A NAME="GOCLanguage_14.htm_IX_@record[;record]"></A>メッセージは<CODE>@レコード</CODE>キーワードと後でディスパッチされる<A NAME="GOCLanguage_14.htm_IX_@dispatch[;dispatch]"></A><CODE>@ディスパッチ</CODE>および<A NAME="GOCLanguage_14.htm_IX_@dispatchcall[;dispatchcall]"></A><CODE>@dispatchcall</CODE>(ただし<CODE>@レコード</CODE>後を必要としない<CODE>@ディスパッチ</CODE>--カプセル化されたイベントの用途は他にもあります)。 さらに、イベントがディスパッチされると、カプセル化されたイベントに設定されている値を上書きして、宛先またはメッセージを変更できます。 必要に応じて、戻り値を別の型にキャストすることもできます。 これら3つのキーワードの形式は、次のとおりです。</P>
+<PRE>&lt;event>=@record&lt;obj>::[{&lt;cast>}]&lt;msg>(&lt;params>*);&lt;event>=@record&lt;obj>::[{&lt;cast>}]</PRE>
+<DL>
+<DT>
+          <STRONG>事件</STRONG>
+        </DT><DD>タイプの、記録されたイベントのハンドル<CODE>EventHandle</CODE>ボタンをクリックし</DD>
+<DT>
+          <STRONG>オブジェクト</STRONG>
+        </DT><DD>メッセージがディスパッチされたときにメッセージを受信するように設定されたオブジェクト。 このフィールドは、次のように設定できます。<CODE>ヌル</CODE>メッセージがディスパッチされたときに宛先が決定される場合。</DD>
+<DT>
+          <STRONG>キャスト</STRONG>
+        </DT><DD>メッセージの名前。これが存在する場合、イベントは指定されたメッセージと同じ引数タイプを持ちます。</DD>
+<DT>
+          <STRONG>メッセージ</STRONG>
+        </DT><DD>イベントがディスパッチされたときに送信されるように設定されたメッセージ。 このフィールドは、次のように設定できます。<CODE>ヌル</CODE>メッセージがディスパッチされたときに決定されるかどうか。</DD>
+<DT>
+          <STRONG>パラメータぱらめー</STRONG>
+        </DT><DD>パラメータリスト(<CODE>@呼び出し</CODE>および<CODE>@送信</CODE>)が送信されます。</DD>
+</DL>
+<P><A NAME="GOCLanguage_14.htm_IX_ObjGetMessageInfo()"></A><A NAME="GOCLanguage_14.htm_IX_ObjDuplicateMessage()"></A><A NAME="GOCLanguage_14.htm_IX_ObjFreeMessage()"></A>録音されたメッセージのコピーを作成するには<CODE>ObjDuplicateMessage()</CODE>ルーチン。 これを解放するには<CODE>ObjFreeMessage()</CODE>記録されたイベントに関連付けられたメッセージおよび宛先オブジェクトを検出するには<CODE>ObjGetMessageInfo()</CODE>ボタンをクリックし</P>
+<P>の<CODE>@ディスパッチ</CODE>キーワードは、カプセル化されたイベントを宛先にディスパッチするために使用されます。 これは次のようなものです。<CODE>@送信</CODE>戻り値を持つことはできません。 イベントに戻り値がある場合は<CODE>@dispatchcall</CODE>(下記)。</P>
+<PRE>@dispatch[noFree]\&lt;nObj>::[{&lt;cast>}]&lt;nMsg>::&lt;event>;</PRE>
+<DL>
+<DT>
+          <STRONG>自由なし</STRONG>
+        </DT><DD>このフラグは、イベントがディスパッチされた後にイベントのハンドルを解放しないことを示します。 これは、カプセル化された同じイベントを複数回使用する場合に便利です。</DD>
+<DT>
+          <STRONG>nObj(英語の可能性あり</STRONG>
+        </DT><DD>これはオーバーライド宛先です。 カプセル化されたイベントの宛先がヌルの場合は、ここにオブジェクトを設定する必要があります。 オブジェクトセットは、カプセル化されたメッセージ内のオブジェクトセットよりも優先されます。 オーバーライドオブジェクトが必要ない場合は<CODE>ヌル</CODE>ボタンをクリックし</DD>
+<DT>
+          <STRONG>メッセージ数</STRONG>
+        </DT><DD>これはオーバーライドメッセージです。 設定されている場合、カプセル化されたイベントではなく、このメッセージが送信されます。 オーバーライドメッセージが必要ない場合は、これをに設定します。<CODE>ヌル</CODE>オーバーライドは、カプセル化されたイベントで設定されているのと同じパラメータで送信されます。</DD>
+<DT>
+          <STRONG>事件</STRONG>
+        </DT><DD>カプセル化されたイベントのハンドルです。 これはクラス分けされたイベントではない可能性があります。</DD>
+</DL>
+<P>の<CODE>@dispatchcall</CODE>キーワードは<CODE>@ディスパッチ</CODE>戻り値の使用を許可することを除いて、上記のキーワードを使用します。 受信者がメッセージを処理している間、送信者は必要に応じて「スリープ状態にされ」、メッセージが戻ってきたときに「起こされ」ます。</P>
+<PRE>&lt;ret>=@dispatchcall[noFree][{&lt;cast>}]&lt;nObj>::\&lt;nMsg>::&lt;event>;</PRE>
+<DL>
+<DT>
+          <STRONG>戻る</STRONG>
+        </DT><DD>これは、メッセージの戻り値を格納する変数です。</DD>
+<DT><STRONG>他のパラメータ</DT><DD></STRONG>他のすべてのパラメータは<CODE>@ディスパッチ</CODE>ボタンをクリックし</DD>
+
+
+</DL>
+<H4 CLASS="HeadingC">メッセージで式を使用する</H4>
+<P>前のセクションで説明したすべてのメッセージ送信キーワード--<CODE>@呼び出し</CODE><CODE>@送信</CODE><CODE>@レコード</CODE><CODE>@ディスパッチ</CODE>、および<CODE>@dispatchcall</CODE>--ターゲットオブジェクトの名前の代わりに式を使用できます。 さらに<CODE>@ディスパッチ</CODE>および<CODE>@dispatchcall</CODE>keywordsは、メッセージ名の代わりに式を使用できます。 ただし、メッセージに式を使用する場合は、キャスト型を使用して、Gocが戻り値とパラメータの型を認識できるようにする必要があります。 ただし、この場合のキャストは括弧ではなく中括弧を使用することに注意してください。</P>
+
+
+<H4 CLASS="HeadingC">メッセージの呼び出し型と戻り型のキャスト</H4>
+<P>Gocでは、メッセージのパスと戻り値をキャストすることができます。 これについては、次の例で説明します。</P>
+<PRE>{int swapInt;文字c;</PRE>
+<PRE>c=@call{MSG_1}object::{MSG_2}MSG_X(swapInt);と入力します。</PRE>
+<PRE>}をクリックし</PRE>
+<P>この場合、MSG_2は整数の引数を取り、MSG_1はcharを返します。 キャストは、MSG_Xがどのようにパラメータを受け取り、結果を返すかをGocに伝えます。 MSG_Xが明示的に現れない場合(おそらく整数として保存されている)、Gocはキャストを必要とします。したがって、Gocはパラメータや戻り値を解析できません。</P>
+<P>Gocが適切なパラメータとリターンを決定しようとすると、利用可能な場合は次のソースが参照されます。 パラメータを調べようとすると、最初にMSG_2、次にMSG_X、最後にMSG_1が検索されます。 Gocが最初に見つけたものがパラメータを決定します。</P>
+<P><CODE>@送信</CODE>および<CODE>@レコード</CODE>は戻り値をサポートしていないが<CODE>@呼び出し</CODE>GocはMSG_1、MSG_X、そして最後にMSG_2を見て戻り値を計算します。</P>
+<P>この場合、GocはMSG_CAST_2と同様にfnのメソッドに渡されますが、MSG_CAST_1と同様に値を返します。</P>
+<PRE>メッセージfn=GetMessageToCall();c=@call{MSG_CAST_1}myObj::{MSG_CAST_2}fn(x);</PRE>
+<P>MSG_CAST_2のようにMSG_Bに渡しますが、MSG_Bのように返します。</P>
+<PRE>c=@call myObj::{MSG_CAST_2}MSG_B(swapInt);と入力します。</PRE>
+
+
+<H4 CLASS="HeadingC">クラス分けされたイベントと<A NAME="GOCLanguage_14.htm_40477"></A>トラベルオプション</H4>
+<PRE>MSG_META_SEND_CLASSED_EVENT, TravelOption</PRE>
+<P><A NAME="GOCLanguage_14.htm_IX_MSG_META_SEND_CLASSED_EVENT"></A><A NAME="GOCLanguage_14.htm_IX_TravelOption"></A><A NAME="GOCLanguage_14.htm_IX_GenTravelOption"></A><A NAME="GOCLanguage_14.htm_IX_TO_&ldots;"></A>メッセージの宛先として、必ずしもオブジェクトを明示的に含める必要はありません。 多くの場合、メッセージをアドレス指定するには<EM>分類事象</EM>クラス分けされたイベントは、事前に定義された<CODE>TravelOption</CODE>列挙型と@record Goc構造体を使って記録されたEventHandleです。 この場合のイベントには、特定のオブジェクトではなく、オブジェクト・クラスが含まれます。</P>
+<P>の<CODE>TravelOption</CODE>はナビゲータとして機能し、メッセージをどのパスに沿って配信するかを決定します。 クラス分けされたイベント内のオブジェクト・クラスはフィルターとして機能し、メッセージを送信したオブジェクトがそのクラスのオブジェクトであるかどうかを判別します。 オブジェクトが最初に検出されたのが<CODE>TravelOption</CODE>が一致するクラスでない場合、分類されたイベントはそのパス上の次のオブジェクトに渡されます。 クラスが最終的に一致すると、メッセージはそのオブジェクトによって処理されます。</P>
+<P>クラス分けされたイベントは元々、MSG_META_SEND_CLASSED_EVENTを送信することによってオブジェクトからdispathedされます。 このメッセージは通常、オブジェクトによってそれ自体に送信されます。 使用可能なトラベルオプションは、メッセージを受信するオブジェクトのクラスによって異なります。 つまり、メッセージを受信するオブジェクトは、次のいずれかのサブクラスである必要があります。</P>
+<UL>
+<LI><CODE>メタクラス</CODE>(すべてのGEOSオブジェクトクラスで使用可能)</LI>
+</UL>
+<DL>
+<DT>TO_NULL(空)</DT><DD>オブジェクトがメッセージを受信しないことを示します。 この場合のデフォルトのケースは、ディスパッチされた分類済みイベントを破棄することです。</DD>
+<DT>「セルフに」(TO_SELF)</DT><DD>メッセージがそれ自体に配信されることを示します。 そこで扱わないと破棄されてしまいます。</DD>
+<DT>「オブジェクトブロック出力先」(TO_OBJ_BLOCK_OUTPUT)</DT><DD>各GEOSオブジェクトブロックには、オブジェクトブロックヘッダーに保存されている既定の出力が含まれています。<CODE>TravelOption</CODE>は、メッセージがオブジェクトブロックの出力optrに配信されることを示します。</DD>
+<DT>TO_PROCESS(プロセスへ)</DT><DD>メッセージがアプリケーションの<CODE>プロセスクラス</CODE>オブジェクトを作成します。</DD>
+<UL>
+<LI><CODE>生成クラス</CODE>(すべての汎用オブジェクトで使用可能)<BR>フォーカス階層、ターゲット階層、およびモデル階層の詳細については<A HREF="../../SysObjects/Input/Input_11.htm#95885">Inputチャプタ</A>ボタンをクリックし</LI></UL>
+<DT>TO_GEN_PARENT(親へ)</DT><DD>メッセージがオブジェクトの汎用の親に配信されることを示します。</DD>
+<DT>「フォーカス位置」(TO_FOCUS)</DT><DD>子から子へのフォーカス・リンクに従って、オブジェクトのフォーカス階層に沿ってメッセージを配信することを示します。</DD>
+<DT>ターゲットへ</DT><DD>子から子へのターゲットリンクに従って、オブジェクトのターゲット階層に沿ってメッセージが配信されることを示します。</DD>
+<DT>モデルへ</DT><DD>子から子へのモデルリンクに従って、オブジェクトのモデル階層に沿ってメッセージが配信されることを示します。</DD>
+<DT>TO_APP_FOCUS(フォーカス先)</DT><DD>メッセージが、ルートGenApplicationオブジェクトから始まり、子から子へのフォーカスリンクに従って、フォーカス階層に沿って配信されることを示します。</DD>
+<DT>TO_APP_TARGET(ターゲットへ)</DT><DD>メッセージが、ルートGenApplicationオブジェクトから始まり、子から子へのターゲットリンクに従って、ターゲット階層に沿って配信されることを示します。</DD>
+<DT>「アプリケーションモデルへ」(TO_APP_MODEL)</DT><DD>メッセージが、ルートGenApplicationオブジェクトから始まり、子から子へのモデルリンクに従って、モデル階層に沿って配信されることを示します。</DD>
+<DT>「システムフォーカスまで」(TO_SYS_FOCUS)</DT><DD>メッセージが、ルートGenSystemオブジェクトから始まり、子から子へのフォーカスリンクに従って、フォーカス階層に沿って配信されることを示します。</DD>
+<DT>TO_SYS_TARGET(システムターゲットへ)</DT><DD>メッセージが、ルートGenSystemオブジェクトから始まり、子から子へのターゲットリンクに従って、ターゲット階層に沿って配信されることを示します。</DD>
+<DT>「システムモデルへ」(TO_SYS_MODEL)</DT><DD>メッセージが、ルートGenSystemオブジェクトから始まり、子から子へのモデルリンクに従って、モデル階層に沿って配信されることを示します。</DD>
+<UL>
+<LI><CODE>VisClass</CODE>(表示されているすべてのオブジェクトで使用可能)</LI>
+</UL>
+<DT>親ビューへ</DT><DD>メッセージがオブジェクトの可視の親に配信されることを示します。</DD>
+<UL>
+<LI><CODE>GenApplicationClass</CODE>(すべてのApplicationオブジェクトで使用可能)</LI>
+</UL>
+<DT>「出力制御」(TO_PRINT_CONTROL)</DT><DD>オブジェクトをアプリケーションオブジェクトの印刷制御オブジェクトに配信する必要があることを示します。</DD>
+</DL>
+<P>クラス分けされたイベントを送信するには、最初にイベントを記録し、送信するメッセージとメッセージを処理するオブジェクトクラスを指定する必要があります。 次に、MSG_META_SEND_CLASSED_EVE NTを--通常は自分自身に--送信する必要があります。<CODE>TravelOption</CODE>ボタンをクリックし</P>
+<PRE>&lt;event>=@record&lt;objClass>::&lt;msg>です。</PRE>
+<PRE>@send self::MSG_META_SEND_CLASSED_EVENT(&lt;イベント>,&lt;TravelOption>);</PRE>
+<P CLASS="figTitle">コード表示5-18クラスイベントの送信</P>
+<PRE>/**最初にClassedイベントを記録します。 この場合、クラス*`MyFooClass&#39;のオブジェクトがMSG_FOOを処理する必要があります。 このクラス分けされたイベントを*ターゲット階層に沿って送信します。 アプリケーションオブジェクトからパスを開始したいので、*TO_APP_TARGET TravelOptionを使用します。 (注)</PRE>
+<PRE>event=@レコードMyFooClass::MSG_FOO;</PRE>
+<PRE>/**次に、MSG_META_SEND_CLASSED_EVENTを使用して、クラス分けされたイベントをディスパッチします。 (注)</PRE>
+<PRE>@send self::MSG_META_SEND_CLASSED_EVENT(イベント,TO_APP_TARGET);</PRE>
+
+
+<H4 CLASS="HeadingC">メッセージのショートカット</H4>
+<P>すべてのメッセージには、受信時に次の3つの基本パラメータが含まれます。メッセージ番号(<CODE>メッセージめっせ</CODE>)、受信者のoptr(<CODE>オーセルフ</CODE>)、受信者のロックされたインスタンスチャンクへのfarポインタ(<CODE>自分自身</CODE>)をクリックします。 これにより、メソッド内で使用するためのいくつかのショートカットと省略形式が可能になります。</P>
+<PRE>@callsuper;</PRE>
+<P>上記の方法で使用する場合<CODE>@callsuper</CODE>キーワードは、受信したメッセージをオブジェクトのスーパークラスに渡します。 デフォルトの機能を維持する必要がある場合に、メッセージをサブクラス化するときに使用します。</P>
+<PRE><A NAME="GOCLanguage_14.htm_IX_self (messaging shortcut)"></A>&lt;ret>=@call self::&lt;msg>(&lt;params>*);</PRE>
+<P>すべてのオブジェクトは<CODE>@呼び出し</CODE>「self」を宛先として指定します。 コマンドの残りの部分は、通常の<CODE>@呼び出し</CODE>ボタンをクリックし</P>
+<PRE><A NAME="GOCLanguage_14.htm_IX_process (messaging shortcut)"></A>&lt;ret>=@call process::&lt;msg>(&lt;params>*);</PRE>
+<P>すべてのオブジェクトは、Processオブジェクトにメッセージを送信できます。<CODE>@呼び出し</CODE>&quot;process&quot;を宛先として指定します。 (Processオブジェクトはクラスのオブジェクトです。<CODE>プロセスクラス</CODE>」を参照してください。 コマンドの残りの部分は、通常の<CODE>@呼び出し</CODE>ボタンをクリックし</P>
+<PRE><A NAME="GOCLanguage_14.htm_IX_application (messaging shortcut)"></A>&lt;ret>=@call application::&lt;msg>(&lt;params>*);</PRE>
+<P>すべてのオブジェクトは、そのApplicationオブジェクト(クラスの<CODE>GenApplicationClass</CODE>)と<CODE>@呼び出し</CODE>「application」を宛先として指定します。 コマンドの残りの部分は、通常の<CODE>@呼び出し</CODE>ボタンをクリックし</P>
+<PRE><A NAME="GOCLanguage_14.htm_IX_@visParent (messaging shortcut)[;visParent (messaging shortcut)]"></A>&lt;ret>=@call@visParent::&lt;msg>(&lt;params>*);</PRE>
+<P>可視ツリー内のすべてのオブジェクトは<CODE>@visParent</CODE>の宛先として<CODE>@呼び出し</CODE>コマンドを選択します。 メッセージは、表示されているオブジェクトツリー内のオブジェクトの親に送信されます。 コマンドの残りの部分は、通常の<CODE>@呼び出し</CODE>ボタンをクリックし</P>
+<PRE><A NAME="GOCLanguage_14.htm_IX_@genParent (messaging shortcut)[;genParent (messaging shortcut)]"></A>&lt;ret>=@call@genParent::&lt;msg>(&lt;params>*);</PRE>
+<P>汎用ツリー内のすべてのオブジェクトは<CODE>@genParent</CODE>の宛先として<CODE>@呼び出し</CODE>コマンドを選択します。 メッセージは、汎用オブジェクトツリー内のオブジェクトの親に送信されます。 コマンドの残りの部分は、通常の<CODE>@呼び出し</CODE>ボタンをクリックし</P>
+<PRE><A NAME="GOCLanguage_14.htm_IX_@visChildren (messaging shortcut)[;visChildren (messaging shortcut)]"></A>@send@visChildren::&lt;msg>(&lt;params>*);</PRE>
+<P>可視オブジェクトツリー内の任意の複合オブジェクト(したがって<CODE>VisCompClass</CODE>)は、すべての子に一度にディスパッチされるメッセージを送信できます。 で送信されたすべてのメッセージ<CODE>@visChildren</CODE>宛先は<CODE>@送信</CODE>したがって、戻り値を持つことはできません。</P>
+<PRE><A NAME="GOCLanguage_14.htm_IX_@genChildren (messaging shortcut)[;genChildren (messaging shortcut)]"></A>@send@genChildren::&lt;msg>(&lt;params>*);</PRE>
+<P>汎用オブジェクトツリー内の任意の複合オブジェクト(したがって<CODE>生成クラス</CODE>)は、すべての子に一度にディスパッチされるメッセージを送信できます。 で送信されたすべてのメッセージ<CODE>@genChildren</CODE>宛先は<CODE>@送信</CODE>したがって、戻り値を持つことはできません。</P>
+<P><A NAME="GOCLanguage_14.htm_IX_@:Goc object pointer shortcut"></A>上記のショートカットに加えて<CODE>@&lt;オブジェクト></CODE>ここで<CODE>&lt;オブジェクト></CODE>は、オブジェクトの名前を表します。 この構文はGocによって以下のように変換される。<CODE>(optr)&amp;&lt;オブジェクト></CODE>これは、アンパサンド(&amp;)を使用してポインタを渡すのと似ています。</P>
+
+<HR>
+          <A NAME="GOCLanguage_15.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">GEOSプログラミング</A>:4.6人<A HREF="#GOCLanguage_f.htm">クラスとオブジェクトの使用</A>キーを押します<A NAME="GOCLanguage_15.htm_54024"></A>オブジェクトの管理</H3>
+<P><A NAME="GOCLanguage_15.htm_IX_Objects:goc syntax"></A>オブジェクトとクラスの宣言方法に加えて、実行中のオブジェクトの管理方法も知っておく必要があります。 これには、新しいオブジェクトのインスタンス化、オブジェクトの削除、オブジェクトの状態の保存、オブジェクトツリー内でのオブジェクトの移動などが含まれます。</P>
+<P>カーネルと<CODE>メタクラス</CODE>(クラス階層の最上位クラス)には、オブジェクトを作成、管理、破棄するためのルーチンとメソッドがあります。 これらのルーチンやメソッドをすべて使用する必要はないでしょうが、それらが何をどのように機能するかを理解することは、オブジェクト・システム全体を理解するのに役立ちます。</P>
+
+<H4 CLASS="HeadingC">新しいオブジェクトの作成</H4>
+<PRE>ObjDuplicateResource(),ObjInstantiate(),MSG_META_INITIALIZE, MSG_GEN_COPY_TREE</PRE>
+<P><A NAME="GOCLanguage_15.htm_IX_Objects:creating"></A>オブジェクトをシステムに導入するには、4つの基本的な方法があります。 これらにはそれぞれ利点と欠点があり、それぞれに適切な使用場所と時間があります。 ただし、4つの異なる方法をすべて使用することはありません。</P>
+
+<H5 CLASS="HeadingD">リソースブロックへのオブジェクトの格納</H5>
+<P>これは、オブジェクトをシステムに導入するための一般的で簡単な方法です。 Hello Worldサンプルアプリケーションでは、このメソッドを使用してオブジェクトを作成およびロードします。 リソースブロックは、geodeの実行可能ファイル(<STRONG CLASS="fileName">geoと入力します</STRONG>ファイル)に保存され、アクセス時に自動的にロードされます。 これらのリソースには、状態ファイルに自動的に保存するためのタグを付けることもできます。</P>
+<P>オブジェクトリソースの設定は、単にリソースを定義し<CODE>@オブジェクト</CODE>キーワードを使用して、リソース内の各オブジェクトを定義します。 オブジェクトリソースブロックが自動的に作成され、実行可能ファイルに格納されます。 で定義された各オブジェクト<CODE>@オブジェクト</CODE>は、リソースブロック内でチャンクとチャンクハンドルを割り当てられる。 チャンク・ハンドルとリソース・ブロックのハンドルの両方がわかっているため、リソース内の個々のオブジェクトへのアクセスは簡単です。 基本的に、オブジェクト・リソースをセットアップするときには、オブジェクトをシステムに取り込んだり、シャットダウンしたりする必要はありません。</P>
+<P>オブジェクトに対するリソースの使用には制限があります。 リソースからロードされたオブジェクトは、常に同じ特性でロードされます。 これは、特定のオブジェクトセットの複数の異なるコピーが必要で、各コピーが変更される可能性がある場合に問題になる可能性があります。 この場合、リソース内のオブジェクトにアクセスする前に、リソースを複製します(以下を参照)。</P>
+<P>で宣言することによって定義されたオブジェクトの例<CODE>@オブジェクト</CODE>オブジェクト・リソース内のキーワード<A HREF="#GOCLanguage_13.htm_99194">@objectを使用したオブジェクトの宣言</A>ボタンをクリックし</P>
+<P>オブジェクト・リソースを定義するには、geodeを起動する前に必要なオブジェクトを把握しておく必要があります。 複雑なプログラムの中には、どのオブジェクトが必要かを事前に知らなくても、個々のオブジェクトやツリー全体を動的にインスタンス化するものがある。 これを行うには<CODE>ObjInstantiate()</CODE>(下記参照)を使用して個々のオブジェクトをインスタンス化します。</P>
+
+
+<H5 CLASS="HeadingD">オブジェクトブロックリソースを複製する</H5>
+<P>これは、ユーザインタフェースとアプリケーションの両方で使用されるもう1つの一般的な方法です。 これにより、オブジェクト・リソース・モデル(上記)が単純になると同時に、リソースの複数の異なるコピーを持つことができます。 したがって、オブジェクトブロックにテンプレートを使用したい場合には完璧です(これは、チュートリアルアプリケーション(APPL\TUTORIAL\MCHRT 4\MCHRT.GOCを参照)に示されているように、ドキュメントコントロールオブジェクトが行うことです)。</P>
+<P><A NAME="GOCLanguage_15.htm_IX_Object blocks"></A>最初に、以下を使用して、コードファイルにオブジェクトリソースを設定する必要があります。<CODE>@開始</CODE><CODE>@終了</CODE>、および<CODE>@オブジェクト</CODE>の<STRONG CLASS="fileName">gpファイル</STRONG>リソースにマークを付けます。<EM>破棄のみ</EM>このような「テンプレート」リソース内のオブジェクトは、ブロック外のオブジェクトにリンクされてはなりません。 この方法で作成された汎用オブジェクトのブランチでは、最上位のオブジェクトを使用不可(~GS_USABLE)としてマークする必要があります。これは、汎用オブジェクトが汎用の親を持たずに使用可能であることは違法であるためです。 これらのオブジェクトに直接アクセスするのではなく、リソースブロックを複製する必要があります。 (リソースを複製して直接使用することはできません)。<A NAME="GOCLanguage_15.htm_IX_ObjDuplicateResource()"></A>これは次のようにして行います。<CODE>ObjDuplicateResource()</CODE>これはヒープ上に新しいブロックを割り当て、それを適切に設定し、リソースを直接そこにコピーします。</P>
+<P>新しいオブジェクトブロックのハンドルが返されるので、好きなように修正できます。 すべてのオブジェクトのすべてのチャンクハンドルはソースブロックと同じになるため、複製内の任意のオブジェクトに簡単にアクセスできます。 コピーが完了したら、複製オブジェクトを汎用ツリーに追加して、GS_USABLEを設定できます。 また<CODE>ObjDuplicateResource()</CODE>同じリソースで複数回使用すると、複数の異なる(場合によっては変更された)バージョンのリソースを一度に使用できます。</P>
+<P>ただし、リソースブロックを使用する場合と同様に、すべてのテンプレートオブジェクトの設定を事前に把握しておく必要があります。 場合によっては、リソースに新しいオブジェクトを追加したり、他のオブジェクトを動的に作成する必要があります。 これが、この方法の主な欠点です。</P>
+<P>さらに、リソースブロックを複製する場合は、不要になったときにも解放する必要があります。 ブロック内の汎用オブジェクトは使用不可に設定し、リソースが解放される前にツリーから削除する必要があります。 解放するには、以下を送信する必要があります。<CODE>MSG_META_BLOCK_FREE(メタブロック解放)</CODE>をブロック内の任意のオブジェクトに対して呼び出すか<CODE>ObjFreeObjBlock()</CODE>カーネルルーチンの使用<CODE>ObjFreeDuplicate()</CODE>は、ブロック内のすべてのオブジェクトからシステムへのリンクを完全に削除する必要があるため、お勧めしません。(<CODE>MSG_META_BLOCK_FREE(メタブロック解放)</CODE>および<CODE>ObjFreeObjBlock()</CODE>まず、オブジェクトがこれらの結合を解除するのに十分な時間があることを確認してください)。</P>
+
+
+<H5 CLASS="HeadingD">個々のオブジェクトのインスタンス化</H5>
+<P>これら3つのオプションの中で最も複雑なのは、すべてのケースに必要な柔軟性を提供できることです。 オブジェクトをインスタンス化する実際の作業は、難しくも複雑でもありません。 しかし、これは時間と労力を要し、オブジェクトリソースを使用する場合には必要のないいくつかのステップを必要とする。 さらに、この方法で作成されたオブジェクトの後のクリーンアップは、より複雑になります。</P>
+<P>新しいオブジェクトをその場で作成するには、まずそのオブジェクトを配置する場所を設定する必要があります。 これを行うには、グローバルヒープにメモリブロックを割り当て(代わりに既存のオブジェクトブロックを使用することもできます)、適切なフラグとヘッダーを使用してオブジェクトブロックとして設定します。 選択したブロックをヒープ上でロックする必要はありません。 これで、新しいオブジェクトを受け取るようにブロックが設定されました。</P>
+<P><A NAME="GOCLanguage_15.htm_IX_ObjInstantiate()"></A>実際に新しいオブジェクトを作成するには、カーネルルーチンを呼び出します。<CODE>ObjInstantiate()</CODE>これにより、ヒープ上のブロックがロックされ、オブジェクトブロックにチャンクが作成され、インスタンスチャンクがゼロになります。 オブジェクトがマスター部品を持つクラスのものである場合、インスタンスチャンクは、マスターグループ内のクラスが最初にメッセージを受信するまで、初期化されないままになります。 クラスがの直系子孫である場合<CODE>メタクラス</CODE>インスタンスチャンクはすぐにデフォルト値に初期化されます。<CODE>MSG_META_INITIALIZE(メタ初期化)</CODE>このタイプのオブジェクトのデフォルトデータを変更または追加する場合は、サブクラス<CODE>MSG_META_INITIALIZE(メタ初期化)</CODE>;必ず最初にスーパークラスを呼び出してください。 オブジェクトのマスターグループを初期化するには、そのマスターレベルのクラスによって処理されるクラスイベントをオブジェクトに送信します。</P>
+<P>電話をかけた後<CODE>ObjInstantiate()</CODE>すると、ブロックは自動的にロック解除されます。 新しいオブジェクトのインスタンス化の例をに示します。<A HREF="#GOCLanguage_15.htm_91091">オブジェクトのインスタンス化</A>この方法で作成された汎用オブジェクトは、汎用ツリーに追加して使用可能に設定できます。 これらは<CODE>MSG_GEN_DESTROY[メッセージ生成破棄]</CODE>ボタンをクリックし</P>
+<P CLASS="figTitle">コード表示5-19<A NAME="GOCLanguage_15.htm_91091"></A>オブジェクトのインスタンス化</P>
+<PRE>/*このサンプルコードは、サンプルGenInteractionオブジェクトに属しています(オブジェクトは*GenInteractionClassのサブクラスである必要があります)。 *1. 新しいGenTriggerオブジェクトをインスタンス化します。 新しい*GenTriggerは、メッセージを処理するGenInteractionを含む同じオブジェクトブロック*に追加されます。 *2. 新しいGenTriggerを*SampInteraction(ハンドリングオブジェクト)の子として追加します。 *3. GenTriggerを使用可能に設定し、有効にします。*/</PRE>
+<PRE>@method SampInteractionClass, MSG_SAMP_INTERACTION_CREATE_TRIGGER{optr newTrig;</PRE>
+<PRE>newTrig=ObjInstantiate(OptrToHandle(oself),(ClassStruct*)&amp;GenTriggerClass);/*2つのパラメータは、オブジェクトブロックのハンドルとクラス定義へのポインタ*です。 オブジェクト・ブロックはGenInteractionを含むブロックと同じで、そのoptrは標準のoselfパラメーターに含まれています。 クラス構造ポインタは、*GenTriggerClassのクラス定義を指します。*/</PRE>
+<PRE>/*トリガーをGenInteractionの最後の子として設定します。 */@call self::MSG_GEN_ADD_CHILD(newTrig, (CCF_MARK_DIRTY CCF_LAST);</PRE>
+<PRE>/*トリガーを使用可能にし、有効にします。 */@call newTrig::MSG_GEN_SET_USABLE(VUM_DELAYED_VIA_UI_QUEUE);@call newTrig::MSG_GEN_SET_ENABLED(VUM_NOW);}</PRE>
+
+
+<H5 CLASS="HeadingD">汎用ツリーのコピー</H5>
+<P><A NAME="GOCLanguage_15.htm_IX_MSG_GEN_COPY_TREE"></A>新しいオブジェクトを作成するフォース・ウェイは、次のメッセージを使用します。<CODE>MSG_GEN_COPY_TREEメッセージ</CODE>これは、汎用ツリー内の汎用オブジェクトに送信されると、その下にある汎用ツリー全体をコピーし、そのオブジェクトを別の既存のオブジェクトブロックに含めます。</P>
+<P>これは、新しいオブジェクトを作成するより一般的な目的の1つである汎用ツリーをコピーする簡単な方法です。 ただし、一般的なオブジェクト(スーパークラス<CODE>生成クラス</CODE>)をクリックします。 作成されたツリー<CODE>MSG_GEN_COPY_TREEメッセージ</CODE>破壊することができる<CODE>MSG_GEN_DESTROY[メッセージ生成破棄]</CODE>ボタンをクリックし</P>
+<P>例:<CODE>MSG_GEN_COPY_TREEメッセージ</CODE>SDK_C\GENTREEサンプルアプリケーションを参照してください。</P>
+
+
+
+<H4 CLASS="HeadingC">オブジェクトブロックを使用する</H4>
+<PRE>ObjIncInUseCount x、ObjDecInUseCount x、ObjLockObjBlock x、ObjFreeObjBlock x、ObjFreeDuplicate x、ObjTestIfObjBlockRunByCurThread x、ObjBlockSetOutput x、ObjBlockGetOutput x</PRE>
+<P>オブジェクトブロックを作成したら<CODE>ObjDuplicateResource()</CODE>メモリー・ルーチンを使って実行できることがいくつかあります。 通常のメモリブロックとして扱うこともできますが、特にオブジェクトブロックで使用するためのルーチンもいくつかあります。</P>
+<P><CODE>ObjIncInUseCount()</CODE><A NAME="GOCLanguage_15.htm_IX_ObjIncInUseCount()"></A>および<A NAME="GOCLanguage_15.htm_IX_ObjDecInUseCount()"></A><CODE>ObjDecInUseCount()</CODE>オブジェクト・ブロックの使用中カウントを増減します(オブジェクトがメッセージを受信している間にブロックを解放できないようにするために使用されます)。<A NAME="GOCLanguage_15.htm_IX_ObjLockObjBlock()"></A><CODE>ObjLockObjBlock()</CODE>グローバルヒープ上のオブジェクトブロックをロックします。<A NAME="GOCLanguage_15.htm_IX_ObjFreeObjBlock()"></A><CODE>ObjFreeObjBlock()</CODE>すべてのオブジェクトブロックを解放します。<A NAME="GOCLanguage_15.htm_IX_ObjFreeDuplicate()"></A><CODE>ObjFreeDuplicate()</CODE>は、以下で作成されたオブジェクトブロックを解放する低レベルルーチンである。<CODE>ObjDuplicateResource()</CODE>ボタンをクリックし<CODE>ObjTestIfObjBlockRunByCurThread()</CODE><A NAME="GOCLanguage_15.htm_IX_ObjTestIfObjBlockRunByCurThread()"></A>は、呼び出しスレッドが特定のオブジェクトブロックを実行するかどうかを示すブール値を返します。<CODE>ObjBlockSetOutput()</CODE><A NAME="GOCLanguage_15.htm_IX_ObjBlockSetOutput()"></A>および<A NAME="GOCLanguage_15.htm_IX_ObjBlockGetOutput()"></A><CODE>ObjBlockGetOutput()</CODE>オブジェクト・ブロック内のすべてのオブジェクトからの出力メッセージ(つまり、移動オプションTO_OBJ_BLOCK_OUTPUTで送信されたメッセージ)を受信するように設定されたオブジェクトのoptrを設定して戻します。</P>
+
+
+<H4 CLASS="HeadingC">個々のオブジェクトを操作する</H4>
+<PRE>ObjIsObjectInClass x、ObjIsClassADescendant x、ObjGetFlags x、ObjGetFlagsHandles x、ObjSetFlags x、ObjSetFlagsHandles x、ObjDoRelocation x、ObjDoUnRelocation x、ObjResizeMaster x、ObjInitializeMaster x、ObjInitializePart x</PRE>
+<P>カーネルには、個々のオブジェクト・チャンクとオブジェクト・データを操作および変更するためのルーチンがいくつか用意されています。 これらはすべて『Routine Reference Book』に詳しく説明されていますが、ほとんどはアプリケーションでは一般的に使用されていません。</P>
+<P><CODE>ObjIsObjectInClass()</CODE><A NAME="GOCLanguage_15.htm_IX_ObjIsObjectInClass()"></A>はクラスとoptrを受け取り、オブジェクトがそのクラスのメンバーであるかどうかを返します。<A NAME="GOCLanguage_15.htm_IX_ObjIsClassADescendant()"></A>関連メッセージ<CODE>ObjIsClassADescendant()</CODE>指定したクラスが別のクラスのサブクラスであるかどうかを判別します。<A NAME="GOCLanguage_15.htm_IX_ObjGetFlags()"></A><CODE>ObjGetFlags()</CODE>指定されたオブジェクトインスタンスチャンクのオブジェクトフラグを返します。<A NAME="GOCLanguage_15.htm_IX_ObjSetFlags()"></A><CODE>ObjSetFlags()</CODE>は渡された値にフラグを設定する。<A NAME="GOCLanguage_15.htm_IX_ObjGetFlagsHandles()"></A><A NAME="GOCLanguage_15.htm_IX_ObjSetFlagsHandles()"></A><CODE>ObjGetFlagsHandles()</CODE>および<CODE>ObjSetFlagsHandles()</CODE>オブジェクトを参照するには、optrsではなくハンドルを使用します。<CODE>ObjDoRelocation()</CODE><A NAME="GOCLanguage_15.htm_IX_Relocatable data:kernel routines"></A><A NAME="GOCLanguage_15.htm_IX_ObjDoRelocation()"></A>は、再配置可能として宣言されたオブジェクト内の渡されたインスタンスデータフィールドを処理します。<A NAME="GOCLanguage_15.htm_IX_ObjDoUnRelocation()"></A><CODE>ObjDoUnRelocation()</CODE>は、渡された再配置可能フィールドをインデックス値に返します。</P>
+<P><CODE>ObjInitializeMaster()</CODE><A NAME="GOCLanguage_15.htm_IX_ObjInitializeMaster()"></A>オブジェクトの特定のマスター・グループのインスタンス・データが構築されます。<A NAME="GOCLanguage_15.htm_IX_ObjInitializePart()"></A><CODE>ObjInitializePart()</CODE>は、渡されたレベルを含む、それより上のすべてのマスター・グループを構築します(これにより、バリアント・クラスも解決されます)。<A NAME="GOCLanguage_15.htm_IX_ObjResizeMaster()"></A><CODE>ObjResizeMaster()</CODE>インスタンスチャンクの指定されたマスタ部分のサイズを変更し、チャンクのサイズを変更します。</P>
+
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_15.htm_95668"></A>オブジェクト・ツリーの管理</H4>
+<PRE>ObjLinkFindParent()、ObjCompAddChild()、ObjCompRemoveChild()、ObjCompMoveChild()、ObjCompFindChildByOptr()、ObjCompFindChildByNumber()、ObjCompProcessChildren()</PRE>
+<P>多くのオブジェクトは、オブジェクトツリーの一部になります。 ほとんどすべての汎用UIおよび可視オブジェクトは、組織的な目的のためにツリーのメンバーとして存在します。 オブジェクト・ツリーは、オブジェクトを編成するための便利で強力なメカニズムです。</P>
+<P>オブジェクトツリーは、「複合」オブジェクト(子を持つオブジェクトと持たないオブジェクト)で構成されます。 複合オブジェクトの際立った特徴は<CODE>@コンポジット</CODE>キーワードと<CODE>@リンク</CODE>キーワード。 の<CODE>@コンポジット</CODE>フィールドには、ツリー内のオブジェクトの最初の子へのポインタが入り<CODE>@リンク</CODE>フィールドには、オブジェクトの次の兄弟へのポインタが入ります。</P>
+<P>複合オブジェクトを含むオブジェクトリソースブロックを設定すると、オブジェクトツリーの設定が非常に簡単になります。 汎用UIオブジェクトは、GenApplicationオブジェクトを先頭にしてツリーで宣言されます。 さらに、作成したオブジェクト・ツリーを変更するのは簡単です。 カーネルはいくつかのルーチンを提供します。<CODE>メタクラス</CODE>では、オブジェクトをツリーに追加したり、ツリーから削除したり、ツリー内で移動したりするために、いくつかのメッセージを使用します。</P>
+<UL>
+<LI><CODE>ObjLinkFindParent()<BR></CODE><A NAME="GOCLanguage_15.htm_IX_ObjLinkFindParent()"></A>このルーチンは、呼び出し側オブジェクトの直接の親のoptrを検索します。 カーネルは、親オブジェクトに戻るまで、リンクフィールドをトラバースします。</LI>
+<LI><CODE>ObjCompFindChildByOptr()<BR></CODE><A NAME="GOCLanguage_15.htm_IX_ObjCompFindChildByOptr()"></A>このルーチンは、optrが渡された子の番号(1番目、2番目、3番目など)を返します。 子は存在し、呼び出し元オブジェクトの子である必要があります。</LI>
+<LI><CODE>ObjCompFindChildByNumber()<BR></CODE><A NAME="GOCLanguage_15.htm_IX_ObjCompFindChildByNumber()"></A>このルーチンは、番号(first、secondなど)が渡された子のoptrを返します。</LI>
+<LI><CODE>ObjCompAddChild()<BR></CODE><A NAME="GOCLanguage_15.htm_IX_ObjCompAddChild()"></A>このルーチンは、オブジェクトのoptrを取得し、呼び出し側の子のリストに追加します。 渡されたフラグに応じて、子は任意の子位置(1番目、2番目など)に挿入されます。</LI>
+<LI><CODE>ObjCompMoveChild()<BR></CODE><A NAME="GOCLanguage_15.htm_IX_ObjCompMoveChild()"></A>このルーチンは子オブジェクトを取得し、新しい位置に移動します。 ただし、呼び出し元オブジェクトの子のままになります。 子を別のオブジェクトの子に移動する場合は、まずその子をツリーから完全に削除してから、もう一方の親に追加する必要があります。</LI>
+<LI><CODE>ObjCompRemoveChild()<BR></CODE><A NAME="GOCLanguage_15.htm_IX_ObjCompRemoveChild()"></A>このルーチンは、オブジェクトツリーから子オブジェクトを削除します。</LI>
+<LI><CODE>ObjCompProcessChildren()<BR></CODE><A NAME="GOCLanguage_15.htm_IX_ObjCompProcessChildren()"></A>このルーチンは、呼び出し側オブジェクトの各子のコールバックルーチンを順番に呼び出します。 コールバックルーチンは、オブジェクトの破棄やチャンクの解放などを除く、事実上すべての処理を実行できます。</LI>
+</UL>
+<P>上記のルーチンを使用すると、任意のオブジェクトツリーとその中のオブジェクトを完全に操作できます。<IMG SRC="GOCLanguage_15_objTree.gif"></P>
+
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_15.htm_57162"></A>オブジェクトをアタッチ解除、破棄する</H4>
+<PRE>MSG_META_DETACH, MSG_META_DETACH_COMPLETE, MSG_META_ACK, MSG_META_OBJ_FLUSH_INPUT_QUEUE, MSG_META_OBJ_FREE, MSG_META_FINAL_OBJ_FREE, ObjInitDetach(),ObjIncDetach(),ObjEnableDetach(),ObjFreeChunk(),ObjFreeChunkHandles()</PRE>
+<P><A NAME="GOCLanguage_15.htm_IX_Objects:detaching"></A>オブジェクトの作成は実際には非常に簡単ですが、オブジェクトの分離と破棄は非常に複雑になる場合があります。 このため、GEOSがほとんどの作業を代行し、ほとんどの場合、アプリケーションがシャットダウンされたり、状態ファイルに保存されたりしたときに何が起こるかを心配する必要はありません。 ただし、独自のクラスの個々のオブジェクトをインスタンス化する場合は、オブジェクトがシステムから分離されて破棄される方法に十分注意する必要があります。</P>
+<P>オブジェクトの分離には、オブジェクトとシステムの残りの部分とのすべての関係を切断することが含まれます。 オブジェクトを破棄するには、オブジェクトのインスタンスチャンクと関連する構造を実際に削除し、待機中のメッセージをすべて処理したことを確認する必要があります。</P>
+<P>オブジェクトは、その寿命を通じて、他のオブジェクト、ドライバ、ファイル、ストリーム、メモリマネージャ、カーネルなど、他の多くのものに関与する可能性が高く、これらのそれぞれが時々オブジェクトメッセージを送信する可能性があります。 オブジェクトをシステムから分離するときのタスクは、オブジェクトと外界とのすべての関係を切断し、他のエンティティがオブジェクトに再び接触しようとしないことを確認することである。</P>
+<P><A NAME="GOCLanguage_15.htm_IX_Active list:and detaching"></A>これらの問題に慣れていない人にとっては、圧倒されることもあります。 ただし、ほとんどの場合、GEOSがこれらの処理を行います。 すべての汎用オブジェクトと可視オブジェクト、オブジェクトツリー内のすべてのオブジェクト、および「アクティブリスト」を保持するすべてのオブジェクトには、(ほとんどすべての場合において)自動的に<CODE>メタクラス</CODE>ボタンをクリックし</P>
+
+<H5 CLASS="HeadingD">デタッチシーケンス</H5>
+<P><A NAME="GOCLanguage_15.htm_IX_MSG_META_DETACH"></A>オブジェクトが<CODE>MSG_META_DETACH(メタデタッチ)</CODE>、システム内の他のエンティティとのすべての関係を切断するために、デタッチシーケンスを開始します。 まず、すべての子と、さまざまな通知リスト上のすべてのオブジェクトに対して、それが削除されることを通知する必要があります(ほとんどの場合、関連付けによってすべての子も削除されます)。 次に、メッセージキューをクリアする必要があります。 最後に、最初に送信したオブジェクトに対して、分離を確認する必要があります。<CODE>MSG_META_DETACH(メタデタッチ)</CODE>これらの各フェーズの詳細については、以下で説明します。各フェーズは<CODE>メタクラス</CODE>オブジェクトが本当に特別な場合でない限り、この作業を行う必要はありません。</P>
+<P>破棄に伴う分離は、オブジェクトが他のすべての利害関係者に通知しなければならないだけでなく、通知の確認応答も受信しなければならないため、やや複雑です。 そうしないと、通知と他のメッセージが同時に送信され、通知が処理される前にオブジェクトが破棄される可能性があります。 (破壊については次のセクションで説明します)。</P>
+<P>オブジェクトは切り離されてすぐに破棄される可能性があるため、通知を送信し、すべての通知が確認されるまで待機してから、他のタスクを続行する必要があります。 カーネルと<CODE>メタクラス</CODE>4つのカーネルルーチンを使用して、このためのメカニズムを実装します。 ここでも、すべてのクラスが持っているので、これを行う必要はありません。<CODE>メタクラス</CODE>彼らのルーツです</P>
+<P><A NAME="GOCLanguage_15.htm_IX_ObjInitDetach()"></A>最初にデタッチされるオブジェクト(<CODE>MSG_META_DETACH(メタデタッチ)</CODE>ハンドラ)がルーチンを呼び出す<CODE>ObjInitDetach()</CODE>これはカーネルに対して、オブジェクトがデタッチシーケンスを開始しており、確認応答メカニズムを設定する必要があることを通知します。 カーネルは、送信された通知と受信された確認応答の数を保持するために、変数データエントリを割り当てる。</P>
+<P><A NAME="GOCLanguage_15.htm_IX_ObjIncDetach()"></A>この後、オブジェクトは<CODE>MSG_META_DETACH(メタデタッチ)</CODE>または、それぞれの子と「アクティブリスト」上のそれぞれのオブジェクトに相当します。 通知が送信されるたびに、オブジェクトは<EM>しなければならない</EM>呼び声<CODE>ObjIncDetach()</CODE>これにより、通知カウントが増加します。</P>
+<P><A NAME="GOCLanguage_15.htm_IX_ObjEnableDetach()"></A>すべての通知を送信した後、オブジェクトはカーネルルーチンを呼び出します。<CODE>ObjEnableDetach()</CODE>これにより、すべての通知が送信され、オブジェクトが確認応答を待っていることがカーネルに通知されます。</P>
+<P><A NAME="GOCLanguage_15.htm_IX_MSG_META_ACK"></A>確認応答は、次の形式で行われます。<CODE>MSG_META_ACKメッセージ</CODE>デタッチされるオブジェクトによって受信されます。<CODE>MSG_META_ACKメッセージ</CODE>はによって処理されます。<CODE>メタクラス</CODE>通知の数を減らします。つまり、受信する通知が1つ少なくなったことを示します。<A NAME="GOCLanguage_15.htm_IX_MSG_META_DETACH_COMPLETE"></A>最後の<CODE>MSG_META_ACKメッセージ</CODE>が受信され(通知カウントを0に設定)<CODE>ObjEnableDetach()</CODE>が<EM>また</EM>が呼び出された場合、カーネルは自動的に<CODE>MSG_META_DETACH_COMPLETE(メタデータ添付解除完了)</CODE>オブジェクトに これにより、オブジェクトは、システム内の別のエンティティから別のメッセージを受信しないことが保証されます。</P>
+<P>デタッチシーケンスの最後のステップは、オブジェクトがデタッチされたことを確認することです。 その<CODE>MSG_META_DETACH_COMPLETE(メタデータ添付解除完了)</CODE>ハンドラを使用する場合、オブジェクトは<CODE>MSG_META_ACKメッセージ</CODE>デタッチシーケンスを開始したオブジェクトに適用されます。 これにより、オブジェクトがデタッチシーケンスに含まれている場合、そのオブジェクトはデタッチシーケンスを続行できます。この手順を実行しないと、オブジェクトツリーのリーフだけがデタッチされます。 この最後の手順は<CODE>メタクラス</CODE>すべてのオブジェクトに継承されます。</P>
+<P><A NAME="GOCLanguage_15.htm_IX_ObjFreeChunkHandles()"></A><A NAME="GOCLanguage_15.htm_IX_ObjFreeChunk()"></A>チャンク(オブジェクトの保存に使用されるチャンクなど)を解放するには<CODE>ObjFreeChunk()</CODE>ルーチン。 通常、これはチャンクを解放しますが、チャンクがリソースからのオブジェクトを格納している場合、チャンクは代わりにダーティにされ、ゼロにサイズ変更されます。 ハンドルによって参照されるチャンクを解放するには<CODE>ObjFreeChunkHandles()</CODE>見出しページを開きます。</P>
+
+
+<H5 CLASS="HeadingD">破壊の順序</H5>
+<P><A NAME="GOCLanguage_15.htm_IX_Objects:destruction"></A><A NAME="GOCLanguage_15.htm_IX_MSG_META_OBJ_FREE"></A>破壊シーケンスは外部から開始する必要があり、オブジェクトが<CODE>MSG_META_OBJ_FREE(メタオブジェクト解放)</CODE>多くの場合<CODE>MSG_META_OBJ_FREE(メタオブジェクト解放)</CODE>オブジェクトによってそれ自体に送信されます。</P>
+<P>破棄シーケンスは、次の3つのステップで構成されます。 まず、オブジェクトはメッセージキューをクリアする必要があります。オブジェクトが切り離されて新しいメッセージを受信できない場合でも、キューにメッセージが残っていることがあります(メッセージが残っている場合はエラーになります)。 次に、コードの実行とインスタンス・データの処理を完了する必要があります。 第3に、インスタンス・チャンクを解放する必要があります。 これらの各ステップについて、以下に説明します。</P>
+<P>オブジェクトは、システムの他の部分に対して、処理されなくなることを通知したとしても、未処理のメッセージのメッセージキューをフラッシュする必要があります。 これらのメッセージは、元のメッセージが送信されてから<CODE>MSG_META_OBJ_FREE(メタオブジェクト解放)</CODE>が受信され、通知が送信されました(割り込みまたはコンテキストの切り替えによる)。<A NAME="GOCLanguage_15.htm_IX_MSG_META_OBJ_FLUSH_INPUT_QUEUE"></A>メッセージキューをクリアするには、オブジェクトは自分自身に<CODE>MSG_META_OBJ_FLUSH_INPUT_QUEUEメッセージ</CODE>これにより、オブジェクトがシャットダウンする前に、キュー内のすべてのメッセージが適切に処理されます。 この手順は<CODE>MSG_META_OBJ_FREE(メタオブジェクト解放)</CODE>ハンドラ<CODE>メタクラス</CODE>このメッセージを送信する必要はありません。実際、このメッセージの使用は推奨されていません。</P>
+<P>外の世界では、2番目と3番目のステップは1つのステップのように見えます。 ただし<CODE>MSG_META_OBJ_FREE(メタオブジェクト解放)</CODE>は、キューがクリアされた後にインスタンスチャンクを単純に解放することはできません。すべてのメソッドコードが実行されるまで、インスタンスチャンクにアクセスできる必要があります。<A NAME="GOCLanguage_15.htm_IX_MSG_META_FINAL_OBJ_FREE"></A>さて<CODE>MSG_META_OBJ_FREE(メタオブジェクト解放)</CODE>は最後のメッセージをオブジェクトに送信します。<CODE>MSG_META_FINAL_OBJ_FREE(メタ最終オブジェクト解放)</CODE>をクリックして終了します。<CODE>MSG_META_FINAL_OBJ_FREE(メタ最終オブジェクト解放)</CODE>は少し待ってから、オブジェクトのチャンクを解放します。 これにより<CODE>MSG_META_OBJ_FREE(メタオブジェクト解放)</CODE>が完了しており、チャンクはどのコードでも使用されていません。</P>
+
+
+<H5 CLASS="HeadingD">考えられる落とし穴</H5>
+<P>注意しないと、オブジェクトをその場でインスタンス化し、そのオブジェクトのoptrを保存することによって、デタッチ・メカニズムが失敗することがあります。 オブジェクトがデタッチされ、保存されたoptrを考慮しない場合、後で存在しないオブジェクトにメッセージを送信する可能性があります。 これには未定義の結果があり、追跡することはほとんど不可能である。</P>
+<P>リソース内およびによって作成されたオブジェクトは<CODE>ObjDuplicateResource()</CODE>は、ほとんどの場合、切り離しメカニズムによって自動的に処理されます。 で作成するオブジェクト<CODE>ObjInstantiate()</CODE>注意する必要があります</P>
+
+
+
+<H4 CLASS="HeadingC"><A NAME="GOCLanguage_15.htm_73804"></A>オブジェクトの状態を保存する</H4>
+<PRE>ObjSaveBlock x、ObjMarkDirty x、ObjMapSavedToState x、ObjMapStateToSaved x</PRE>
+<P>オブジェクト状態の保存は、システム内にほぼ完全に含まれています。 ほとんどの場合、UIオブジェクトのみが状態ファイルに保存されますが、他のオブジェクトブロックを保存対象としてマークすることもできます。 状態保存の詳細については<A HREF="../../Kernel/Geodes/Geodes_5.htm#76203">アプリケーションと測地の章</A>ボタンをクリックし</P>
+<HR>このドキュメントは<A HREF="index.htm">複数ページのドキュメント</A>簡単な印刷に適しています。</BODY>
+</HTML>

@@ -1,6 +1,6 @@
 # GEOS プログラミング
 
-Because GEOS implements its own messaging and object system, standard C programming must be supplemented with GEOS-specific programming. This chapter describes the syntax and commands available to GEOS programmers in the Goc preprocessor.
+GEOS は独自のメッセージングとオブジェクトシステムを実装している関係上、標準 C プログラミングにはない機能を GEOS 専用のプログラミング機能で補間する必要があります。本章では GEOS プログラマが開発に用いる Goc プリプロセッサで利用可能なシンタックスとコマンドについて解説します。
 
 * 1\. [基本データ型と構造体](GOCLanguage_1_jp.md)
   * 1.1 [レコードと列挙型](GOCLanguage_2_jp.md)

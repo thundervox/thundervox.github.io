@@ -122,7 +122,21 @@ version.12.0 以降については別の機会とします。
 * PixelFormat
 
 ## love.graphics
-
+* 
+* Mesh
+* Mesh:attachAttribute
+* Mesh:setTexture
+* Mesh:setVertexMap
+* Mesh:setVertices
+* Mesh:setVertexAttribute
+* VertexAttributeStep
+* ParticleSystem:getColors
+* ParticleSystem:setColors
+* ParticleSystem:setQuads
+* ParticleSystem:setRotation
+* Texture:isReadable
+* Texture:setFilter
+* 
 * love.graphics
 * love.graphics.draw
 * 

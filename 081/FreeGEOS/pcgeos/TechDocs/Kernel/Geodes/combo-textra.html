@@ -1,0 +1,789 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<!-- This page was automatically generated from a bunch of smaller pages. -->
+<META NAME="copyright" CONTENT="Copyright GEOWORKS">
+<LINK REL="STYLESHEET" HREF="../../docHelpers/style.css">
+<LINK REV="MADE" HREF="mailto:doc-feedback@geoworks.com">
+<TITLE>アプリケーションと Geode </TITLE>
+</HEAD>
+<BODY BGCOLOR="#ffffdf">このドキュメントは<A HREF="index.htm">複数ページのドキュメント</A>簡単な印刷に適しています。<A NAME="index.htm"></A><H1 CLASS="chapterTitle"><A NAME="index.htm_97933"></A>アプリケーションと Geode </H1>
+<P>この章では、アプリケーションの寿命について説明するとともに、ほとんどのアプリケーション・プログラマーが何度か取り上げたいと思ういくつかのトピックについて説明します。 この章を読む前に、これまでの各章を読んでおく必要があります。この章は、これらの章で学んだ知識に基づいています。</P>
+<P>この章では、のコンポーネントと機能について詳しく説明します。<EM> Geode </EM>、GEOS実行可能ファイル。 この章は、次の5つのセクションで構成されています。</P>
+<UL>
+<LI> Geode <BR>の<EM> Geode </EM>セクションでは、ライブラリ、ドライバ、およびアプリケーションの起動方法、使用方法、およびシャットダウン方法について説明します。 また、geodeの一般的なセクションと、geodeの実行可能ファイルについても説明します。</LI>
+<LI>アイコンの作成<BR>の<EM>アイコンの作成</EM>セクションでは、トークンデータベースの構造と、アイコンの保存、管理、および作成方法について説明します。</LI>
+<LI>ユーザー・オプションの保存<BR>の<EM>保存オプション</EM>セクションでは、GEOS.INIファイルの操作方法について説明します。</LI>
+<LI>一般システムユーティリティ<BR>の<EM>一般システムユーティリティ</EM>セクションでは、GEOSによって提供されるいくつかの異なるメカニズムについて説明します。これらのメカニズムは、アプリケーションや他のgeodeで役立つ場合があります。</LI>
+<LI>エラー・チェック・システム・ソフトウェア<BR>の<EM>システムソフトウェアのエラーチェック</EM>に、システムソフトウェアのデバッグバージョンと標準バージョンの違いを示します。 カーネル、UI、ほとんどのライブラリとドライバを含む、システムソフトウェアのほとんどすべての部分に2つのバージョンがあります。</LI>
+<LI>IACP:アプリケーション間通信プロトコル<BR>の<EM>IACP社</EM>セクションでは、アプリケーションが相互に通信し、データをやり取りする方法について説明します。 このプロトコルは、必ずしもロードされて実行されているわけではないアプリケーションに対して機能します。したがって、アプリケーションは別のアプリケーションのデータを動的に変更できます。受信側のアプリケーションがまだ実行されていない場合は、自動的に起動されます。(これは高度なトピックです。ほとんどのプログラマはこのセクションを読む必要はありません。)</LI>
+</UL>
+<P CLASS="sectionlinks">
+          <STRONG>
+            <A HREF="#Geodes_1.htm">1 Geode </A>
+            <BR>
+            <A HREF="#Geodes_2.htm">1.1 Geode の部品及び構造</A>
+            <BR>
+            <A HREF="#Geodes_3.htm">1.2 アプリケーションの起動</A>
+            <BR>
+            <A HREF="#Geodes_4.htm">1.3 アプリケーションの停止</A>
+            <BR>
+            <A HREF="#Geodes_5.htm">1.4 状態の保存と復元</A>
+            <BR>
+            <A HREF="#Geodes_6.htm">1.5 他の Geode 座標を使用する</A>
+            <BR>
+            <A HREF="#Geodes_7.htm">1.6 独自のライブラリを作成する</A>
+            <BR>
+            <A HREF="#Geodes_8.htm">1.7 Geode を使用する</A>
+            <BR>
+            <A HREF="#Geodes_9.htm">1.8 Geodeプロトコルとリリースレベル</A>
+            <BR>
+            <A HREF="#Geodes_a.htm">1.9 一時的なGeodeメモリ</A>
+            <BR>
+            <A HREF="#Geodes_b.htm">2 アイコンの作成</A>
+            <BR>
+            <A HREF="#Geodes_c.htm">2.1トークン・データベース</A>
+            <BR>
+            <A HREF="#Geodes_d.htm">2.2トークン・データベース・ファイルの管理</A>
+            <BR>
+            <A HREF="#Geodes_e.htm">3 ユーザー・オプションの保存</A>
+            <BR>
+            <A HREF="#Geodes_f.htm">3.1 汎用オブジェクト・オプションの保存</A>
+            <BR>
+            <A HREF="#Geodes_10.htm">3.2 GEOS.INIファイル</A>
+            <BR>
+            <A HREF="#Geodes_11.htm">4 一般的なシステムユーティリティ</A>
+            <BR>
+            <A HREF="#Geodes_12.htm">4.1 システムクロック</A>
+            <BR>
+            <A HREF="#Geodes_13.htm">4.2 タイマーの使用</A>
+            <BR>
+            <A HREF="#Geodes_14.htm">4.3 システム統計とユーティリティ</A>
+            <BR>
+            <A HREF="#Geodes_15.htm">4.4 システムのシャットダウン</A>
+            <BR>
+            <A HREF="#Geodes_16.htm">5 バージョンのエラーチェック</A>
+            <BR>
+            <A HREF="#Geodes_17.htm">5.1 プログラムへのECコードの追加</A>
+            <BR>
+            <A HREF="#Geodes_18.htm">5.2 特別なECルーチン</A>
+            <BR>
+            <A HREF="#Geodes_19.htm">6 アプリケーション間通信</A>
+            <BR>
+            <A HREF="#Geodes_1a.htm">6.1 IACP の概要</A>
+            <BR>
+            <A HREF="#Geodes_1b.htm">6.2 GenApplicationClass 行動</A>
+            <BR>
+            <A HREF="#Geodes_1c.htm">6.3 IACP リンク間のメッセージ</A>
+            <BR>
+            <A HREF="#Geodes_1d.htm">6.4 クライアントであること</A>
+            <BR>
+            <A HREF="#Geodes_1e.htm">6.5 サーバであること</A>
+            <BR>
+          </STRONG>
+        </P> <!-- end of sectionlinks blob -->
+
+<HR>
+          <A NAME="Geodes_1.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1 Geode </H2>
+<P><EM> Geode </EM><A NAME="Geodes_1.htm_IX_Geodes"></A>は、GEOS実行可能ファイルを表す用語です。 DOSがディスク上のファイルに存在する実行可能ファイル(プログラム)を持っているのと同じように、GEOSもそうです。 通常、GEOS実行可能ファイルのファイル名拡張子は.GEOです。</P>
+<P>各 Geode には、最大3つの異なる側面があります。</P>
+<UL>
+<LI><EM>プロセス<BR></EM>ほとんどの Geode には、このアスペクトがあります。 プロセスであるgeodeには、カーネルによって開始される初期イベント駆動型スレッドがあります。 すべてのアプリケーションと一部のライブラリには、この側面があります。</LI>
+<LI><EM> ライブラリ<BR></EM>この側面は、 Geode が輸出することを示している<EM>エントリポイント</EM>他の Geode が使用できるようにします。 通常、これらのエントリポイントは、オブジェクトクラスまたはルーチンのコードがgeode内のどこにあるかを記述します。 ライブラリには、ライブラリまたはそのクライアントの1つがロードされたとき、またはアンロードのプロセス中にシステムによって呼び出される特別なルーチン(ライブラリのエントリポイント)があります。</LI>
+<LI><EM>ドライバー<BR></EM>この側面は、 Geode が何らかのデバイスや同様に変更可能なものの詳細をシステムから隠していることを示している。 ドライバには、そのタイプを定義する特殊な構造があり<EM>戦略ルーチン</EM>ドライバへのすべての呼び出しは、この戦略ルーチンを通過します。</LI>
+</UL>
+<P> Geode は、これらの側面の任意の組み合わせを持つことができる。 たとえば、プリントスプーラはプロセスライブラリです(したがって、他の Geode 系のルーチンを提供すると同時に、独自のスレッドも持っています)が、サウンドライブラリはマシンのサウンドハードウェアを操作するため、実際にはライブラリドライバです。</P>
+<P>プロセスアスペクトを持たないライブラリ Geode とドライバ Geode には、最初はイベント駆動型スレッドがありません。 したがって、通常はオブジェクトは含まれず、手続きコードのみが含まれます。 ただし、どのgeodeもいつでもイベント駆動型スレッドを自由に作成できるため、オブジェクトを含めることができる。 実際、パラレルポートドライバは、DOSまたはBIOSを介してポートに出力するときに、まさにそれを行います。</P>
+<P> Geode 座標は、カーネルルーチンの呼び出しでロードされるか<CODE>GeodeLoad()</CODE>または、ライブラリのクライアントがロードされた場合の副作用として(この場合、ライブラリgeodeもロードされます)。 汎用UIが提供する特別なルーチン<CODE>UserLoadApplication()</CODE>これは、アプリケーションをロードするために使用することができます--プロセスアスペクトと、そのプロセスクラスのサブクラスの両方を持つgeode<CODE>GenProcessClass</CODE>(したがって、汎用UIオブジェクトを画面に配置できます)。</P>
+<P><A NAME="Geodes_1.htm_IX_Geodes:handles"></A> Geode がロードされると<EM> Geode ハンドル</EM>これは、geodeのシステム管理データをすべて保持するブロックのメモリハンドルです。<A NAME="Geodes_1.htm_IX_Core block"></A>このブロックは<EM>コアブロック</EM>カーネル以外からはアクセスしないようにしてください。 geodeハンドルは、メモリ内の特定のブロックの所有者を決定するためにも使用されます。特定のブロックの所有者を照会すると、カーネルはそのブロックを所有するgeodeのgeodeハンドルを返します。 geodeは、システムリソースを所有できる唯一のエンティティです。  Geode がプロセスである場合、 Geode ハンドルはプロセスハンドルとも呼ばれます。</P>
+<P> Geode がロードされると、そのコアブロックは、システム内で実行されている他の Geode のコアブロックのリンクリストに接続されます。 このリンクされたリストは時系列的であり、最初のエントリは最初にロードされた Geode に属し、最後のエントリは最後にロードされた Geode に属します。 各コアブロックには、リスト内の次のコアブロックのハンドルのエントリが含まれています。カーネルはこれらのリンクをたどって、システム内の任意の Geode を見つけることができます。 (これを実行できるのはカーネルだけです。</P>
+<P>コアブロックがリストに追加されると、GEOSはリストをスキャンして、同じコアブロックの他のインスタンスを探します。  Geode が複数回ロードされている場合は、リストに複数のインスタンスが表示されます( Geode がロードされるたびにコアブロックのインスタンスが1つずつ表示されます。ただし、各コアブロックは Geode の同じコピーを参照します)。 次に、GEOSは共有リソースハンドルを既存のコアブロック(見つかった場合)から新しいコアブロックにコピーします。これにより、特定の Geode を複数回ロードするために必要な作業量が削減されます(共有リソースを再ロードしたり再作成したりする必要はありません)。 非共有リソースハンドルはコピーされません。リソースは必要に応じてロードまたは構築されます。</P>
+<P>各 Geode のコアブロックには、その特定の Geode の参照カウントが含まれている。 geodeが最初にロードされると、参照カウントは1に設定されます。 geodeがプロセスの場合、プロセススレッドを初期化すると、参照カウントが増加します。 geodeが再度ロードされるたびに、新しいコアブロックは独自の参照カウントを取得します。 geodeが暗黙的にロードされている場合(ライブラリとして<CODE>GeodeUseLibrary()</CODE>、または<CODE>GeodeUseDriver()</CODE>)、または新しいスレッドを生成する場合は、さらに別の参照カウントを受け取ります。</P>
+<P>参照カウントは、geodeが所有するスレッドが終了するとデクリメントされます。 ライブラリgeodeのクライアントが終了すると、ライブラリの参照カウントは1つ減ります。</P>
+<P>geodeの参照カウントが0に達すると、geodeが所有するすべてのファイル、イベント、タイマーハンドルとともに、geodeの共有不可能なすべてのリソースが解放されます。 共有可能なリソースがgeodeの別のインスタンスによって共有されている場合、所有権はgeodeの次に古いインスタンスに転送されます。 (共有リソースは常に、そのgeodeの最も古いインスタンスによって所有されます)。 リソースが解放または転送されると、コアブロックはリンクリストから削除され、解放されます。</P>
+<P>コアブロックリストの更新中に同期の問題が発生しないことを確認するために(たとえば、 Geode が解放されたばかりのときにロードされている)、GEOSは内部セマフォを維持します。 geodeのロードおよび解放ルーチンは、このセマフォを自動的に維持します。</P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_2.htm"> Geode のコンポーネントと構造</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_3.htm">アプリケーションの起動</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_4.htm">アプリケーションの停止</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_5.htm">状態の保存と復元</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_6.htm">その他の Geode を使用する</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_7.htm">独自のライブラリを作成する</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_8.htm"> Geode を使用する</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_9.htm">Geodeプロトコルとリリースレベル</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_a.htm">一時的な Geode メモリ</A>
+        </P>
+<HR>
+          <A NAME="Geodes_2.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1.1 <A HREF="#Geodes_1.htm"> Geode </A>:Geodeコンポーネントと構造物</H3>
+<P> Geode は、特殊なタイプのGEOSファイルです。 これには、geodeのコアブロックとしてロードされる特別なファイルヘッダがあります。 このファイルヘッダーには、geodeのタイプ、属性、リリース、プロトコルレベル、およびGEOSがgeodeを操作するために必要なその他の多くの情報が含まれています。 カーネルはヘッダの重要な部分にアクセスするために必要なルーチンを提供しているので、このヘッダの正確な構造を知る必要はありません。</P>
+<P>ヘッダーに含まれるいくつかの重要な項目を以下に示します。</P>
+<UL>
+<LI>コアブロックハンドル<BR>コアブロックには独自のメモリハンドルが含まれており、geodeがメモリにロードされるときに入力されます。</LI>
+<LI> Geode アトリビュート(Geode Attributes)<BR>それぞれの Geode には<CODE>GeodeAttrs</CODE>geode属性については、以下の<A HREF="#Geodes_2.htm_32508"> Geode アトリビュート(Geode Attributes)</A>ボタンをクリックし</LI>
+<LI>リリース・レベルとプロトコル・レベル<BR>異なるバージョン間の互換性を確保するために、各geodeにはリリースレベルとプロトコルレベルを関連付けることができます。 リリースレベルとプロトコルレベルについては、を参照してください。<A HREF="#Geodes_9.htm_74509">プロトコル番号</A>ボタンをクリックし</LI>
+<LI> Geode 名<BR>各geodeには、geodeパラメータ(<STRONG CLASS="fileName">gpファイル</STRONG>)ファイルを開きます。</LI>
+<LI>Geodeトークン<BR>すべての Geode には、トークンデータベース内に関連付けられたトークンがあります。 トークンはgeodeのアイコンを記述するもので<CODE>GeodeToken</CODE>ボタンをクリックし トークンとアイコンについては、を参照してください。<A HREF="#Geodes_b.htm_46120">アイコンの作成</A>ボタンをクリックし</LI>
+<LI> Geode リファレンス数(Geode Reference Count<BR>geodeの参照カウントはcoreブロックに格納されます。 参照カウントとその管理方法については、上記の説明を参照してください。</LI>
+<LI>Geodeファイルハンドル<BR>geodeのファイルハンドルはオープンされたGEOファイルを識別するため、カーネルはさまざまなリソースを見つけ、ロードし、アクセスすることができます。</LI>
+<LI> Geode プロセスハンドル<BR>親プロセスを持つ各geodeは、そのコアブロックにプロセスのハンドルを持ちます。 親プロセスのコアブロックのハンドルです。 (親プロセスは、geodeをロードしたスレッドの所有者です。 終了するgeodeがプロセスの場合は、geodeが終了したときに通知されます)。</LI>
+<LI>次の Geode のハンドル<BR> Geode コアブロックはリンクされたリストに格納されるため、各コアブロックにはリスト内の次の Geode への参照が含まれている必要があります。</LI>
+<LI>プライベートデータ領域のハンドル<BR>カーネルではない各geodeは「プライベートデータ空間」を持つことができます。 このプライベートデータ領域については、を参照してください。<A HREF="#Geodes_a.htm_50456">一時的な Geode メモリ</A>ボタンをクリックし</LI>
+<LI>リソース、ライブラリ、およびドライバ情報<BR>ライブラリまたはドライバ情報をインポートまたはエクスポートする各geodeは、インポートとエクスポートの詳細を使用可能にしておく必要があります。 さらに、各 Geode は、それが所有する資源を追跡しなければならない。 これらの情報はすべて、コアブロック内から参照されるテーブルに格納されます。</LI>
+</UL>
+
+<H4 CLASS="HeadingC"><A NAME="Geodes_2.htm_32508"></A> Geode アトリビュート(Geode Attributes)</H4>
+<P><A NAME="Geodes_2.htm_IX_GeodeAttrs"></A>各 Geode のコアブロックには、タイプのレコードがあります。<CODE>GeodeAttrs</CODE>このレコードは、 Geode が使用するアスペクトや初期化されたアスペクトなど、 Geode に関するいくつかの事柄を定義します。 の<CODE>GeodeAttrs</CODE>レコードには、次の属性ごとに1ビットが含まれています。</P>
+<DL>
+<DT>GA_PROCESS[GAプロセス]</DT><DD><A NAME="Geodes_2.htm_IX_GA_&ldots;  (GeodeAttrs)"></A>このgeodeにはプロセスの側面があり、したがって初期のイベント駆動型スレッドである。</DD>
+<DT>GA_ライブラリ<A NAME="Geodes_2.htm_IX_Libraries:geode attribute"></A></DT><DD>このgeodeにはライブラリーの側面があるため、ルーチン(および場合によってはオブジェクト・クラス)をエクスポートします。</DD>
+<DT>GA_ドライバ(GA_DRIVER)<A NAME="Geodes_2.htm_IX_Drivers:geode attribute"></A></DT><DD>この Geode にはドライバの側面があるため、ドライバテーブルがあり、このテーブルで戦略ルーチンが指定されます。</DD>
+<DT>GA_KEEP_FILE_OPEN[GAファイルを開く]</DT><DD>この Geode のリソースは破棄可能であるか、最初に破棄されるため、この Geode の.GEOファイルは開いたままにしておく必要があります。</DD>
+<DT>GA_システム</DT><DD>このgeodeは特権geodeであり、ほぼ間違いなくシステムで使用されるドライバです。 これらの Geode には、特別な出口要件があります。</DD>
+<DT>GA_MULTI_LAUNCHABLE[複数起動可能]</DT><DD>このgeodeは複数回ロードされる可能性があるため、メモリ内にコアブロックのインスタンスが複数存在する可能性があります。</DD>
+<DT>GA_アプリケーション</DT><DD>このgeodeは、ユーザーが起動できるアプリケーションです。</DD>
+<DT>GA_DRIVER_INITIALIZED(初期化されたドライバ)</DT><DD>このフラグは、geodeのドライバアスペクトが初期化されている場合(ドライバのストラテジルーチンが初期化されている場合)に設定されます。 このフラグはカーネルによって動的に設定されます。</DD>
+<DT>GA_LIBRARY_INITIALIZED(初期化されたライブラリ)</DT><DD>このフラグは、geodeのライブラリアスペクトが初期化されている場合(ライブラリのエントリルーチンが呼び出された場合)に設定されます。 このフラグはカーネルによって動的に設定されます。</DD>
+<DT>GA_GEODE_INITIALIZED(GA_GEO</DT><DD>このフラグは、geodeのすべてのアスペクトが初期化されている場合に設定されます。</DD>
+<DT>GA_USES_COPROCの場合</DT><DD>このgeodeは、利用可能であれば数値演算コプロセッサを使用します。</DD>
+<DT>GA_REQUIRES_COPROC(GA_REQUIRES_</DT><DD>このgeodeには、数値演算コプロセッサーまたはコプロセッサー・エミュレーターが必要です。</DD>
+<DT>GA_HAS_GENERAL_CONSUMER_MODE(GA_HAS_GENERAL_CONSUMER_モード)</DT><DD>このgeodeは、General Consumer(アプライアンス)モードで実行できます。</DD>
+<DT>GA_ENTRY_POINTS_IN_C点</DT><DD>このgeodeのライブラリー・エントリー・ルーチンは、アセンブリー言語ではなくCで作成されています。</DD>
+
+
+</DL>
+<H4 CLASS="HeadingC">Geodeトークン</H4>
+<P>前述したように、すべての Geode はトークンデータベース内のトークンに関連付けられています。このトークンは<CODE>GeodeToken</CODE>構造。 この構造とその使用方法については、を参照してください。<A HREF="#Geodes_b.htm_46120">アイコンの作成</A>ボタンをクリックし</P>
+
+<HR>
+          <A NAME="Geodes_3.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1.2人<A HREF="#Geodes_1.htm"> Geode </A>:アプリケーションの起動</H3>
+<PRE>GeodeLoad(),UserLoadApplication(),MSG_GEN_PROCESS_OPEN_APPLICATION</PRE>
+<P><A NAME="Geodes_3.htm_IX_Applications:launching"></A>アプリケーションは、GA_APPLICATION属性セットを持つgeodeです。 このタイプの Geode は、ユーザがGeoManagerを介して、またはシステムまたは別のアプリケーションによって提供される何らかの他の手段を介して起動することができる。 ほとんどの場合、システムは起動を呼び出して実行します。あなたの責任は限られています。</P>
+<P>アプリケーションは、基本的に次の2つの方法でロードできます。 起動することも、状態ファイルから再ロードすることもできます。 どちらの場合も、カーネルは適切なリソースをロードし、アプリケーションに応じて適切にUIを構築します。</P>
+<P>の起動手順のほとんどは<CODE>GenProcessClass</CODE>のサブクラス<CODE>プロセスクラス</CODE>アプリケーションは、次のサブクラスを定義する必要があります<CODE>GenProcessClass</CODE>(Processオブジェクトとして動作しないイベント駆動型スレッドは<CODE>プロセスクラス</CODE>、ではない<CODE>GenProcessClass</CODE>)をクリックします。 起動プロシージャは、次のいずれかの方法で、任意のスレッドおよび任意のgeodeによって呼び出すことができます。</P>
+<UL>
+<LI><CODE>GeodeLoad()<BR></CODE><A NAME="Geodes_3.htm_IX_GeodeLoad()"></A>これは、指定されたファイルからgeodeをロードし、geodeのタイプに基づいて実行を開始します。<CODE>GeodeLoad()</CODE>新しいgeodeのプロセススレッドに優先順位が設定されている場合は、その優先順位に加えてgeodeのファイル名も取得します。<CODE>GeodeLoad()</CODE>最初にアプリケーションのプロセススレッドを作成し、次にこのスレッドにメッセージを送信します。 プロセススレッド(<CODE>GenProcessClass</CODE>)は、アプリケーションのUIスレッドを作成します。</LI>
+<LI><CODE>UserLoadApplication()<BR></CODE><A NAME="Geodes_3.htm_IX_UserLoadApplication()"></A>このルーチンは、ほとんどのアプリケーションランチャーで使用され、アプリケーションをロードします。 (Cプログラマは通常<CODE>MSG_GEN_PROCESS_OPEN_APPLICATION(プロセスを開くアプリケーション)</CODE><A NAME="Geodes_3.htm_IX_MSG_GEN_PROCESS_OPEN_APPLICATION"></A>)を持つセルをシート内で このルーチンはいくつかの追加パラメータを取り、通常のオープンモード(以下を参照)と同様に、エンジンモードまたは状態ファイルからgeodeをロードできます。 geodeを開いてロードする基本的な機能は、このルーチンの中で以下の呼び出しによって実装されます。<CODE>GeodeLoad()</CODE>ただし、このルーチンはアプリケーション Geode (GA_APPLICATION属性セットを持つ Geode )のみを開くことができることに注意してください。</LI>
+</UL>
+<P> Geode は、次の3つのモードで起動できます。</P>
+<UL>
+<LI><EM>アプリケーション</EM>モードはgeodeを起動し、すべてのアクティブなリソースをロードし、UIガジェットを構築して使用可能に設定します。 geodeはアプリケーションである必要があります。つまり、GA_APPLICATION属性セットを持っている必要があります。</LI>
+<LI><EM>エンジン</EM>モードはgeodeを起動しますが、UIオブジェクトは使用できません(画面上に表示されることはありません)。 エンジンモードは、アプリケーションを起動してそこから情報を取得する必要がある場合に便利です。 GeoManagerはエンジンモードを使用してアプリケーションを起動し、そのアイコンを抽出し、トークンデータベースにアイコンを配置します。効率性のために、アプリケーションは使用可能に設定されないため、UIは構築されません。</LI>
+<LI><EM>[復元]</EM>モードは保存された状態ファイルからgeodeを起動し、リソースをロードしてデフォルトのリソースにマージします。 このモードは、保存された状態からシステムまたは Geode を復元する場合に、UIによって自動的に呼び出されます。 このモードはによって自動的に処理されます<CODE>GenProcessClass</CODE>(Processオブジェクト)を選択します。</LI>
+</UL>
+<P>ただし、あるアプリケーションが別のアプリケーションをカスタムモードで起動することは可能です。 これが行われた場合、起動されるアプリケーションは特殊モードを実装する責任があります。</P>
+<P>上記のルーチンで起動プロセスが開始されると、アプリケーションのスレッドが作成され、そのProcessオブジェクトがただちにロードされます。 また、アプリケーションのGenApplicationオブジェクトもロードされます。 ApplicationオブジェクトとProcessオブジェクトは、ユーザー・インタフェースと対話して、アプリケーションのアクティブ・リストにオブジェクトをロードし、すべてのオブジェクトを使用可能に設定して画面上に表示します。</P>
+<P>このプロシージャの終わり近くで、GenApplicationが使用可能に設定される直前に、Processオブジェクトは起動モードに基づいてメッセージを受け取ります。 アプリケーションが特別な通知(クイック転送メカニズムなど)を設定する必要がある場合、または特別な状態ファイルデータを復元する必要がある場合は、このメッセージをインターセプトする必要があります。 通常、受信されるメッセージは次のようになります。<CODE>MSG_GEN_PROCESS_OPEN_APPLICATION(プロセスを開くアプリケーション)</CODE>--他の2つは受信されますが(状態からの復元時とエンジンモードでのオープン時)、傍受されることはありません。</P>
+<HR>
+          <A NAME="Geodes_4.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1.3人<A HREF="#Geodes_1.htm"> Geode </A>:アプリケーションのシャットダウン</H3>
+<PRE>MSG_GEN_PROCESS_CLOSE_APPLICATION、MSG_GEN_PROCESS_CLOSE_ENGINE、MSG_GEN_PROCESS_CLOSE_CUSTOM、MSG_META_QUIT</PRE>
+<P><A NAME="Geodes_4.htm_IX_Applications:shutting down"></A>アプリケーションのロードがシステムとGEOSクラスによってほぼ完全に処理されるのと同じように、アプリケーションのシャットダウンもかなり自動的に行われます。 アプリケーションが傍受した場合<CODE>MSG_GEN_PROCESS_OPEN_APPLICATION(プロセスを開くアプリケーション)</CODE>起動時に独自の目的のために、ちょっとしたクリーンアップを行う必要があります。そうでなければ、シャットダウンについて心配する必要はありません。 (詳細については<A HREF="#Geodes_5.htm_76203">状態の保存と復元</A>」を参照してください)。</P>
+<P>システム内のオブジェクトによって、アプリケーションがシャットダウンされる場合があります。 通常、シャットダウンは、システムを終了するとき(たとえば、ユーザーがDOSに戻るとき)、またはユーザーがアプリケーションを閉じたときに発生します。 したがって、シャットダウン・ディレクティブの通常のソースは、ユーザー・インターフェースです。</P>
+<P>アプリケーションは、そのProcessオブジェクトまたはApplicationオブジェクトが<CODE>MSG_META_DETACH(メタデタッチ)</CODE>手動でシャットダウンしたい場合は<CODE>MSG_META_QUIT(メタ終了)</CODE>これにより、いくつかのデフォルト関数が実行され、適切なGenApplicationオブジェクトが<CODE>MSG_META_DETACH(メタデタッチ)</CODE>ボタンをクリックし 基本的に、任意のオブジェクトに使用されるのと同じデタッチおよび破壊メカニズムが、アプリケーション全体に使用されます。 受信するオブジェクト<CODE>MSG_META_DETACH(メタデタッチ)</CODE>は、メッセージをすべての子とアクティブリスト上のすべてのオブジェクトに渡します。 (<CODE>MSG_META_DETACH(メタデタッチ)</CODE>なしで使用される<CODE>MSG_META_QUIT(メタ終了)</CODE>状態ファイルが作成されます)。</P>
+<P>すべてのユーザがデタッチを確認すると、アプリケーションはデタッチを確認し、自身を使用不可に設定します。 同期の問題を回避するために、シャットダウンする前にメッセージキューを自動的にフラッシュします。 をサブクラス化しないでください。<CODE>MSG_META_DETACH(メタデタッチ)</CODE>ただし、クリーンアップや、他のオブジェクトまたは Geode に特別なアタッチ解除メッセージを送信する必要がある場合は除きます。 サブクラスを作成する場合は、ハンドラの最後でスーパークラスを呼び出す必要があります。 そうしないと、アプリケーションはデタッチを完了しません(<A HREF="../../Programming/GOCLanguage/GOCLanguage_15.htm#57162">GEOSプログラミングの章</A>)をクリックします。</P><P>傍受する代わりに<CODE>MSG_META_DETACH(メタデタッチ)</CODE>ただし、アプリケーションは、受信するモード固有のメッセージを傍受する場合があります。 起動されたモードに応じて、アプリケーションは(Processオブジェクトを介して)次のいずれかを受け取ります。<CODE>MSG_GEN_PROCESS_CLOSE_APPLICATION(プロセスクローズアプリケーション)</CODE>(アプリケーションモードの場合)または<CODE>MSG_GEN_PROCESS_CLOSE_ENGINE(プロセスクローズエンジン)</CODE>(エンジンモードの場合) 状態ファイルをシャットダウンするための特別なシャットダウンメッセージはありません。<CODE>MSG_GEN_PROCESS_CLOSE_APPLICATION(プロセスクローズアプリケーション)</CODE>見出しページを開きます。</P>
+<P>システムがシャットダウンするか、タスクが切り替わると、別のタイプのシャットダウンが発生します。 アプリケーション(またはこのイベントに関係するその他のオブジェクト)は、通知リストGCNSLT_SHUTDOWN_CONTROLに通知を登録する必要があります(通知リストについては<A HREF="../../Kernel/GCN/index.htm">「一般変更通知」の章</A>)をクリックします。 システムがシャットダウンするか、タスクが切り替わると、オブジェクトは<CODE>MSG_META_CONFIRM_SHUTDOWNメッセージ</CODE>、この時点でオブジェクトはを呼び出す必要があります<CODE>SysShutdown()</CODE>ボタンをクリックし</P>
+<HR>
+          <A NAME="Geodes_5.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1.4人<A HREF="#Geodes_1.htm"> Geode </A>キーを押します<A NAME="Geodes_5.htm_76203"></A>状態の保存と復元</H3>
+<PRE>ObjMarkDirty x、ObjSaveBlock x</PRE>
+<P><A NAME="Geodes_5.htm_IX_Applications:saving to state file"></A><A NAME="Geodes_5.htm_IX_State files"></A>ほとんどすべてのアプリケーションは、その状態を保存して復元するため、ユーザーはシャットダウンして、終了したのとまったく同じ構成に戻ることができます。 状態の保存は、システムソフトウェア内にほぼ完全に含まれています。ほとんどの場合、UIオブジェクトのみが状態ファイルに保存されます。 ただし、他のオブジェクトブロックやデータにマークを付けて、状態ファイルに保存することはできます。</P>
+<P>アプリケーションの状態ファイルは、オブジェクトブロックを含むVMファイルです。 状態ファイルに保存できるのはオブジェクトブロックだけですが、データチャンクだけを含むオブジェクトブロックを設定することで、LMemデータを保存できます。 (でブロックを作成します。<CODE>MemAllocLMem()</CODE>を指定し、LMEM_TYPE_OBJ_BLOCK型を渡した後<CODE>LMemAlloc()</CODE>を使用してデータチャンクを割り当てます)。 LMemおよびデータチャンクの管理の詳細については、を参照してください。<A HREF="../../Memory/LMem/index.htm">「ローカルメモリー」の章</A>を使用して、追加のデータブロックを状態ファイルに保存することもできます。<CODE>MSG_GEN_PROCESS_CLOSE_APPLICATION(プロセスクローズアプリケーション)</CODE>および<CODE>MSG_GEN_PROCESS_OPEN_APPLICATION(プロセスを開くアプリケーション)</CODE>closeメッセージでは、状態ファイルに保存される余分なブロックのハンドルを返すことができます。openメッセージでは、余分なブロックのハンドルが返され、必要に応じてこのデータを復元できます。 これらのメッセージの参照情報については<CODE>GenProcessClass</CODE>に登録してあるものです。</P>
+<P>状態ファイルが保存されると、システムはダーティ(変更された)オブジェクトとチャンクだけを認識して保存します。 その後、状態が復元されると、システムは状態ファイル内の変更を元のオブジェクトブロックとマージし、保存された状態になります。</P>
+<P><A NAME="Geodes_5.htm_IX_ObjMarkDirty()"></A><A NAME="Geodes_5.htm_IX_ObjSaveBlock()"></A>個々のオブジェクトまたはオブジェクトブロック全体を状態ファイルに保存するには、ダーティとマークする必要があります。 汎用オブジェクトは、適切なタイミングで自動的にダーティとマークされるので、心配する必要はありません。 他のオブジェクトをダーティとマークするには、ルーチンを使用します。<CODE>ObjMarkDirty()</CODE>ダーティとマークされた各オブジェクトは、必要に応じて状態ファイルに保存されます。 オブジェクトブロック全体を状態ファイルに保存する場合は<CODE>ObjSaveBlock()</CODE>システムは、ダーティ・チャンクだけでなく、ブロック全体を保存します。</P>
+<P>状態ファイルは2回だけ処理されます。まず、システムが起動したときに、アプリケーション状態ファイルの存在を確認します。 状態ファイルが存在する場合、システムはそれに属するアプリケーションをロードしようとします。アプリケーションのリソースをロードした後、状態の変更をデフォルト設定にマージして元の状態を復元します。</P>
+<P>状態ファイルが2回目に使用されるのは、システムがシャットダウンするときです。 単純なシャットダウン(「デタッチ」と呼ばれる)はUIによってのみ呼び出され、中止することはできません。 アタッチ解除が行われると、すべての Geode が可能な限りクリーンで静かにシャットダウンされ、状態ファイルに保存されます。 極端な場合には、特定の Geode だけが応答し、アタッチ解除を遅らせたり、進行中の操作をキャンセルするオプションをユーザに提供します。 この例としては、GEOSスプーラがあります。1つ以上のジョブがアクティブに印刷中であるか、印刷のためにキューに入れられている場合、スプーラはユーザーに対して、ジョブを続行してデタッチを延期するか、ジョブを中止するか、次の起動まで延期するかを尋ねます。 スプーラは、どのような場合でもデタッチを中止できません。</P>
+<P>デタッチのもう1つのタイプは、「終了」と呼ばれます。 どのgeodeもquitを呼び出すことができますが、これは実際には2段階のデタッチです。 中止すると、まず他のすべての Geode 座標に、システムが間もなくアタッチ解除されることが通知されます。その後、他の Geode 座標には、必要に応じて中止を中止する機会が与えられます。 たとえば、端末プログラムがファイルをダウンロードしていて、終了通知を受信した場合、ユーザに対して、終了またはダウンロードを中止するかどうかを尋ねることができます。 ユーザがダウンロードを終了したい場合は、終了を中止します。終了したい場合は、ダウンロードを中止します。 その後、システムは通常のデタッチによってシャットダウンするか、終了シーケンスを停止します。</P>
+<P>geodeが最初に起動されたとき、その状態ファイルは存在しません。 状態ファイルは、geodeが実際に状態ファイルにデタッチされるまで作成されません。  Geode が状態ファイルから復元された場合、そのファイルは Geode が再びアタッチ解除されるまで存在します。 閉じられた(状態にデタッチされていない)geodeは、以前のデタッチ中に作成された状態ファイルをすべて削除します。 状態にデタッチされた Geode は、必要に応じてその状態ファイルを作成または修正します。</P>
+<P>アプリケーションの状態(起動方法)は<CODE>GAI_状態</CODE>フィールドに表示されます。このフィールドは、GenApplicationオブジェクトの アプリケーションの状態を取得するには<CODE>MSG_GEN_APPLICATION_GET_STATEメッセージ</CODE>の値を返します。<CODE>ApplicationStates</CODE>このメッセージが最も頻繁に使用されるのは、プロセスオブジェクトが<CODE>MSG_GEN_PROCESS_CLOSE_APPLICATION(プロセスクローズアプリケーション)</CODE>プロセス・オブジェクトはGenApplicationを照会し、AS_QUOTING状態かどうかを調べます。</P>
+<P>上記の状態保存機能に加えて、カーネルは状態ファイルとメモリーの間でハンドルを変換する2つのルーチンを提供します。<CODE>ObjMapSavedToState()</CODE>はオブジェクトブロックのメモリハンドルを取得し、対応する状態ファイルのVMブロックハンドルを返す。<CODE>ObjMapStateToSaved()</CODE>は状態ファイルのVMブロックハンドルを取り、対応するメモリブロックハンドルがあればそれを返す。</P>
+<P>アプリケーションの文書がVMファイルであれば、文書の状態を保存するのは非常に簡単です。 実際、GenDocumentコントロール・オブジェクトと文書コントロール・オブジェクトを使用すれば、文書の状態を保存してくれます。 VMファイルのVMA_BACKUPフラグが<CODE>VMAttributes</CODE>を呼び出します。<CODE>VMUpdate()を実行します。</CODE>をクリックします。 (注意--<CODE>VMSave()</CODE>バックアップは消去され、ユーザーによるドキュメントへの変更はロックされます)。 GEOS VMファイルを使用していない場合、ドキュメントの状態を保存する方法と保存するかどうかはユーザーが決定します。 GEOS VMファイルの詳細については、を参照してください。<A HREF="../../Memory/VM/index.htm">VMの章</A>ボタンをクリックし</P><HR>
+          <A NAME="Geodes_6.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1.5人<A HREF="#Geodes_1.htm"> Geode </A>:他の Geode を使用する</H3>
+<P>多くの場合、 Geode では他の Geode を使用する必要があります。 たとえば、通信プログラムはシリアルドライバを使用し、描画アプリケーションはグラフィックオブジェクトライブラリを使用します。 通常、これはコンパイラとリンカによって処理されます。<STRONG CLASS="fileName">gocと入力します。</STRONG>および<STRONG CLASS="fileName">gpファイル</STRONG>ファイル。</P>
+<P>ただし、アプリケーションがライブラリやドライバをその場でロードして、後で解放しなければならない場合もあります。 このセクションでは、ライブラリとドライバをロード、使用、および解放する方法について説明します。</P>
+
+<H4 CLASS="HeadingC">ライブラリの使用</H4>
+<PRE>GeodeUseLibrary x、GeodeFreeLibrary x</PRE>
+<P><A NAME="Geodes_6.htm_IX_Libraries:loading dynamically"></A>ライブラリは、常にファイル名または Geode ハンドルによって参照されます。 しかし、ライブラリーをロードするときには、ライブラリーのファイル名を使用するのが最も簡単です。 geodeで使用するためにライブラリをロードする必要があるのは珍しいことです。ほとんどの場合、ライブラリを<STRONG CLASS="fileName">gocと入力します。</STRONG>および<STRONG CLASS="fileName">gpファイル</STRONG>ファイルをロードし、システムにライブラリを自動的にロードさせてリンクさせます。 (これを行うには、ライブラリのインタフェース定義ファイルをコードファイルに含め、ライブラリのgeode名をgeodeパラメータファイルにリストします)。</P>
+<P><A NAME="Geodes_6.htm_IX_GeodeUseLibrary()"></A>ただし、ライブラリを動的にロードする必要がある場合は<CODE>GeodeUseLibrary()</CODE>このルーチンは、ライブラリに必要なプロトコル番号を取得します(<A HREF="#Geodes_9.htm_74509">プロトコル番号</A>)とライブラリgeodeのファイル名を指定します。 ライブラリがロードされていない場合は、ライブラリを検索してロードします。 ライブラリが既にロードされている場合は、ライブラリの参照カウントが増分されます。<A NAME="Geodes_6.htm_IX_GeodeFreeLibrary()"></A>でロードされたライブラリの使用が終了した場合<CODE>GeodeUseLibrary()</CODE>を使用してライブラリのインスタンスを解放する必要があります。<CODE>GeodeFreeLibrary()</CODE>ボタンをクリックし</P>
+
+
+<H4 CLASS="HeadingC">ドライバの使用</H4>
+<PRE>GeodeUseDriver()、GeodeInfoDriver()、GeodeGetDefaultDriver()、GeodeSetDefaultDriver()、GeodeFreeDriver()</PRE>
+<P><A NAME="Geodes_6.htm_IX_Drivers"></A>ドライバは、その永続的な名前または Geode ハンドルによって参照されます。 アプリケーションが使用するほとんどのドライバは、カーネルによって自動的にロードされます。アプリケーションは<STRONG CLASS="fileName">gpファイル</STRONG>ファイルを開きます。 ただし、アプリケーションがパラメータファイルに含まれていないドライバを使用する必要がある場合は、次に説明するルーチンを使用して使用できます。</P>
+<P><A NAME="Geodes_6.htm_IX_GeodeUseDriver()"></A>ドライバを使用する必要がある場合は<CODE>GeodeUseDriver()</CODE>ルーチンがその Geode 座標系を検索してロードし、アクティブな Geode 座標系のリストに追加します。 目的のドライバgeodeのファイル名と、ドライバのプロトコルレベルを渡す必要があります。 ルーチンは、ドライバのgeodeハンドルを返します。<A NAME="Geodes_6.htm_IX_GeodeFreeDriver()"></A>ドライバを動的にロードする場合は<CODE>GeodeFreeDriver()</CODE>geodeがシャットダウンするか、またはドライバの使用を終了したとき。</P>
+<P><A NAME="Geodes_6.htm_IX_GeodeInfoDriver()"></A>ドライバーの Geode ハンドルを知っていれば、ルーチンを使って簡単に情報を取得できます。<CODE>GeodeInfoDriver()</CODE>ボタンをクリックし<A NAME="Geodes_6.htm_IX_DriverInfoStruct"></A>型の構造体を返します。<CODE>DriverInfoStruct</CODE>これにはドライバのタイプ(<CODE>ドライバの種類</CODE>)、ドライバーの属性、およびドライバーのストラテジー・ルーチンへのファー・ポインターがあります。 多くのドライバタイプには、拡張された情報構造があります。<CODE>DriverInfoStruct</CODE>は最初のフィールドにすぎません。 例えば、ビデオドライバ情報構造は、それらが駆動する特定のデバイスの寸法およびカラー機能(とりわけ)も含む。 ドライバ情報の構造を以下に示します。</P>
+<PRE>typedef struct{void(*DIS_strategy)();DriverAttrs DIS_driverAttributes;driverType DIS_driverType;}DriverInfoStruct;</PRE>
+<P><A NAME="Geodes_6.htm_IX_DIS_&ldots;  (DriverInfoStruct structure)"></A>の<CODE>分散戦略</CODE>フィールドには、固定メモリー内のドライバーのストラテジー・ルーチンへのポインターが入ります。 ドライバがロードされた後、その戦略ルーチンはドライバ関数名で直接呼び出されます。</P>
+<P><A NAME="Geodes_6.htm_IX_DriverAttrs"></A>の<CODE>ディスdriverAttributes</CODE>タイプの属性レコード<CODE>DriverAttrs</CODE>のフラグは次のとおりです。</P>
+<DL>
+<DT>DAファイルシステム</DT><DD><A NAME="Geodes_6.htm_IX_DA_&ldots;"></A>このフラグは、ドライバがファイルアクセスに使用されていることを示します。</DD>
+<DT>文字</DT><DD>このフラグは、ドライバがキャラクタ指向デバイス用に使用されていることを示します。</DD>
+<DT>DA_HAS_EXTENDED_INFO(拡張情報あり)</DT><DD>このフラグは、ドライバが<CODE>DriverExtendedInfo</CODE>構造。</DD>
+</DL>
+<P>の<CODE>DISドライバタイプ</CODE>には、情報構造体によって記述されるドライバのタイプが格納されます。 このフィールドで指定できるタイプは次のとおりです。</P>
+<DL>
+<DT>ドライバ・タイプ・ビデオ</DT><DD><A NAME="Geodes_6.htm_IX_DRIVER_TYPE_&ldots;"></A>これはビデオドライバに使用されます。</DD>
+<DT>ドライバ・タイプ入力</DT><DD>これは入力(マウス、キーボード、ペンなど)ドライバに使用されます。</DD>
+<DT>ドライバ・タイプ・マス・ストレージ</DT><DD>これは、ストレージデバイスドライバに使用されます。</DD>
+<DT>ドライバ・タイプ・ストリーム</DT><DD>これはストリームおよびポート(パラレル、シリアル)ドライバに使用されます。</DD>
+<DT>ドライバ・タイプ・フォント</DT><DD>これは、ドライバのフォントラスタライズに使用されます。</DD>
+<DT>ドライバ・タイプ出力</DT><DD>ビデオドライバとプリンタドライバ以外の出力ドライバに使用されます。</DD>
+<DT>ドライバ・タイプ・ローカライゼーション</DT><DD>これは、国際化を促進するドライバに使用されます。</DD>
+<DT>ドライバ・タイプ・ファイル・システム</DT><DD>これはファイルシステムドライバに使用されます。</DD>
+<DT>ドライバ・タイプ・プリンタ</DT><DD>これはプリンタドライバに使用されます。</DD>
+<DT>ドライバ・タイプ・スワップ</DT><DD>これは、システムのメモリスワッピングドライバに使用されます。</DD>
+<DT>ドライバの種類電源管理</DT><DD>これは、電力管理システムを備えたデバイスに使用されます。</DD>
+<DT>ドライバ・タイプ・タスク・スイッチ</DT><DD>これは、タスクスイッチャを持つデバイスまたはシステムに使用されます。</DD>
+<DT>ドライバ・タイプ・ネットワーク</DT><DD>これは、ドライバ機能を必要とする特殊なネットワークに使用されます。</DD>
+</DL>
+<P>ドライバにその機能の1つを実行させたい場合は、その戦略ルーチンを呼び出す必要があります。 ストラテジー・ルーチンは通常、いくつかのパラメーターを取りますが、そのうちの1つは、ドライバーが実行すべき機能です。 の<CODE>DriverInfoStruct</CODE>には戦略ルーチンへのfarポインタが含まれています。アプリケーションはこのfarポインタを保存し、ドライバの関数の1つが必要になったときにはいつでも直接呼び出す必要があります。 ただし、ドライバはロードされるたびに別の場所に置かれる可能性があるため、状態ファイルにポインタを保存しないでください。 ドライバに直接アクセスするこのスキームは、アセンブリ言語でのみ実装できることに注意してください。 ドライバの中には、標準のドライバインタフェースだけでなく、ライブラリインタフェースも提供しているものがあります。これにより、ルーチンをCで作成できます。</P>
+<P>ジオス<A NAME="Geodes_6.htm_IX_GeodeDefaultDriverType"></A>は、システム全体のデフォルトドライバを保持します。 デフォルトドライバの種類については<CODE>GeodeDefaultDriverType</CODE>;すべてのタイプを以下に示します。 これらは、システムで使用されるドライバの各カテゴリのデフォルトがGEOS.INIファイルに格納されているため、デフォルトドライバと呼ばれます。 GEOSは、起動時に各カテゴリのデフォルトドライバをロードします。</P>
+<DL>
+<DT>GDDTファイルシステム</DT><DD>ジオス<A NAME="Geodes_6.htm_IX_GDDT_&ldots;"></A>では、実行中に複数のファイルシステムドライバが使用される場合があります。 ファイルシステムドライバは、GEOSが特定のDOS(または代替ファイルアクセスシステム)で動作することを可能にします。 プライマリドライバは、デフォルトドライバと見なされます。</DD>
+<DT>GDDT_キーボード</DT><DD>システムは、実行中に1つのキーボードドライバしか使用しない場合があります。通常、キーボードは国によって異なります。 すべてのシステムにキーボードが付いているわけではありません。</DD>
+<DT>GDDT_マウス</DT><DD>マウスは、システムが画面に表示されたときに使用できる必要があります。ユーザは、GEOSを実行するたびにマウスドライバを手動でロードする必要はありません。 すべてのシステムにマウスがあるわけではありません。</DD>
+<DT>GDDTビデオ</DT><DD>GEOSは、それ自体を表示しようとする前に、使用するビデオドライバのタイプを認識している必要があります。</DD>
+<DT>GDDTメモリビデオ</DT><DD>Vidmemドライバは、メモリ(つまりビットマップ)に描画するビデオドライバです。 主に印刷に使用されますが、ビットマップの編集にも使用されます。</DD>
+<DT>GDDT電源管理</DT><DD>ハードウェア電源管理システムを使用しているマシンもいくつかあります(最も顕著なのは、パームトップやノートパソコンなどのマシンです)。 GEOSが電源管理ハードウェアを正しく処理するには、起動時にドライバをロードする必要があります。 (ほとんどのマシンはこのタイプのドライバを使いません)。</DD>
+<DT>GDDTタスク</DT><DD>一部のシステムではタスクスイッチャを使用します。GEOSをこれらのいずれかのタスクにするには、デフォルトのタスクドライバが必要です。</DD>
+</DL>
+<P><A NAME="Geodes_6.htm_IX_GeodeGetDefaultDriver()"></A>GEOSが使用しているデフォルトを取得するには、ルーチンを呼び出します。<CODE>GeodeGetDefaultDriver()</CODE>適切なドライバ・タイプ(<CODE>GeodeDefaultDriverType</CODE>)をクリックします。 このルーチンは、そのタイプのデフォルトドライバのgeodeハンドルを返します。<A NAME="Geodes_6.htm_IX_GeodeSetDefaultDriver()"></A>指定したドライバ・タイプの新しいデフォルト・ドライバを設定するには、次のようにします。<CODE>GeodeSetDefaultDriver()</CODE>このルーチンは、geodeハンドルとドライバタイプを受け取り、そのタイプのシステムデフォルトを設定します。 通常、システムのデフォルトは、Preferences Managerアプリケーションによってのみ設定されます。</P>
+
+<HR>
+          <A NAME="Geodes_7.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1.6人<A HREF="#Geodes_1.htm"> Geode </A>:独自のライブラリを作成する</H3>
+<P><A NAME="Geodes_7.htm_IX_.gp files:for libraries[;gp files:for libraries]"></A><A NAME="Geodes_7.htm_IX_Libraries:writing libraries"></A>ライブラリgeodeの作成は、通常のアプリケーションを作成するよりも簡単なステップです。 ライブラリは独自のプロセススレッドを持つことも持たないこともできます。ほとんどのライブラリは持っていませんが、持っているライブラリもあります。 ライブラリgeodeを作成するには、次の4つの作業を行う必要があります。</P>
+<UL>
+<LI>geodeをライブラリとして宣言します。<BR>geodeパラメータ(<STRONG CLASS="fileName">gpファイル</STRONG>)ファイルの場合は、geodeの型をlibraryに宣言する必要があります。</LI>
+<LI>エントリポイントルーチンを定義します。<BR>ライブラリを初期化するルーチンを作成します。このルーチンは「エントリポイントルーチン」と呼ばれ、ライブラリがロードされるたびに呼び出されます。</LI>
+<LI>エントリポイントルーチンをエクスポートします。<BR>geodeパラメータに別の行を追加します(<STRONG CLASS="fileName">gpファイル</STRONG>)ファイルを使用して、ライブラリのエントリポイントルーチンをエクスポートします。</LI>
+<LI>geodeの永続的な名前を適切に設定します。<BR>ほとんどのライブラリでは、ライブラリ名の拡張子は「lib」です。 これは、Swatを使用するときにライブラリとして識別するのに役立ちます。 永続的な名前はgeodeパラメータ(<STRONG CLASS="fileName">gpファイル</STRONG>)ファイルを開きます。</LI>
+</UL>
+<P><A HREF="#Geodes_7.htm_94502">ライブラリを定義する-sound.gpファイル</A>に、ライブラリにするためにgeodeのパラメータファイルに加える必要がある3つの変更の例を示します。</P>
+<P CLASS="figTitle">コード表示7-1<A NAME="Geodes_7.htm_94502"></A>ライブラリの定義--sound.gpファイル</P>
+<PRE><A NAME="Geodes_7.htm_IX_sound library:parameters file"></A>#サウンドライブラリのgeodeパラメータファイル#(sound.gp)には、アプリケーションでの表示方法とは異なる次の3行があります。</PRE>
+<PRE>##アプリケーションの場合、geodeの永続的な名前は通常sound.appになります。 ライブラリには通常、名前拡張子として「lib」があります。 #name sound.libと入力します。</PRE>
+<PRE>##geodeの型をライブラリとして宣言します。 アプリケーションには通常、#&quot;プロセス&quot;という側面がありますが、多くのライブラリにはありません。 ライブラリは、#&quot;library&quot;アスペクトを持つように宣言する必要もあります。 (Sound Libraryは、#ドライバの側面とライブラリの側面の両方を持つという点で例外的であることに注意してください。 #typeドライバ,ライブラリ,シングル</PRE>
+<PRE>##geodeのエントリポイントルーチンをエクスポートして、#ライブラリがロードされたときにカーネルがそれを呼び出すようにします。 このルーチンは、geodeのコードのどこかで定義する必要があります。 #標準の#&quot;export&quot;行ではなく、&quot;entry&quot;行でエクスポートされることに注意してください。これは、エクスポートされたルーチンを、一般的なルーチンではなく、#entryポイントとして区別するためです。 #entry SoundEntry</PRE>
+<HR>
+          <A NAME="Geodes_8.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1.7人<A HREF="#Geodes_1.htm"> Geode </A>: Geode を使用する</H3>
+<P>システムには、情報を取得し、 Geode の属性を設定するためのユーティリティルーチンが多数用意されています。 これらは、以降のセクションで大まかに構成されています。</P>
+
+<H4 CLASS="HeadingC">Applicationオブジェクトへのアクセス</H4>
+<PRE>GeodeGetAppObject()</PRE>
+<P>ジオス<A NAME="Geodes_8.htm_IX_Application object:accessing"></A><A NAME="Geodes_8.htm_IX_GeodeGetAppObject()"></A>には、アプリケーションのGenApplicationオブジェクトのoptrを取得するルーチンが用意されています。<CODE>GeodeGetAppObject()</CODE>は、アプリケーションのProcessオブジェクトのプロセスハンドルを取ります。 これは、アプリケーションのGenApplicationオブジェクトのoptrを返します。</P>
+
+
+<H4 CLASS="HeadingC"> Geode の一般情報</H4>
+<PRE>GeodeFind()、GeodeFindResource()、GeodeDuplicateResource()、GeodeGetInfo()、GeodeGetProcessHandle()、GeodeGetCodeProcessHandle()、ProcInfo()</PRE>
+<P><CODE>GeodeFind()</CODE><A NAME="Geodes_8.htm_IX_GeodeFind()"></A>検索対象の永続的な名前と属性を指定すると、geodeのハンドルを返します。 GEOSは、アクティブな Geode リストで、指定された名前と適切な属性のセットまたはクリアを持つ Geode を検索します。</P>
+<P><CODE>GeodeFindResource()</CODE><A NAME="Geodes_8.htm_IX_GeodeFindResource()"></A>特定のリソースをgeodeのファイル内に配置します。 geodeのファイルハンドル、ファイル内のリソースの番号、およびファイルの読み取り/書き込み位置が配置されるリソース内のオフセットを渡す必要があります。 このルーチンは、開いているgeodeファイルでのみ使用でき、リソースのベースオフセットとサイズを返します。 おそらく、このルーチンを使用する必要はありません。<A NAME="Geodes_8.htm_IX_GeodeDuplicateResource()"></A>リソースを新しいメモリブロックにロードするには<CODE>GeodeDuplicateResource()</CODE>ボタンをクリックし</P>
+<P><CODE>GeodeGetInfo()</CODE><A NAME="Geodes_8.htm_IX_GeodeGetInfo()"></A> Geode の柄を取り<A NAME="Geodes_8.htm_IX_GeodeGetInfoType"></A><CODE>GeodeGetInfoType</CODE>パラメータ、および戻り情報に適したバッファです。 この関数は<CODE>GeodeGetInfoType</CODE>パラメータを指定します。 (このパラメータは、geodeに関して検索する情報のタイプを指定します。ルーチンはgeodeの属性、geodeタイプ、リリースレベル、プロトコル、トークンID、または永続的な名前を返すことができます)。 使用可能な値<CODE>GeodeGetInfoType</CODE>を以下に示す:</P>
+<DL>
+<DT>GGITの属性</DT><DD><A NAME="Geodes_8.htm_IX_GGIT_&ldots;"></A>これは、geodeの属性が返されることを示します。</DD>
+<DT>GGITタイプ</DT><DD>これは、geodeの型を返す必要があることを示します(型<CODE>GeodeType</CODE>)をクリックします。</DD>
+<DT>GGIT_ Geode _リリース</DT><DD>これは、geodeのリリース番号を返す必要があることを示します。</DD>
+<DT>GGIT_ Geode _プロトコル</DT><DD>これは、geodeのプロトコル番号を返す必要があることを示します。</DD>
+<DT>GGITトークンID</DT><DD>これは、geodeのトークン情報を返す必要があることを示します。</DD>
+<DT>GGIT_PERM_NAME_AND_EXT</DT><DD>これは、geodeの永続的な名前とエクステンダーが返されることを示します。</DD>
+<DT>GGIT_PERM_NAME_ONLY</DT><DD>これは、geodeの永続的な名前の8文字だけを、エクステンダー文字なしで返す必要があることを示しています。</DD>
+</DL>
+<P><CODE>GeodeGetProcessHandle()</CODE><A NAME="Geodes_8.htm_IX_GeodeGetProcessHandle()"></A>は現在のプロセス(現在のスレッドの所有者)のgeodeハンドルを返す。 もう1つの習慣は<CODE>GeodeGetCodeProcessHandle()</CODE><A NAME="Geodes_8.htm_IX_GeodeGetCodeProcessHandle()"></A>は、呼び出されたコードブロックを所有するgeodeのハンドルを返します。</P>
+<P><CODE>関数ProcInfo()</CODE><A NAME="Geodes_8.htm_IX_ProcInfo()"></A>は、指定されたプロセスの最初のスレッドのスレッドハンドルを返す。</P>
+
+
+<H4 CLASS="HeadingC">Geodeイベントキューの管理</H4>
+<PRE>GeodeAllocQueue x、GeodeFreeQueue x、GeodeInfoQueue x、GeodeFlushQueue x、ObjDispatchMessage x、QueueGetMessage x、QueuePostMessage x、GeodeDispatchFromQueue x</PRE>
+<P><A NAME="Geodes_8.htm_IX_Event queues"></A>次のルーチンは、イベントキューの割り当てと管理を行います。 イベントキューはスレッドとアプリケーションごとに自動的に管理されるため、これらのルーチンがアプリケーションによって呼び出されることはほとんどありません。</P>
+<P><CODE>GeodeAllocQueue()</CODE><A NAME="Geodes_8.htm_IX_GeodeAllocQueue()"></A>はイベントキューを割り当て、そのハンドルを返します。<CODE>GeodeInfoQueue()</CODE><A NAME="Geodes_8.htm_IX_GeodeInfoQueue()"></A>は、指定されたイベントキュー内のイベント数を返す。<CODE>GeodeFreeQueue()</CODE><A NAME="Geodes_8.htm_IX_GeodeFreeQueue()"></A>ルーチンで割り振られたイベント・キューを解放する<CODE>GeodeAllocQueue()</CODE>解放するキューのハンドルを渡す必要があります(キュー内に残っている未処理のイベントは破棄されます)。</P>
+<P><CODE>GeodeFlushQueue()</CODE><A NAME="Geodes_8.htm_IX_GeodeFlushQueue()"></A>1つのキューからすべてのイベントをフラッシュし、それらをすべて別のキューに同期的に配置します(イベントは単にスローアウトされない場合があります)。</P>
+<P><CODE>QueueGetMessage()</CODE><A NAME="Geodes_8.htm_IX_QueueGetMessage()"></A><A NAME="Geodes_8.htm_IX_ObjDispatchMessage()"></A>結合#ゴウ#<CODE>ObjDispatchMessage()</CODE>指定されたイベントキューから最初のイベントを削除し、コールバックルーチンを介して処理します。 メモリ内のコールバックルーチンへのfarポインタを渡す必要があります。 通常、これらはアセンブリでのみ使用されます。<CODE>ObjMessage()</CODE>ただし、このルーチンの他のアプリケーションが使用される場合もあります。 たとえば、サウンドドライバは、オブジェクトやメッセージに関連付けられていないノートキューを使用します。 したがって、コールバック・ルーチンは「イベント」(注)を取得し、メッセージを処理しているふりをします。</P>
+<P><CODE>QueuePostMessage()</CODE><A NAME="Geodes_8.htm_IX_QueuePostMessage()"></A>は、指定したキューにイベントを追加します。</P>
+
+<HR>
+          <A NAME="Geodes_9.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1.8人<A HREF="#Geodes_1.htm"> Geode </A>:Geodeプロトコルとリリースレベル</H3>
+<P><A NAME="Geodes_9.htm_IX_Release number"></A><A NAME="Geodes_9.htm_IX_Protocols:geode"></A>すべてのGEOS geodeおよびVMファイルには、ファイルの拡張属性として、リリースレベルとプロトコルレベルの両方があります。 これらの2つの項目は、アプリケーション、ライブラリ、ドライバ、システムソフトウェアなどに変更が加えられたときに、プログラマとユーザの両方の移行を容易にするのに役立ちます。リリース番号とプロトコル番号を制御するには、GREVツールとREVファイルを使用します。詳細については、を参照してください。<A HREF="../../Tools/Tools/TTools_7.htm">「ツールの使用方法」の章の「Grev」の項</A>ボタンをクリックし</P>
+
+<H4 CLASS="HeadingC">リリース番号</H4>
+<P><A NAME="Geodes_9.htm_IX_FEA_RELEASE"></A>リリース番号は<CODE>リリース番号</CODE>4つのコンポーネントで構成される構造: の<CODE>RN_メジャー</CODE>および<CODE>RN_(該当する場合)</CODE><EM>未成年者</EM>数字が最も重要である。 の<CODE>RN_(該当する場合)</CODE><EM>変化</EM>および<CODE>RN_(該当する場合)</CODE><EM>エンジニアリング</EM>番号はそれほど重要ではなく、主に非リリースまたは実行中のアップグレードタイプのgeodeへの変更を示すために使用されます。<A NAME="Geodes_9.htm_IX_ReleaseNumber"></A>の<CODE>リリース番号</CODE>ファイルのFEA_RELEASE拡張属性に保存されます。その構造を次に示します。</P>
+<PRE>typedef struct{word RN_major;word RN_minor;word RN_change;word RN_engineering;}リリース番号;</PRE>
+<P>リリース番号の内容は特定の Geode に依存し、製品固有です。 リリース番号は、インストール手順中に使用されますが、GEOSでは互換性チェックやその他のファイルの検証には使用されません。</P>
+<P>特定の Geode のリリース番号を取得するには、次のルーチンを使用します。<CODE>GeodeGetInfo()</CODE>リリースレベルはコンパイル時に設定する必要があり、実行時に変更することはできません。</P>
+
+
+<H4 CLASS="HeadingC"><A NAME="Geodes_9.htm_74509"></A>プロトコル番号</H4>
+<P><A NAME="Geodes_9.htm_IX_FEA_PROTOCOL"></A>プロトコル番号はタイプの構造体である。<CODE>プロトコル番号(ProtocolNumber)</CODE>ファイルのFEA_PROTOCOL拡張属性に保存されます。 各GEOS Geode およびデータファイルには、プロトコルレベルが関連付けられています。 プロトコルレベルは、 Geode とドキュメントの両方の互換性チェックに使用されます。</P>
+<P><A NAME="Geodes_9.htm_IX_ProtocolNumber"></A>の<CODE>プロトコル番号(ProtocolNumber)</CODE>構造は、メジャープロトコルとマイナープロトコルの2つの部分で構成されています。 この構造を次に示します。</P>
+<PRE>typedef struct{word PN_major;word PN_minor;}プロトコル番号;</PRE>
+<P>プロトコルレベルの違いは、2つの Geode 間、 Geode とそのドキュメント形式間、または Geode とその状態ファイル形式間の非互換性を示します。 主要なプロトコルが異なる場合、2つの項目はまったく互換性がありません(特別な規定がない限り)。 マイナープロトコルが予想よりも大きい場合、何らかの非互換性が存在する可能性がありますが、プログラムには影響しません。 変更が行われるたびに、geodeまたはドキュメントのプロトコルを増分する必要があります。</P>
+<P><A NAME="Geodes_9.htm_IX_Libraries:protocol numbers"></A>ライブラリへの変更に上位互換性がある場合、マイナープロトコルだけをインクリメントする必要があります。 例えば、ライブラリが新しい関数を獲得したが、ライブラリのエントリポイントが乱されていない場合、マイナープロトコルはインクリメントされ、メジャープロトコルはそのままにされるべきである。 ただし、新しい関数によってエントリポイント番号が再配置される場合は、メジャープロトコルも増分する必要があります。</P>
+<P>変更がアプリケーションの状態ファイルに影響する場合は常に、アプリケーションのプロトコルを増やす必要があります。 たとえば、ユーザーが古い状態ファイルを持っている場合に、アプリケーションに変更を加えると、アプリケーションの変更が古い情報で置き換えられるか、状態ファイルに互換性がなくなり、予測できない結果になります。 アプリケーションへの変更が単に機能的なものである場合は、マイナープロトコルを増分します。 変更がUIリソースのいずれかの部分、または状態ファイルに保存されたその他の項目に対するものである場合は、メジャープロトコルを増分します。 マイナープロトコルが異なる場合は状態ファイルがロードされ、メジャープロトコルが異なる場合は無視されます。</P>
+<P>アプリケーションのドキュメント形式が変更された場合は、新しいドキュメントが古いアプリケーションによってロードされていないこと、またはその逆でないことを確認する必要があります(必要な変換手順を実行しない限り)。 ドキュメントを開くときに、ドキュメントファイルの拡張属性FEA_PROTOCOLをチェックすることで、そのプロトコルをチェックできます。 プロトコルレベルを変更する必要がある場合(もちろん、変換が完了した後)、FEA_PROTOCOLを設定して変更できます(「<A HREF="../../Files/FileSys/index.htm">「ファイルシステム」の章</A>」を参照してください。</P><P>次に、マイナープロトコルとメジャープロトコルを増分する場合の例をいくつか示します。 このリストは決して網羅的なものではないことに注意してください。</P>
+<UL>
+<LI>ドキュメントフォーマットにデータ構造を追加し、古いバージョンのアプリケーションでもドキュメントを開くことができる場合は、ドキュメントのマイナープロトコルのみを増分します。</LI>
+<LI>ドキュメントに保存されるオブジェクトのインスタンスデータ構造を変更する場合は、新しいメソッドが古いオブジェクトのデータにアクセスするために間違ったオフセットを使用するため、メジャープロトコルを増分します。</LI>
+<LI>アプリケーションに新しいクラスを追加し、他のクラスのエントリポイントを妨害しない場合(つまり、最後にクラスを追加する場合)は、マイナープロトコルのみをインクリメントします。</LI>
+<LI>新しいクラスを追加して、エントリポイントを妨害する場合は、メジャープロトコルを増分します。</LI>
+<LI>リソースを追加または削除する場合は、メジャープロトコルを増分します。</LI>
+<LI>状態ファイルに保存されるチャンクまたはオブジェクトをリソースに追加する場合は、メジャープロトコルを増分します。</LI>
+<LI>オブジェクトのフラグを変更する場合(例えば、ignore-dirtyとマークする)、メジャープロトコルをインクリメントします。 それ以外の場合は、状態ファイルからフラグが復元され、変更内容が上書きされます。</LI>
+</UL>
+
+<HR>
+          <A NAME="Geodes_a.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:1.9人<A HREF="#Geodes_1.htm"> Geode </A>キーを押します<A NAME="Geodes_a.htm_50456"></A>一時的な Geode メモリ</H3>
+<PRE>GeodePrivAlloc x、GeodePrivFree x、GeodePrivWrite x、GeodePrivRead x</PRE>
+<P><A NAME="Geodes_a.htm_IX_Private data"></A>システム内のすべての Geode には「プライベートデータ」領域があり、この領域はコアブロック内に確保されています。 このプライベートデータは、図書館のクライアントがそれぞれ、図書館によって操作される特定のデータ構造の独自のコピーを使用するときに、主に図書館 Geode によって使用される。 プライベートデータメカニズムは、のGEOS実装で使用されます。<CODE>関数malloc()</CODE>、たとえば(ただし、使用するためにこれを知る必要はありません)<CODE>関数malloc()</CODE>)をクリックします。</P>
+<P>プライベート・メモリは、ライブラリによって割り当て、書き込み、読み取り、解放されます。 ライブラリは、各geodeにブロックを割り当てて独自のハンドルテーブルを維持する必要はありません。<CODE>GeodePriv…………………………………</CODE>ルーチンが自動的にこれを管理します。</P>
+<P><CODE>GeodePrivAlloc()</CODE><A NAME="Geodes_a.htm_IX_GeodePrivAlloc()"></A>は、システム内のすべての Geode のプライベートデータ内のライブラリに対して、指定された数の連続する単語を予約します。 メモリ空間は予約されますが、実際には特定のgeodeが使用される(書き込まれる)まで割り当てられません。これは最適化の目的で行われます。 このルーチンは、予約語の開始位置を示すタグを返します。 このタグは、プライベートデータの読み取り、書き込み、または解放の際に使用されます。 メモリを割り当てることができなかった場合、ルーチンは0を返します。</P>
+<P><CODE>GeodePrivWrite()</CODE><A NAME="Geodes_a.htm_IX_GeodePrivWrite()"></A>および<A NAME="Geodes_a.htm_IX_GeodePrivRead()"></A><CODE>GeodePrivRead()</CODE>プライベート・データ・スペースへの書き込み、およびプライベート・データ・スペースからの読み取り これらは同じようなパラメータを取ります。geodeハンドル<CODE>GeodePrivAlloc()</CODE>、書き込みまたは読み取りの対象となるワードの総数、およびロックされたバッファまたは固定バッファへのポインタ。 イン(In)<CODE>GeodePrivWrite()</CODE>を指定すると、書き込まれる単語を含むバッファが渡されます。<CODE>GeodePrivRead()</CODE>の場合、バッファは空の状態で渡され、読み込んだ単語を含んだ状態で返されます。</P>
+<P>通常、渡されるgeodeハンドルは0です。これは、現在のプロセス(ライブラリの現在のクライアント)が、影響を受けるプライベートデータの所有者であることを示します。 ライブラリ・コードは特定のアプリケーションのスレッドで実行されるため、プライベート・データが影響を受けるのはアプリケーションgeodeだけです。 したがって、ライブラリは同じコードを使用して、それを使用する Geode ごとに異なるデータを格納できます。ライブラリも Geode も、他の Geode も同じルーチンを使用していることを知る必要はありません。</P>
+<P><CODE>GeodePrivFree()</CODE><A NAME="Geodes_a.htm_IX_GeodePrivFree()"></A>は、指定された数の単語をすべての Geode のプライベートデータから解放します。 これに渡す必要があるのは、解放する単語の数と<CODE>GeodePrivAlloc()</CODE>ボタンをクリックし</P>
+<HR>
+          <A NAME="Geodes_b.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:2枚<A NAME="Geodes_b.htm_46120"></A>アイコンの作成</H2>
+<P><A NAME="Geodes_b.htm_IX_Tokens:icons"></A>すべての Geode にはアイコンを関連付けることができます。 通常、特殊なアイコンを持つのはアプリケーションだけです。その他の Geode (ライブラリおよびドライバ)では、通常、システムアイコンの1つ、または主に使用するアプリケーションのアイコンを使用します。</P>
+<P>アプリケーションのアイコンは、次の2つの場所に保存されます。 これは、アプリケーションの.GEOファイル内の拡張属性内で定義および保存されます。 また、UIによって管理されるデータベースファイルにも保存されます。<EM>トークン・データベース</EM>ボタンをクリックし</P>
+<P>GEOS開発キットにはアイコンエディタツールが含まれているため、さまざまな色や解像度のアイコンを簡単に作成して、アプリケーションにインストールできます。</P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_c.htm">トークン・データベース</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_d.htm">トークン・データベース・ファイルの管理</A>
+        </P>
+<HR>
+          <A NAME="Geodes_c.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:2.1人<A HREF="#Geodes_b.htm">アイコンの作成</A>:トークン・データベース</H3>
+<PRE>TokenOpenLocalTokenDB x、TokenCloseLocalTokenDB x</PRE>
+<P><A NAME="Geodes_c.htm_IX_Tokens:database"></A>トークン・データベースは、独自のファイルに保管されます。 各エントリは、任意の数のファイルで使用できる1つのアイコンまたは一連のアイコンを表します。 トークン・データベース・ファイルはUIとカーネルによって管理されます。その内部に直接アクセスする理由はないはずですし、ほとんどのアプリケーションは、ドキュメント・アイコンをインストールするため以外にトークン・ルーチンを使用する必要はありません。</P>
+<P>システムによっては、トークンデータベースファイルを共有している場合があります。これは、INIファイルキーによって制御されます。<CODE>sharedTokenDatabase</CODE>見出しページを開きます。<CODE>パスぱす</CODE>見出しページを開きます。 ほとんどの場合、共有データベース・ファイルはネットワーク・ドライブ上に存在し、ローカル・トークン・データベースで補足されます。デフォルトでは、共有データベース・ファイルが存在する場合、読取り/書込みローカル・ファイルに加えて読取り専用で開かれます。<A NAME="Geodes_c.htm_IX_TokenOpenLocalTokenDB()"></A><A NAME="Geodes_c.htm_IX_TokenCloseLocalTokenDB()"></A>ただし、ルーチンを使用して開いたり閉じたりできるのは、ローカル・データベース・ファイルだけです。<CODE>TokenOpenLocalTokenDB()</CODE>および<CODE>TokenCloseLocalTokenDB()</CODE>ボタンをクリックし</P>
+<P>すべてのGEOSファイルにはトークンがあります。 トークンは、トークン・データベースへのインデックスです。 GeoManagerはディレクトリをスキャンするときに、各ファイルからトークンを取得し、トークン・データベース・ファイルを検索します。 一致が見つかった場合、GeoManagerは適切なアイコンを選択して表示します。一致が見つからない場合、またはファイルのトークンが無効な場合、GeoManagerはアプリケーションをエンジンモードで起動し、データベースにトークンをインストールするように要求します。</P>
+<P>GE OS以外のファイルの場合、GeoManagerはファイル名の3つの拡張子文字を擬似インデックスとして使用します。 各拡張子(.COM、.EXE、.DOC、.BATなど)に対して、GeoManagerは1つのアイコンを使用します。 どちらのアイコンを使用するかは、ユーザが希望すればGEOS.INIファイルで設定できますが、GeoManagerは通常、デフォルトのDOSアイコン(実行可能ファイル用と非実行可能ファイル用の2つのアイコン)を選択します。</P>
+<P><A NAME="Geodes_c.htm_IX_GeodeToken"></A>トークン・データベースへのインデックスは2つの部分で構成され、次のタイプになります。<CODE>GeodeToken</CODE>この構造体には、4つのテキスト文字と、geodeの製造元の製造元ID番号が含まれています。 構造体の定義を次に示します。</P>
+<PRE>typedef struct{TokenChars GT_chars;ManufacturerID GT_manufID;}GeodeToken;</PRE>
+<PRE>typedef char TokenChars[TOKEN_CHARS_LENGTH];</PRE>
+<P>この構造は自動的に作成され、geodeの<STRONG CLASS="fileName">geoと入力します</STRONG>Glueリンカは、geodeのgeodeパラメータ(<STRONG CLASS="fileName">gpファイル</STRONG>)ファイルを開きます。 から使用される2つのフィールド<STRONG CLASS="fileName">gpファイル</STRONG>ファイルは<CODE>tokenchars</CODE>4文字と<CODE>tokenid</CODE>メーカーID用。</P>
+<P>ア<CODE>GeodeToken</CODE>トークン・データベース・ファイルの構造は、GeoManagerがディレクトリーをスキャンするときにも入力されます。 特定のアプリケーションのヘッダーが<STRONG CLASS="fileName">geoと入力します</STRONG>ファイルに認識されたトークンがない場合、GeoManagerはアプリケーションを「エンジン」モードで起動し、GenApplicationオブジェクトをロードします。 次に、アプリケーションオブジェクトがそのアイコンをトークンデータベースファイル(<CODE>GenApplicationClass</CODE>を参照してください)。</P>
+<P>トークン・データベース・ファイルには、インストールされているトークンごとに1つのエントリーが含まれています。 新しいトークンとアイコンが検出されるたびに、UIによって新しいエントリが追加されます。 これは、GeoManagerがディレクトリをスキャンするときに自動的に行われます。</P>
+<HR>
+          <A NAME="Geodes_d.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:2.2人<A HREF="#Geodes_b.htm">アイコンの作成</A>:トークン・データベース・ファイルの管理</H3>
+<PRE>TokenDefineToken x、TokenGetTokenInfo x、TokenLookupMoniker x、TokenLoadMonikerBlock x、TokenLoadMonikerChunk x、TokenLoadMonikerBuffer x、TokenRemoveToken x、TokenLoadTokenBlock x、TokenLoadTokenChunk x、TokenLoadTokenBuffer x、TokenLockTokenMoniker x、TokenUnlockTokenMoniker x、TokenGetTokenStats x、TokenListTokens x</PRE>
+<P>ほとんどの場合、アイコン・ツールを使ってアプリケーションのアイコンを作成すれば、そのことを気にする必要はありません。 ただし、次のルーチンを使用すると、トークン・データベースのエントリーを追加、変更、アクセス、および削除できます。</P>
+<P><CODE>TokenLoadTokenBlock()</CODE><A NAME="Geodes_d.htm_IX_TokenLoadTokenBlock()"></A><A NAME="Geodes_d.htm_IX_TokenLoadTokenChunk()"></A><CODE>TokenLoadTokenChunk()</CODE>、および<CODE>TokenLoadTokenBuffer()</CODE><A NAME="Geodes_d.htm_IX_TokenLoadTokenBuffer()"></A>ロード<CODE>TokenEntry</CODE>構造体をメモリ(新たに割り当てられたブロック、新たに割り当てられたチャンク、またはロックされたバッファ)に格納する。 の<CODE>TokenEntry</CODE>構造体には、トークン、geodeのリリース番号、およびgeodeのプロトコル番号に関する情報が含まれています。 この構造体には、実際にはアイコンに使用される名前は含まれていません。</P>
+<P><CODE>TokenLookupMoniker()</CODE><A NAME="Geodes_d.htm_IX_TokenLookupMoniker()"></A>表示タイプ(CGA、EGA、VGAなど)を指定して、トークンエントリの特定の名前を取得します。<CODE>GeodeToken</CODE>構造、および検索フラグ。 モニカが見つかった場合、モニカのエントリ識別子(データベースグループとID番号)が返されます。 これらの戻り値を使用して、モニカをメモリにロックすることができます(以下を参照)。</P>
+<P><CODE>TokenLockTokenMoniker()</CODE><A NAME="Geodes_d.htm_IX_TokenLockTokenMoniker()"></A>は、そのエントリ識別子を指定して、モニカをメモリにロックします。 このルーチンは、ロックされたブロックへのポインタと、ロックされたモニカを含むチャンクのチャンクハンドルを返します。 モニカは、描画される前に常にロックされている必要があります。これにより、アクセス中にメモリ内で移動することがなくなります。<A NAME="Geodes_d.htm_IX_TokenUnlockTokenMoniker()"></A>ルーチン<CODE>TokenUnlockTokenMoniker()</CODE>モニカのセグメントアドレスを指定すると、以前にロックされたモニカのロックが解除されます。 これにより、個々のモニカだけでなく、ブロック全体のロックが解除されます。</P>
+<P><CODE>TokenLoadMonikerBlock()</CODE><A NAME="Geodes_d.htm_IX_TokenLockMonikerBlock()"></A><A NAME="Geodes_d.htm_IX_TokenLoadMonikerChunk()"></A><CODE>TokenLoadMonikerChunk()</CODE>、および<CODE>TokenLoadMonikerBuffer()</CODE><A NAME="Geodes_d.htm_IX_TokenLoadMonikerBuffer()"></A>トークンデータベースファイルから特定のモニカをメモリにロードします(新しく割り当てられたブロック、新しく割り当てられたチャンク、またはロックされたバッファにロードします)。 以下と同じパラメータを取ります。<CODE>TokenLookupMoniker()</CODE>ロードされたモニカのハンドルとチャンクハンドルを返します。 このルーチンを使用する場合は<CODE>TokenLockTokenMoniker()</CODE>ボタンをクリックし</P>
+<P><CODE>TokenGetTokenInfo()</CODE><A NAME="Geodes_d.htm_IX_TokenGetTokenInfo()"></A>トークンが渡されると、そのトークンを検索します。<CODE>tokenchars</CODE>および<CODE>tokenid</CODE>トークンのフラグを返します。 渡された特性を持つトークンが存在しない場合は、エラーフラグが返されます。</P>
+<P><CODE>TokenDefineToken()</CODE><A NAME="Geodes_d.htm_IX_TokenDefineToken()"></A>は、新しいトークンとそのモニカ・リストをトークン・データベースに追加します。指定されたトークンがすでに存在する場合は、新しいトークンが古いトークンを置き換えます。 トークン識別子(<CODE>tokenchars</CODE><CODE>tokenid</CODE>)、モニカリストのハンドルとチャンクハンドル、および新しいトークンのフラグを渡す必要があります。</P>
+<P><CODE>TokenRemoveToken()</CODE><A NAME="Geodes_d.htm_IX_TokenRemoveToken()"></A>指定したトークンとそのモニカ・リストをトークン・データベース・ファイルから削除します。 トークンが正常に削除されたかどうかを示すフラグのみを返します。</P>
+<P><CODE>TokenListTokens()</CODE><A NAME="Geodes_d.htm_IX_TokenListTokens()"></A>トークン・データベース内のトークンのリストを返します。 次の3つの引数が渡されます。</P>
+<UL>
+<LI>のセット<CODE>TokenRangeFlags</CODE>これは、どのトークンを返すかを指定します。 次のフラグを使用できます。</LI>
+</UL>
+<DL>
+<DT>TRF_ONLY文字列</DT><DD>GStringで定義されたトークンのみを返します。</DD>
+<DT>TRF_ONLY_PASSED_MANUFID</DT><DD>渡された製造元のIDと一致するトークンのみを返します。</DD>
+<UL>
+<LI>ヘッダー用に予約するバイト数。</LI>
+<LI>製造元ID。 TRF_ONLY_PASSED_MANUFIDが渡されなかった場合、このフィールドは無視されます。</LI>
+</UL>
+</DL>
+<P><CODE>TokenListTokens()</CODE>はグローバルメモリブロックを割り当て、指定されたすべてのトークンをそのブロックにコピーします。 ブロックの先頭に空白を残します。このスペースは、2番目の引数で指定されたサイズです。 ブロックの残りの部分は<CODE>GeodeToken</CODE>構造。<CODE>TokenListTokens()</CODE>はdwordを返す。 戻り値の下位ワードはグローバルメモリブロックのハンドルであり、上位ワードはグローバルメモリブロックの数である。<CODE>GeodeToken</CODE>ブロック内の構造。</P>
+<HR>
+          <A NAME="Geodes_e.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:3ユーザー・オプションの保存</H2>
+<P>ほとんどすべてのユーザーは、背景のビットマップを設定するか、デフォルトのフォントを選択するかにかかわらず、自分の好みに合わせてシステムを設定することを楽しんでいます。 したがって、ほとんどのアプリケーションでは、ユーザーがアプリケーションのさまざまなオプションを選択して保存する方法を提供する必要があります。</P>
+<P>汎用オブジェクトには、この機能が組み込まれています。 保存オプションを設定すると、保存されたオプションが自動的に設定および維持され、アプリケーションの起動時にオプションが適切に設定されるようになります。 ただし、UIオブジェクトによって管理されない追加のオプションを設定したい場合もあります。 これはGEOSで行うのは難しくありません。 アプリケーションのオプションをローカル初期化ファイルGEOS.INIに直接保存できます。</P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_f.htm">汎用オブジェクト・オプションの保存</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_10.htm">GEOS.INIファイル</A>
+        </P>
+<HR>
+          <A NAME="Geodes_f.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:3.1人<A HREF="#Geodes_e.htm">ユーザー・オプションの保存</A>:汎用オブジェクトオプションの保存</H3>
+<P>すべての適切な汎用UIオブジェクトには、オプションを保存する機能があります。 例えば、プロパティGenInteractionは、ユーザが「オプション保存」トリガを押したときに、そのオプションのどれがオンでどれがオフであるかを保存することができる。</P>
+<P>汎用オブジェクトオプションを保存するには、次の2つの基本的な操作を行う必要があります。</P>
+<UL>
+<LI>オプションメニューを作成する<BR><A NAME="Geodes_f.htm_IX_GIGT_OPTIONS_MENU"></A>通常は、ユーザオプションのメニューを作成します。 このメニューは、に示すように、タイプGIGT_OPTIONS_MENUで宣言する必要があります。<A HREF="#Geodes_f.htm_86055">汎用オブジェクト・オプションの保存</A>ボタンをクリックし</LI>
+<LI>特殊GCNリストを使用する<BR><A NAME="Geodes_f.htm_IX_GAGCNLT_STARTUP_LOAD_OPTIONS"></A>オプションを保存するすべてのオブジェクトは、アプリケーションのGenApplicationオブジェクトの特別なGCNリストに配置する必要があります。 リスト・タイプは、GAGCNLT_STARTUP_LOAD_OPTIONS(アプリケーションの起動時にオプションをロードする必要がある場合)または<A NAME="Geodes_f.htm_IX_GAGCNLT_SELF_LOAD_OPTIONS"></A>GAGCNLT_SELF_LOAD_OPTIONS(オブジェクトが必要と判断したとき、通常はオブジェクトが最初に表示されたときにオプションをロードする必要がある場合)。</LI>
+</UL>
+<P><A HREF="#Geodes_f.htm_86055">汎用オブジェクト・オプションの保存</A>に、オプションを保存するためのオブジェクトの宣言方法の例を示します。</P>
+<P CLASS="figTitle">コード表示7-2<A NAME="Geodes_f.htm_86055"></A>汎用オブジェクト・オプションの保存</P>
+<PRE>/*GenApplicationオブジェクトは、保存されるオプション(またはアプリケーションが両方のタイプを使用する場合は両方のタイプ)に適したタイプのGCNリストを宣言する必要があります。 *このGenApplicationは、*起動時にロードする必要のないオプションを持つオブジェクトのリストを宣言します。*/</PRE>
+<PRE>@object GenApplicationClass SampleApp={GI_visMoniker=&quot;サンプルアプリケーション&quot;;GI_comp=SamplePrimary;/*主ウィンドウオブジェクトは唯一の子です。 */gcnList(MANUFACTURER_ID_GEOWORKS, GAGCNLT_WINDOWS)=SamplePrimary;/*上記のリストは、アプリケーションが開かれて使用可能になったときに*表示されなければならないウィンドウ化されたオブジェクトを宣言するためのものです。 */gcnList(MANUFACTURER_ID_GEOWORKS, GAGCNLT_SELF_LOAD_OPTIONS)=SampleController;/*上記のリストは、*オプションを保存するが、起動時にオプションをロードする必要がない汎用オブジェクトに使用されます。 */}と入力します。</PRE>
+<PRE>/*独自のオプションを保存する汎用オブジェクトを持つアプリケーションの中には、*特別なオプションメニューを持たず、*オプションを保存するためのトリガーをどこかに持っているだけのものもあります。 いずれにせよ、&quot;save options&quot;トリガはMSG_META_SAVE_OPTIONSを*そのGenApplicationオブジェクトに送信します。 GIGT_OPTIONS_MENU*を設定して「オプション」(Options)メニューを使用する場合、これは自動的にメニューに組み込まれます。 ※SampleOptionsMenuはSamplePrimaryの子で、図には示していない。 (注)</PRE>
+<PRE>@object GenInteractionClass SampleOptionsMenu={GI_comp=SampleToolbox、SampleToolControl、SampleSaveOptsTrigger;GII_visibility=GIV_POPUP;/*メニューにしてください。 */ATTR_GEN_INTERACTION_GROUP_TYPE=(GIGT_OPTIONS_MENU);}</PRE>
+<PRE>/*その他のオブジェクト(コントローラ)はここには表示されません。 MSG_META_SAVE_OPTIONSをGenApplicationオブジェクトに送信する&quot;save options&quot;*triggerだけです。</PRE>
+<PRE>@object GenTriggerClass SampleSaveOptsTrigger={GI_visMoniker=`S&#39;,&quot;保存オプション&quot;;GTI_destination=SampleApp;GTI_actionMsg=MSG_META_SAVE_OPTIONS;}</PRE>
+<HR>
+          <A NAME="Geodes_10.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:3.2人<A HREF="#Geodes_e.htm">ユーザー・オプションの保存</A>キーを押します<A NAME="Geodes_10.htm_18691"></A>GEOS.INIファイル</H3>
+<P>ジオス<A NAME="Geodes_10.htm_IX_GEOS.INI file"></A><A NAME="Geodes_10.htm_IX_GEOS.INI file"></A>では、ネットワーク環境で複数の初期化ファイルを使用できますが、編集できるのはローカルのGEOS.INIだけです。 ローカルGEOS.INI(以下、単にGEOS.INIまたは「INIファイル」と呼ぶ)は、最初に移動可能でスワップ可能なバッファに読み込まれ、使用される他のINIファイルのパス名が含まれます。 他のINIファイルは、後で他のバッファにロードされます。 カーネルがINIファイルの1つで特定のエントリを検索するとき、最初にローカルINIのバッファを検索し、次にロードされた順に他のバッファを検索します。 必要なものに到達すると、検索を停止します。 したがって、複数のエントリが許可されますが、使用されることはなく、ローカルINIファイルが他のすべてのファイルよりも優先されます。</P>
+
+<H4 CLASS="HeadingC">INIファイルの設定</H4>
+<P>GEOS.INIファイルには、非常に特殊な形式と構文があります。 次のようにセグメント化されます。<EM>カテゴリ</EM>、それぞれに複数の<EM>キーきー</EM>(INIファイルの例については、を参照してください)。<A HREF="#Geodes_10.htm_80559">GEOS.INIファイルエントリの例</A>」を参照してください。 通常、GEOS.INIファイルはフォーマットが変更される可能性があるため、直接アクセスしないでください。</P>
+<P>カテゴリは、基本的にキーのグループです。 特定の Geode は独自のカテゴリで機能し、特定のカテゴリは複数の Geode で使用されます。 たとえば<CODE>システム</CODE>カテゴリは、いくつかのデフォルトシステム設定を決定するために、カーネルとUIによって使用されます。 各カテゴリは、名前を角括弧で囲んでGEOS.INIに設定されます。 角カッコ内のテキストでは大文字と小文字が区別されず、空白は無視されるため、[My category]、[mycategory]、および[MY CATEGORY]はすべて同等です。</P>
+<P>キーは、システムまたはアプリケーションが認識して値を割り当てることができる任意の設定です。 1つのキーが複数の異なるカテゴリに存在する場合があります。カテゴリとキーの両方がエントリを定義するため、キーまたはカテゴリのいずれかが異なる場合、エントリは一意になります。 キーにはテキスト文字列、整数、またはブール値を使用でき、すべてのキーはASCII文字列である名前で識別されます。 データはバイナリ形式でファイルから読み書きすることもできます。カーネルはこれを自動的にASCII 16進数に変換して保存し、検索時にバイナリに戻します。</P>
+<P>カテゴリ名とキーフィールドはどちらも「エントリ」と呼ばれます。 各エントリは、1行に存在する場合もあれば、複数行にまたがる場合もあります。 キャリッジリターンを含むエントリは、技術的には「ブロブ」と呼ばれます。 各ブロブは、ファイルに書き込まれるときに自動的に中括弧で囲まれます。 中括弧を含むブロブは、GEOSがブロブの区切り文字と間違えないように、閉じ括弧の前に自動的にバックスラッシュが挿入されます。</P>
+<P>コメントをINIファイルに追加するには、行の先頭にセミコロンを付けます。 このファイルには、いくつかの標準カテゴリと、その中で設定できるキーがあります。 これらの詳細については<A HREF="../../Tools/Ini/index.htm">INIファイルの章</A>ボタンをクリックし</P>
+<P CLASS="figTitle">コード表示7-3<A NAME="Geodes_10.htm_80559"></A>GEOS.INIファイルエントリの例</P>
+<PRE>;をクリックし 「system」カテゴリは、カーネルとUIが特定のシステムを設定するために使用します。ハンドルの数、デフォルトのシステムフォントとサイズ、ロードされるメモリドライバのタイプなどのデフォルト設定です。</PRE>
+<PRE>[システム]</PRE>
+<PRE>;をクリックし ハンドルキーには、ハンドルの数を決定する整数が割り当てられます。これは、システムのハンドルテーブルに割り当てられるスペースです。 ハンドル=2500</PRE>
+<PRE>;をクリックし フォントキーには、ファイル名を表す文字列、またはスペースで区切られたファイル名のリストが割り当てられます。 ;をクリックし リストされたファイルは、フォントドライバgeodeとして読み込まれます。 font=nimbus.geoと入力します。</PRE>
+<PRE>;をクリックし メモリキーには、システムで使用可能なメモリとドライバのすべての名前を含むテキストの塊が割り当てられます。 メモリ={disk.geo emm.geo xms.geo}</PRE>
+<PRE>;をクリックし カテゴリ「MyApp&#39;s Category」は、例としてのみ設定されています。 これはMyApp;アプリケーションによって使用されます。</PRE>
+<PRE>[マイアプリのカテゴリ]</PRE>
+<PRE>;をクリックし myappHiScoreキーは、MyAppアプリケーションによって設定される整数キーです。 myappHiScore=52</PRE>
+<PRE>;をクリックし myappBooleanキーはブール値です。 ブール値では大文字と小文字が区別されないため、True、;true、およびTRUEはすべて「true」と見なされます。 これは実際にはブール値であり、ブール値を処理する読み取りおよび書き込みルーチンによって変換されます。 myappBoolean=真</PRE>
+<PRE>;をクリックし myappHiNameは、キャリッジリターン、バックスラッシュ文字、および中括弧文字を含むテキスト文字列です。 元のテキストは次のようになります。this:;this is a multi-line;blob of text with curly;brace({,})characters}}in it; 閉じ括弧の前に自動的にバックスラッシュが付けられ、自動的に中括弧で囲まれます。 myappHiName={これは、中括弧({,\})文字\}\}を含む複数行のテキストです}</PRE>
+
+
+<H4 CLASS="HeadingC">INIファイルを管理する</H4>
+<PRE>InitFileSave x、InitFileRevert x、InitFileGetTimeLastModified x、InitFileCommit x</PRE>
+<P>INIファイルはシステム内のすべての Geode およびすべてのスレッドに共通であるため、一度に1つのスレッドしかアクセスできません。 この同期は、INIファイルの読み取りまたは書き込みルーチンが使用されるたびに、カーネルによって処理されます。 さらに、INIファイルは、システムが最初に実行されたときにバッファにロードされます。INIファイルに対するすべての操作は、実際にはこのバッファで動作し、バッファはカーネルによってのみディスクにフラッシュされます。</P>
+<P>ただし、INIファイルで直接動作するルーチンは4つあります。 1つはファイルを保存し、もう1つは最後の保存からファイルを元に戻し、3つ目はファイルが最後に変更された時間をチェックし、4つ目は保留中のINIファイルの変更をディスクにコミットします。</P>
+<P><A NAME="Geodes_10.htm_IX_InitFileRevert()"></A><A NAME="Geodes_10.htm_IX_InitFileSave()"></A>ローカルGEOS.INIを保存するには、次のルーチンを使用します。<CODE>InitFileSave()</CODE>これにより、変更内容がバックアップファイルに保存されます。 パラメータを必要とせず、ファイルを保存できなかった場合はエラーフラグを返します。<CODE>InitFileRevert()</CODE>GEOS.INIファイルを最後にバックアップしたときの状態に戻します。 このルーチンはパラメータを取らず、復帰できない場合はエラーフラグを返します。</P>
+<P><CODE>InitFileGetTimeLastModified()</CODE><A NAME="Geodes_10.htm_IX_InitFileGetTimeLastModified()"></A>GEOS.INIが最後に変更されたときに保存されたシステムカウンタの値を返します。</P>
+<P><CODE>InitFileCommit()</CODE><A NAME="Geodes_10.htm_IX_InitFileCommit()"></A>は、ファイルが最後に変更されてから行われたすべての変更を取得し、ディスクにフラッシュします。 これはすべての変更をコミットし、カーネルからのみ使用されるべきです。 アプリケーションでは使用しないでください。</P>
+
+
+<H4 CLASS="HeadingC">INIファイルへのデータの書き込み</H4>
+<PRE>InitFileWriteData()、InitFileWriteString()、InitFileWriteStringSection()、InitFileWriteInteger()、InitFileWriteBoolean()</PRE>
+<P>GEOSには、INIファイルに書き込むための5つのルーチンが用意されています。これらのルーチンは、使用可能なデータ型ごとに1つずつ用意されています。 これらのルーチンはそれぞれ、まずローカルINIバッファへの排他的アクセスを取得し、次に書き込みに適したカテゴリを見つけます。 キーとその値を書き込んだ後、ルーチンはバッファへの排他的アクセスを放棄し、他のスレッドがバッファに書き込むことを許可します。 ローカルINIファイルに存在しないカテゴリまたはキーを書き込むと、ファイルに追加されます。 ルーチンを使用してキーやカテゴリをINIファイルに書き込む場合は、まず<CODE>InitFileMakeCanonicKeyCategory()</CODE>ボタンをクリックし</P>
+<P>これらのルーチンはそれぞれ、少なくとも3つの引数を取ります。 カテゴリはヌル文字で終了する文字列として指定され、文字列へのポインタが渡されます。 キー名もNULL終端文字列として指定されます。この場合も、文字列へのポインタが渡されます。 3番目のパラメータはルーチンに固有で、キーが設定される値が含まれます。</P>
+<P><CODE>InitFileWriteData()</CODE><A NAME="Geodes_10.htm_IX_InitFileWriteData()"></A>はいくつかのバイトをINIバッファに書き込み、4つのパラメータを受け取ります。 追加パラメータは、データのサイズです。 データは、ファイルが保存されるときにASCII 16進数に変換され、キーが読み込まれるときに元に変換されます。</P>
+<P><CODE>InitFileWriteString()</CODE><A NAME="Geodes_10.htm_IX_InitFileWriteString()"></A>は、書き込み対象のNULL終端文字列へのポインタを取る。 文字列にキャリッジリターンまたは改行が含まれている場合は、自動的にブロブに変換されます。</P>
+<P><CODE>InitFileWriteStringSection()</CODE><A NAME="Geodes_10.htm_IX_InitFileWriteStringSection()"></A>は、指定されたエントリに新しい文字列セクション(ブロブの一部)を書き込みます。 指定されたエントリは既にブロブである必要があり、文字列セクションはブロブに追加されます。 文字列セクションは、改行またはキャリッジリターンによって区切られたブロブの行です。</P>
+<P><CODE>InitFileWriteInteger()</CODE><A NAME="Geodes_10.htm_IX_InitFileWriteInteger()"></A>は、3番目の引数として、書き込む整数を取ります。</P>
+<P><CODE>InitFileWriteBoolean()</CODE><A NAME="Geodes_10.htm_IX_InitFileWriteBoolean()"></A>はブール値を取ります。 ゼロの値はfalseを表し、ゼロ以外の値はtrueを表します。テキストエディタでINIファイルを表示すると、ブール値は「true」または「false」のテキスト文字列として表示されますが、テキスト文字列ではなくブール値として解釈されます。</P>
+
+
+<H4 CLASS="HeadingC">INIファイルからデータを取得する</H4>
+<PRE>InitFileReadDataBuffer()、InitFileReadDataBlock()、InitFileReadStringBuffer()、InitFileReadStringBlock()、InitFileEnumStringSection() InitFileReadStringSectionBuffer x、InitFileReadStringSectionBlock x、InitFileReadInteger x、InitFileReadBoolean x</PRE>
+<P>INIファイル内でキーが設定されている内容を確認するには<CODE>InitFileRead…………………………………</CODE>ルーチン。 これらは最初にローカルINIファイルを検索し、次にロードされた順に追加の各INIファイルを検索します。 これらのルーチンは、指定されたキーの最初の出現を返します。したがって、キーがローカルINIファイルと別のINIファイルの両方に存在する場合、これらのルーチンはローカル値のみを返します。</P>
+<P>これらのルーチンはすべて、少なくとも2つのパラメータを取ります。 1つ目は、取得するエントリのカテゴリです。これはNULL終端されたASCII文字列として格納され、文字列へのポインタが渡されます。 2番目はエントリのキーです。 これもNULL終端のASCII文字列として格納され、文字列へのポインタが渡されます。</P>
+<P><CODE>InitFileReadBoolean()</CODE><A NAME="Geodes_10.htm_IX_InitFileReadBoolean()"></A>指定されたキーのブール値を返します。 キーが「false」に設定されている場合は、値0(FALSE)が返されます。 キーが&quot;true&quot;に設定されている場合、ゼロ以外の値(-1、定数TRUE)が返されます。</P>
+<P><CODE>InitFileReadInteger()</CODE><A NAME="Geodes_10.htm_IX_InitFileReadInteger()"></A>は指定されたキーの整数値を返す。</P>
+<P><CODE>InitFileReadDataBuffer()</CODE><A NAME="Geodes_10.htm_IX_InitFileReadDataBuffer()"></A>および<A NAME="Geodes_10.htm_IX_InitFileReadDataBlock()"></A><CODE>InitFileReadDataBlock()</CODE>どちらも指定されたキーに格納されているデータバイトを返します。 ただし、最初のは、すでに割り当てられているバッファのアドレスを取得し、データをバッファに入れます。 2番目は、ヒープに新しいブロックを割り当て、そこにデータを入れます。 データのサイズがわからない場合は<CODE>InitFileReadDataBlock()</CODE>ボタンをクリックし</P>
+<P><CODE>InitFileReadStringBuffer()</CODE><A NAME="Geodes_10.htm_IX_InitFileReadStringBuffer()"></A>および<A NAME="Geodes_10.htm_IX_InitFileReadStringBlock()"></A><CODE>InitFileReadStringBlock()</CODE>どちらも指定されたキーに格納されているNULL終端文字列を返します。 どちらの場合も、中括弧はブロブから取り除かれ、バックスラッシュ文字は必要に応じて削除されます。 ただし、最初の関数は、すでに割り当てられているバッファのアドレスを取得し、文字列をバッファに格納します。 2番目は、ヒープに新しいブロックを割り当て、その中の文字列を返します。 文字列のおおよそのサイズがわからない場合は<CODE>InitFileReadStringBlock()</CODE>ボタンをクリックし</P>
+<P><CODE>InitFileReadStringSectionBuffer()</CODE><A NAME="Geodes_10.htm_IX_InitFileReadStringSectionBuffer()"></A>およびそのカウンターパート<CODE>InitFileReadStringSectionBlock()</CODE><A NAME="Geodes_10.htm_IX_InitFileReadStringSectionBlock()"></A>両方とも、指定したキーに格納されている文字列のNULL終端された部分を返します。 文字列セクションは、任意の数の連続した印刷可能なASCII文字として定義され、キャリッジリターンまたは改行で区切られます。 これらのルーチンは、必要な文字列セクションの番号を取得し、そのセクション(存在する場合)を返します。<CODE>InitFileReadStringSectionBuffer()</CODE>は、ヒープにすでに割り当てられているバッファのアドレスを取得し、バッファ内の文字列セクションを返します。<CODE>InitFileReadStringSectionBlock()</CODE>は新しいブロックをヒープに割り当て、その中の文字列セクションを返します。 文字列セクションのおおよそのサイズがわからない場合は、このルーチンを使用してください。</P>
+<P><CODE>InitFileEnumStringSection()</CODE><A NAME="Geodes_10.htm_IX_InitFileEnumStringSection()"></A>指定されたブロブを列挙し、ブロブ内の各文字列セクションに対して指定されたコールバックルーチンを実行します。</P>
+
+
+<H4 CLASS="HeadingC">INIファイルから項目を削除する</H4>
+<PRE>InitFileDeleteEntry x、InitFileDeleteCategory x、InitFileDeleteStringSection x</PRE>
+<P><A NAME="Geodes_10.htm_IX_InitFileDeleteEntry()"></A>データの読み取りと書き込みに加えて、以前に入力したカテゴリとキーを削除できます。<CODE>InitFileDeleteEntry()</CODE>は、ヌル終端されたカテゴリ名とヌル終端されたキー名の両方へのポインタを取得し、エントリを削除します。<A NAME="Geodes_10.htm_IX_InitFileDeleteCategory()"></A><CODE>InitFileDeleteCategory()</CODE>は、ヌル終端されたカテゴリ名へのポインタのみを取り、その下に格納されているすべてのキーを含むカテゴリ全体を削除します。</P>
+<P><A NAME="Geodes_10.htm_IX_InitFileDeleteStringSection()"></A>また、指定したブロブから1つの文字列セクションを削除することもできます。<CODE>InitFileDeleteStringSection()</CODE>は、ブロブのカテゴリ名とキー名、および文字列セクションのインデックスを取得し、文字列セクションを削除します。 文字列セクションが存在しない場合、またはキーかカテゴリのいずれかが見つからない場合、ルーチンはエラーフラグを返します。</P>
+
+<HR>
+          <A NAME="Geodes_11.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:4一般システムユーティリティ</H2>
+<P>カーネルは、システムユーティリティの一般的なニーズを満たすいくつかのルーチンを提供します。 これらは、システムの日付と時刻の設定から、DOSベースのプログラムを実行するためにシステムをシャットダウンするために使用されるスワップメモリの量の取得まで、多岐にわたります。</P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_12.htm">システムクロック</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_13.htm">タイマーの使用</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_14.htm">システム統計およびユーティリティ</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_15.htm">システムのシャットダウン</A>
+        </P>
+<HR>
+          <A NAME="Geodes_12.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:4.1人<A HREF="#Geodes_11.htm">一般システムユーティリティ</A>:システムクロック</H3>
+<PRE>TimerGetDateAndTime x、TimerSetDateAndTime x、TimerGetFileDateTime x</PRE>
+<P>システムクロックには、現在の日付と時刻が反映されます。<CODE>TimerGetDateAndTime()</CODE><A NAME="Geodes_12.htm_IX_TimerGetDateAndTime()"></A>はポインタを<CODE>TimerDateAndTime</CODE>構造体に、現在の年、月、日、曜日、時間、分、秒を入力します。<CODE>TimerGetFileDateTime()</CODE>は同様の関数で、現在の日付と時刻を取得し、ファイルを操作するときに使用される構造体で返します。<A NAME="Geodes_12.htm_IX_TimerSetDateAndTime()"></A><CODE>TimerSetDateAndTime()</CODE>現在の日付と時刻を、渡された構造体の値に設定します。 環境設定マネージャ以外のアプリケーションでシステムクロックが変更されることはまれです。</P>
+<HR>
+          <A NAME="Geodes_13.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:4.2人<A HREF="#Geodes_11.htm">一般システムユーティリティ</A>:タイマーの使用</H3>
+<PRE>TimerStart x、TimerStop x、TimerSleep x、TimerGetCount x</PRE>
+<P><A NAME="Geodes_13.htm_IX_Timers"></A>時間に基づいてアクションを実行する必要がある場合は、タイマーを使用します。 GEOSを使用すると、指定した間隔が経過した後にルーチンを呼び出したり、メッセージを送信したりするタイマーを設定できます。 GEOSには、次の4種類のタイマーがあります。</P>
+<UL>
+<LI>ワンショット<BR>ワンショットタイマーは、特定の数の「ティック」をカウントします(1秒間に60ティックあります)。 指定した数のティックがカウントされた後、ルーチンを呼び出すか、メッセージを送信します。</LI>
+<LI>継続的<BR>連続タイマーは、一定のティック数をカウントした後、リセットして再びカウントします。 指定したティック数に達するたびに、ルーチンを呼び出したり、メッセージを送信したりします。</LI>
+<LI>ミリ秒<BR>ミリ秒タイマーは、ティックではなくミリ秒単位でカウントし、時間が経過したときにルーチンを呼び出すワンショットタイマーです(メッセージは送信されません)。</LI>
+<LI>スリープ<BR>スリープタイマーは、それを作成するスレッドを一定のティック数の間スリープさせます。 スリープタイマーは、他のタイマーとは異なり、時間切れになってもメッセージを送信したりルーチンを呼び出したりせず、スリープ中のスレッドを目覚めさせるだけです。</LI>
+<LI>リアルタイム<BR>リアルタイムタイマーには、1980年からの日数、イベントの時間と分が渡されます。 このような機能をサポートするハードウェア・プラットフォームでは、リアルタイム・タイマーが切れるとGEOSが起動します。 (これらの条件下では、他のすべてのタイマーは無視されます)。</LI>
+</UL>
+<P><A NAME="Geodes_13.htm_IX_TimerStart()"></A>スリープタイマーを除くすべてのタイマーが作成され、ルーチンで開始されます。<CODE>TimerStart()</CODE>、継続タイマーは以下のように破棄できます。<A NAME="Geodes_13.htm_IX_TimerStop()"></A><CODE>TimerStop()</CODE>ボタンをクリックし<CODE>TimerStop()</CODE>は、ワンショットタイマーを早めに停止するためにも使用されますが、ワンショットがメッセージを送信した場合、メッセージは受信者のキューに入る可能性があります。<CODE>TimerStop()</CODE>が呼び出されました。<A NAME="Geodes_13.htm_IX_TimerSleep()"></A>スリープタイマーは、で作成され、開始されます。<CODE>TimerSleep()</CODE>停止する必要はありません。</P>
+<P><A NAME="Geodes_13.htm_IX_TimerGetCount()"></A>追加のルーチン<CODE>TimerGetCount()</CODE>は、現在のシステムカウンタを返します。 システムカウンタには、GEOSの起動後にカウントされたティック数が含まれています。</P>
+<HR>
+          <A NAME="Geodes_14.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:4.3人<A HREF="#Geodes_11.htm">一般システムユーティリティ</A>:システム統計およびユーティリティ</H3>
+<PRE>SysStatistics()、SysGetInfo()、SysGetConfig()、SysGetPenMode()、SysGetDosEnvironment()</PRE>
+<P>時々、geodeはシステムの状態や設定についてカーネルに問い合わせをする必要があります。 GEOSには、このための5つのルーチンが用意されています。</P>
+<P><CODE>システム統計()</CODE><A NAME="Geodes_14.htm_IX_SysStats"></A><A NAME="Geodes_14.htm_IX_SysStatistics()"></A>タイプの構造体を返します。<CODE>システム統計</CODE>この構造体には、CPUのビジー状態、実行中のスワップアクティビティの量、直前の1秒間に発生したコンテキストスイッチの数、直前の1秒間に発生した割り込みの数、および実行可能なスレッドの数に関する情報が含まれています。 この構造を設定したり、変更することはできません。</P>
+<P><CODE>SysGetInfo()</CODE><A NAME="Geodes_14.htm_IX_SysGetInfo()"></A>は、現在のシステムステータスに関する特定の統計情報を返します。 CPU速度、ハンドルテーブル内のハンドルの総数、ヒープの合計サイズ、実行中の Geode 座標の総数、ヒープ上の最大空きブロックのサイズなど、さまざまな統計情報を返すことができます。 アプリケーションがこのルーチンで要求できる情報のほとんどは、Perfパフォーマンスメーターから取得できます。デバッグ時にPerfを使用するのが最も簡単ですが、この情報を知る必要がある Geode 座標はいくつかあります。</P>
+<P><CODE>SysGetConfig()</CODE><A NAME="Geodes_14.htm_IX_SysGetConfig()"></A>プロセッサ・タイプやマシン・タイプなど、現在のシステムの構成に関する情報を返します。 また、このセッションがSwatで開始されたかどうか、コプロセッサーが存在するかどうか、その他の情報など、GEOSの特定のセッションに関するフラグも返します。</P>
+<P><CODE>SysGetPenMode()</CODE><A NAME="Geodes_14.htm_IX_SysGetPenMode()"></A>は、GEOSが現在ペンベースのマシンで実行されている場合にTRUEを返します。</P>
+<P><CODE>SysGetDosEnvironment()</CODE><A NAME="Geodes_14.htm_IX_SysGetDosEnvironment()"></A>はDOS環境変数の値を返す。 変数名を表す文字列が渡され、値を表す文字列が返されます。</P>
+<HR>
+          <A NAME="Geodes_15.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:4.4人<A HREF="#Geodes_11.htm">一般システムユーティリティ</A>キーを押します<A NAME="Geodes_15.htm_59499"></A>システムのシャットダウン</H3>
+<PRE>DosExec()、SysShutdown()</PRE>
+<P><A NAME="Geodes_15.htm_IX_DosExec()"></A>geodeがGEOSをシャットダウンするには2つの方法があります。 1つ目は<CODE>DosExec()関数</CODE>は、DOS上でプログラムを実行するためにシステムをシャットダウンし、DOSプログラムが終了した後に戻ります。ただし、タスクスイッチドライバが使用中の場合は除きます。使用中の場合、システムは新しいタスクを作成し、タスクスイッチャに新しいタスクへの切り替えを行わせます。<A NAME="Geodes_15.htm_IX_SysShutdown()"></A>2つ目は<CODE>SysShutdown()</CODE>システムを強制的に完全にシャットダウンします。 これらのルーチンはいずれも、カーネル、GeoManager、特殊な「ランチャー」プログラム、またはUI以外では一般的に使用されません。 絶対に必要でない限り、他のライブラリやアプリケーションでの使用は推奨されません。</P>
+<P><CODE>DosExec()関数</CODE>は、実行されるDOSプログラムのパス名、プログラムの引数、実行されるプログラムを含むディスクのオプションのディスクハンドル、プログラムが実行されるオプションのディレクトリとディスクハンドル<CODE>DosExecFlags</CODE>戻り値がゼロ以外の場合は、DOSプログラムのロード中にエラーが発生したことを示します。<CODE>ThreadGetError()</CODE>エラーの内容を確認します。 次の点に注意してください。<CODE>DosExec()関数</CODE>は常にを返します。 アプリケーションは<EM>しない</EM>頼る<CODE>DosExec()関数</CODE>システムをシャットダウンします。タスクスイッチャが存在する場合、GEOSはシャットダウンされずにスワップアウトされます。</P>
+<P><CODE>SysShutdown()</CODE>GEOSは、いくつかの方法のいずれかで終了します。 このルーチンにはシャットダウンモードを渡す必要があります。 モードがSST_CLEAN、SST_RESTART、SST_SUSPEND、またはSST_CLEAN_FORCEDの場合、ルーチンは戻ります。それ以外の場合、ルーチンは戻らず、シャットダウンが開始されます。 SST_CLEANが渡された場合、シャットダウンは<CODE>SysShutdown()</CODE>が返されます。 次のものを使用できます。<CODE>SysShutdown()</CODE>(Preferences Managerアプリケーションが特定のプリファレンス設定に対して行うように)シャットダウン後にGEOSが自動的に再起動しますが、これによりGEOSが新しく起動します。 このルーチンは、UI、カーネル、またはPreferences Managerアプリケーション以外ではほとんど使用されません。</P>
+<P>他のもの(通常はUIまたはタスクスイッチャ)がシステムをシャットダウンした場合、シャットダウン通知に登録されたオブジェクトは<CODE>MSG_META_CONFIRM_SHUTDOWNメッセージ</CODE>アプリケーションは<CODE>SysShutdown()</CODE>モードSST_CONFIRM_STARTを使用します。これにより、オブジェクトは、ユーザーにシャットダウンの確認を求める排他的な権限を持つことができます(オブジェクトがユーザーとの対話を終了したときに、オブジェクトは<CODE>SysShutdown()</CODE>SST_CONFIRM_ENDを指定して排他アクセスを解放します)。 これは、アプリケーションまたはライブラリに進行中の操作があり、ユーザーにシャットダウンを確認したい場合に便利です。</P>
+<HR>
+          <A NAME="Geodes_16.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:5エラー・チェック・バージョン</H2>
+<P>ジオス<A NAME="Geodes_16.htm_IX_Debugging:with error checking code"></A><A NAME="Geodes_16.htm_IX_Error checking"></A>には、2つのバージョンのシステムソフトウェアがあります。 小売店に出荷される通常のバージョンは、「非エラー・チェック」バージョンです。 もう1つは、アプリケーションやその他の Geode をデバッグするために使用されるもので、「エラーチェック」バージョンと呼ばれます。<EM>ECバージョン</EM>ボタンをクリックし システム・ソフトウェアのほとんどすべてのコンポーネント(カーネル、UI、ライブラリー、ドライバーなど)は、両方のバージョンに存在します。</P>
+<P>SwatとECバージョンを組み合わせることで、広範で優れたデバッグ機能が提供されます。 ECバージョンでは、特別なエラー・チェック・ルーチンを呼び出して、ハンドル、リソース、メモリー、ファイルなどの整合性をチェックすることができます。 これらのエラーチェックルーチンはすべてECで始まります。詳細については、『Routine Reference Book』のエントリを参照してください。 システム Geode のECバージョンで提供される完全なエラーチェックに加えて、独自のエラーチェックコードをプログラムに追加できます。</P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_17.htm">プログラムへのECコードの追加</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_18.htm">特別なECルーチン</A>
+        </P>
+<HR>
+          <A NAME="Geodes_17.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:5.1人<A HREF="#Geodes_16.htm">エラー・チェック・バージョン</A>:プログラムへのECコードの追加</H3>
+<P>コードをコンパイルするときに、ECバージョンまたは非ECバージョンのプログラムに特定の余分な行を含めることができます。 たとえば、デバッグ中に、プログラムがメモリブロックをロックする前に各メモリハンドルの有効性をチェックするようにしたい場合があります。ただし、プログラムの最終バージョンでは、プログラムの速度が低下するため、この有効性チェックは必要ありません。 ECバージョンにのみコンパイルされるいくつかの命令を簡単に追加できます。</P>
+<P>GEOSには、バージョン固有の手順のために、次に示す5つのマクロが用意されています。 これらのマクロはステートメントとして処理する必要があります。式では使用できません。</P>
+<DL>
+<DT>欧州経済共同体<A NAME="Geodes_17.htm_IX_EC() macro"></A></DT><DD>このマクロは、指定されたコード行をECバージョンにのみ追加します。 非ECバージョンが同じコードからコンパイルされた場合、この行は省略されます。</DD>
+<DT>ECエラー<A NAME="Geodes_17.htm_IX_EC_ERROR() macro"></A></DT><DD>このマクロは、ECバージョンのプログラムの実行を停止します。<CODE>FatalError()[致命的エラー]</CODE>エラー・コードが指定されています。 への呼び出し<CODE>FatalError()[致命的エラー]</CODE>非ECバージョンには含まれません。</DD>
+<DT>ECエラーの場合</DT><DD><A NAME="Geodes_17.htm_IX_EC_ERROR_IF() macro"></A>このマクロは上記のEC_ERRORと同じように動作しますが<CODE>FatalError()[致命的エラー]</CODE>が呼び出されます。 条件が満たされると<CODE>FatalError()[致命的エラー]</CODE>が呼び出されます。</DD>
+<DT>日本電気<A NAME="Geodes_17.htm_IX_NEC() macro"></A></DT><DD>このマクロは、指定されたコード行を非ECバージョンに追加しますが、ECバージョンには追加しません。 (これはECマクロの逆です)。</DD>
+<DT>EC_境界<A NAME="Geodes_17.htm_IX_EC_BOUNDS() macro"></A></DT><DD><A NAME="Geodes_17.htm_IX_ECCheckBounds()"></A>このマクロは、指定されたアドレス(ポインタ)の有効性をチェックします。<CODE>ECCheckBounds()</CODE>ルーチン。 ポインタが範囲外の場合は<CODE>ECCheckBounds()</CODE>電話をかける<CODE>FatalError()[致命的エラー]</CODE>このマクロは、ECバージョンに境界チェックを追加するだけです。</DD>
+</DL>
+<P>これらのマクロの使用例をに示します。<A HREF="#Geodes_17.htm_69843">ECマクロ</A>ボタンをクリックし</P>
+<P CLASS="figTitle">コード表示7-4<A NAME="Geodes_17.htm_69843"></A>ECマクロ</P>
+<PRE>/*このコード表示では、これらのマクロの使用方法のみが表示されます。以下に示す各*行は、特定の関数またはメソッド内に存在すると仮定します。 (注)</PRE>
+<PRE>/*ECマクロは、ECバージョンに1行のコードを追加します。 形式は*EC(line)です。<EM>線</EM>は、追加するコード行です。 *NECマクロも同様です。 */EC(@call MyErrorDialogBox::MSG_MY_ERR_PRINT_ERROR();)NEC(@call MyErrorDialogBox::MSG_MY_ERR_PRINT_NO_ERROR();)</PRE>
+<PRE>/*EC_ERRORマクロは、FatalError()への呼び出しをECバージョンに追加します。 形式は*EC_ERROR(code)です。<EM>記号</EM>は呼び出されるエラーコードです。 */EC_ERROR(ERROR_ATTR_NOT_FOUND)(エラー属性が見つかりません)</PRE>
+<PRE>/*EC_ERROR_IfマクロはEC_ERRORに似ていますが、条件付きです。 形式は*EC_ERROR_IF(test, code)です。<EM>試験</EM>はブール値で<EM>記号</EM>は呼び出される*エラーコードです。 */lockVariable=MyAppCheckIfLocked();/*アクセスできない場合はTRUE。 */EC_ERROR_IF(lockVariable, ERROR_ACCESS_DENIED)/*アクセスできない場合はエラー。 (注)</PRE>
+<PRE>ECCheckBounds()へのコールを追加します。 *フォーマットは*EC_BOUNDS(addr)です。<EM>アドレス</EM>は、チェックするアドレスです。 */myPointer=MyAppGetMyPointer();EC_BOUNDS(myPointer)</PRE>
+<HR>
+          <A NAME="Geodes_18.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:5.2人<A HREF="#Geodes_16.htm">エラー・チェック・バージョン</A>:特殊なECルーチン</H3>
+<PRE>SysGetECLevel x、SysSetECLevel x、SysNotify x、欧州.x、CFatalError x、CWarningNoticeエンザx</PRE>
+<P><A NAME="Geodes_18.htm_IX_ErrorCheckingFlags"></A>SwatとECバージョンを使用している間に、使用されているエラー・チェックの現在のレベルを設定して取得することができます。 レベルはフラグのレコードで設定され、各フラグは特定のタイプのチェックがオンになっているかどうかを決定します。 このレコードのタイプ<CODE>ErrorCheckingFlags</CODE>ボタンをクリックし<A NAME="Geodes_18.htm_IX_SysGetECLevel()"></A>次のようにして取得できます。<CODE>SysGetECLevel()</CODE>で設定します。<A NAME="Geodes_18.htm_IX_SysSetECLevel()"></A><CODE>SysSetECLevel()</CODE>ボタンをクリックし</P>
+<P><CODE>SysNotify()</CODE><A NAME="Geodes_18.htm_IX_SysNotify()"></A>標準のエラーダイアログボックスが表示されます。白に黒い枠が付いています。 このルーチンは、カーネルのECバージョンと非ECバージョンの両方で使用できます。 これは、回復不能なエラーをユーザに提示するためにカーネルが使用するボックスです。 これを呼び出して、次の5つのオプションのいずれかをユーザに許可することもできます。 retry、abort、continue、reboot、またはexitです。 通常、このダイアログボックスはエラーに対してのみ使用されますが、他のユーザー通知にも使用できます。 (「exit」オプションと「reboot」オプションを使用すると、このルーチンは<EM>しない</EM>戻ります。 また、5つのオプションの特定の組み合わせのみがサポートされていることにも注意してください)。</P>
+<P><A NAME="Geodes_18.htm_IX_FatalError()"></A><A NAME="Geodes_18.htm_IX_CFatalError()"></A><A NAME="Geodes_18.htm_IX_CWarningNotice()"></A>の<CODE>CFatalError()</CODE>および<CODE>CWarningNotice()</CODE>ルーチンは、実行時およびコンパイル時のエラーまたは警告メッセージを提供します。 の<CODE>CFatalError()</CODE>ルーチンはカーネルの<CODE>FatalError()[致命的エラー]</CODE>この関数はエラー・ダイアログ・ボックスを表示し、SwatではSwatにブレークポイントをヒットさせて、エラーをデバッグできるようにします。<CODE>CWarningNotice()</CODE>は、コンパイラにコンパイル時の警告を表示させるために、エラーチェックコードに入れることができる。</P>
+<HR>
+          <A NAME="Geodes_19.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:6アプリケーション間通信</H2>
+<P><A NAME="Geodes_19.htm_IX_Inter-Application Communication (IACP)"></A><A NAME="Geodes_19.htm_IX_IACP"></A>通常、アプリケーションは相互に通信する必要はありません。 ほとんどのアプリケーションは、カーネルとライブラリとのみ対話します。このようなアプリケーションは、他のアプリケーションが実行されているかどうかにさえ気づきません。 ただし、一部のアプリケーションは他のアプリケーションと通信する必要があります。</P>
+<P>たとえば、多くのデスクトップマネージャは「ファイルを印刷」コマンドを提供しています。ユーザはファイルのアイコンを選択し、このコマンドを選択して適切なファイルを印刷します。 結局のところ、ファイルは、デスクトップ・マネージャーがインストールされたときに作成されていなかったアプリケーションによって作成された可能性があるため、デスクトップ・マネージャーはファイルの印刷方法を知る方法がありません。 したがって、デスクトップマネージャは、適切なアプリケーションを起動させる。 次に、ファイルを印刷するようにアプリケーションに指示します。</P>
+<P>GEOSはオブジェクト指向システムであるため、アプリケーション間通信には自然なモデルがあります。 あるアプリケーションが別のアプリケーションと通信する必要がある場合、単にメッセージを送信することができます。したがって、別のアプリケーションに情報や命令を送信することは、原則として、アプリケーション内のあるオブジェクトから別のオブジェクトに情報や命令を送信することとは異なりません。</P>
+<P>GEOS Inter-Application Communications Protocol(IACP)は、別のアプリケーションとの通信を開始する方法、およびメッセージを送受信する方法を指定します。</P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_1a.htm">IACPの概要</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_1b.htm">GenApplicationClassの動作</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_1c.htm">IACPリンクを介したメッセージ</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_1d.htm">クライアントであること</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#Geodes_1e.htm">サーバであること</A>
+        </P>
+<HR>
+          <A NAME="Geodes_1a.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:6.1人<A HREF="#Geodes_19.htm">アプリケーション間通信</A>:IACPの概要</H3>
+<P>アプリケーション内でメッセージを送信することと、別のアプリケーションにメッセージを送信することには大きな違いがあります。 アプリケーション内のあるオブジェクトから別のオブジェクトにメッセージを送信すると、受信者が存在し、その受信者のoptrがわかります。 これにより、メッセージの送信が簡単になります。</P>
+<P>ただし、別のアプリケーションにメッセージを送信するときには、(最初は)そのアプリケーションに対するオプションがわかりません。 実際には、アプリケーションが実行されていることさえ知らないかもしれません。 多くの場合、あなたが知っているのは、「私はメッセージを送りたい<CODE>SpiffyWrite</CODE>」と入力します。</P>
+<P>GEOSは、アプリケーション間通信のクライアント・サーバー・モデルを使用します。 [間隔]<CODE>GeodeToken</CODE>サーバーに対応します。 アプリケーションが起動されるたびに、GEOSは<EM>サーバリスト</EM>アプリケーションのトークンに対応します。 存在する場合、GEOSはアプリケーションのApplicationオブジェクトをserver-listに追加します。存在しない場合、GEOSはserver-listを作成し、Applicationオブジェクトをそのリストに追加します。</P>
+<P>たとえば、ユーザーがの1つのコピーを起動するとします。<CODE>SpiffyWrite</CODE>;このアプリケーションには、MANUFACTURER_ID_SPIFFYWAREという製造者IDと、「SWRI」というトークン文字があります。 GEOSは、そのサーバーのサーバーリストがあるかどうかを確認します。<CODE>GeodeToken</CODE>このようなリストが存在しないと仮定します。GEOSは自動的にリストを作成し<CODE>SpiffyWrite</CODE>のApplicationオブジェクトをリストに追加します。 これで、Applicationオブジェクトは<EM>サーバー#サーバー#</EM>に登録してあるものです。</P>
+<P>次に、別のアプリケーションが<CODE>SpiffyWrite</CODE>たとえば、デスクトッププログラムでは<STRONG CLASS="fileName">SpiffyWrite</STRONG>ファイルを開きます。 これはカーネルに対して<EM>顧客</EM>トークン「{MANUFACTURER_ID_SPIFFYWARE, &quot;SWRI&quot;}」のリストに表示されます。 GEOSは、そのトークンのserver-listが存在するかどうかを確認します。 その場合、そのリストにクライアントが追加され、通知メッセージ(MSG_META_IACP_NEW_CONNECTION)がそのリストのすべてのサーバーに送信されます。</P>
+<P>クライアントがサーバにリンクされると、クライアントはサーバリストにメッセージを送信できます。 これは、メッセージをカプセル化し、カプセル化されたメッセージをサーバリストに渡すことによって行われます。 GEOSは、リストのすべてのサーバーにメッセージをディスパッチします。サーバーオブジェクトは、通常のメッセージと同様にメッセージを受信します。 (実際には、カプセル化されたメッセージを引数としてサーバオブジェクトに渡します。<CODE>MSG_META_IACP_PROCESS_MESSAGEメッセージ</CODE>その後、サーバーはメッセージを最終受信者にディスパッチできます)。</P>
+<P>これにより、アプリケーション間のリンクが確立されます。 クライアントは、カプセル化されたメッセージにoptrを入れることで、optrをサーバに渡すことができます。サーバオブジェクトは、メッセージを特定のオブジェクトに直接送信できます。</P>
+<P>クライアントがサーバと通信する必要がなくなった場合、クライアントはサーバリストから自身を登録解除します。 次に、GEOSはすべてのサーバーオブジェクトに通知メッセージを送信します。</P>
+<P>習慣的に、グローバル・リソースを割り当てる人は、それを解放する必要もあります。 たとえば、クライアントがグローバルブロックを割り当て、そのブロックにデータを書き込み、そのブロックをサーバに渡すことによって、サーバに情報を渡す場合があります。 サーバーは、サーバーがそのデータの処理を完了したときにクライアントに通知する必要があります。クライアントはその後、ブロックを解放できます。 同様に、サーバがクライアントに情報を渡すためにブロックを割り当てる場合、サーバはそのブロックを解放する必要があります。</P>
+<P>1つのサーバリストに対して複数のサーバが存在する場合があります。 たとえば<CODE>SpiffyWrite</CODE>それぞれのApplicationオブジェクトは、同じサーバー・リストのサーバーになります。 さらに、どのオブジェクトも、それ自体を任意のリストのサーバーにすることができます。 すべてのサーバは、サーバリストに送信されたすべてのメッセージのコピーを受信します。 リストの異なるサーバーを区別するために、リストのすべてのサーバーには<CODE>サーバー番号</CODE>選択した場合、クライアントは、特定の番号を持つサーバーにのみメッセージを送信するように指定できます。</P>
+<HR>
+          <A NAME="Geodes_1b.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:6.2人<A HREF="#Geodes_19.htm">アプリケーション間通信</A>:GenApplicationClassの動作</H3>
+<P><CODE>GenApplicationClass</CODE>はIACPを自動的にサポートするように構築されています。 サーバー・オブジェクトまたはクライアント・オブジェクトが<CODE>GenApplicationClass</CODE>IACPをサポートする作業の大部分は、アプリケーション・ライターに対して透過的に行われます。 次の機能が組み込まれています。</P>
+<UL>
+<LI>アプリケーション・オブジェクトは、アプリケーション・モードで起動されると、適切なリストのサーバーとして自動的に登録されます。 エンジンモードで起動された場合は、MSG_META_APP_STARTUPを受け取ったときにそれ自体を登録します。 アプリケーションへの最後のクライアント接続が閉じられ、Applicationが現在アプリケーションモードで実行されていない場合、Applicationオブジェクトは自動的にシャットダウンします。</LI>
+<LI>Applicationオブジェクトは、自身を自身のリストのサーバーとして登録するときに、MSG_GEN_APPLICATION_IACP_REGISTERを送信します。 アプリケーションは、この時点で他のアクション(例えば、他のリストに対して自身を登録する)を実行したい場合、これをサブクラス化してもよい。 同様に、Applicationオブジェクトが自身のサーバーリストから登録を解除すると、MSG_GEN_APPLICATION_IACP_UNREGISTERが送信されます。</LI>
+<LI>Applicationオブジェクトは、自動的にMSG_META_IACP. メッセージを適切に表示します。 特に、カーネルがカプセル化されたメッセージをApplicationオブジェクトに渡すときには<CODE>MSG_META_IACP_PROCESS_MESSAGEメッセージ</CODE>Applicationオブジェクトは、メッセージを適切な場所に自動的に配信します。</LI>
+<LI>Applicationオブジェクトは、クライアントがIACP接続を開いている限り、終了を拒否します。 (ただし、強制的に切り離すことはできます。これは、次に示すように、システムがシャットダウンされたときに発生します)。 このような場合、Applicationオブジェクトは自動的に<CODE>IACPShutdownAll()</CODE>開いているすべてのIACPリンクを、そのリンク上のクライアントであるかサーバーであるかにかかわらず、シャットダウンします。</LI>
+<LI>リンクが閉じられると、IACPは自動的にMSG_META_IACP_LOST_CONNECTIONをリンクの反対側にあるすべてのオブジェクトに送信します。 Applicationオブジェクトは、このメッセージを受信すると、リンクからの残りのメッセージがすべて処理されるまで待機します。<CODE>IACPShutdown()</CODE>設定します。 また、このメッセージをすべてのDocumentオブジェクトに転送するため、Documentオブジェクトは、IACP接続がそのオブジェクトへの唯一の参照であった場合に、それ自体を閉じることを認識します。 ここでも、Applicationオブジェクトは、クライアントであるかサーバーであるかにかかわらず、これを行います。</LI>
+<LI>Applicationオブジェクトが強制的に切断された場合は、オブジェクト自体にMSG_GEN_APPLICATION_IACP_SHUTDOWN_ALL_CONNECTIONSが送信されます。 このメッセージのデフォルトハンドラは<CODE>IACPShutdownAll()</CODE>Applicationオブジェクトが開いているすべてのIACPリンクを、それらのリンク上のクライアントであるかサーバーであるかにかかわらず、シャットダウンします。 IACP接続が切断されたときに追加のアクションを実行する必要がある場合は、このメッセージをサブクラス化できます。</LI>
+</UL>
+<HR>
+          <A NAME="Geodes_1c.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:6.3人<A HREF="#Geodes_19.htm">アプリケーション間通信</A>:IACPリンクを介したメッセージ</H3>
+<PRE>IACPSendMessage x、IACPSendMessageToServer x</PRE>
+<P>クライアントまたはサーバーのいずれかが、IACPリンクを介してメッセージを送信できます。 クライアントとサーバーの両方が同じ手法を使用します。 メッセージの送信者は、メッセージをカプセル化し、カプセル化されたメッセージを<CODE>IACPSendMessage()</CODE>ボタンをクリックし<CODE>IACPSendMessage()</CODE>は、リンクの反対側にあるすべてのオブジェクトにメッセージをディスパッチします。 たとえば、クライアントがメッセージを<CODE>IACPSendMessage()</CODE>そのメッセージは、指定されたリストのすべてのサーバー・オブジェクトにディスパッチされます。</P>
+<P><CODE>IACPSendMessage()</CODE>には5つの引数が渡されます。</P>
+<UL>
+<LI>IACPリンクのトークン。</LI>
+<LI>の<CODE>EventHandle</CODE>カプセル化されたメッセージの</LI>
+<LI>の<CODE>TravelOption</CODE>表示されます。</LI>
+<LI>カプセル化された完了メッセージ。これは、最初のメッセージが正常に処理されるたびに1回ディスパッチされます。</LI>
+<LI>のメンバー<CODE>IACPSide</CODE>列挙型。 これは、メッセージがクライアントによって送信されているのか、サーバによって送信されているのかを示します。 値IACPS_CLIENTを渡すと、メッセージはすべてのサーバにディスパッチされます。IACPS_SERVERを渡すと、メッセージはすべてのクライアントにディスパッチされます。</LI>
+</UL>
+<P>メッセージは、リンクの反対側にあるすべての Geode にディスパッチされます。 クライアントは、サーバオブジェクト自体にメッセージを送信する必要がないことに注意してください。 トラベル・オプション・フィールドを使用して、サーバー・オブジェクトの Geode 内の任意の場所にメッセージを送ることができます。 また、メッセージをカプセル化するときに受信者のoptrを指定することもできます。この場合<CODE>TravelOption</CODE>-1の</P>
+<P>カプセル化されたメッセージが正常に処理されるたびに、「完了メッセージ」がディスパッチされます。 通常、完了メッセージはを呼び出したオブジェクトに送信されます。<CODE>IACPSendMessage()</CODE>メッセージに割り当てられていたグローバル・リソースを解放するように指示します。</P>
+<P>このルーチンは、ディスパッチされたメッセージの数を返します。 これにより、送信者は完了メッセージの予想数を知ることができ、グローバル・リソースへのすべての参照カウントを適切に初期化できます。</P>
+<P>クライアントは、特定のサーバにメッセージを送信することを選択できます。 これを行うには<CODE>IACPSendMessageToServer()</CODE>これは<CODE>IACPSendMessage()</CODE>ただし<CODE>IACPSide</CODE>値を指定すると、サーバー番号が渡されます。 GEOSは、指定されたサーバーにメッセージのコピーを1つディスパッチします。<CODE>IACPSendMessageToServer()</CODE>は、メッセージがディスパッチされた回数を返す。 これは通常は1ですが、指定したサーバが登録されていない場合は0になります。</P>
+<HR>
+          <A NAME="Geodes_1d.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:6.4人<A HREF="#Geodes_19.htm">アプリケーション間通信</A>:クライアントであること</H3>
+<P>どのオブジェクトも、IACPサーバー・リストのクライアントとして登録できます。 オブジェクトがクライアントである場合、オブジェクトはサーバー・リストにメッセージを送信することができ、サーバー・リストはそのリストのサーバーにメッセージを渡します。</P>
+
+<H4 CLASS="HeadingC">クライアントとしての登録</H4>
+<PRE>IACPConnect x、IACPCreateDefaultLaunchBlock x</PRE>
+<P><A NAME="Geodes_1d.htm_IX_IACPConnect()"></A>リストのクライアントとして登録するには、ルーチンを呼び出します。<CODE>IACPConnect()</CODE>このルーチンを呼び出すときは、対象とするサーバーリストを指定します。 そのようなサーバリストが実行されていない場合は、カーネルにサーバリストと、そのリストのデフォルトアプリケーションの1つを起動するように指示できます。</P>
+<P><CODE>IACPConnect()</CODE>には5つの引数が渡されます。</P>
+<UL>
+<LI>の<CODE>GeodeToken</CODE>リストボックスに追加します。</LI>
+<LI><A NAME="Geodes_1d.htm_IX_IACPConnectFlags"></A><A NAME="Geodes_1d.htm_IX_IACPF_&ldots;"></A>のセット<CODE>IACPConnectFlags</CODE>次のフラグを使用できます。</LI>
+</UL>
+<DL>
+<DT>IACPCF_OBEY_LAUNCH_MODEL</DT><DD>これは、GEOSが起動モデルに従う必要があることを示します。起動モデルでは、既存のアプリケーションをサーバーとして使用するか、新しいアプリケーションを起動するかをユーザーに尋ねるダイアログボックスをユーザーに表示するかどうかを指定します。 このフラグを設定する場合は<CODE>AppLaunchBlock</CODE>、ALBで<CODE>_appMode</CODE>フィールドをMSG_GEN_PROCESS_OPEN_APPLICATIONに設定します。また、IACPCF_SERVER_MODEをIACPSM_USER_INTERACTIBLEに設定する必要があります。</DD>
+<DT>IACPCF_CLIENT_OD_SPECIFIED</DT><DD>このフラグは、新しいクライアントにするオブジェクトを指定することを示します。 このフラグを設定しない場合、送信側のgeodeのApplicationオブジェクトがクライアントとして登録されます。</DD>
+<DT>IACPCF_最初_のみ</DT><DD>このフラグを渡すと、クライアントはサーバリストの最初のサーバにのみ接続されます。 クライアントからサーバ・リストに送信されたメッセージは、その1つのサーバにのみ渡されます。</DD>
+<DT>IACPCF_SERVER_MODE</DT><DD><A NAME="Geodes_1d.htm_IX_IACPServerMode"></A><A NAME="Geodes_1d.htm_IX_IACPSM_&ldots;"></A>このフィールドは3ビット幅で<CODE>IACPServerMode</CODE>列挙型。 このタイプは、クライアントがサーバーに期待する動作を指定します。 現在、次の2つのタイプのみがサポートされています。</DD>
+<DT>IACPSM_NOT_USER_INTERACTIBLE</DT><DD>これはゼロに等しい。 これは、サーバー・オブジェクトがユーザーと対話する必要がないことを示します。</DD>
+<DT>IACPSM_ユーザ_INTERACTIBLE</DT><DD>これは2に等しい。 これは、サーバーが通常のアプリケーションと同様にユーザーと対話できる必要があることを示しています。</DD>
+<UL>
+<LI>の<CODE>MemHandle</CODE>の<CODE>AppLaunchBlock</CODE>指定したサーバーが実行されていない場合、GEOSは<CODE>AppLaunchBlock</CODE>NULLを渡すと<CODE>MemHandle</CODE>サーバーが実行されていない場合、GEOSはエラーを返します。</LI>
+<LI>クライアント・オブジェクトのoptr。 IACPCF_CLIENT_OD_SPECIFIEDが渡されなかった場合、これは無視されます。</LI>
+<LI>単語へのポインタ。<CODE>IACPConnect()</CODE>は、リスト上のサーバの数をその単語に書き込みます。</LI>
+</UL>
+</DL>
+<P><CODE>IACPConnect()</CODE>ワードサイズの<CODE>IACPConnection</CODE>トークン。 別のIACPルーチンを呼び出して接続を使用するときには、このトークンを渡す必要があります。 また、リスト上のサーバオブジェクトの数も返します。この値は、渡されたポインタが示すアドレスに書き込むことで返されます。</P>
+<P>指定したサーバー・リストが現在実行されていない場合、IACPは2つの異なることのいずれかを行います。 3番目の引数としてNULLハンドルを渡すと<CODE>IACPConnect()</CODE>失敗します。 エラー値IACP_NO_CONNECTIONを返し、指定されたリストにサーバーがないことを示します。</P>
+<P>合格した場合<CODE>AppLaunchBlock</CODE><CODE>IACPConnect()</CODE>は、その起動ブロックを調べて、サーバーとして動作するためにどのアプリケーションを起動する必要があるかを確認します。 の<CODE>AppLaunchBlock</CODE>開くアプリケーションの場所と名前を指定する必要があります。 ALBが<CODE>_appRef.AIR_diskHandle</CODE>フィールドがゼロ以外の場合<CODE>IACPConnect()</CODE>は、指定されたディスクまたは標準パスで、次の権限を持つアプリケーションを検索します。<CODE>GeodeToken</CODE>それ以外の場合は、アプリケーションの標準的な場所を検索します。</P>
+<P>起動ブロックをに渡すと<CODE>IACPConnect()</CODE>を選択した場合<EM>しない</EM>後で変更または解放します。 アプリケーションが作成されている場合、渡されたブロックはその起動ブロックになります。作成されていない場合、カーネルは自動的にブロックを解放します。 いずれにしても、呼び出し側はブロックにアクセスできなくなります。</P>
+<P>次の場合<CODE>IACPConnect()</CODE>アプリケーションを起動すると、呼び出し側は、そのアプリケーションが作成されてサーバーリストに登録されるまでブロックします。 アプリケーションがそのリストに登録されていない場合、呼び出し側はブロックを解除しません。 したがって、リストに対して正しいアプリケーションを起動していることを確認する必要があります。 すべてのアプリケーションオブジェクトは、そのトークンを共有するサーバーリストに自動的に登録されることに注意してください。</P>
+<P><A NAME="Geodes_1d.htm_IX_IACPCreateDefaultLaunchBlock()"></A>起動ブロックを作成するには<CODE>IACPCreateDefaultLaunchBlock()</CODE>このルーチンには、アプリケーションを開く方法を指定する単一の引数が渡されます。 この引数は、MSG_GEN_PROCESS_OPEN_APPLICATION(アプリケーションは標準のユーザー・interactible・アプリケーションとしてオープンされます)、MSG_GEN_PROCESS_OPEN_ENGINE(アプリケーションはエンジン・モード、つまりユーザー・インタフェースなしでオープンされます)、またはMSG_GEN_PROCESS_OPEN_CUSTOM(アプリケーション指定の意味を持ちます)である必要があります。</P>
+<P><CODE>IACPCreateDefaultLaunchBlock()</CODE>は起動ブロックを割り当て、そのフィールドを適切に設定します。 作成された起動ブロックには、次の特性があります。</P>
+<UL>
+<LI>アプリケーションの初期作業ディレクトリ(起動ブロックのALBなど)<CODE>_diskHandle</CODE>フィールド)はSP_DOCUMENTになります。</LI>
+<LI>起動ブロックにアプリケーションディレクトリが指定されていません(例:ALB<CODE>_appRef。</CODE>空気<CODE>_diskHandle</CODE>は0になります)。<CODE>IACPConnect()</CODE>は自分でアプリケーションを見つけようとします。</LI>
+<LI>初期データファイルは指定されません(例:ALB<CODE>データファイル(_D)</CODE>は空白になります)。</LI>
+<LI>アプリケーションは、それ自体の汎用の親(ALBなど)を決定します。<CODE>_genParent</CODE>はヌルになります)。</LI>
+<LI>追加のデータワードはアプリケーションに渡されません(例:ALB<CODE>_extraData</CODE>は0になります)。</LI>
+<LI>出力記述子(つまり、ALB<CODE>_userLoadAckOutput</CODE>および<CODE></CODE>アルブ<CODE>_userLoadAckMessage</CODE>はヌルになります)。</LI>
+</UL>
+<P><CODE>IACPCreateDefaultLaunchBlock()</CODE>は、新しく作成された起動ブロックのハンドルを返します。 ブロックが作成されたら、そのフィールドを変更してから、起動ブロックを<CODE>IACPConnect()</CODE>(起動ブロックをに渡したら<CODE>IACPConnect()</CODE>これ以上変更することはできません)。</P>
+<P>クライアントは、特定のドキュメントを開くためにサーバーを必要とすることがよくあります。 たとえば、デスクトップマネージャが「print-file」コマンドを実装している場合、サーバアプリケーションを開き、印刷するファイルを開くように指示してから、ファイルを印刷するように指示する必要があります。 サーバーに文書を開かせるには、文書の名前をALBに渡します。<CODE>データファイル(_D)</CODE>サーバーは、登録時にファイルを開き、登録解除時にファイルを閉じます。</P>
+
+
+<H4 CLASS="HeadingC">クライアントとしての登録解除</H4>
+<PRE>IACPShutdown x、IACPShutdownAll x</PRE>
+<P><A NAME="Geodes_1d.htm_IX_IACPShutdown()"></A>アプリケーションが特定のサーバー・リストと対話する必要がなくなった場合は<CODE>IACPShutdown()</CODE>このルーチンは、サーバリストから自身を削除したいサーバによっても使用されます。 このセクションでは、クライアントによるルーチンの使用方法について説明します。<A HREF="#Geodes_1e.htm_52457">サーバであること</A>では、サーバでの使用方法について説明します。</P>
+<P>このルーチンには、次の2つの引数が渡されます。</P>
+<UL>
+<LI>の<CODE>IACPConnection</CODE>シャットダウンされるリンクのトークン。</LI>
+<LI>オプター ルーチンがクライアントによって呼び出されている場合は、nullにする必要があります。</LI>
+</UL>
+<P><CODE>IACPShutdown()</CODE>は、リンクの反対側にあるすべてのオブジェクトにMSG_META_IACP_LOST_CONNECTIONを送信する。<CODE>IACPShutdown()</CODE>リスト上のすべてのサーバーにこのメッセージが送信されます。</P>
+<P><CODE>IACPShutdownAll()</CODE><A NAME="Geodes_1d.htm_IX_IACPShutdownAll()"></A>IACPを呼び出すアプリケーションのIACPリンクをすべて閉じます。 Applicationオブジェクトは、アプリケーションの終了時に、このルーチンを自動的に呼び出します。</P>
+
+<HR>
+          <A NAME="Geodes_1e.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">アプリケーションと Geode </A>:6.5人<A HREF="#Geodes_19.htm">アプリケーション間通信</A>キーを押します<A NAME="Geodes_1e.htm_52457"></A>サーバであること</H3>
+<P>アプリケーションが起動されるたびに、そのApplicationオブジェクトは、そのアプリケーションを共有するサーバーリストのサーバーとして自動的に登録されます。<CODE>GeodeToken</CODE>Applicationクラスには、IACPがサーバー・オブジェクトに送信するすべての通知メッセージのデフォルト・ハンドラーがあります。</P>
+<P>必要に応じて、別のオブジェクトをサーバーとして機能させることができます。 ただし、これを行うと、より多くの作業を自分で行う必要があります。 一方、通知メッセージは<CODE>メタクラス</CODE>したがって、どのクラスのオブジェクトでも処理できます。<CODE>メタクラス</CODE>には、これらのメッセージのハンドラは付属していません。<CODE>GenApplicationClass</CODE>ハンドラは自分で作成する必要があります。 これについては、以下で説明します。</P>
+
+<H4 CLASS="HeadingC">サーバの登録と登録解除</H4>
+<PRE>IACPRegisterServer x、IACPUnregisterServer x、IACPGetServerNumber x</PRE>
+<P>通常は、サーバー・オブジェクトを明示的に登録および登録解除する必要はありません。 前述したように、アプリケーションが起動されると、アプリケーションオブジェクトは自動的にリストのサーバーとして登録されます。<CODE>GeodeToken</CODE>アプリケーションが終了すると、Applicationオブジェクトはそのリストから自動的に登録解除されます。</P>
+<P>ただし、オブジェクトをサーバーとして明示的に登録することもできます。 たとえば、アプリケーション・オブジェクトをリスト上のサーバーにして<CODE>GeodeToken</CODE>または、Application以外のオブジェクトをサーバーとして登録することもできます。 この場合、オブジェクトを明示的に登録および登録解除する必要があります。</P>
+<P><A NAME="Geodes_1e.htm_IX_IACPRegisterServer()"></A>オブジェクトをサーバーとして登録するには、次の関数を呼び出します。<CODE>IACPRegisterServer()</CODE>このルーチンには、次の引数が渡されます。</P>
+<UL>
+<LI>の<CODE>GeodeToken</CODE>サーバーとして登録するリストの</LI>
+<LI>サーバーとして登録しているオブジェクトのoptr。 このオブジェクトはMSG_META_IACP. メッセージを適切に(これは<CODE>GenApplicationClass</CODE>)をクリックします。</LI>
+<LI><A NAME="Geodes_1e.htm_IX_IACPSM_&ldots; :with IACPRegisterServer()"></A>のメンバー<CODE>IACPServerMode</CODE>列挙型。 このタイプは、クライアントがサーバーに期待する動作を指定します。 現在、次の2つのタイプのみがサポートされています。</LI>
+</UL>
+<DL>
+<DT>IACPSM_NOT_USER_INTERACTIBLE</DT><DD>これはゼロに等しい。 これは、サーバー・オブジェクトがユーザーと直接対話しないことを示します。</DD>
+<DT>IACPSM_ユーザ_INTERACTIBLE</DT><DD>これは2に等しい。 これは、サーバーが通常のアプリケーションと同じようにユーザーと対話できることを示します。</DD>
+<UL>
+<LI><A NAME="Geodes_1e.htm_IX_IACPServerFlags:with IACPRegisterServer()"></A>のセット<CODE>IACPServerFlags</CODE>現在、次の2つのフラグのみがサポートされています。 IACPSF_MULTIPLE_INSTANCESは、アプリケーションの複数のコピーが同時に実行される可能性があることを示します(複数起動可能なすべてのアプリケーションは、このフラグを設定する必要があります)。 IACPSF_MAILBOX_DONT_ASK_USERは、このアプリケーションの新しいメッセージをユーザに通知しないように、Mailboxライブラリに要求します。</LI>
+</UL>
+</DL>
+<P><CODE>IACPRegisterServer()</CODE>は、オブジェクトを適切なリストのサーバとして登録し、必要に応じてサーバリストを作成します。</P>
+<P><A NAME="Geodes_1e.htm_IX_IACPUnregisterServer()"></A>オブジェクトのサーバーとしての登録を解除するには<CODE>IACPUnregisterServer()</CODE>このルーチンには2つの引数が渡されます。<CODE>GeodeToken</CODE>サーバー・リストのoptr、およびサーバーのoptr。 オブジェクトは、サーバーリストからただちに削除されます。 ただし、サーバー・リストが、除去されるサーバーにいくつかのメッセージをすでにディスパッチしている可能性があることに注意してください。これらのメッセージは、サーバー・オブジェクトのキューで待機している可能性があるため、サーバー・オブジェクトは<CODE>IACPUnregisterServer()</CODE>これに対処する1つの方法は、サーバオブジェクトがを呼び出した直後に、キュー経由でサーバオブジェクト自身にメッセージを送信させることです。<CODE>IACPUnregisterServer()</CODE>オブジェクトはこのメッセージを受信すると、キューにIACPメッセージがないことを認識します。</P>
+<P><A NAME="Geodes_1e.htm_IX_IACPGetServerNumber()"></A>指定されたサーバー・リスト上のすべてのサーバー・オブジェクトは<EM>サーバー番号</EM>このサーバー番号は、サーバーがリストに接続されている間は変更されません。 サーバーオブジェクトは、次の呼び出しによってサーバー番号を見つけることができます。<CODE>IACPGetServerNumber()</CODE>このルーチンは2つの引数を取ります。<CODE>IACPConnection</CODE>optrをサーバー・オブジェクトに設定します。 オブジェクトのサーバー番号を返します。</P>
+
+
+<H4 CLASS="HeadingC">アプリケーション以外のサーバとクライアント</H4>
+<PRE>MSG_META_IACP_PROCESS_MESSAGE, IACPProcessMessage(),MSG_META_IACP_NEW_CONNECTION, MSG_META_IACP_LOST_CONNECTIONです。</PRE>
+<P>すべてのサーバーおよびクライアント・オブジェクトは、特定のメッセージを処理できなければなりません。<CODE>GenApplicationClass</CODE>にはこれらのメッセージ用のハンドラが付属しているので、自分で作成する必要はありません。 ただし、他の種類のオブジェクトをサーバーとして使用する場合は、メッセージを自分で処理する必要があります。 また、これらのメッセージのいずれかをアプリケーションオブジェクトのサブクラスにすることもできます。その場合、通常はハンドラを使用する必要があります。<CODE>@callsuper</CODE>ボタンをクリックし</P>
+<P>サーバーまたはクライアントがIACPメッセージを送信すると、カーネルはカプセル化されたメッセージをリンクの反対側の各オブジェクトに渡します。 これは、メッセージMSG_META_IACP_PROCESS_MESSAGEを各オブジェクトに送信することによって行われます。 このメッセージには次の3つの引数があります。</P>
+<DL>
+<DT>
+          <CODE>msgToSend</CODE>
+        </DT><DD>の<CODE>EventHandle</CODE>カプセル化されたメッセージの</DD>
+<DT>
+          <CODE>タッチ</CODE>
+        </DT><DD>の<CODE>TravelOption</CODE>表示されます。</DD>
+<DT><CODE>completionMsg</DT><DD></CODE>の<CODE>EventHandle</CODE>後に送信されるメッセージの<CODE>msgToSend</CODE>がディスパッチされました。 (このフィールドは、完了メッセージがないことを示すゼロに設定することができます)。</DD>
+</DL>
+<P>MSG_META_IACP_PROCESS_MESSAGEの受信者は<CODE>IACPProcessMessage()</CODE>このルーチンには4つの引数が渡されます。ルーチンを呼び出すオブジェクトのoptrと、MSG_META_IACP_PROCESS_MESSAGEで渡される3つの引数です。<CODE>IACPProcessMessage()</CODE>は、カプセル化された両方のメッセージを適切にディスパッチし</P>
+<P>クライアントまたはサーバーが<CODE>GenApplicationClass</CODE>これらはすべてお客様のために行われます。 クライアント・オブジェクトまたはサーバー・オブジェクトがのサブクラスに属していない場合にのみ、メッセージのハンドラーを作成する必要があります。<CODE>GenApplicationClass</CODE>ボタンをクリックし</P>
+<P>クライアントがIACPリストに登録されると、カーネルはそのリスト上のすべてのサーバーにMSG_META_IACP_NEW_CONNECTIONを送信します。 このメッセージには次の3つの引数があります。</P>
+<DL>
+<DT><CODE>appLaunchBlock</DT><DD></CODE>これは<CODE>AppLaunchBlock</CODE>サーバーから渡された<CODE>IACPConnect()</CODE>ボタンをクリックし</DD>
+<DT><CODE>justLaunched</DT><DD></CODE>これはブール値です。 サーバーのアプリケーションがサーバーとして起動されたばかりの場合は、次のようになります。<EM>真</EM>(すなわち、非ゼロ)。</DD>
+<DT><CODE>IACPConnection</DT><DD></CODE>これはIACP接続用のトークンです。</DD>
+</DL>
+<P>オブジェクト(クライアントまたはサーバー)がIACP接続から自身を削除すると、カーネルはリンクの反対側にあるすべてのオブジェクトにMSG_META_IACP_LOST_CONNECTIONを送信します。 このメッセージには2つのパラメータがあります。</P>
+<DL>
+<DT>
+          <CODE>連結</CODE>
+        </DT><DD>IACPリストのトークン。</DD>
+<DT>
+          <CODE>サーバー番号</CODE>
+        </DT><DD>サーバがリストから自身を削除した場合(およびこのメッセージがクライアントに送信されている場合)、このフィールドには自身を削除したサーバの番号が表示されます。 クライアントがリストから自身を削除した場合、このフィールドはゼロになります。</DD>
+</DL>
+<P>新しいクライアントがサーバーリストに追加されると、MSG_META_IACP_NEW_CONNECTIONがすべてのサーバーオブジェクトに送信されます。 このメッセージには次の3つの引数があります。</P>
+<DL>
+<DT><CODE>appLaunchBlock</DT><DD></CODE>これは、アプリケーションの起動ブロックのハンドルです。 デフォルトでは<CODE>GenApplicationClass</CODE>ハンドラーは起動ブロックを調べて、アプリケーションが文書を開く必要があるかどうかを確認します。</DD>
+<DT><CODE>justLaunched</DT><DD></CODE>アプリケーションがサーバーとして起動された場合、このフィールドは次のようになります。<CODE>真</CODE>(すなわち、非ゼロ)。</DD>
+<DT>
+          <CODE>連結</CODE>
+        </DT><DD>これはIACP接続用のトークンです。</DD>
+</DL>
+<P>クライアントがサーバ・リストから削除されると、すべてのサーバ・オブジェクトが送信される<CODE>MSG_META_IACP_LOST_CONNECTION(接続が失われました)</CODE>同様に、サーバが削除されると、すべてのクライアントオブジェクトが送信されます。<CODE>MSG_META_IACP_LOST_CONNECTION(接続が失われました)</CODE>このメッセージには2つの引数があります。</P>
+<DL>
+<DT><CODE>IACPConnection</DT><DD></CODE>これはIACP接続用のトークンです。</DD>
+<DT>
+          <CODE>サーバー番号</CODE>
+        </DT><DD>サーバがリストを離れた場合(およびメッセージがクライアントに送信されている場合)、この引数は<CODE>サーバー番号</CODE>クライアントがリストを離れた場合(およびメッセージがサーバに送信されている場合)、この引数は0に設定されます。</DD>
+
+</DL>
+<HR>このドキュメントは<A HREF="index.htm">複数ページのドキュメント</A>簡単な印刷に適しています。</BODY>
+</HTML>

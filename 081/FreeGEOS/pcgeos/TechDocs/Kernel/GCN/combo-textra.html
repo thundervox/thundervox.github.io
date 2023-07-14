@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<!-- This page was automatically generated from a bunch of smaller pages. -->
+<META NAME="copyright" CONTENT="Copyright GEOWORKS">
+<LINK REL="STYLESHEET" HREF="../../docHelpers/style.css">
+<LINK REV="MADE" HREF="mailto:doc-feedback@geoworks.com">
+<TITLE>一般変更通知</TITLE>
+</HEAD>
+<BODY BGCOLOR="#ffffdf">このドキュメントは<A HREF="index.htm">複数ページのドキュメント</A>簡単な印刷に適しています。<A NAME="index.htm"></A><H1 CLASS="chapterTitle"><A NAME="index.htm_97933"></A>一般変更通知</H1>
+<P><A NAME="index.htm_IX_General change notification"></A>マルチタスク環境では、スレッドは自分に影響を与える可能性のある状態の変化を知る必要があります。 共有リソースまたは複数の実行スレッドが存在するほとんどの場合、プロセスとオブジェクトは、依存するデータの整合性を確認し、データが変更されたときに通知を送信する必要があります。</P>
+<P>GEOSでは、この機能は一般変更通知(GCN)メカニズムを通じて提供されます。 プロセスとオブジェクトの間のメッセージを手動で設定することもできますが、GCNメカニズムでは、特変に依存するすべてのプロセスを追跡し、さまざまなプロセスやオブジェクトに送信されるすべてのメッセージを追跡する必要がありません。</P>
+<P CLASS="sectionlinks">
+          <STRONG>
+            <A HREF="#GCN_1.htm">1設計目標</A>
+            <BR>
+            <A HREF="#GCN_2.htm">2 GCNの仕組み</A>
+            <BR>
+            <A HREF="#GCN_3.htm">3システム通知</A>
+            <BR>
+            <A HREF="#GCN_4.htm">3.1システム通知の登録</A>
+            <BR>
+            <A HREF="#GCN_5.htm">3.2システム通知の処理</A>
+            <BR>
+            <A HREF="#GCN_6.htm">3.3システムリストからの削除</A>
+            <BR>
+            <A HREF="#GCN_7.htm">4つのアプリケーションローカルGCNリスト</A>
+            <BR>
+            <A HREF="#GCN_8.htm">4.1タイプおよびリストの作成</A>
+            <BR>
+            <A HREF="#GCN_9.htm">4.2通知の登録</A>
+            <BR>
+            <A HREF="#GCN_a.htm">4.3アプリケーション通知の処理</A>
+            <BR>
+            <A HREF="#GCN_b.htm">4.4アプリケーションリストからの削除</A>
+            <BR>
+          </STRONG>
+        </P> <!-- end of sectionlinks blob -->
+
+<HR>
+          <A NAME="GCN_1.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">一般変更通知</A>:1設計目標</H2>
+<P>一般変更通知を使用すると、システムイベントとアプリケーションイベントの両方を追跡できます。 特変に関係するオブジェクトまたはプロセスは、GCNメカニズムに対して、変更が発生したときに通知するように要求できます。 この変更は、システム全体(ファイルシステムの変更など)の場合もあれば、アプリケーション固有(ワードプロセッサ内のテキストスタイルの変更など)の場合もあります。 GCNメカニズムを使用すると、オブジェクトまたはプロセスがこのような通知にサインアップして、システム(またはアプリケーション)から送信されるメッセージを傍受できるため、状況に応じてさまざまな変更に対応できます。</P>
+<P>通知プロセスの機能は似ていますが、これら2つのタイプの通知にサインアップする方法は異なります。 最も簡単な方法は<CODE>gcnList</CODE>これは、アプリケーションのウィンドウリストにアプリケーションのGenPrimaryオブジェクトを追加するために使用される一般的な方法です。 ここでは、この方法でオブジェクトをGCNリストに追加する方法を理解していることを前提としています。これは、すべてではないにしてもほとんどのサンプル・アプリケーションで示されています。</P>
+<P>また、特定のルーチンを使用してシステム全体の通知にサインアップし、変更が発生したときにシステムメッセージを傍受することもできます。 他のオブジェクトは、によってサポートされるアプリケーション固有の通知にサインアップできます。<CODE>GenApplicationClass</CODE>これらのアプリケーション固有の通知は、GenApplicationオブジェクトにのみ送信する必要があります。</P>
+<HR>
+          <A NAME="GCN_2.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">一般変更通知</A>:2 GCNの仕組み</H2>
+<P>基本的なGCN機能は、特定の変更に関係するオブジェクトのリストを管理します。 監視する必要がある特変ごとに、個別のリストが必要です。 すべてのGCNリストのインベントリを含む、完全に独立した「リストのリスト」も作成されます。 これは「検索」テーブルとして機能し、特定のGCNリストは「メッセージング」リストとして機能します。 イベントが検出されると、GCNメカニズムはリストのリストを検索して、通知リストが特変に関心があるかどうかを確認し、オブジェクトが実際にイベントの通知を希望する場合は適切なメッセージを送信します。<IMG SRC="GCN_2_lists.gif"></P>
+<P>GCNを使用する理由はいくつかあります。</P>
+<UL>
+<LI>使いやすさ<BR>GCNメカニズムにより、システムの変更に関連するメッセージを監視してディスパッチする必要がなくなります。</LI>
+<LI>共通性<BR>GCNメカニズムは、特定の場合にアプリケーション間の通信のための共通プラットフォームを提供する。</LI>
+<LI>システムは、次のことを想定しています。<BR>システムによって送信される多くのメッセージは、GCNメカニズムがそれらを傍受することを期待しています。 これらのメッセージを手動で傍受することもできますが、GCNに組み込まれている機能を利用する方が簡単です。</LI>
+</UL>
+<HR>
+          <A NAME="GCN_3.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">一般変更通知</A>:3システム通知</H2>
+<PRE><CODE>GCNListAdd x、GCNListSend x</CODE></PRE>
+<P>システムには、アプリケーションに影響を与える可能性のある一般的なシステム変更のリストがいくつか用意されています。 これらのリストの1つ(例えばファイル変更リスト)にサインアップした後、指定された変更が発生するたびにカーネルから通知されます。 ほとんどの場合、に通知を登録するだけで済みます。<CODE>GCNListAdd()</CODE>カーネルの通知メッセージを傍受します。</P>
+<P>GCNメカニズムは、共通の一連のステップを通じてその機能を実行する。 手順は次のとおりです。</P>
+<OL>
+<LI>オブジェクトは通知のために<CODE>GCNListAdd()</CODE></LI>
+<LI FIXME_NumListOther>変更が発生します。</LI>
+<LI FIXME_NumListOther>GCNメカニズムは、代理当事者によって変更を通知されます(ほとんどの場合、これはシステム自体ですが、ライブラリが通知を送信することもあります)。 アプリケーションは、システムレベルで通知を送信しません。</LI>
+<LI FIXME_NumListOther>GCNメカニズムは、すべての関係者に通知メッセージを送信します。<CODE>GCNListSend()</CODE>ボタンをクリックし</LI>
+<LI FIXME_NumListOther>オブジェクトに変更が通知されます。<BR>この変更に関連する作業を実行する必要がある場合は、システム・メッセージをインターセプトするメッセージ・ハンドラーが必要です。</LI>
+</OL>
+<P CLASS="subsectionLink">
+          <A HREF="#GCN_4.htm">システム通知の登録</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GCN_5.htm">システム通知の処理</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GCN_6.htm">システムリストからの削除</A>
+        </P>
+<HR>
+          <A NAME="GCN_4.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">一般変更通知</A>:3.1人<A HREF="#GCN_3.htm">システム通知</A>キーを押します<A NAME="GCN_4.htm_42042"></A>システム通知の登録</H3>
+<P>オブジェクトまたはプロセスに何らかのシステム変更を通知する必要がある場合は、必ずルーチンを呼び出す必要があります。<CODE>GCNListAdd()</CODE>その特変のリストに自身を追加します。<A NAME="GCN_4.htm_IX_GCNListAdd()"></A><CODE>GCNListAdd</CODE>()は適切な一般変更通知リストを検索し(現在存在しない場合は新しいリストを作成し)、新しいオブジェクトのoptrをそのリストの最後に追加します。 プロセスまたはオブジェクトの存続期間中はいつでもoptrをGCNリストに追加することができますが、通常はプロセスをそのリストに追加すると便利です。<CODE>MSG_GEN_PROCESS_OPEN_APPLICATION(プロセスを開くアプリケーション)</CODE>または、アクティブリストにあるオブジェクトを<CODE>MSG_META_ATTACH[メッセージメタアタッチ]</CODE>ハンドラ。</P>
+<P>GCNリスト内の各optrには、通知IDが添付されている必要があります。 (製造元IDと通知タイプの組み合わせは、要素固有の通知IDで構成されます)。<CODE>GCNListAdd()</CODE>通知IDとともに、追加するオブジェクトのoptrを渡す必要があります。個別の通知IDごとに、個別のGCNリストが必要であり、自動的に作成されます。</P>
+<P><A NAME="GCN_4.htm_IX_GCNSLT_&ldots;"></A><A NAME="GCN_4.htm_IX_GCNStandardListType"></A>GCNルーチンはデータのワードを使用します。<CODE>GCNStandardListType</CODE>通知タイプを表します。 現在認識されている<CODE>GCNStandardListType</CODE>MANUFACTURER_ID_GEOWORKSのタイプ</P>
+<UL>
+<LI>GCNSLTファイルシステム<BR>この<CODE>GCNStandardListType</CODE>は、ファイルシステムの変更の通知に使用されます。 このリストのパーティは、システムメッセージを受信します。<CODE>MSG_NOTIFY_FILE_CHANGE(MSG_NOTIFY_FILE</CODE>および<CODE>MSG_NOTIFY_DRIVE_CHANGE(ドライブ変更通知)</CODE>ボタンをクリックし</LI>
+<LI>GCNSLT_アプリケーション<BR>この<CODE>GCNStandardListType</CODE>は、アプリケーションの起動または終了の通知に使用されます。 このリストのパーティは、システムメッセージMSG_NOTIFY_APP_STARTEDを受信し<CODE>MSG_NOTIFY_APP_EXITED(終了したアプリケーション)</CODE>ボタンをクリックし</LI>
+<LI>GCNSLT_日付_時刻<BR>この<CODE>GCNStandardListType</CODE>は、システムの内部クロックの日付/時刻の変更を通知するために使用されます。<CODE></CODE>ここでは、タイマーの刻みについては説明していないことに注意してください。時間の変更は、システムの再起動とユーザーによる時間の変更によるものだけです。 このリストのパーティは、システムメッセージを受信します。<CODE>MSG_NOTIFY_DATE_TIME_CHANGEです。</CODE>このメッセージはそれ以上の情報を渡さないので、メッセージ・ハンドラーは(更新された値に対して内部クロックを呼び出すなどの)変更を自分で処理できるはずです。</LI>
+<LI>GCNSLT辞書<BR>この<CODE>GCNStandardListType</CODE>は、ユーザー辞書の変更の通知に使用されます。 このリストのパーティは、システムメッセージを受信します。<CODE>MSG_NOTIFY_USER_DICT_CHANGEです。</CODE></LI>
+<LI>GCNSLT_キーボード_オブジェクト<BR>このリストは、ユーザーが別のキーボードレイアウトを選択したときの通知に使用されます。 このリストのパーティは、システムメッセージMSG_NOTIFY_KEYBOARD_LAYOUT_CHANGEを受信します。</LI>
+<LI>GCNSLT_エクスプレス_メニュー_変更<BR>この<CODE>GCNStandardListType</CODE>は、高速メニューが作成または破棄されたことをさまざまなシステムユーティリティに通知します。 受信者は、Express Menu Controlのoptrを受信します。 このリストは、GCNSLT_EXPRESS_MENU_OBJECTSリストと一緒に使用する必要があります。 このリスト上のオブジェクトは、MSG_NOTIFY_EXPRESS_MENU_CHANGEを受け取ります。<CODE>GCNExpressMenuNotificationType</CODE>(GCNEMNT_CREATEDまたはGCNEMNT_DESTROYEDのいずれか)とExpress Menu Controlのoptrが影響を受けます。</LI>
+<LI>GCNSLT_INSTALLED_PRINTERS<BR>このリストは、プリンタがインストールまたは削除されたときにオブジェクトに通知します。 MSG_PRINTER_INSTALLED_REMOVEDの受信者は、以下を呼び出すことができます。<CODE>SpoolGetNumPrinters()</CODE>プリンタドライバまたはFAXドライバが現在インストールされているかどうかを確認します。</LI>
+<LI>GCNSLT_シャットダウン_コントロール<BR>この<CODE>GCNStandardListType</CODE>システムのシャットダウン制御に使用されます。<A NAME="GCN_4.htm_IX_GCNShutdownControlType"></A>このタイプのリスト上のパーティは、システムメッセージMSG_META_CONFIRM_SHUTDOWNを受け取ります。<CODE>GCNShutdownControlType</CODE>(GCNSCT_SUSPEND、GCNSCT_SHUTDOWN、GCNSCT_UNSUSPENDのいずれか)。 シャットダウン制御については、を参照してください。<A HREF="../../Kernel/Geodes/Geodes_15.htm#59499">アプリケーションと測地の章</A>ボタンをクリックし</LI><LI>GCNSLT_転送_通知<BR>このリストは、クリップボード内の転送項目が変更された(または解放された)ことをオブジェクトに通知します。 このリストのパーティは、システムメッセージMSG_META_CLIPBOARD_を受信します。<BR>NOTIFY_NORMAL_TRANSFER_ITEM_CHANGEDおよびMSG_META_CLIPBOARD_NOTIFY_TRANSFER_ITEM_FREED。</LI>
+<LI>GCNSLT_EXPRESS_MENU_OBJECTS<BR>このリストには、システム内のすべてのExpress Menu Controlオブジェクトが含まれます。 通常、このリストは、コントロールパネル項目またはDOSタスクリスト項目をすべてのエクスプレスメニューコントロールオブジェクトに追加するために使用されます。 これを行うには、MSG_EXPRESS_MENU_CONTROL_CREATE_ITEMをGCNリストに送信します。<CODE>GCNListSend()</CODE>ボタンをクリックし</LI>
+<LI>GCNSLT_TRANSPARENT_DETACH<BR>このリストには、システムのヒープ領域が不足した場合に透過的に切り離される可能性のあるすべてのアプリケーションオブジェクトが、LRU(Least Recently Used)順に含まれています。 このリストは、透過起動モードが使用されている場合にのみ使用してください。</LI>
+<LI>GCNSLT_透明_アタッチ解除_DA<BR>このリストには、システムのヒープ領域が不足した場合に、透過的に取り外し可能なデスクアクセサリのリストが含まれています。 このリストは、透過起動モードが使用されている場合にのみ使用してください。 オブジェクトは、すべてのデタッチ可能なフルスクリーンアプリケーションがデタッチされていない限り、デタッチしないでください。</LI>
+<LI>GCNSLT_リムーバブル_ディスク<BR>このリストは、リムーバブルドライブに由来するすべてのアプリケーションおよびドキュメントコントロールオブジェクトを格納するために使用されます。 元のディスクが削除された場合は、MSG_META_DISK_REMOVEDでシャットダウンするように通知されます。<A NAME="GCN_4.htm_marker=345060"></A></LI>
+</UL>
+<P>これらの定義済み通知タイプは、MANUFACTURER_ID_GEOWORKSでの使用のみを目的としています。 他の製造元が独自のシステム変更をインターセプトする場合、MANUFACTURER_ID_GEOWORKSを使用できないときは、それぞれの製造元IDで独自の変更タイプを定義する必要があります。</P>
+<P CLASS="figTitle">コード表示9-1 GCNリストへのプロセスオブジェクトの追加</P>
+<PRE>@メソッドMyProcessClass, MSG_GEN_PROCESS_OPEN_APPLICATION{optr myThread;</PRE>
+<PRE>@callsuper;/*デフォルトのMSG_GEN_PROCESS_OPEN_APPLICATIONを実行*/</PRE>
+<PRE>/*プロセスハンドルの戻り値をoptrにキャストする*/</PRE>
+<PRE>myThread=ConstructOptr(GeodeGetProcessHandle(),NullChunk);</PRE>
+<PRE>/*myThread(プロセス)がファイル変更の通知に追加される*/GCNListAdd(myThread, MANUFACTURER_ID_GEOWORKS, GCNSLT_FILE_SYSTEM);}</PRE>
+<HR>
+          <A NAME="GCN_5.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">一般変更通知</A>:3.2人<A HREF="#GCN_3.htm">システム通知</A>:システム通知の処理</H3>
+<PRE>MSG_NOTIFY_FILE_CHANGE、MSG_NOTIFY_DRIVE_CHANGE、MSG_NOTIFY_APP_STARTED、MSG_NOTIFY_APP_EXITED、MSG_NOTIFY_USER_DICT_CHANGE、MSG_NOTIFY_EXPRESS_MENU_CHANGE</PRE>
+<P><A NAME="GCN_5.htm_IX_GCNListSend()"></A>識別された変更が発生すると、システム(またはライブラリ)はルーチンを呼び出します。<CODE>GCNListSend()</CODE>適切な通知メッセージを渡します。 このルーチンは、すべてのGCNリストのリストをスキャンし、指定された変更の認識を要求した該当するすべてのオブジェクトに通知をディスパッチします。 変更に関連する追加情報をメッセージに含めることができない場合、システムは<CODE>GCNListSend()</CODE>グローバルヒープブロック内のデータを渡します。 たとえば、ファイル変更に関する追加情報(ファイル名など)は、グローバルヒープブロックで渡される必要があります。</P>
+<P>最初に変更の通知を要求したオブジェクトまたはプロセスは、適切なメッセージを処理する必要があります。 変更に関する追加データがグローバルヒープブロックで渡された場合、プロセスはその情報にアクセスする必要があります。<CODE>MemLock()関数</CODE>および<CODE>MemUnlock()</CODE>メッセージハンドラで常にプロセスのスーパークラスを呼び出して、グローバルヒープブロックが自動的に解放されるようにする必要があります。<CODE>メタクラス</CODE>したがって、通知ハンドラでグローバルヒープブロックを手動で解放しないでください。</P>
+<P>システムには、処理したいメッセージがいくつか表示されます。 これらのメッセージは、ファイルシステムの変更、アプリケーションの起動またはシャットダウン、システムクロックの変更などの通知を提供します。これらのメッセージは、で対応するリストとともに説明されています。<A HREF="#GCN_4.htm_42042">システム通知の登録</A>以下では、さらに詳しい説明が必要なメッセージについても説明します。</P>
+<P><A NAME="GCN_5.htm_IX_MSG_META_NOTIFY_FILE_CHANGE"></A>カーネルは<CODE>MSG_NOTIFY_FILE_CHANGE(MSG_NOTIFY_FILE</CODE>ファイルシステムへの変更が発生したとき。 GCNリストGCNSLT_FILE_CHANGEに登録されているすべてのオブジェクトがこのメッセージを受信します。</P>
+<P><CODE>MSG_NOTIFY_FILE_CHANGE(MSG_NOTIFY_FILE</CODE>パス<CODE>FileChangeNotificationType</CODE>発生した変更を指定します。 一部の型は、データ・ブロック(型の<CODE>FileChangeNotificationData)</CODE>該当する場合は、変更されたファイルの名前、変更されたファイルのディスクハンドル、および影響を受けたファイルのIDが含まれます。</P>
+<P>通知タイプは、次のいずれかになります。</P>
+<DL>
+<DT>FCNT作成</DT><DD>このタイプは、ファイルまたはディレクトリが作成されたことを示します。 FCND_<CODE>イド</CODE>格納ディレクトリの識別子を格納する。FCND_<CODE>人名</CODE>作成された新しいファイルまたはディレクトリの名前が含まれます。</DD>
+<DT>FCNT_RENAME[名前変更]</DT><DD>このタイプは、ファイルまたはディレクトリの名前が変更されたことを示します。 FCND_<CODE>イド</CODE>には、名前が変更されたファイルまたはディレクトリの識別子が格納されます。FCND_<CODE>人名</CODE>には新しい名前が含まれます。</DD>
+<DT>FCNT_OPEN[FCNTを開く]</DT><DD>このタイプは、ファイルが開かれたことを示します。 FCND_<CODE>イド</CODE>ファイルのIDが格納されます。 FCND_<CODE>人名</CODE>は定義されておらず、存在する場合と存在しない場合があります。 (ブロックのサイズをチェックして、実際に存在するかどうかを確認できます)。 この通知タイプは<CODE>FileEnableOpenCloseNotification()</CODE>ボタンをクリックし</DD>
+<DT>FCNT_削除</DT><DD>このタイプは、ファイルまたはディレクトリが削除されたことを示します。 FCND_<CODE>イド</CODE>には、削除されたファイルまたはディレクトリのIDが格納されます。 FCND_<CODE>人名</CODE>は定義されておらず、存在する場合と存在しない場合があります。</DD>
+<DT>FCNTの内容</DT><DD>このタイプは、ファイルの内容が変更されたことを示します。 FCND_<CODE>イド</CODE>ファイルのIDが格納されます。 FCND_<CODE>人名</CODE>は定義されておらず、存在する場合と存在しない場合があります。 この通知タイプは<CODE>FileCommit()</CODE>または<CODE>FileClose()[ファイルを閉じる]</CODE>ファイルが変更されます。</DD>
+<DT>FCNT属性</DT><DD>このタイプは、ファイルの属性が変更されたことを示します。 FCND_<CODE>イド</CODE>ファイルのIDが格納されます。 FCND_<CODE>人名</CODE>は定義されておらず、存在する場合と存在しない場合があります。 この通知タイプは<CODE>FileSetAttributes()</CODE><CODE>FileSetHandleExtAttributes()</CODE>、または<CODE>FileSetPathExtAttributes()</CODE>を呼び出します。</DD>
+<DT>FCNT_DISK_フォーマット</DT><DD>このタイプは、ディスクがフォーマットされていることを示します。 両方のFCND_<CODE>イド</CODE>およびFCND_<CODE>人名</CODE>は定義されておらず、存在しない可能性があります。</DD>
+<DT>FCNT_CLOSE[終了]</DT><DD>このタイプは、ファイルが閉じられたことを示します。 FCND<CODE>ID(_I</CODE>には、ファイルの識別子が格納されます。 FCND<CODE>名前(_N)</CODE>は定義されておらず、存在しない可能性があります。 この通知タイプは<CODE>FileEnableOpenCloseNotification()</CODE>ボタンをクリックし</DD>
+<DT>FCNTバッチ</DT><DD>このタイプは、このファイル変更通知が実際にはバッチ処理された通知のグループであることを示します。 この場合、MSG_NOTIFY_FILE_CHANGEはMemHandleを<CODE>FileChangeBatchNotificationData</CODE>ブロックを使用します。 このデータブロックには<CODE>FileChangeBatchNotificationItem</CODE>構造体であり、それぞれが(独自の通知タイプ、ディスクハンドル、ファイル名、ファイルIDを持つ)操作を参照する。 このバッチのケースでは、オプションの(つまり、未定義の)すべてのファイル名とファイルIDが存在しないと仮定しなければならないことに注意してください。</DD>
+<DT>FCNT_ADD_SP_ディレクトリ</DT><DD><A NAME="GCN_5.htm_IX_StandardPath:associated FileChangeNotificationType types"></A><A NAME="GCN_5.htm_IX_Standard paths:FCNT_ADD_SP_DIRECTORY"></A>このタイプは、ディレクトリが<CODE>StandardPath</CODE>ボタンをクリックし FCND_<CODE>円板</CODE>には<CODE>StandardPath</CODE>が追加されました。 この通知タイプは<CODE>FileAddStandardPathDirectory()</CODE>ボタンをクリックし</DD>
+<DT>FCNT_DELETE_SP_ディレクトリ</DT><DD><A NAME="GCN_5.htm_IX_Standard paths:FCNT_DELETE_SP_DIRECTORY"></A>このタイプは、ディレクトリが<CODE>StandardPath</CODE>ボタンをクリックし FCND_<CODE>円板</CODE>には<CODE>StandardPath</CODE>が削除されました。 この通知タイプは<CODE>FileDeleteStandardPathDirectory()</CODE>ボタンをクリックし</DD>
+</DL>
+<P>(ブロックをロックした後に)このデータにアクセスし、メッセージハンドラ内で必要なアクションを実行できます。</P>
+<P><A NAME="GCN_5.htm_IX_MSG_META_NOTIFY_DRIVE_CHANGE"></A>また、カーネルはGCNSLT_FILE_CHANGEタイプのGCNリストにMSG_NOTIFY_DRIVE_CHANGEを送信します。 このメッセージは<CODE>GCNDriveChangeNotificationType</CODE>ドライブを作成するか破棄するか、および影響を受けるドライブのIDを指定します。</P>
+<P><A NAME="GCN_5.htm_IX_MSG_META_NOTIFY_APP_STARTED"></A>カーネルは<CODE>MSG_NOTIFY_APP_STARTEDメッセージ</CODE>システム内でアプリケーションが起動したとき<CODE>MSG_NOTIFY_APP_EXITED(終了したアプリケーション)</CODE>アプリケーションがシャットダウンされたとき。 GCNリストGCNSLT_APPLICATIONにサインアップされたすべてのオブジェクトは、変更が発生した後にこれらのメッセージを受信します。<CODE>MSG_NOTIFY_APP_STARTEDメッセージ</CODE>は、必要なアクションを実行するためにアクセスできる、起動中のアプリケーションのMemHandleを渡します。 同様に<CODE>MSG_NOTIFY_APP_EXITED(終了したアプリケーション)</CODE><A NAME="GCN_5.htm_IX_MSG_META_NOTIFY_APP_EXITED"></A>は、シャットダウンするアプリケーションのMemHandleを渡します。</P>
+<P><A NAME="GCN_5.htm_IX_MSG_META_NOTIFY_USER_DICT_CHANGE"></A>カーネルは<CODE>MSG_NOTIFY_USER_DICT_CHANGEメッセージ</CODE>システムが現在使用中のユーザー辞書を変更したとき。 GCNリストGCNSLT_USER_DICT_CHANGEにサインアップされたすべてのオブジェクトは、変更が発生した後にこのメッセージを受け取ります。<CODE>MSG_NOTIFY_USER_DICT_CHANGED(MSG_NOTIFY_USER_DICT</CODE>は、変更の原因となるSpell BoxのMemHandleと、変更されるユーザー辞書のMemHandleを渡します。どちらもメッセージハンドラでアクセスできます。</P>
+<HR>
+          <A NAME="GCN_6.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">一般変更通知</A>:3.3人<A HREF="#GCN_3.htm">システム通知</A>:システムリストからの削除</H3>
+<P><A NAME="GCN_6.htm_IX_GCNListRemove()"></A>を使用する必要があります。<CODE>GCNListRemove()</CODE>システムのGCNリストからオブジェクトを削除します。 通知ID(<CODE>GCNStandardListType</CODE>および製造元ID)、および削除するオブジェクトのオプションを指定します。 問題のオブジェクトのoptrは、指定された特変のリストからのみ除去されます。 optrが複数のGCNリスト上にある場合、それらの他のリストは変更されません。</P>
+<P>ダイイング中のオブジェクトまたはプロセスは、現在オンになっているすべてのGCNリストから自身を削除する必要があります。 したがって、特定のオブジェクトを追加したすべてのGCNリストを追跡する必要があります。 通常、プロセスは、そのプロセス内のこれらのリストから自分自身を削除すると便利です。<CODE>MSG_GEN_PROCESS_CLOSE_APPLICATION(プロセスクローズアプリケーション)</CODE>メッセージハンドラ内のオブジェクトを削除したり<CODE>MSG_META_DETACH(メタデタッチ)</CODE>ハンドラ。</P>
+<P CLASS="figTitle">コード表示9-2 GCNリストからのプロセスの削除</P>
+<PRE>@method MyProcessClass, MSG_GEN_PROCESS_CLOSE_APPLICATION{optr myThread;myThread=ConstructOptr(GeodeGetProcessHandle(),NullChunk);GCNListRemove(myThread, MANUFACTURER_ID_GEOWORKS, GCNSLT_FILE_CHANGE);@voice;}callsuper</PRE>
+<HR>
+          <A NAME="GCN_7.htm"></A>
+        <H2 CLASS="sectionTitle"><A HREF="#index.htm">一般変更通知</A>:4アプリケーションローカルGCNリスト</H2>
+<P>GCNメカニズムを使用すると、システムの変更を追跡できるだけでなく、特定のアプリケーション内の変更も追跡できます。 これらのアプリケーション固有のGCNリストは、システム全体のアプリケーションリストとはわずかに異なる方法で動作します。 MANUFACTURER_ID_GEOWORKSには、多数の定義済みアプリケーションリストがあります。 必要に応じてこれらを使用することもできますが、ほとんどの場合、アプリケーション用に独自のリストと通知タイプを作成する必要があります。</P>
+<P>GenControlオブジェクトは、変更を実装するときに、これらのタイプのGCNリストを広範囲に使用します。 GenControlのコンテキスト内でこれらのリストを使用する方法の詳細については、「<A HREF="../../SysObjects/Controllers/index.htm">「コントローラ」の章</A>ボタンをクリックし</P><P>カスタムGenControlオブジェクトを作成する場合や、単にアプリケーション内に通知システムを設定する場合は、このメカニズムを使用するときに独自のアプリケーションGCNリストを作成する必要があります。 これを行うには、いくつかの準備手順に従う必要があります。</P>
+<UL>
+<LI>新しいタイプのリストを作成する<EM>会社名</EM><CODE>GenAppGCNListTypes</CODE>適切な範囲内<STRONG CLASS="fileName">yourCompanyName.hと入力します。</STRONG>ファイルを開きます。</LI>
+<LI>GCN通知タイプを作成する<EM>会社名</EM><CODE>NotificationTypes</CODE>上記のリストタイプの<STRONG CLASS="fileName">yourCompanyName.hと入力します。</STRONG>ファイルを開きます。</LI>
+</UL>
+<P>この場合のGCNメカニズムは、共通の一連のステップを通じてその機能を実行する。 これらの手順は、システム全体の通知に必要な手順と似ています。</P>
+<OL>
+<LI>オブジェクトは通知のために<CODE>MSG_META_GCN_LIST_ADD(追加)</CODE>ボタンをクリックし</LI>
+<LI FIXME_NumListOther>変更はアプリケーション内で行われ、独自のカスタム・メソッドが呼び出されます。 変更はアプリケーション内で発生するため、変更を検出して自分で通知を送信する必要があります。</LI>
+<LI FIXME_NumListOther>通知イベントを記録する<CODE>MSG_META_NOTIFY(メタ通知)</CODE>または<CODE>MSG_META_NOTIFY_WITH_DATA_BLOCK(META_NOTIFY_WITH_DATA_BLOCK</CODE>、使用する通知リストタイプ、および渡すデータブロック(該当する場合)です。</LI>
+<LI FIXME_NumListOther>使用(Use)<CODE>MSG_GEN_PROCESS_SEND_TO_APP_GCN_LISTを指定してください</CODE>イベントを通過させます。 いくつかパスする必要があるかもしれません<CODE>GCNListSendFlags</CODE>表示されます。 このメッセージはディスパッチルーチンとして機能し、記録されたイベントをすべての関係者に送信します。<CODE>MSG_META_NOTIFY(メタ通知)</CODE>ボタンをクリックし</LI>
+<LI FIXME_NumListOther>オブジェクトに変更が通知されます。<CODE>MSG_META_NOTIFY(メタ通知)</CODE>または<CODE>MSG_META_NOTIFY_WITH_DATA_BLOCK(META_NOTIFY_WITH_DATA_BLOCK</CODE>この変更に関連する作業を実行する必要がある場合は、これらのメッセージをインターセプトするメッセージハンドラが必要です。</LI>
+</OL>
+<P CLASS="subsectionLink">
+          <A HREF="#GCN_8.htm">タイプとリストの作成</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GCN_9.htm">通知の登録</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GCN_a.htm">アプリケーション通知の処理</A>
+        </P>
+<P CLASS="subsectionLink">
+          <A HREF="#GCN_b.htm">アプリケーション・リストからの削除</A>
+        </P>
+<HR>
+          <A NAME="GCN_8.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">一般変更通知</A>:4.1人<A HREF="#GCN_7.htm">アプリケーションローカルGCNリスト</A>:タイプとリストの作成</H3>
+<P>独自の通知タイプを作成するのは比較的簡単なことです。 適切な企業固有のファイル内に、独自のタイプとリストを作成するだけです。 (たとえば、すべてのGeoworksアプリケーションローカルリストはファイル内にあります。<STRONG CLASS="fileName">geoworks.hと入力します。</STRONG>」を参照してください。</P>
+<P CLASS="figTitle">コード表示9-3新しい通知タイプと通知リストの作成</P>
+<PRE>/*これらの型は適切な<EM>会社名</EM>hファイル*/</PRE>
+<PRE>/*最初に、MANUFACTURER_IDに使用する通知タイプのグループを作成します。*/</PRE>
+<PRE>typedef列挙型{&lt;<EM>会社名</EM>>_NT_CUSTOM_NOTIFICATION_NUMBER_ONE(カスタム通知番号1)&lt;<EM>会社名</EM>>_NT_CUSTOM_NOTIFICATION_NUMBER_TWO.}(英語)&lt;<EM>会社名</EM>>NotificationTypes</PRE>
+<PRE>/*次に、必要な通知リスト・タイプを作成します。 これらのリストタイプ*は、通常、上記で列挙したタイプに1対1で対応します。 ただし、*複数のリストが1つの通知タイプに関係することもあります。*/</PRE>
+<PRE>typedef列挙型{&lt;<EM>会社名</EM>>_GAGCNLT_CUSTOM_LIST_TYPE_ONE&lt;<EM>会社名</EM>>_GAGCNLT_CUSTOM_LIST_TYPE_TWO.}&lt;<EM>会社名</EM>>GenAppGCNListTypes</PRE>
+<HR>
+          <A NAME="GCN_9.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">一般変更通知</A>:4.2人<A HREF="#GCN_7.htm">アプリケーションローカルGCNリスト</A>:通知の登録</H3>
+<P>
+          <CODE>MSG_META_GCN_LIST_ADD(追加)</CODE>
+        </P>
+<P><A NAME="GCN_9.htm_IX_MSG_META_GCN_LIST_ADD"></A>独自のカスタム通知リストを作成すれば、アプリケーション通知の登録は簡単です。 アプリケーションの変更をオブジェクトまたはプロセスに通知する必要がある場合は<CODE>MSG_META_GCN_LIST_ADD(追加)</CODE>そのオブジェクトまたはプロセスを、その特変に関係するリストに追加します。<CODE>MSG_META_GCN_LIST_ADD(追加)</CODE>適切なカスタムGCNリストを検索し、新しいオブジェクトのoptrをそのリストの最後に追加します。 (リストが空のために現在スペースが存在しない場合、メッセージは自動的にリストにスペースを割り当てます)。 対象となるoptrは、プロセスまたはオブジェクトの存続中にいつでも追加できますが、通常は、プロセスをそのオブジェクトに追加すると便利です。<CODE>MSG_GEN_PROCESS_OPEN_APPLICATION(プロセスを開くアプリケーション)</CODE>または<CODE>MSG_META_ATTACH[メッセージメタアタッチ]</CODE>ハンドラ。</P>
+<P>GCNリスト内の各optrには、通知IDが添付されている必要があります。 製造元IDと通知タイプの組み合わせは、要素固有の通知IDで構成されます。<CODE>MSG_META_GCN_LIST_ADD(追加)</CODE>は、通知IDとともに、追加するオブジェクトのoptrを渡す必要があります。個別の通知IDごとに、個別のGCNリストが必要で、自動的に作成されます。</P>
+<P>Geoworksには、いくつかのタイプの定義済みGCNリストがあります。<CODE>GeoWorksGenAppGCNListType</CODE>アプリケーションで使用できます。 これらのリストタイプは、主にUIコントローラで使用されます。 これらの型と、さまざまなクラスでの使用方法については、を参照してください。<A HREF="../../SysObjects/Controllers/index.htm">「コントローラ」の章</A>ボタンをクリックし</P><P CLASS="figTitle">コード表示9-4カスタムGCNリストへの自分自身の追加</P>
+<PRE>@メソッドMyProcessClass, MSG_GEN_PROCESS_OPEN_APPLICATION{</PRE>
+<PRE>@callsuper;/*デフォルトのMSG_GEN_PROCESS_OPEN_APPLICATIONを実行*/</PRE>
+<PRE>myThread=ConstructOptr(GeodeGetProcessHandle(),NullChunk);</PRE>
+<PRE>/*myThread(プロセス)がTYPE_ONEの変更通知に追加される*/@call MyApplication::MSG_META_GCN_LIST_ADD(myThread<EM>会社名</EM>_GAGCNLT_CUSTOM_LIST_TYPE_ONE、MANUFACTURER_ID_<EM>会社名</EM>);}を参照してください。</PRE>
+<HR>
+          <A NAME="GCN_a.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">一般変更通知</A>:4.3人<A HREF="#GCN_7.htm">アプリケーションローカルGCNリスト</A>:アプリケーション通知の処理</H3>
+<PRE>MSG_META_NOTIFY、MSG_META_NOTIFY_WITH_DATA_BLOCK、MSG_META_GCN_LIST_SEND</PRE>
+<P><A NAME="GCN_a.htm_IX_MSG_META_NOTIFY_WITH_DATA_BLOCK"></A><A NAME="GCN_a.htm_IX_MSG_META_NOTIFY"></A>通知を送信する必要があるアプリケーションで変更が発生した場合は、通知メッセージを設定し、関係するリストに送信する必要があります。 通知リストのオブジェクトで使用するために、この通知にデータ・ブロックを添付できます。 これらの通知を送信するには<CODE>MSG_META_NOTIFY(メタ通知)</CODE>または<CODE>MSG_META_NOTIFY_WITH_DATA_BLOCK(META_NOTIFY_WITH_DATA_BLOCK</CODE>(データを渡すとき)。</P>
+<P>データを渡す必要がない最も単純なケースでは、カプセル化する必要があります<CODE>MSG_META_NOTIFY(メタ通知)</CODE>通知されるべき特定の通知ID(通知タイプと製造者ID)を持つ。 次に<CODE>MSG_GEN_PROCESS_SEND_TO_APP_GCN_LISTを指定してください</CODE>このイベントと、この変更に関係する特定のGCNリストを使用して、アプリケーション・オブジェクトにアクセスします。 (どのリストがどの通知タイプに関係しているかを追跡する必要があることに注意してください)。 このメッセージを使用する場合は、メッセージがスレッド間で交差する可能性があるため、必ず(呼び出しではなく)送信を実行してください。</P>
+<P CLASS="figTitle">MSG_META_NOTIFYを使用したコード表示9-5</P>
+<PRE>@メソッドMyProcessClass, MSG_SEND_CUSTOM_NOTIFICATION{</PRE>
+<PRE>MessageHandleイベント;</PRE>
+<PRE>/*最初にMSG_META_NOTIFYを、変更に関係するリストのタイプとメーカーID*でカプセル化します。 このメッセージは*特定のクラスに対して記録されていないため、NullClassを使用してください。*/</PRE>
+<PRE>event=@record(optr)NullClass::MSG_META_NOTIFY(MANUFACTURER_ID_<EM>会社名</EM><EM>会社名</EM>_NT_CUSTOM_TYPE_ONE);を参照してください。</PRE>
+<PRE>/*次に、MSG_META_GCN_LIST_SENDを使用してこのMSG_META_NOTIFYを送信します。 *上記のメッセージにカプセル化された変更に関係する特定のGCNリストを*渡すようにする必要があります。*/</PRE>
+<PRE>@send notify::MSG_GEN_PROCESS_SEND_TO_APP_GCN_LIST((word)0, /*GCNListSendFlags*/event, /*上記のMSG_MyProcessイベントを参照するためのハンドル。 */0, /*データが渡されなかったため、データブロックがありません。 *//*NT_CUSTOM_TYPE_ONE通知タイプに関係するリストを渡します。*/<EM>会社名_</EM>GAGCNLT_APP_CUSTOM_LIST_ONE, /*製造元IDを渡します。 */メーカー_ID_<EM>会社名</EM>);}を参照してください。</PRE>
+<P>代わりに、通知とともにデータブロックを渡す必要がある場合は<CODE>MSG_META_NOTIFY_WITH_DATA_BLOCK(META_NOTIFY_WITH_DATA_BLOCK</CODE>事前に通過する構造を設定しておく必要があります。 また、データ・ブロックに参照カウントを追加する際には<EM>リストりすと</EM>(オブジェクトではありません)通知を送信します。 これを行うには<CODE>MemInitRefCount()</CODE>データ・ブロックと、通知を送信するリストの合計数。 (ほとんどの場合、通知は1つのリストにしか送信されませんが、もちろん、そのリストには複数のオブジェクトが含まれている場合もあります)。</P>
+<P CLASS="figTitle">コード表示9-6 MSG_META_NOTIFY_WITH_DATA_BLOCK</P>
+<PRE>@メソッドMyProcessClass, MSG_SEND_CUSTOM_NOTIFICATION{</PRE>
+<PRE>typedef struct{int number;char letterToLookFor;}MyDataStructure;</PRE>
+<PRE>MemHandle myDataBlock;MyDataStructure*myDataPtr;MessageHandleイベント;</PRE>
+<PRE>/*データ構造のブロックを割り当て、ロックします。 これは通知と一緒に*渡されます。 注意:データ・ブロックは共有可能でなければなりません!*/</PRE>
+<PRE>myDataBlock=MemAlloc(sizeof(MyDataStructure),(HF_DYNAMIC HF_SHARABLE),HAF_STANDARD);</PRE>
+<PRE>myDataPtr=MemLock(myDataBlock);</PRE>
+<PRE>/*関連情報を含む構造をロードします。 */myDataPtr->count=200;myDataPtr->letterToLookFor=`z&#39;;</PRE>
+<PRE>/*ロックを解除し、参照カウントを1に設定します。これは1つの*リストにのみ送信されるためです。 */MemUnlock(myDataBlock);MemInitRefCount(myDataBlock、(語)1);</PRE>
+<PRE>/*MSG_META_NOTIFY_WITH_DATA_BLOCKメッセージをカプセル化するようになりました。 *特定のクラスに対して記録されていないため、クラスタイプとしてNullClassを使用します。*/</PRE>
+<PRE>event=@record(optr)NullClass::MSG_META_NOTIFY_WITH_DATA_BLOCK(MANUFACTURER_ID_<EM>会社名</EM>,/*製造元ID*/NT_CUSTOM_TYPE_ONE, /*リストタイプ。 */myDataBlock);/*データブロックのハンドル*/</PRE>
+<PRE>/*最後に、メッセージをプロセスに送信します。 GCNListSendFlagsは*状況によります。 (注)</PRE>
+<PRE>@send notification::MSG_GEN_PROCESS_SEND_TO_APP_GCN_LIST((word)0, /*GCNListSendFlags*/event, /*メッセージのハンドル*/myDataBlock, /*データブロックのハンドル*//*NT_CUSTOM_TYPE_ONE MyProcessに関係するリストのタイプを渡します。 */GAGCNLT_APP_CUSTOM_LIST_ONE, MANUFACTURER_ID_<EM>会社名</EM>)</PRE>
+<PRE>/*完了! myDataBlockは自動的にMemFree()されます。 */}と入力します。</PRE>
+<P>最初に変更の通知を要求したオブジェクトまたはプロセスは<CODE>MSG_META_NOTIFY(メタ通知)</CODE>または<CODE>MSG_META_NOTIFY_WITH_DATA_BLOCK(META_NOTIFY_WITH_DATA_BLOCK</CODE>変更に関する追加データがデータブロックで渡された場合、プロセスはその情報にアクセスする必要があります。<CODE>MemLock()関数</CODE>および<CODE>MemUnlock()</CODE>グローバルヒープブロックが自動的に解放されるように、メッセージハンドラでは常にプロセスのスーパークラスを呼び出す必要があります。<CODE>メタクラス</CODE>したがって、通知ハンドラで通知データブロックを手動で解放しないでください。</P>
+<P CLASS="figTitle">コード表示9-7アプリケーション通知の変更のインターセプト</P>
+<PRE>/*MyObjectClassが特定の*通知タイプのMSG_META_NOTIFYを受信したときに実装するコード。</PRE>
+<PRE>@メソッドMyObjectClass, MSG_META_NOTIFY{</PRE>
+<PRE>MyDataStructure myData;/*渡されたデータ・ブロックを保管します。 (注)</PRE>
+<PRE>/*データ構造をロックします。 (注)</PRE>
+<PRE>myData=MemLock(データ);</PRE>
+<PRE>/*通知タイプを確認し、*前のイベントへの応答で発生させたい変更を実装します。*/</PRE>
+<PRE>if((notificationType==&lt;値><EM>会社名_</EM>NT_CUSTOM_TYPE_ONE)&amp;(manufID==MANUFACTURER_ID_<EM>会社名</EM>)){/*オブジェクトに実装するコード。 */}と入力します。</PRE>
+<PRE>MemUnlock(データ)</PRE>
+<PRE>@callsuper;/*重要!データ・ブロックを解放します。 */}と入力します。</PRE>
+<HR>
+          <A NAME="GCN_b.htm"></A>
+        <H3 CLASS="subsectionTitle"><A HREF="#index.htm">一般変更通知</A>:4.4人<A HREF="#GCN_7.htm">アプリケーションローカルGCNリスト</A>:アプリケーションリストからの削除</H3>
+<P><A NAME="GCN_b.htm_IX_MSG_META_GCN_LIST_REMOVE"></A>を使用する必要があります。<CODE>MSG_META_GCN_LIST_REMOVE■サービス名の場合■</CODE>アプリケーションのGCNリストからオブジェクトを削除します。 ルーチンに通知ID(<EM>会社名</EM><CODE>AppGCNListTypes</CODE>と製造元ID)、および削除するオブジェクトのオプションを指定します。 問題のオブジェクトのoptrは、指定された特変のリストからのみ削除されることに注意してください。 optrが複数のGCNリスト上にある場合、それらの他のリストは変更されません。</P>
+<P>ダイイング中のオブジェクトまたはプロセスは、システムとアプリケーションの両方から、現在オンになっているすべてのGCNリストから自身を削除する必要があります。 したがって、特定のオブジェクトを追加したすべてのGCNリストを追跡する必要があります。 通常、プロセスは、そのプロセス内のこれらのリストから自分自身を削除すると便利です。<CODE>MSG_GEN_PROCESS_CLOSE_APPLICATION(プロセスクローズアプリケーション)</CODE>メッセージハンドラ、または削除するオブジェクト<CODE>MSG_META_DETACH(メタデタッチ)</CODE>時間。</P>
+<P CLASS="figTitle">コード表示9-8アプリケーションGCNリストからの削除</P>
+<PRE>@メソッドMyProcessClass, MSG_GEN_PROCESS_CLOSE_APPLICATION{</PRE>
+<PRE>@send MyApplication::MSG_META_GCN_LIST_REMOVE(MyObject, /*リストから削除するoptr.*/<EM>会社名_</EM>NT_CUSTOM_LIST_ONE, /*オブジェクトを削除するリスト。 *//*オブジェクトを削除するリストの製造元ID。 */メーカー_ID_<EM>会社名</EM>)</PRE>
+<PRE>@callsuper;}<A NAME="GCN_b.htm_marker=345084"></A></PRE>
+<HR>このドキュメントは<A HREF="index.htm">複数ページのドキュメント</A>簡単な印刷に適しています。</BODY>
+</HTML>

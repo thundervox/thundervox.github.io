@@ -78,7 +78,7 @@ version.12.0 以降については別の機会とします。
 * EffectType
 * Source
 * Source:getFreeBufferCount
-* Source:isPaused
+* ✅Source:isPaused
 * Source:queue
 * Source:setEffect
 * Source:setFilter
@@ -87,8 +87,8 @@ version.12.0 以降については別の機会とします。
 ## love.data
 
 * Data:getFFIPointer
-* Data:getString
-* love.data.newDataView
+* ✅Data:getString
+* ✅love.data.newDataView
 
 ## love.event
 

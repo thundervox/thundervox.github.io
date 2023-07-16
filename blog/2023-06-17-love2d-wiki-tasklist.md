@@ -301,17 +301,10 @@ version.12.0 以降については別の機会とします。
 
 * [love.window.getDPIScale](https://love2d.org/wiki/love.window.getDPIScale)
 * [love.window.getDesktopDimensions](https://love2d.org/wiki/love.window.getDesktopDimensions)
-* [love.window.getMode](https://love2d.org/wiki/love.window.getMode)
+* ✅[love.window.getMode](https://love2d.org/wiki/love.window.getMode)
 * ✅[love.window.getPosition](https://love2d.org/wiki/love.window.getPosition)
 * ✅[love.window.getSafeArea](https://love2d.org/wiki/love.window.getSafeArea) - 2023年6月17日 (土) 15時11分
-* [](https://love2d.org/wiki/)
-* [](https://love2d.org/wiki/)
-* [](https://love2d.org/wiki/)
-* [](https://love2d.org/wiki/)
-* [](https://love2d.org/wiki/)
-* [](https://love2d.org/wiki/)
-* [](https://love2d.org/wiki/)
-* [love.window.setPosition](https://love2d.org/wiki/love.window.setPosition)
+* ✅[love.window.setPosition](https://love2d.org/wiki/love.window.setPosition)
 * [love.window.setVSync](https://love2d.org/wiki/love.window.setVSync)
 * [love.window.updateMode](https://love2d.org/wiki/love.window.updateMode)
 

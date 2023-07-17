@@ -138,8 +138,26 @@ version.12.0 以降については別の機会とします。
 * Texture:setFilter
 * 
 * love.graphics
+* ✅love.graphics.arc
+* ✅love.graphics.circle
+* ✅love.graphics.clear
+* ✅love.graphics.discard
 * love.graphics.draw
-* 
+* ✅love.graphics.drawLayer
+* ✅love.graphics.drawq
+* ✅love.graphics.ellipse
+* ✅love.graphics.flushBatch
+* love.graphics.line
+* ✅love.graphics.point
+* ✅love.graphics.points
+* love.graphics.polygon
+* ✅love.graphics.present
+* love.graphics.print
+* ✅love.graphics.printf
+* ✅love.graphics.quad
+* love.graphics.rectangle
+* ✅love.graphics.stencil
+* ✅love.graphics.triangle
 
 ## love.image
 

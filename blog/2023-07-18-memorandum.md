@@ -32,3 +32,8 @@
 extmem.asm より引用
 
 * [XMS](https://en.m.wikipedia.org/wiki/Extended_memory) は 4GB までのようですが、 GEOS ですべての領域が使えるかはわかりませんね。
+
+## FAQ
+https://groups.google.com/g/comp.answers/c/tQO0OSYHQQw
+
+古すぎて今でも使えるかどうか。

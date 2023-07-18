@@ -122,7 +122,45 @@ version.12.0 以降については別の機会とします。
 * PixelFormat
 
 ## love.graphics
-* 
+* Canvas
+* Canvas:clear
+* ✅Canvas:generateMipmaps
+* ✅Canvas:getFSAA
+* ✅Canvas:getFormat
+* ✅Canvas:getImageData
+* ✅Canvas:getMSAA
+* ✅Canvas:getMipmapMode
+* ✅Canvas:getPixel
+* ✅Canvas:newImageData
+* Canvas:renderTo
+* ✅Drawable
+* ✅Font
+* ✅Font:getAscent
+* ✅Font:getBaseline
+* ✅Font:getDPIScale
+* ✅Font:getDescent
+* ✅Font:getFilter
+* ✅Font:getHeight
+* Font:getKerning
+* ✅Font:getLineHeight
+* ✅Font:getWidth
+* Font:getWrap
+* ✅Font:hasGlyphs
+* ✅Font:setFallbacks
+* ✅Font:setFilter
+* ✅Font:setLineHeight
+* ✅Framebuffer
+* Framebuffer:getImageData
+* Framebuffer:getWrap
+* Framebuffer:renderTo
+* Framebuffer:setWrap
+* Image
+* (Image):getData
+* (Image):getFlags
+* ✅(Image):isCompressed
+* (Image):isFormatLinear
+* ✅(Image):refresh
+* ✅(Image):replacePixels
 * Mesh
 * Mesh:attachAttribute
 * Mesh:setTexture
@@ -137,7 +175,7 @@ version.12.0 以降については別の機会とします。
 * Texture:isReadable
 * Texture:setFilter
 * 
-* love.graphics
+* ✅love.graphics
 * ✅love.graphics.arc
 * ✅love.graphics.circle
 * ✅love.graphics.clear

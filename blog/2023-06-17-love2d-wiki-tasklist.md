@@ -122,6 +122,9 @@ version.12.0 以降については別の機会とします。
 * PixelFormat
 
 ## love.graphics
+* ✅love.graphics
+
+## Types
 * Canvas
 * Canvas:clear
 * ✅Canvas:generateMipmaps
@@ -168,14 +171,34 @@ version.12.0 以降については別の機会とします。
 * Mesh:setVertices
 * Mesh:setVertexAttribute
 * VertexAttributeStep
+* ✅ParticleSystem
+* ✅ParticleSystem:clone
+* ✅ParticleSystem:count 
+* ✅ParticleSystem:emit
+* ✅ParticleSystem:getAreaSpread
+* ✅ParticleSystem:getBufferSize
 * ParticleSystem:getColors
+* ✅ParticleSystem:getCount
+* ✅ParticleSystem:getDirection
+* ✅ParticleSystem:getEmissionArea
+* ✅ParticleSystem:getEmissionRate
+* ✅ParticleSystem:getEmitterLifetime
+* ✅ParticleSystem:getImage
+* ✅ParticleSystem:getInsertMode
+* ✅ParticleSystem:getLinearAcceleration
+* 
 * ParticleSystem:setColors
 * ParticleSystem:setQuads
 * ParticleSystem:setRotation
+* 
+* 
 * Texture:isReadable
 * Texture:setFilter
 * 
-* ✅love.graphics
+
+### Functions
+
+### Drawing
 * ✅love.graphics.arc
 * ✅love.graphics.circle
 * ✅love.graphics.clear
@@ -196,6 +219,25 @@ version.12.0 以降については別の機会とします。
 * love.graphics.rectangle
 * ✅love.graphics.stencil
 * ✅love.graphics.triangle
+
+### Object Creation
+* ✅love.graphics.captureScreenshot
+* ✅love.graphics.newArrayImage
+* love.graphics.newCanvas
+* love.graphics.newCubeImage
+* love.graphics.newFont
+* ✅love.graphics.newFramebuffer
+* love.graphics.newImage
+* love.graphics.newImageFont
+* love.graphics.newMesh
+* ✅love.graphics.newParticleSystem
+* love.graphics.newPixelEffect
+* love.graphics.newQuad
+* love.graphics.newScreenshot
+* love.graphics.newShader
+* love.graphics.newSpriteBatch
+* 
+
 
 ## love.image
 

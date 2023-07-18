@@ -24,3 +24,6 @@
 
 で、[スワップ](https://github.com/bluewaysw/pcgeos/tree/9672d033f192a4fd5103103bf385cc8cd58c48b7/Driver/Swap)に EMS や XMS 使えるはずだから…わからん。
 
+### 最大メモリ
+
+ExtMem (拡張メモリ管理コアルーチン) のコメントによると 15MB まで。現代的な環境ではキツイの一言ですね。

@@ -380,9 +380,9 @@ version.12.0 以降については別の機会とします。
 * love.timer.getTime
 * love.timer.sleep
 
-## love.touch
+## love.touch (最終確認日: 2023年23日)
 
-* ありません (最終確認日: 2023年6月23日)
+* ありません。
 
 ## love.video
 

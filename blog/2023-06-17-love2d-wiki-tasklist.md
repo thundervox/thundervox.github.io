@@ -290,7 +290,7 @@ version.12.0 以降については別の機会とします。
 * Joystick:getPlayerIndex
 * ✅Joystick:getVibration
 * ✅Joystick:isConnected
-* Joystick:isDown
+* ✅Joystick:isDown
 * Joystick:isGamepad
 * Joystick:isGamepadDown
 * ✅Joystick:isVibrationSupported

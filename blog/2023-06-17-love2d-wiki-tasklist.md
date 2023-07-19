@@ -270,7 +270,7 @@ version.12.0 以降については別の機会とします。
 ## love.joystick
 
 * ✅love.joystick
-* Joystick
+* ✅Joystick
 * ✅love.joystick.getJoysticks
 * ✅Joystick:getAxes
 * ✅Joystick:getAxis
@@ -283,7 +283,7 @@ version.12.0 以降については別の機会とします。
 * ✅Joystick:getGamepadMappingString
 * Joystick:getGamepadType
 * ✅Joystick:getHat
-* Joystick:getHatCount
+* ✅Joystick:getHatCount
 * ✅Joystick:getID
 * Joystick:getJoystickType
 * ✅Joystick:getName
@@ -295,7 +295,7 @@ version.12.0 以降については別の機会とします。
 * Joystick:isGamepadDown
 * ✅Joystick:isVibrationSupported
 * Joystick:setPlayerIndex
-* Joystick:setVibration
+* ✅Joystick:setVibration
 * ✅love.joystick.close
 * ✅love.joystick.getAxes
 * ✅love.joystick.getAxis

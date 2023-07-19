@@ -372,7 +372,7 @@ version.12.0 以降については別の機会とします。
 
 * love.thread
 * Channel:demand
-* Channel:supply
+* ✅Channel:supply
 
 ## love.timer
 

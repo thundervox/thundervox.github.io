@@ -269,6 +269,7 @@ version.12.0 以降については別の機会とします。
 
 ## love.joystick
 
+* ✅love.joystick
 * Joystick
 * ✅love.joystick.getJoysticks
 * ✅Joystick:getAxes
@@ -297,19 +298,18 @@ version.12.0 以降については別の機会とします。
 * Joystick:setVibration
 * ✅love.joystick.close
 * ✅love.joystick.getAxes
-* ✅love.joystick
-* love.joystick.getAxis
-* love.joystick.getBall
-* love.joystick.getGamepadMappingString
-* love.joystick.getHat
+* ✅love.joystick.getAxis
+* ✅love.joystick.getBall
+* ✅love.joystick.getGamepadMappingString
+* ✅love.joystick.getHat
 * ✅love.joystick.getJoystickCount
 * ✅love.joystick.getJoysticks
-* love.joystick.getName
-* love.joystick.getNumAxes
-* love.joystick.getNumBalls
-* love.joystick.getNumButtons
-* love.joystick.getNumHats
-* love.joystick.getNumJoysticks
+* ✅love.joystick.getName
+* ✅love.joystick.getNumAxes
+* ✅love.joystick.getNumBalls
+* ✅love.joystick.getNumButtons
+* ✅love.joystick.getNumHats
+* ✅love.joystick.getNumJoysticks
 * ✅love.joystick.isDown
 * ✅love.joystick.isOpen
 * ✅love.joystick.loadGamepadMappings

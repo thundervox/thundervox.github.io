@@ -278,23 +278,23 @@ version.12.0 以降については別の機会とします。
 * ✅Joystick:getButtonCount
 * ✅Joystick:getDeviceInfo
 * ✅Joystick:getGUID
-* Joystick:getGamepadAxis
-* Joystick:getGamepadMapping
+* ✅Joystick:getGamepadAxis
+* ✅Joystick:getGamepadMapping
 * ✅Joystick:getGamepadMappingString
-* Joystick:getGamepadType
+* Joystick:getGamepadType (12.0)
 * ✅Joystick:getHat
 * ✅Joystick:getHatCount
 * ✅Joystick:getID
-* Joystick:getJoystickType
+* Joystick:getJoystickType (12.0)
 * ✅Joystick:getName
-* Joystick:getPlayerIndex
+* Joystick:getPlayerIndex (12.0)
 * ✅Joystick:getVibration
 * ✅Joystick:isConnected
 * ✅Joystick:isDown
 * Joystick:isGamepad
 * Joystick:isGamepadDown
 * ✅Joystick:isVibrationSupported
-* Joystick:setPlayerIndex
+* Joystick:setPlayerIndex (12.0)
 * ✅Joystick:setVibration
 * ✅love.joystick.close
 * ✅love.joystick.getAxes
@@ -318,10 +318,10 @@ version.12.0 以降については別の機会とします。
 * ✅love.joystick.setGamepadMapping
 * ✅GamepadAxis
 * ✅GamepadButton
-* GamepadType
+* GamepadType (12.0)
 * ✅JoystickHat
 * ✅JoystickInputType
-* JoystickType
+* JoystickType (12.0)
 
 
 ## love.keyboard - 更新完了 (最終確認日: 2023年6月24日)

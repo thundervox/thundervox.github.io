@@ -292,7 +292,7 @@ version.12.0 以降については別の機会とします。
 * ✅Joystick:isConnected
 * ✅Joystick:isDown
 * Joystick:isGamepad
-* Joystick:isGamepadDown
+* ✅Joystick:isGamepadDown
 * ✅Joystick:isVibrationSupported
 * Joystick:setPlayerIndex (12.0)
 * ✅Joystick:setVibration
@@ -321,7 +321,7 @@ version.12.0 以降については別の機会とします。
 * GamepadType (12.0)
 * ✅JoystickHat
 * ✅JoystickInputType
-* JoystickType (12.0)
+* ✅JoystickType (12.0)
 
 
 ## love.keyboard - 更新完了 (最終確認日: 2023年6月24日)

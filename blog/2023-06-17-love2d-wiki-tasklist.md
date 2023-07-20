@@ -153,10 +153,10 @@ version.12.0 以降については別の機会とします。
 * ✅Font:setFilter
 * ✅Font:setLineHeight
 * ✅Framebuffer
-* Framebuffer:getImageData
-* Framebuffer:getWrap
-* Framebuffer:renderTo
-* Framebuffer:setWrap
+* ✅Framebuffer:getImageData
+* ✅Framebuffer:getWrap
+* ✅Framebuffer:renderTo
+* ✅Framebuffer:setWrap
 * Image
 * (Image):getData
 * (Image):getFlags
@@ -371,7 +371,7 @@ version.12.0 以降については別の機会とします。
 ## love.thread
 
 * love.thread
-* Channel:demand
+* ✅Channel:demand
 * ✅Channel:supply
 
 ## love.timer

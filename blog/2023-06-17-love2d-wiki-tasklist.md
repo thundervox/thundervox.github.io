@@ -191,12 +191,26 @@ version.12.0 以降については別の機会とします。
 * ParticleSystem:setQuads
 * ParticleSystem:setRotation
 * 
-* 
-* Texture:isReadable
-* Texture:setFilter
-* 
 
-### Functions
+### Texture
+* ✅Texture
+* ✅Texture:getDPIScale
+* ✅Texture:getDepth
+* ✅Texture:getDepthSampleMode
+* ✅Texture:getDimensions
+* ✅Texture:getFilter
+* ✅Texture:getFormat
+* ✅Texture:getHeight
+* ✅Texture:getLayerCount
+* ✅Texture:getMipmapCount
+* ✅Texture:getMipmapFilter
+* 
+* ✅Texture:isReadable
+* Texture:setFilter
+* ✅Texture:setMipmapFilter
+* ✅Texture:setWrap
+
+## Functions
 
 ### Drawing
 * ✅love.graphics.arc
@@ -281,7 +295,7 @@ version.12.0 以降については別の機会とします。
 * ✅Joystick:getGamepadAxis
 * ✅Joystick:getGamepadMapping
 * ✅Joystick:getGamepadMappingString
-* Joystick:getGamepadType (12.0)
+* ✅Joystick:getGamepadType (12.0)
 * ✅Joystick:getHat
 * ✅Joystick:getHatCount
 * ✅Joystick:getID
@@ -378,7 +392,7 @@ version.12.0 以降については別の機会とします。
 
 * love.timer.getFPS
 * love.timer.getTime
-* love.timer.sleep
+* ✅love.timer.sleep
 
 ## love.touch (最終確認日: 2023年23日)
 

@@ -318,7 +318,7 @@ version.12.0 以降については別の機会とします。
 * ✅love.joystick.setGamepadMapping
 * ✅GamepadAxis
 * ✅GamepadButton
-* GamepadType (12.0)
+* ✅GamepadType (12.0)
 * ✅JoystickHat
 * ✅JoystickInputType
 * ✅JoystickType (12.0)

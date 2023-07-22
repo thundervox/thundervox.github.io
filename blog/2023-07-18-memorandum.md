@@ -24,14 +24,28 @@
 
 で、[スワップ](https://github.com/bluewaysw/pcgeos/tree/9672d033f192a4fd5103103bf385cc8cd58c48b7/Driver/Swap)に EMS や XMS 使えるはずだから…わからん。
 
-### 最大メモリ
+## Library/User/Doc
+
+開発資料。こちらも翻訳作業対象です。ファイルは doc 形式ではなくテキスト形式です。こういう状態ですとドキュメントの整備時間かかりそうです。
+
+## splash ディレクトリ
+
+Appl/DOSAppl/igs2010.c
+
+S3 Graphics 製のビデオチップ関連ルーチンです。XFree86では未だ対応しているようだけど、かなり古いなあ。なお、 S3 Graphics 社は VIA Technologies に買収された後に倒産したらしいけど。問題は公式資料はまだ手に入るのかだろうね。　
+
+## 最大メモリ
 
 * ExtMem (拡張メモリ管理コアルーチン) のコメントによると 15MB まで。これが正しいとすると、現代的な環境ではキツイの一言ですね。
 
 > There can be 15 Megs of extended memory (15360 K).
-extmem.asm より引用
 
-* [XMS](https://en.m.wikipedia.org/wiki/Extended_memory) は 4GB までのようですが、 GEOS ですべての領域が使えるかはわかりませんね。
+*extmem.asm より引用*
+
+* バージョンによりますが、 [XMS](https://en.m.wikipedia.org/wiki/Extended_memory) は 4GB までのようですが、 GEOS ですべての領域が使えるかはわかりませんね。
+
+## Asm to C
+MicroAPL 製のものなら見つかりましたが、ライセンス料金不明なのが。そもそも Esp に対応していないので、もう少し探してみます。
 
 ## FAQ
 https://groups.google.com/g/comp.answers/c/tQO0OSYHQQw

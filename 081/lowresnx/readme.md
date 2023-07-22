@@ -5,6 +5,8 @@
 
 翻訳状況: 該当版数への保守対応終了
 
+今後の予定: 公式リポジトリへマージ予定(と公開終了)
+
 ## 取扱説明書 (/docs)
  * [isVowel/ja-jp](manual.html) [<sup>編集</sup>](https://github.com/thundervox/thundervox.github.io/edit/main/081/lowresnx/manual.html)
  * [Logovista-MTPE/ja-jp](manual_lvmt.html) <sup>検証用</sup>

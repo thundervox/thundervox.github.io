@@ -373,9 +373,9 @@ version.12.0 以降については別の機会とします。
 
 ## love.sound
 
-* SoundData:setSample
-* love.sound.newDecoder
-* love.sound.newSoundData
+* [SoundData:setSample](https://love2d.org/w/index.php?title=SoundData%3AsetSample&type=revision&diff=27726&oldid=22111) - tone は単音でいいかな。
+* ✅love.sound.newDecoder
+* ✅love.sound.newSoundData
 
 ## love.system 更新完了 (最終確認日: 2023年6月27日)
 

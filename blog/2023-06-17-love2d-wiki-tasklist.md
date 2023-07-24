@@ -394,20 +394,21 @@ version.12.0 以降については別の機会とします。
 * love.timer.getTime
 * ✅love.timer.sleep
 
-## love.touch (最終確認日: 2023年23日)
+## love.touch (最終確認日: 2023年6月23日)
 
 * ありません。
 
-## love.video
+## love.video (最終確認日: 2023年7月24日)
 
-* [VideoStream:getFilename](https://love2d.org/wiki/VideoStream:getFilename)
-* [VideoStream:isPlaying](https://love2d.org/wiki/VideoStream:isPlaying)
-* [VideoStream:pause](https://love2d.org/wiki/VideoStream:pause)
-* [VideoStream:play](https://love2d.org/wiki/VideoStream:play)
-* [VideoStream:rewind](https://love2d.org/wiki/VideoStream:rewind)
-* [VideoStream:seek](https://love2d.org/wiki/VideoStream:seek)
-* [VideoStream:setSync](https://love2d.org/wiki/VideoStream:setSync)
-* [VideoStream:tell](https://love2d.org/wiki/VideoStream:tell)
+
+* ✅[VideoStream:getFilename](https://love2d.org/wiki/VideoStream:getFilename)
+* ✅[VideoStream:isPlaying](https://love2d.org/wiki/VideoStream:isPlaying)
+* ✅[VideoStream:pause](https://love2d.org/wiki/VideoStream:pause)
+* ✅[VideoStream:play](https://love2d.org/wiki/VideoStream:play)
+* ✅[VideoStream:rewind](https://love2d.org/wiki/VideoStream:rewind)
+* ✅[VideoStream:seek](https://love2d.org/wiki/VideoStream:seek)
+* ✅[VideoStream:setSync](https://love2d.org/wiki/VideoStream:setSync)
+* ✅[VideoStream:tell](https://love2d.org/wiki/VideoStream:tell)
 
 ## love.window
 

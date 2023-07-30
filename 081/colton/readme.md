@@ -1,8 +1,8 @@
-# PipeDream / Fireworkz
+# Colton Software
 
 ## 概要
 
-Colton Software 製のオフィススゥイートである PipeDream と Fireworkz の邦訳資料です。
+Colton Software 製のオフィススゥイートである Fireworkz (Windows, RISC OS) と PipeDream (RISC OS) の日本語訳資料です。
 
 ライセンスは [MPL 2.0](https://croftnuisk.co.uk/coltsoft/node/24) です。
 

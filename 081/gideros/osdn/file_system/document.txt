@@ -1,0 +1,59 @@
+= ファイルシステム
+|| [file_system/intro はじめに] || [file_system/resource リソースディレクトリ] || [file_system/document ドキュメントディレクトリ] || [file_system/temp テンポラリディレクトリ] ||
+|| [file_system/files 実行順序] || [file_system/strict strict.lua] || || ||
+
+== ドキュメントディレクトリ
+アプリケーションで作成したファイルをドキュメントディレクトリに保存することができます。ファイルは異なるアプリケーションのセッションごとにドキュメントディレクトリに半永久的扱いで作成されます。
+
+例えばプレイヤーの進捗を保存するために、ドキュメントディレクトリへファイルを作成してから読み取ることができます。ドキュメントディレクトリにあるファイルを指定するには、ファイル名の先頭に '''"|D|"''' を付け加えてください:
+
+{{{ code lua
+io.write("|D|save.txt")
+}}}
+
+ドキュメントディレクトリの主な利点は:
+
+ * ファイルを変更することができます。
+ * 半永久的にファイルを保存することができます。
+
+例えば、データベースファイルへの保存、または別のユーザがドキュメントディレクトリへ情報を作成することが推奨されます。
+
+これは簡潔な用例です。どうすれば実現できるかについては、リソースディレクトリからドキュメントディレクトリへ複製することです:
+
+{{{ code lua
+-- ファイルを複写するための関数です。
+local function copy(src, dst)
+    local srcf = io.open(src, "rb")
+    local dstf = io.open(dst, "wb")
+
+    local size = 2^13      -- 望ましいバッファ容量です (8K)
+    while true do
+        local block = srcf:read(size)
+        if not block then break end
+        dstf:write(block)
+    end
+
+    srcf:close()
+    dstf:close()
+end
+
+-- ファイルの存在を確認するための関数です。
+local function exists(file)
+    local f = io.open(file, "rb")
+    if f == nil then
+        return false
+    end
+    f:close()
+    return true
+end
+
+-- 使用方法
+if not exists("|D|database.db") then
+    copy("database.db", "|D|database.db")
+end
+}}}
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。

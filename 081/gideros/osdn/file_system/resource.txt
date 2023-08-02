@@ -1,0 +1,45 @@
+= ファイルシステム
+|| [file_system/intro はじめに] || [file_system/resource リソースディレクトリ] || [file_system/document ドキュメントディレクトリ] || [file_system/temp テンポラリディレクトリ] ||
+|| [file_system/files 実行順序] || [file_system/strict strict.lua] || || ||
+
+== リソースディレクトリ
+ソースコード、画像、オーディオおよびそのほかの種類のファイルは全てリソースディレクトリへ配置します。アセットライブラリに関連するファイル、およびフォルダの構造を下記に示します。
+
+[[Embed(library.png, float=checked, caption=ライブラリ)]]
+
+は次のとおり、実機デバイスや Gideros プレイヤーへ格納されます:
+{{{ code lua
+{リソースディレクトリ}/gfx/sprite1.png
+{リソースディレクトリ}/gfx/sprite2.png
+{リソースディレクトリ}/gfx/background.png
+{リソースディレクトリ}/audio/game-music.mp3
+{リソースディレクトリ}/audio/click.wav
+{リソースディレクトリ}/data/list.txt
+{リソースディレクトリ}/main.lua
+{リソースディレクトリ}/game.lua
+}}}
+
+リソースディレクトリはデフォルトのディレクトリです。よって、リソースディレクトリにあるファイルへアクセスするには、ファイルのパスを指定します:
+
+{{{ code lua
+local sprite1 = Texture.new("gfx/sprite1.png")
+local sprite2 = Texture.new("gfx/sprite2.png")
+local background = Texture.new("gfx/background.png")
+local music = Sound.new("audio/game-music.mp3")
+local click = Sound.new("audio/click.wav")
+}}}
+
+
+'''注釈:''' オプション扱いですが、ファイル名の先頭に '''"|R|"''' を付け加えることでリソースディレクトリにあるファイルへアクセスすることもきます (が、その必要はありません):
+
+{{{ code lua
+local sprite1 = Texture.new("|R|gfx/sprite1.png")
+}}}
+
+
+'''注釈:''' リソースディレクトリは読み取り専用です。ファイルを書き込もうとしないでください。
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。

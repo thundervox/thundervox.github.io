@@ -38,3 +38,8 @@ Lua ファイルを右クリックしてポップアップメニューから“C
 [[Embed(code_dependencies_2.png, float=checked, caption=コードの依存関係 図.2)]]
 
 '''注釈:''' '''main.lua''' および '''init.lua''' のファイル名は特別な意味があります。アプリケーション開始時、 Gideros ランタイムは最初に '''init.lua''' を、最後に '''main.lua''' を実行します。
+
+----
+Copyright(C)!GiderosMobile.com / Japanese translation by. isVowel
+
+利用条件は Gideros のライセンスに従うものとします。

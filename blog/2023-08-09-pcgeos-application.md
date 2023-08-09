@@ -14,6 +14,9 @@ PC/GEOS に付属している標準アプリケーションの要約です。
 ### GeoDex (ジオ・デック)
 住所録と電話帳管理アプリケーション
 
+### GeoPoint (ジオ・ポイント)
+プレゼンテーションアプリケーション
+
 ### Calculator (カルキュレーター)
 電卓アプリケーション
 
@@ -32,6 +35,9 @@ Windows で言うところのクリップボードビューア
 ### Solitaire (ソリティア)
 カードゲームの定番であるソリティア
 
+### Crossword (クロスワード)
+クロスワードパズル
+
 ### GeoWrite (ジオ・ライト)
 ワードプロセッサアプリケーション
 
@@ -43,6 +49,20 @@ Windows で言うところのクリップボードビューア
 
 ### GeoFile (ジオ・ファイル)
 データベースアプリケーション
+
+### Banker (バンカー)
+家計簿・財務管理アプリケーション
+
+###
+
+### その他
+* TypingTutor, LaserLetters: タイピング練習アプリケーション
+* Flash Card, MathFlash: フラッシュカード
+
+## 備考
+
+* Breadbox Office - [Artist](https://web.archive.org/web/20061110063308/http://www.breadbox.com/ensemble/geosdetails.asp?id=10&category=Breadbox%20Office) のなどのソースコードは非公開？
+* ホームオートメーション、ゲームパックなどは販売終了しているため入手困難かと。[参考](https://web.archive.org/web/20080415230808/http://www.breadbox.com/desklist.asp)
 
 ---
 どこからコードを読んでいくかは後ほど (そろそろコード読まないとダメなんですが)。

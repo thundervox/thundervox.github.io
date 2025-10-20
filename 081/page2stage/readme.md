@@ -2,12 +2,12 @@
 
 今となっては使う人のいない開発元からも見捨てられた脚本執筆ソフトウェアです。　これまで日本語化や移植など何度も挫折したり自然消滅しているので今回もどうなるかは不明です。それに今はかなりフリーウェアでも良いソフトもありますからね。あくまで実用性や再商用化などの野心はなく暇つぶし用のためものですので気長に期待せずお待ちください。
 
+あくまで予定は予定に過ぎません。ほかにすることもありますからね。
+
 ## License
 
-[かつての公式サイトサイト](https://web.archive.org/web/20071204150059/http://www.windwardreports.com/page2stage.htm)にあるとおり、MPL 1.1/LGPL v2 でどちらかを選択できます。何故かGPLへ変更されている[Sourceforge版](https://sourceforge.net/projects/page2stage/
-)
-
-はライセンス違反の疑いがあるので、[配布当時の原本](https://web.archive.org/web/20120208050902/http://www.enemynations.com/downloads/Page2Stage_source.rar)のほうをお勧めします。
+[かつての公式サイト](https://web.archive.org/web/20071204150059/http://www.windwardreports.com/page2stage.htm)にあるとおり、MPL 1.1/LGPL v2 でどちらかを選択できます。何故かGPLへ変更されている[Sourceforge版](https://sourceforge.net/projects/page2stage/
+)はライセンス違反の疑いがあるので、[配布当時の原本](https://web.archive.org/web/20120208050902/http://www.enemynations.com/downloads/Page2Stage_source.rar)のほうをお勧めします。
 
 ## Current staus(2025年10月21日現在)
 
@@ -25,12 +25,14 @@ Google翻訳でドキュメントの下訳作成中です。ある程度進ん�
 * まずはドキュメントとリソースファイルの翻訳
 * 次にちゃんと現行版のコンパイラでビルドできるようにする。WxWigetのOpenWatcom対応周りが不透明なのでClangなり他のC++コンパイラにすると思います。IDEはWideStudioは開発終了しているからCode::Blocksでいいかな。
 * ユニットテストの実装
+* 配布サイトのリニューアル
+* バージョン番号の変更: 2.x 系統へ
 * インプットメソッドまわりの不具合を修正してインライン入力ができるようにする。
 * Windows 9x などコンパイラやライブラリで対応していないOSのサポートは原則終了です。PC-9801/Windows9xでPage2Stage使っている人は見かけませんし。
 * Win32, ATL,MFC, Wintertree 依存からの脱却
 * Windward時代の古い著作権情報、デモ版関連コード、スペルチェッカーまわりのWintertree依存コードの削除
 * PWCT 2.0 / Ring 1.x への移植はかなり先まで未定です (TrelbyのようにPython/Qt実装のようなこともできるはずですが)
 
-最終目標として、日本国内のネットコミュニティではあまり具体例がなくネットの藻屑となりかけている MFC 6.0 → Linux へのレガシーマイグレーションに関する詳細解説記をのメモを書くことで、脱Windowsの流れをある程度早めることは難しいかと。WindowsとLinux/XのAPI対応表みたいなものがあればある程度はらくになりそうですけどね。
+最終目標として、日本国内のネットコミュニティではあまり具体例がなくネットの藻屑となりかけている MFC 6.0 → Linux へのレガシーマイグレーションに関する詳細解説記をのメモを書くことで、脱Windowsの流れをある程度早めることは難しいので期待しません。WindowsとLinux/XのAPI対応表みたいなものがあればある程度はらくになりそうですけどね。
 
 ようするに、ドキュメントやリソースの翻訳から始まり、古くなったコードの書き換え、クロスプラットフォーム対応によるWindows対応の段階的廃止、最後にユーザーさんが自分好みにカスタマイズして長期保守できるよう PWCTとRing への対応ってところですな。地味な作業ばかりですけど仕方ないですな。

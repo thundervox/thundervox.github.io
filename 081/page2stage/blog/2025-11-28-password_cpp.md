@@ -71,6 +71,8 @@ Log ( "Mode " + IntToCString ( m_mode ) );
 * m_mode
 * m_sUserName
 * m_sUserPW
+* USER_MODE
+* isDemo
 * GetProfileString
 * myGetProfileInt
 * myWriteProfileInt

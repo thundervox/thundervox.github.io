@@ -75,7 +75,8 @@ Log ( "Mode " + IntToCString ( m_mode ) );
 * myGetProfileInt
 * myWriteProfileInt
 * CDlgExpired
-* CDlgDemo
+* CDlgDemo: about.cpp / .h にあります。
+* CDlgDemoEnd
 * IDS_DEMO_*
 
 ### theApp.isDemo

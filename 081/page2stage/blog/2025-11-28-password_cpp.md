@@ -78,3 +78,4 @@ Log ( "Mode " + IntToCString ( m_mode ) );
 * myWriteProfileInt
 * CDlgExpired
 * CDlgDemo
+* IDS_DEMO_*

@@ -74,9 +74,8 @@ Log ( "Mode " + IntToCString ( m_mode ) );
 * GetProfileString: レジストリ操作関連(Win32API専用のためマルチプラットフォーム化ではTOML形式などへの対応予定)
 * myGetProfileInt
 * myWriteProfileInt
-* CDlgExpired
-* CDlgDemo: about.cpp / .h にあります。
-* CDlgDemoEnd
+* CDlgExpired, CDlgDemo: about.cpp / .h にあります。
+* CDlgDemoEnd: frame.cpp の 303 行目以外では見当たりません。該当箇所のコメントアウト後に CDlgDemoEnd.cpp / .h は削除できるかもしれません。
 * IDS_DEMO_*
 
 ### theApp.isDemo

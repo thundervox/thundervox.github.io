@@ -58,7 +58,7 @@ VisualScript.cpp: 484 〜 516 行目付近
 VisualScript.cpp: 484行目付近
 ``` cpp
 m_sUserName = GetProfileString ( "User", "Name", "" );
-	m_sUserPW = GetProfileString ( "User", "Password", "" );
+m_sUserPW = GetProfileString ( "User", "Password", "" );
 
 m_mode = std;
 Log ( "Mode " + IntToCString ( m_mode ) );
@@ -66,3 +66,13 @@ Log ( "Mode " + IntToCString ( m_mode ) );
 
 もちろん、単純にバイパスするだけであってデモ版モード(m_mode 変数や不要になったメソッドやダイアログなど)のコードは未だ残っています。完全に綺麗になっていませんが、これで  password.cpp ファイルの削除と stdafx.h のプロトタイプ宣言は削除できると思います。
 
+次回は不要箇所の削除に関して調べてみます。
+
+* m_mode
+* m_sUserName
+* m_sUserPW
+* GetProfileString
+* myGetProfileInt
+* myWriteProfileInt
+* CDlgExpired
+* CDlgDemo

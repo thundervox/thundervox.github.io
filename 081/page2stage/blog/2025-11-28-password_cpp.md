@@ -57,9 +57,6 @@ VisualScript.cpp: 484 〜 516 行目付近
 
 VisualScript.cpp: 484行目付近
 ``` cpp
-m_sUserName = GetProfileString ( "User", "Name", "" );
-m_sUserPW = GetProfileString ( "User", "Password", "" );
-
 m_mode = std;
 Log ( "Mode " + IntToCString ( m_mode ) );
 ```
@@ -69,13 +66,20 @@ Log ( "Mode " + IntToCString ( m_mode ) );
 次回は不要箇所の削除に関して調べてみます。
 
 * m_mode
-* m_sUserName
-* m_sUserPW
+* m_demo
+* m_sUserName, m_sUserPW: これはVisualScript.cpp で起動時のユーザ登録以外使われていないので削除
 * USER_MODE
 * isDemo
-* GetProfileString
+* theApp.isDemo: 各所に入る正規ユーザ登録確認判定。これが地味に面倒くさい。
+* GetProfileString: レジストリ操作関連(Win32API専用のためマルチプラットフォーム化ではTOML形式などへの対応予定)
 * myGetProfileInt
 * myWriteProfileInt
 * CDlgExpired
 * CDlgDemo
 * IDS_DEMO_*
+
+### theApp.isDemo
+削除対象はかなり多いなあ。そしてかなりいやらしいところに幾重にも記述されているんでクリーンアップするのが面倒なやつ。
+デモ版関連のコードを書き換えて綺麗さっぱりにしても、今度はスペルチェッカーを一時的に削除する必要があってちゃんとビルドできるようなるまで時間かかるんよね。どおりで誰も手をリライトは出したがらないわけです。仕方ないので年単位でやっていきますか。
+
+

@@ -55,12 +55,30 @@ VisualScript.cpp: 484 〜 516 行目付近
 ```
 です。ようするに、password.cpp のダミーを作るかファイルを削除して、各所のコメントアウトや書き換えを行うとパスワードは要求されなくなると思います。
 
-VisualScript.cpp: 484行目付近
+VisualScript.cpp: 92行目付近の書き換え
 ``` cpp
-m_mode = std;
+m_mode = std; // demo → std でデモ版モードの解除
+```
+
+VisualScript.cpp: 484〜510行目付近の削除
+``` cpp
 Log ( "Mode " + IntToCString ( m_mode ) );
 ```
 
+VisualScript.cpp: デバッグ用コードの削除(保留)
+``` cpp
+ASSERT ( ( 0 <= m_mode ) && ( m_mode <= 2 ) );
+```
+
+VisualScript.cpp: デモ版用コードの修正 - RTF形式での保存制限解除 (保留)
+
+``` cpp
+// can't save RTF if demo
+if ( pDoc->IsModified ( ) && ( ( pDoc->m_fileType == CVisualScriptDoc::TYP_VS ) ||
+	( ( ! pDoc->isDemo ( ) ) && ( ! isDemo ( ) ) ) ) )　// この isDemo 行を修正
+pDoc->SaveToFile ();
+```
+							
 もちろん、単純にバイパスするだけであってデモ版モード(m_mode 変数や不要になったメソッドやダイアログなど)のコードは未だ残っています。完全に綺麗になっていませんが、これで  password.cpp ファイルの削除と stdafx.h のプロトタイプ宣言は削除できると思います。
 
 次回は不要箇所の削除に関して調べてみます。
@@ -77,9 +95,10 @@ Log ( "Mode " + IntToCString ( m_mode ) );
 * CDlgExpired, CDlgDemo, CDlgRegister: about.cpp / .h にあります。
 * CDlgDemoEnd: frame.cpp の 303 行目以外では見当たりません。該当箇所のコメントアウト後に CDlgDemoEnd.cpp / .h は削除できるかもしれません。
 * IDS_DEMO_*
+* IDD_DEMO
+* IDD_EXPIRED
 
-### theApp.isDemo
+### isDemo / theApp.isDemo
 削除対象はかなり多いなあ。そしてかなりいやらしいところに幾重にも記述されているんでクリーンアップするのが面倒なやつ。
 デモ版関連のコードを書き換えて綺麗さっぱりにしても、今度はスペルチェッカーを一時的に削除する必要があってちゃんとビルドできるようなるまで時間かかるんよね。どおりで誰も手をリライトは出したがらないわけです。仕方ないので年単位でやっていきますか。
-
 

@@ -107,7 +107,10 @@ pDoc->SaveToFile ();
 Page 2 Stageから参照すらされていないデッドコードの塊なので猫ミーム再来ですよ。なので一旦削除してビルドエラーが出たら拾って書き直し方針でいいでしょう。コイツを印刷してポールペン片手に解析するのは紙の無駄です。後で役に立つかもしれないからと今必要でもない無駄なコードを読むのもエネルギーがいるんですよ。消耗している場合ではないんですよね。
 
 ### さらに MFC がらみ。
-ビルドログ残っていたので眺めてみる。これはビルドできないね。 ConstructElements と DestructElements がVisual C++ 2003 以降で廃止されているため STL などで書き直す必要あり。そりゃあ、誰もしたがらないわけよね。
+ビルドログ残っていたので眺めてみる。これはビルドできないね。 ConstructElements と DestructElements は Visual C++ 2003 以降で廃止されているため、KB318734を参考に書き換える必要あり。そりゃあ、誰もしたがらないわけよね。
+
+* [Convert C++ from VisC++ 6 to VS 2008 [modified] | Code Project Forum](https://forum.codeproject.com/topic/400433/convert-c-from-visc-6-to-vs-2008-modified/)
+* [ConstructElements and DestructElements are deprecated in Visual C++ .NET and in Visual C++ 2005](https://web.archive.org/web/20111228042454/http://support.microsoft.com/kb/318734)
 
 なんかさ。当時のWindwardStudioはなんかあったっぽい気がするんですけど。そうでなければ、こんな壊れたままのコードを出すのはおかしいんですよね。
 

@@ -14,7 +14,7 @@ User Manual.doc以外はほとんど不要ですが。ロケールまわりはXM
 * /Page 2 Stage/Translating Screen Writer Studio.doc
 * /readme.rtf
 
-このうち User Manual.doc と ScreenWriterStudio.doc は重複内容多数なのでキツイです。なるべく統合していく予定です。
+このうち User Manual.doc と ScreenWriterStudio.doc は重複内容多数なのでキツイです。なるべく統合していく予定ですが、そのようなことはせずに索引付けるだけで十分かもしれません。
 
 ## ポンコツすぎる。
 

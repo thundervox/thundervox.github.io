@@ -33,7 +33,7 @@ gg.hはダミーファイルのため除外
 
 使われていとしたらのは汎用マクロや演算子のオーバーライドあたりでしょうか。
 
-## games.h
+### games.h
 インデックスカラーパレット関連ですね。CColorでgrepしても見あたらないです。
 
 ### codec.h
@@ -44,3 +44,6 @@ gg.hはダミーファイルのため除外
 
 ライセンスは Mozilla Public License 2.0 にしておきます。
 なお、 Mozilla Public License 1.1 からのアップグレードは第三者が無許可で行っても合法であり問題ないです→[About MPL 2.0: Revision Process and Changes FAQ — Mozilla](https://www.mozilla.org/en-US/MPL/2.0/Revision-FAQ/)
+
+## 当面の対応
+リポジトリには　Windwardフォルダはそのまま持ってこないでダミーファイル(windward.cpp / .h)でも作って様子見ですかね。まだまだ動かせる段階ではないので。こうするとリポジトリ構成もスッキリしますからね。

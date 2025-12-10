@@ -27,7 +27,7 @@ windward.h からインクルードファイルしている
 * _help.h
 * logging.h
 * _debug.h
-* codec.h
+* codec.h: ✕
 
 gg.hはダミーファイルのため除外
 

@@ -15,9 +15,9 @@ windward.h からインクルードファイルしている
 
 * thielen.h
 * games.h: ✕
-* ptr.h
-* datafile.h
-* dlgmsg.h
+* ptr.h: ✕
+* datafile.h: ✕
+* dlgmsg.h:
 * fixpoint.h
 * init.h
 * rand.h
@@ -25,13 +25,13 @@ windward.h からインクルードファイルしている
 * _msgs.h
 * _error.h
 * _help.h
-* logging.h
+* logging.h: ✕
 * _debug.h
 * codec.h: ✕
 
 gg.hはダミーファイルのため除外
 
-使われていとしたらのは汎用マクロや演算子のオーバーライドあたりでしょうか。
+使われているとしたら汎用マクロや演算子のオーバーライドあたりでしょうか。
 
 ### games.h
 インデックスカラーパレット関連ですね。CColorでgrepしても見あたらないです。

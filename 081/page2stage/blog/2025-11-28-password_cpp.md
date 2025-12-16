@@ -103,14 +103,14 @@ pDoc->SaveToFile ();
 デモ版関連のコードを書き換えて綺麗さっぱりにしても、今度はスペルチェッカーの一時廃止、デッドコードだらけの Windward ライブラリの削除、ヘルプファイルシステムの近代化(Winhelpからmkdocsなど)、加えて VisualStudio 2022 でビルドできるようにコードの書き換えやユニットテストやソースコードドキュメントの導入(doxygen)など、ちゃんと現行環境で動くようになるまで時間かかるんよね。再実装作業は大変なのに表向きは変わらない。どおりで誰も手をリライトは出したがらないわけです。これがオープンソース化する前に原作者側でしっかりしバトンを渡せるようMinGWやオープンソースのフレームワーク対応など書き直していたら歴史はかなり違ったかもしれませんね (ビルド要件を揃えるのが厳しいなど壊れたソースコードはメンテできない)。仕方ないので年単位でやっていきますか。
 
 ### さらに MFC がらみ。
-ビルドログ残っていたので眺めてみる。これはビルドできないね。 ConstructElements と DestructElements は Visual C++ 2003 以降で廃止されているため、KB318734を参考に書き換える必要あり。そりゃあ、誰もしたがらないわけよね。
+ビルドログ残っていたので眺めてみる。これはビルドできないね。 ConstructElements と DestructElements は Visual C++ 2003 以降で廃止されているため、KB318734を参考に書き換える必要あり。そりゃあ、誰もしたがらないわけよね。atlmfc.h か ReactOS の RATL あたり持ってくればビルドできるかもしれないけど。
 
 * [Convert C++ from VisC++ 6 to VS 2008 [modified] | Code Project Forum](https://forum.codeproject.com/topic/400433/convert-c-from-visc-6-to-vs-2008-modified/)
 * [ConstructElements and DestructElements are deprecated in Visual C++ .NET and in Visual C++ 2005](https://web.archive.org/web/20111228042454/http://support.microsoft.com/kb/318734)
 
 なんかさ。当時のWindwardStudioはなんかあったっぽい気がするんですけど。そうでなければ、こんな壊れたままのコードを出すのはおかしいんですよね。
 
-追記: Geminiに聞いたらDECLARE_AFX_PRIMITIVE_OBJECT_TYPEなんてMFCの非公開機能提示してきたですが。なんでそんなの知っているんだよ。なんか怖いなあ。結局、該当部分はSTLなりBoostなりで書き直しですね。シェアウェア版で作成されたファイルのデータ互換性はわかりませんが今までどおりシェアウェア版を使い続けるなりRTF形式でエクスポートすればいいんで困らないかと。
+追記: Geminiに聞いたらDECLARE_AFX_PRIMITIVE_OBJECT_TYPEなんてMFCの非公開機能提示してきたですが。なんでそんなの知っているんだよ。なんか怖いなあ。結局、該当部分はPicoやらSTLなりBoostなりで書き直しですね。シェアウェア版で作成されたファイルのデータ互換性はわかりませんが今までどおりシェアウェア版を使い続けるなりRTF形式でエクスポートすればいいんで困らないかと。
 
 ## 作戦変更
 いちいち注釈書きながらデモ版のコード取り除く方法について解説するのも面倒ですし読んでいる方もあまり面白くはないと思うので、原版と変更後のソースコード上げるか専用のリポジトリでも用意したほうが良さそうですね。

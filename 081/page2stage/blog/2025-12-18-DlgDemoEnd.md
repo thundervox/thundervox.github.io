@@ -1,5 +1,9 @@
 # 2025年12月18日 - DlgDemoEnd の除去作業記録
 
+現在の作業状況: 2025年12月18日 完了
+
+※非公開リポジトリにて。ある程度作業が進んだら一般公開します。
+
 ## 目的
 オープンソース版では不要になる DlgDemoEnd (試用期間終了の通知ダイアログ) の廃止
 
@@ -8,6 +12,7 @@
 * VisualScript.cpp: DlgDemoEnd.h のインクルード削除
 * VisualScript.rc: ダイアログリソースの削除
 * resource.h: IDD_DEMO_END, IDC_DEMO_DISCOUNT 定義の削除
+* DlgDemoEnd.h, DlgDemoEnd.cpp の削除
 
 ## リソース識別子
 ### VisualScript.rc

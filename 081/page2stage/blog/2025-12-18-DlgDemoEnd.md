@@ -7,7 +7,7 @@
 * frame.cpp: DlgDemoEnd.h のインクルード削除、DlgDemoEndダイアログ使用箇所の削除
 * VisualScript.cpp: DlgDemoEnd.h のインクルード削除
 * VisualScript.rc: ダイアログリソースの削除
-* resource.h: IDD_DEMO_END 定義の削除
+* resource.h: IDD_DEMO_END, IDC_DEMO_DISCOUNT 定義の削除
 
 ## リソース識別子
 ### VisualScript.rc

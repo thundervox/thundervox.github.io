@@ -62,3 +62,9 @@ KITScenarist, Scrite などを参考にして、page2stage.rarから変更して
 * VisualScript.cpp: IntToCString, LongToCString (strext.cpp), __minmax (thielen.h), verify_minmax (thielen.h), のみ。GetLength (thielen.h) はMFCとメソッド名は同じですが実際は使われていません。
 
 EndPaintなんてつかわれていたっけ？
+
+
+### IntToCString
+### LongToCString
+## __minmax
+## verify_minmax

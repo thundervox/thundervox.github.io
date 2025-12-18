@@ -63,8 +63,8 @@ KITScenarist, Scrite などを参考にして、page2stage.rarから変更して
 
 EndPaintなんてつかわれていたっけ？
 
-
+### csPrintf
 ### IntToCString
 ### LongToCString
-## __minmax
-## verify_minmax
+### __minmax
+### verify_minmax

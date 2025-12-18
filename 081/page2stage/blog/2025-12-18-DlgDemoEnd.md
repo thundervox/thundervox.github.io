@@ -7,12 +7,14 @@
 * frame.cpp: DlgDemoEnd.h のインクルード削除、DlgDemoEndダイアログ使用箇所の削除
 * VisualScript.cpp: DlgDemoEnd.h のインクルード削除
 * VisualScript.rc: ダイアログリソースの削除
+* resource.h: IDD_DEMO_END 定義の削除
 
 ## リソース識別子
 ### VisualScript.rc
-* IDD_DEMO_END
+* IDD_DEMO_END: Dialog と DESIGNINFO の二箇所
 
 ### AfxFormatString1
+これらはリソースIDとして使われているだけです。文字列の実体はリソースファイルではなく各 C++ コードにハードコードされています。
 * IDC_DEMO_DATE
 * IDC_DEMO_NAME
 * IDC_ORDER

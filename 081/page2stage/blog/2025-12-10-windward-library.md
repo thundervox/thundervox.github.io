@@ -56,3 +56,9 @@ KITScenarist, Scrite などを参考にして、page2stage.rarから変更して
 
 * ビルドできないコードはオープンソースにする前に現行のシステムでビルドできるようにしてから公開する。
 * 使わないコードは添付しない。基本ですね。
+
+
+## 使われているとこ？
+* VisualScript.cpp: IntToCString (strext.cpp) verify_minmax (thielen.h) , のみ。GetLength (thielen.h) はMFCとメソッド名は同じですが実際は使われていません。
+
+

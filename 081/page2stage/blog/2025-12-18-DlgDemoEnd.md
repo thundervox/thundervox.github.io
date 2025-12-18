@@ -24,4 +24,6 @@
 * profile.cpp: myGetProfileInt
 
 ## 備考
-該当箇所さえ削除すれば DlgDemoEnd.h と DlgDemoEnd.cpp は不要になります。
+ * 該当箇所さえ削除すれば DlgDemoEnd.h と DlgDemoEnd.cpp は不要になります。
+ * IntToCString は to_String へ置き換えられないか？ A. IntToCString は後方互換性のために残しておいてもいいけど、to_String は C++11以降なら使える→ [to_string - cpprefjp C++日本語リファレンス](https://cpprefjp.github.io/reference/string/to_string.html)
+

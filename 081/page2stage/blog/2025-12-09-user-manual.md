@@ -16,6 +16,9 @@ User Manual.doc以外はほとんど不要ですが。ロケールまわりはXM
 
 このうち User Manual.doc と ScreenWriterStudio.doc は重複内容多数なのでキツイです。なるべく統合していく予定ですが、そのようなことはせずに索引付けるだけで十分かもしれません。
 
+User Manual.docには無い画像ファイルのリンクがScreenWriterStudio.doc/rtfにはある (bmct) のでそういうのを補間しながら作業しています。
+
+
 ## ポンコツすぎる。
 
 DRYの法則って美味しいの？

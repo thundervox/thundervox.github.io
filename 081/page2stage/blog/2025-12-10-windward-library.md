@@ -61,10 +61,16 @@ KITScenarist, Scrite などを参考にして、page2stage.rarから変更して
 ## 使われているとこ？
 * VisualScript.cpp: IntToCString, LongToCString (strext.cpp), __minmax (thielen.h), verify_minmax (thielen.h), のみ。GetLength (thielen.h) はMFCとメソッド名は同じですが実際は使われていません。
 
-EndPaintなんてつかわれていたっけ？
+## 2026年1月3日 追記
 
-### csPrintf
-### IntToCString
-### LongToCString
-### __minmax
-### verify_minmax
+色々と調査したところ、 Page 2 Stage では
+thielen.h, strext.cpp しか使われていません。その中で使われているインラインマクロや関数は、
+
+* __min, __max, __minmax, __roll, verify_minmax
+* IntToCString, LongToCString
+* CStringInsert, CStringDelete, InsComma
+* csPrintf
+
+のみです。この部分をうまく切り貼りしてやれば Windward Library は不要になると思います。
+
+これで Windward 関連のデッドコード削除は終了となります。

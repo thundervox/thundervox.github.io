@@ -25,7 +25,30 @@
 
 ## Wintertree API
 
-* 接頭辞 SSCE_, ThesDB_ などで始まります。S16などもあり。
+### Sentry Spelling Checker Engine (ssce.h)
+
+* SSCE_S16
+* SSCE_S32
+* SSCE_AddToLex
+* SSCE_GetLexInfo
+* SSCE_GetLex
+* SSCE_ClearLex
+* SSCE_OpenSession
+* SSCE_CloseSession
+* SSCE_OpenLex
+* SSCE_SetOption
+* SSCE_Version
+* SSCE_SetRegTreeName
+* SSCE_Suggest
+* SSCE_CheckWord
+* SSCE_FILE_NOT_FOUND_ERR
+* SSCE_IGNORE_CAPPED_WORD_OPT
+* SSCE_MAX_WORD_SZ
+* SSCE_STRIP_POSSESSIVES_OPT
+* SSCE_UNCAPPED_WORD_RSLT
+* SSCE_MIXED_CASE_WORD_RSLT
+* SSCE_MIXED_DIGITS_WORD_RSLT
+* SSCE_CONDITIONALLY_CHANGE_WORD_RSLT
 
 
 ## ダイアログとクラス

@@ -23,10 +23,16 @@
 * VisualScript.cpp
 * VisualScript.rc
 
-
 ## Wintertree API
 
 * 接頭辞 SSCE_, ThesDB_ などで始まります。S16などもあり。
+
+
+## ダイアログとクラス
+* DlgThes : CDlgThes, CThesaurus
+* SpellCheck : CDlgSpellCheck, CDlgSpellCheck, CSpellingDictionary
+
+view.cpp から呼び出します(Page2Stage/MFCはMVCモデルのようです)。
 
 
 ### 関連資料

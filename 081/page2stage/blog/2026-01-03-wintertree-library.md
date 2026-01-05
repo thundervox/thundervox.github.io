@@ -1,6 +1,6 @@
 # 2026年1月3日 - Wintertree ライブラリ関連
 
-これさえ済めばデッドコードの削除は峠を超えたことになる。
+これさえ済めばデッドコードの削除は峠を超えたことになるが、どうせリライトするのだから削除箇所の目星だけ付けて作業を飛ばしたりゆっくり作業してもいいでしょう。
 
 ## どこでなにを削除する
 
@@ -25,8 +25,10 @@
 
 ## view.cpp / .h
 
-* ReplaceWord
-* ResetDict
+現段階ではスペルチェッカーを除くシソーラス関係のみ。変数は view.h 参照
+
+* CVisualScriptView::ReplaceWord
+* CVisualScriptView::ResetDict
 * CVisualScriptView::OnToolsThesaurus
 * CVisualScriptView::ThesDone
 
@@ -57,7 +59,6 @@
 * SSCE_MIXED_DIGITS_WORD_RSLT
 * SSCE_CONDITIONALLY_CHANGE_WORD_RSLT
 
-
 ## ダイアログとクラス
 * DlgThes : CDlgThes, CThesaurus
 * SpellCheck : CDlgSpellCheck, CDlgSpellCheck, CSpellingDictionary
@@ -75,5 +76,3 @@ view.cpp から呼び出します(Page2Stage/MFCはMVCモデルのようです)�
 * デッドコード削除後にリライトをして無事にビルドできるようになってからスペルチェッカーの再実装
 * スペルチェッカーエンジンはHunspellなど
 * シソーラス(類義語、同義語)はOpenThesaurusやWordNetベースで再実装
-
-

@@ -23,6 +23,13 @@
 * VisualScript.cpp
 * VisualScript.rc
 
+## view.cpp / .h
+
+* ReplaceWord
+* ResetDict
+* CVisualScriptView::OnToolsThesaurus
+* CVisualScriptView::ThesDone
+
 ## Wintertree API
 
 ### Sentry Spelling Checker Engine (ssce.h)

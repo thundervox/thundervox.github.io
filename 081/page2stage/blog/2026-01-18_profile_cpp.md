@@ -6,11 +6,25 @@
 
 * myRegisterFileTypes: ファイル拡張子の登録
 * DeleteProfileFolder: スタイルやリスト関連のレジストリ登録削除
-* myWriteProfileString: レジストリエントリーの書き込み
+* myWriteProfileString: レジストリエントリ(文字列形式)の書き込み
 
-オープンソース版ではmyGetProfileInt, myGetProfileString, myWriteProfileInt は使われなくなる予定です。
+つまり、オープンソース版では、
+
+* myGetProfileInt: レジストリエントリ(整数形式)の読み取り
+* myGetProfileString: レジストリエントリ(文字列形式)の読み取り
+* myWriteProfileInt: レジストリエントリ(整数形式)の書き込み
+
+は使われなくなる予定です。また、レジストリやプロファイルは廃止となります。
 
 ## レジストリ操作で使われるデータやメンバ変数は？
 
 VisualScript.h などに記載されています。
 
+## Profile (プロファイル)とレジストリの違いは？
+
+プロファイルは、かつてWin.iniに書き込んでいた時の名残りみたいです。ユーザ個別の設定情報を差しているわけではなそうです。
+
+## 今後の予定
+* プロファイル関数、レジストリ関連APIの使用箇所の洗い出し
+* コードの書き直しについて考えてみる。
+* その他

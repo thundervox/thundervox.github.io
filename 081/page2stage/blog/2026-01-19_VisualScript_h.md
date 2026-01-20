@@ -1,3 +1,4 @@
+
 # VisualScript.h の解析
 
 途中ですが、一旦ここで上げておきます。とまあ、ここからは地味に地道にといった作業が続きます。
@@ -317,3 +318,45 @@ class CVisualScriptApp : public CWinApp
 
 See VisualScript.cpp for the implementation of this class は「このクラスのインプリメンテーション(コード本体、実装)はVisualScript.cppを参照せよ」程度の意味しかありません。
 
+## フレンド関数のプロトタイプ宣言
+
+``` cpp
+friend void CatchSE ( SE_Exception e );
+friend CDlgIntro;
+```
+
+* friend: C++ におけるオブジェクトのアクセス権限指定の変更子でありカプセル化の破壊や依存関係の複雑化など弊害により現代では推奨されていない。
+* CatchSE: Catch a Structured Exception (構造例外の検出)
+* CDlgIntro: 前述
+
+``` cpp
+public:
+
+## PreTranslateMessageのプロトタイプ宣言
+
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	CVisualScriptApp ( );
+	~CVisualScriptApp ( );
+```
+
+* public:C++ におけるオブジェクトのアクセス権限指定変更でありクラス外部に公開される。
+* virtual: 仮想関数
+* Pre: 事前に、前もって、準備処理、先行
+* Translate: 変換、翻訳
+* Message: 命令、情報、メッセージ、電文
+* MSG*: メッセージ型のポインタ
+* p: ポインタ
+* Msg: Message の略記
+* PreTranslateMessage: MFC の CWndクラスで使われているメソッド(PreTranslateAppMessageとは別物)
+* 関数
+
+VisualScript.cpp 側にある実装は空メソッドです。
+
+## コンストラクタとデストラクタのプロトタイプ宣言
+
+``` cpp
+CVisualScriptApp ( );
+	~CVisualScriptApp ( );
+```
+
+プロトタイプ宣言です。チルダがついてない方はコンストラクタ(初期化などの準備)、ある方はデストラクタ(片付け)

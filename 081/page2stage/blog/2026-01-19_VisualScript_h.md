@@ -329,10 +329,10 @@ friend CDlgIntro;
 * CatchSE: Catch a Structured Exception (構造例外の検出)
 * CDlgIntro: 前述
 
+## PreTranslateMessage のプロトタイプ宣言
+
 ``` cpp
 public:
-
-## PreTranslateMessageのプロトタイプ宣言
 
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	CVisualScriptApp ( );
@@ -350,7 +350,18 @@ public:
 * PreTranslateMessage: MFC の CWndクラスで使われているメソッド(PreTranslateAppMessageとは別物)
 * 関数
 
-VisualScript.cpp 側にある実装は空メソッドです。
+VisualScript.cpp 側にある実装はスプラッシュスクリーンで使われているだけめのメソッドのようです。CGがなんの略語(Class Generatorかな？)は現段階では不明です。
+
+``` cpp
+BOOL CVisualScriptApp::PreTranslateMessage(MSG* pMsg)
+{
+	// CG: The following lines were added by the Splash Screen component.
+	if (CSplashWnd::PreTranslateAppMessage(pMsg))
+		return TRUE;
+
+	return CWinApp::PreTranslateMessage(pMsg);
+}
+```
 
 ## コンストラクタとデストラクタのプロトタイプ宣言
 

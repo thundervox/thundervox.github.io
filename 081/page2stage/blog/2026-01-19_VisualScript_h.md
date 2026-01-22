@@ -1,4 +1,3 @@
-
 # VisualScript.h の解析
 
 途中ですが、一旦ここで上げておきます。とまあ、ここからは地味に地道にといった作業が続きます。
@@ -335,8 +334,6 @@ friend CDlgIntro;
 public:
 
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	CVisualScriptApp ( );
-	~CVisualScriptApp ( );
 ```
 
 * public:C++ におけるオブジェクトのアクセス権限指定変更でありクラス外部に公開される。
@@ -348,7 +345,7 @@ public:
 * p: ポインタ
 * Msg: Message の略記
 * PreTranslateMessage: MFC の CWndクラスで使われているメソッド(PreTranslateAppMessageとは別物)
-* 関数
+* virtual: 仮想関数
 
 VisualScript.cpp 側にある実装はスプラッシュスクリーンで使われているだけめのメソッドのようです。CGがなんの略語(Class Generatorかな？)は現段階では不明です。
 
@@ -371,3 +368,33 @@ CVisualScriptApp ( );
 ```
 
 プロトタイプ宣言です。チルダがついてない方はコンストラクタ(初期化などの準備)、ある方はデストラクタ(片付け)
+
+## メソッドのプロトタイプ宣言
+
+``` cpp
+void		GetStyle ( int ind, CStyle & pStyle ) const;
+	void		GetDefaultStyle ( CStyle & pStyle ) const { GetStyle ( m_defaultStyle, pStyle ); }
+	void		GetProfileData ( const char * section, const char * entry, void * def, void * data, int len );
+	void		WriteProfileData ( const char * section, const char * entry, void * data, int len );
+	void		GetDCSize ( CDC * pDC );
+```
+
+* Get: 〜を得る、取得する
+* int: **Int**eger
+* ind: **Ind**ex
+* p: **P**ointer
+* C: **C**lass, MF**C**, **C**haracter
+* Default: 初期値、既定値、デフォルト
+* def: **def**ault, **def**ine
+* entry: エントリー項目、要素
+* section: セクション
+* size: 大きさ
+* data: データ
+* profile: プロファイル、ユーザー固有のソフトウェア設定情報
+* len: Length
+* void: 無形型
+* m_: **m**ember of (例: 〜クラスのメンバー変数)
+* Style: 体裁、スタイル
+* const: **Const**ant
+* DC: **D**evice **C**ontext
+

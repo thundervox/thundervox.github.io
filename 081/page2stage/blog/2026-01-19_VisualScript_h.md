@@ -398,3 +398,22 @@ void		GetStyle ( int ind, CStyle & pStyle ) const;
 * const: **Const**ant
 * DC: **D**evice **C**ontext
 
+``` cpp
+					// width only
+	int			PixelsToCols ( int pix ) const { return ( pix * 10 ) / m_charWid; }
+	int			ColsToHund ( int cols ) const { return ( cols * 10 ); }
+	int			PixelsToColHund ( int pix ) const { return ( pix * 100 ) / m_charWid; }
+	int			HundToCols ( int hun ) const { return hun / 10; }
+	int			ColsToPixels ( int cols ) const { return ( cols * m_charWid ) / 10; }
+	int			ColHundToPixels ( int hun ) const { return ( hun * m_charWid ) / 100; }
+```
+   
+* Pixels, pix: ピクセル
+* To: 〜から〜へ
+* Cols: Column
+* Hund, hun: **Hund**redths (小数点)
+* Wid: **Wid**th, **Wi**n**d**ow
+
+文字幅の単位変換専用ワンライナー関数です。
+恐らく、ピクセル ⇔ DPI(小数点)の相互変換だと思われます。なるほど、どのような歴史背景があるか理解していないとわからん(1980年代以前のコンピューターに関する知識がないと深堀りできない)。
+

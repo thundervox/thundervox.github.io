@@ -413,7 +413,108 @@ void		GetStyle ( int ind, CStyle & pStyle ) const;
 * Cols: Column
 * Hund, hun: **Hund**redths (小数点)
 * Wid: **Wid**th, **Wi**n**d**ow
+* 10, 100: マジックナンバー
 
 文字幅の単位変換専用ワンライナー関数です。
 恐らく、ピクセル ⇔ DPI(小数点)の相互変換だと思われます。なるほど、どのような歴史背景があるか理解していないとわからん(1980年代以前のコンピューターに関する知識がないと深堀りできない)。
 
+``` cpp
+					// printer
+	int			ColHundToDevice ( int hun ) const { return ( hun * m_devWid ) / 100; }
+	int			DeviceToColHund ( int pix ) const { return ( pix * 100 ) / m_devWid; }
+
+					// pixels/inch
+	int			_GetDevHt ( ) const { return m_devHt; }
+	int			_GetCharHt ( ) const { return m_charHt; }
+```
+
+* Printer: プリンター、印刷機
+* Col (Column): カラム
+* To: 〜から〜へ変換
+* Device, dev: デバイス、装置
+* pixel, pix: ピクセル
+* hun: hundredths
+* 100: マジックナンバー (なぜそうなるかは保留)
+* Char (Character): 文字
+* Ht (Height): 高さ
+* Wid (Width): 幅
+* return: 返値
+
+一般に接頭辞にアンダーバーが付いているのは低水準処理に使われる関数です。プログラマが直接呼び出すようなことはしません。
+
+``` cpp
+int			GetCharSet ( ) const { return m_charSet; }
+	int			GetCodePage ( ) const { return m_codePage; }
+	int			GetFontWeight ( BOOL isBold, BOOL isPrint ) const;
+```
+
+* CharSet: 文字コードセット (ShiftJIS, UTF-8 など)
+* CodePage: コードページ (932など)
+* FontWeight: フォントウェイト (書体の太さ)
+
+``` cpp
+	CString	MakeFileName ( CString name, char const * ext );
+	void		WalkAllViews ( FN_WALK_VIEWS func, void * data );
+	void		WalkAllDocs ( FN_WALK_DOCS func, void * data );
+```
+
+* Make: 作成、生成
+* File: ファイル
+* Name: 名、名前
+* Walk: 走査、歩く
+* All: すべて
+* Views: ビュー、表示、表示領域
+* Docs: ドキュメント
+* ext: 拡張子
+* data: データ
+* func: 関数
+* FN_WALK_VIEWS: 関数ポインタ (stdafx.h)
+* FN_WALK_DOCS: 関数ポインタ (stdafx.h)
+
+``` cpp
+	void		SetStatusBar ( UINT id );
+	void		SetStatusBar ( char const * str );
+	void		FixDir ( CString & defDir, BOOL incSlash );
+	CString	GetLang ( BOOL localLang );
+	CString	IntToLangID ( int id );
+	CString	GetDefFont ( ) const { return m_defFont; }
+```
+
+* Set: 設定
+* Get: 取得
+* StatusBar: ステータスバー
+* Fix: 固定、修正
+* Dir (Directory): ディレクトリ
+* inc (Include): インクルード、含める
+* Slash: スラッシュ記号
+* Lang (Language): 言語
+* local: ローカル、ロケール
+* Int (Integer): 整数
+* ID, id (Identifier): 識別子
+* Def (Default, Define): デフォルト、定義
+* str (string): 文字列
+* Font: フォント、書体
+
+SetStatusBarは二種類ありますけど、これはポリモーフィック(多態性)という仕組みで渡された引数で関数の動作を変える仕組みです。
+
+``` cpp
+	void		Log ( char const * str );
+	CString	GetSystemSpecs ( );
+
+	void		SetPrinterDefaults ( CVisualScriptDoc * pDoc, short orient = 0 );
+	BOOL		isDemo ( ) const { return m_mode == demo; }
+	BOOL		isRTL ( ) const { return m_bRTL; }
+	BOOL		isRTLInput ( ) const { return m_bRTLInput; }
+	void		_SetRTLInput ( BOOL val ) { m_bRTLInput = val; }
+```
+
+* Log: 動作状態などの記録して後で不具合などを検証できるようにするための機能
+* System: システム
+* Spec (Specification): スペック、性能、機器構成、仕様
+* orient: 方向 (この場合は印刷用紙の縦横向き)
+* RTL (Right To Left): 戦前の日本語など右から左へ読み書きする言語のこと。
+* Demo: デモ版、試用版、体験版、評価版
+* Input: 入力
+* Mode: モード、状態、方式、形態
+* b : Bool 型
+* short: short int 型

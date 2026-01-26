@@ -1,4 +1,4 @@
-# VisualScript.h の解析
+# VisualScript.h の解析 Part 01
 
 途中ですが、一旦ここで上げておきます。とまあ、ここからは地味に地道にといった作業が続きます。
 
@@ -518,3 +518,94 @@ SetStatusBarは二種類ありますけど、これはポリモーフィック(�
 * Mode: モード、状態、方式、形態
 * b : Bool 型
 * short: short int 型
+
+## 仮想関数とメッセージマップなど
+
+``` cpp
+// Overrides
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(CVisualScriptApp)
+	public:
+	virtual BOOL InitInstance();
+	virtual int Run();
+	virtual int ExitInstance();
+	//}}AFX_VIRTUAL
+		```
+	
+* ClassWizard: クラスウィザード
+* Instance: インスタンス
+* Init (Initial): 初期化
+* Exit: 終了、開放
+* override: オーバーライド
+* over: 超える、上に
+* ride: 乗る、乗せる、覆う
+	
+仮想関数のオーバライド (上書き) ですね。
+		
+	``` cpp	
+// Implementation
+	void		ReadIniSettings ();
+	void		RereadIniSettings ( BOOL doDict );
+
+	//{{AFX_MSG(CVisualScriptApp)
+	afx_msg void OnAppAbout();
+	afx_msg void OnFileSaveall();
+	afx_msg void OnUpdateFileSaveall(CCmdUI* pCmdUI);
+	afx_msg void OnFilePrintSetup();
+	afx_msg void OnFileOpen();
+	afx_msg void OnWindowCloseall();
+	afx_msg void OnHelpFaq();
+	afx_msg void OnHelpUpdates();
+	afx_msg void OnHelpWww();
+	afx_msg void OnHelpTechSupt();
+	afx_msg void OnHelpNews();
+	afx_msg void OnUpdateDispStyle(CCmdUI* pCmdUI);
+	afx_msg void OnFileNewScreenplay();
+	afx_msg void OnFileNewSitcomFilm();
+	afx_msg void OnFileNewSitcomTape();
+	afx_msg void OnFileNewStage();
+	afx_msg void OnUpdateFileNewScreenplay(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileNewSitcomFilm(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileNewSitcomTape(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFileNewStage(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateFilePrint(CCmdUI* pCmdUI);
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+```
+
+* afx_msg: メッセージマップであることを意味する
+* On: イベント発行時に呼び出される関数を表す接頭辞
+* App(-lication): アプリケーション
+* About: ソフトウェアに関する基本情報
+* FAQ: よくある質疑応答
+* Cmd (Command): コマンド、命令
+* WWW: ウェブ
+* Tech(-nical): テクニカル、技術
+* Supt(Support): サポート、相談や問い合わせ
+* News: 最新情報、ニュース
+* Disp(-lay): 表示
+* Re-: 再び、再度
+* Style: スタイル、体裁
+* Screenplay: 脚本
+* Sitcom: コメディ、喜劇、漫才
+* Film: 映画、番組
+* Tape: 音声のみの媒体、ラジオ番組やオーディオドラマ
+* Stage: 舞台
+* Declare: 宣言
+* Message: メッセージ
+* Map: マップ、地図、割り当て、対応表、対応関係
+* File: ファイル
+* New: 新規
+* Save: 保存
+* Open: 開く
+* Close:閉じる
+* All: すべて
+* Update: 更新
+* Print: 印刷
+* Setup: セットアップ、設定
+* Help: ヘルプ
+* Window: ウィンドウ
+
+ウィンドウの大きさが変更されたりメニューから選択されたなどイベント発生時に呼び出されるコールバック関数ですね。
+
+まだまだ続きますが、システム設定関連の変数は長文のため次回解説します。

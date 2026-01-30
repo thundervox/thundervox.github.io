@@ -224,3 +224,66 @@ COLORREF	m_clrNotePos;
 * def (default): デフォルト
 * sty (Style): スタイル
 * exe (executable): 実行可能形式
+
+``` cpp
+	// lists, macros, etc.
+	CArray <CUserList, CUserList &> 	m_list;
+
+	FN_SIGNALOBJECTANDWAIT	m_fnSignalObjectAndWait;	// if this call is available - it's address
+
+protected:
+	int				m_charWid;							// num pixels 1" on screen
+	int				m_charHt;
+	int				m_devWid;								// same for printer
+	int				m_devHt;
+	CString		m_sPrinter;
+	BOOL			m_havePrinter;
+
+	BOOL			m_bRTL;									// true if RTL
+	BOOL			m_bRTLInput;						// true if RTL input lang
+
+	CFile			m_logFile;							// for logging
+	int				m_charSet;							// default charset
+	int				m_codePage;							// default codepage
+	CString		m_defFont;							// default font
+	HINSTANCE	m_hInstResDLL;					// language resources
+
+public:
+		enum USER_MODE { demo, std, prof };
+	USER_MODE	m_mode;
+
+	int				m_screenWid;						// screen resolution
+	int				m_screenHt;
+```
+
+* Array: 配列
+* macro: マクロ
+* call: 呼び出し
+* available: 利用可能
+* address: アドレス、メモリの先頭番地、住所、データやコード、オブジェクトの所在(先頭番地)
+* char (Character): 文字、人物
+* Wid (Width): 幅
+* Ht (Height): 高さ
+* s (string): 文字列型 (システムハンガリアン記法)
+* pixel: ピクセル、画素
+* screen: スクリーン、画面、表示装置
+* dev (Device): デバイス、機器、装置
+* printer: プリンター、印刷機
+* same: 〜と何かの項目や値の扱いかたは同じ
+* have: 持つ、が扱える、存在する、接続されている
+* b: Bool 型
+* RTL (Right to Left): 右から左へ読み書きする自然言語のこと
+* Input: (キーボード、ファイル、ネットワークなどの) データ入力
+* lang (Language): 言語
+* true: 真、本当、(条件などの)成立
+* h (handle): ハンドル (Win32 API 用語)
+* inst (Instance): インスタンス
+* Res (resources): リソース、資源、情報源、データベース、データセット
+* charset: キャラクターセット、文字コード、文字エンコーディング
+* codepage: コードページ
+* user: ユーザー、利用者
+* mode: モード、動作切り替え
+* std (Standard): 標準、製品版、正規版
+* prof (profile, profiling, Professional ):  不明 (未使用)
+* resolution: 解像度、画面表示領域の寸法
+* DLL (Dynamic Link Library): 動的呼び出しライブラリ

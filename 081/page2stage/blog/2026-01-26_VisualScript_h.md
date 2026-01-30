@@ -287,3 +287,46 @@ public:
 * prof (profile, profiling, Professional ):  不明 (未使用)
 * resolution: 解像度、画面表示領域の寸法
 * DLL (Dynamic Link Library): 動的呼び出しライブラリ
+``` cpp
+private:
+	void ShowTipAtStartup(void);
+	void ShowTipOfTheDay(void);
+
+#ifdef _DEBUG
+public:
+	virtual void AssertValid() const;
+#endif
+};
+
+extern CVisualScriptApp theApp;
+```
+
+* Show: 表示
+* Tip: チップ、小技
+* At: 〜で、〜の
+* Startup: スタートアップ、起動直後
+* Day: 今日
+* DEBUG: デバッグ
+* Assert: 検証
+* Valid: 有効性、正当性
+* extern (External): 外部参照指定
+
+``` cpp
+/////////////////////////////////////////////////////////////////////////////
+
+//{{AFX_INSERT_LOCATION}}
+// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
+
+#endif // !defined(AFX_VISUALSCRIPT_H__F23553B5_E4F8_11D1_A531_00600896C5B2__INCLUDED_)
+
+```
+
+これはただのコメントなので解説は割愛します。
+
+以上でVisualScript.hにおける単語の読み方の解説は完了です。はあ、下手に読んで理解できる人なのでいちいち書き残すのは進捗は遅くなるので面倒くさかったですが、これも経験ですね。たったこれだけのことで挫折して二度とコードリーディングなんてしないって人もいますからね。潜在適正の有無にかかわらずもったいない。
+
+まだ変数名やクラスなどのライブラリリファレンスを作るような水準ではないので、ある程度作業が進んだら出戻って解析し直します。
+
+次回はVisualScript.cppですかね。あるいはMFCで使われているクラスの洗い出しか先に読みたいコードから進めるかは気分次第です。
+
+まだまだ続きます。

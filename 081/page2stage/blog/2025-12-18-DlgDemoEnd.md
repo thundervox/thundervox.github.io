@@ -34,3 +34,15 @@
  * 該当箇所さえ削除すれば DlgDemoEnd.h と DlgDemoEnd.cpp は不要になります。
  * IntToCString は to_String へ置き換えられないか？ A. IntToCString は後方互換性のために残しておいてもいいけど、to_String は C++11以降なら使える→ [to_string - cpprefjp C++日本語リファレンス](https://cpprefjp.github.io/reference/string/to_string.html)
 
+## 追記(未整理)
+デモ版の試用期限切れ通知ダイアログの処理ですが、真面目に解析する必要性はないですね。以前にも述べた通り frame.cpp: 303 - 306 のみです。
+
+* リソース: IDD_DEMO_END
+* AFX: AfxFormatString1
+* MFC: CTime, CWnd, CDataExchange, CString
+* Win32: GetProfileString, WriteProfileInt
+* Windward: IntToCString
+* profile.cpp: myGetProfileInt
+* 略語は、
+   * btn: Button
+   * pDX: Pointer of Data eXchange
